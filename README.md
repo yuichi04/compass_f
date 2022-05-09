@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# COMPASS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+ステータス: 開発中
+作成日時: 2022 年 5 月 9 日 午前 3:52
+使用技術: AWS, MySQL, React, Redux, Ruby, Ruby on Rails, TypeScript
+最終更新日時: 2022 年 5 月 9 日 午前 7:33
+種類: Web サービス
 
-## Available Scripts
+# README
 
-In the project directory, you can run:
+## 1. サービス概要
 
-### `npm start`
+「 COMPASS 」は説明が苦手な人に向けた、説明が上手になるための知識とトレーニングの場を提供するサービスです。
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+学校や職場など説明が必要とされる場面は多くありますが、それに対して苦手意識がある方も多いと思います。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+原因として「相手に伝わりやすい説明方法を知らない」「説明方法は知っているけど上手く活用できない」などが考えらますが、これらは説明に関する知識を学び、それを繰り返し使うことで解決できます。
 
-### `npm test`
+その解決をサポートするのが「COMPASS」の役目です。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. メインターゲット
 
-### `npm run build`
+学生から社会人、老若男女問わず、説明上手になりたい全ての方
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 3. ユーザーが抱える課題
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 自分の考えをまとめることができず、何を相手に伝えたら良いのかわからない
+- 伝えたいことをうまく説明できず、相手を混乱させてしまう
+- 本や動画などで説明方法についての知識を手に入れても、実践以外で試す場がなくて困っている
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 4. 解決方法
 
-### `npm run eject`
+伝わりやすい説明方法を「学ぶ・使う」を繰り返す
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 5. 実装予定の機能
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1. 選択式クイズ
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### ① 相手が一番知りたい情報を当てるクイズ
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+⇒ 相手が理解しやすい順番で話すことが意識できるようになる
 
-## Learn More
+### ② 相手のレベルに合わせた言葉を選ぶクイズ
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+⇒ 相手のレベルに合わせた説明ができるようになる
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### ③ 話し手の言っていることが事実と解釈のどちらなのかを当てるクイズ
+
+⇒ 事実と解釈を分けて話すことができるようになる
+
+### 2. レベルアップ機能
+
+### ① 問題に正解すると経験値が貯まり、一定値を超えるとレベルが上がる
+
+⇒ 一定回数連続で正解すると経験値ボーナスがつく仕様。実力者ほどより高レベルになれる
+
+### ② 不正解の場合は経験値が減り、一定値を下回るとレベルが下がる
+
+⇒ 高レベルになるにはしっかりとした実力を身につける必要がある
+
+### 【検討中】③ 一定レベルを超えると、問題を作成し一般に公開する機能が解放される
+
+## 6. なぜこのサービスを作りたいのか？
+
+- 過去に説明が下手なことが原因で、仕事で成果が出ず悩んでいた
+- 説明方法に関する知識を手に入れても、仕事以外に試す場がなかった
+- 仕事で使うことで確かに説明力は向上したが、もし試す場があったならもっと早く力が身についていた
+- 説明に関する知識のインプットとアウトプットの場を作ることで、同じ悩みを持つ方の課題を解決できると考えた
