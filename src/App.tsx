@@ -1,12 +1,12 @@
 import React from "react";
-import SignUp from "./components/pages/SignUp";
+import RouteConfig from "./routes/RouteConfig";
 
-function App() {
+export const App: React.FC = () => {
   return (
-    <div className="App">
-      <SignUp />
-    </div>
+    <>
+      <RouteConfig />
+    </>
   );
-}
+};
 
 export default App;

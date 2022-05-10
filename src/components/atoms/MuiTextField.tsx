@@ -16,6 +16,7 @@ type Props = {
   required?: boolean;
   rows?: number;
   size?: "medium" | "small";
+  type?: React.HTMLInputTypeAttribute;
   variant?: "filled" | "outlined" | "standard";
 };
 
