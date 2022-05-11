@@ -3,7 +3,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
-import HomeIcon from "@mui/icons-material/Home";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
 import { MuiButton, LinkTo, MuiCheckBox, MuiTextFieldWithAdornment } from "../atoms";
@@ -11,14 +10,7 @@ import { ChipWithText, IconWithPageTitle } from "../molecules";
 
 const SignUp: React.FC = React.memo(() => {
   return (
-    <MuiContainer>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <LinkTo to="/">
-          <HomeIcon fontSize="small" />
-        </LinkTo>
-        <p style={{ margin: "0 8px" }}>&gt;</p>
-        新規ユーザー登録
-      </div>
+    <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
       <SFormBox>
         <ChipWithText text="ユーザー名" label="必須" size="small" color="error" variant="outlined" />
@@ -72,7 +64,7 @@ const SignUp: React.FC = React.memo(() => {
         />
         <SAgreement>
           <MuiCheckBox onChange={() => console.log("Checked!")} />
-          <LinkTo to="/">利用規約</LinkTo>と<LinkTo to="/">プライバシーポリシー</LinkTo>に同意する
+          <LinkTo to="/">利用規約</LinkTo>と<LinkTo to="/privacypolicy">プライバシーポリシー</LinkTo>に同意する
         </SAgreement>
         <div className="module-spacer-md" />
         <MuiButton variant="contained" color="primary" fullWidth>

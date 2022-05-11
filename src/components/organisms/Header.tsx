@@ -8,7 +8,7 @@ import { LinkTo } from "../atoms";
 
 const Header: React.FC = React.memo(() => {
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: "32px" }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: "#2a2f36", boxShadow: "0 0 12px #ccc" }}>
         <Toolbar>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1, color: "#fff" }}>
@@ -31,7 +31,7 @@ export default Header;
 const SButton = styled.div`
   border-radius: 8px;
   cursor: pointer;
-  padding: 12px 16px;
+  padding: 8px 16px;
   transition: all 0.3s;
   &:hover {
     opacity: 0.8;
@@ -41,9 +41,9 @@ const SButton = styled.div`
 const SSignup = styled(SButton)`
   background: #1665c0;
   color: white;
-  margin-right: 8px;
+  margin-right: 12px;
 `;
 const SLogin = styled(SButton)`
-  background: white;
+  background: #fff;
   color: #1665c0;
 `;

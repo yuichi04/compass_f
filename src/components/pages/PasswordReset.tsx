@@ -1,23 +1,21 @@
 import React from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import LockResetIcon from "@mui/icons-material/LockReset";
-import HomeIcon from "@mui/icons-material/Home";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { MuiButton, LinkTo, MuiTextFieldWithAdornment } from "../atoms";
+import { MuiButton, MuiTextFieldWithAdornment } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
 
 const PasswordReset: React.FC = React.memo(() => {
   return (
-    <MuiContainer>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <LinkTo to="/">
-          <HomeIcon fontSize="small" />
-        </LinkTo>
-        <p style={{ margin: "0 8px" }}>&gt;</p>
-        パスワードの再設定
-      </div>
+    <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="パスワードの再設定" icon={LockResetIcon} />
+      <div className="module-spacer-md" />
+      <SText>
+        パスワード再設定のメールを送信します。
+        <br />
+        ご登録のメールアドレスを入力してメールを送信してください。
+      </SText>
       <SFormBox>
         <MuiTextFieldWithAdornment
           icon={<EmailIcon />}
@@ -42,4 +40,8 @@ export default PasswordReset;
 
 const SFormBox = styled.form`
   padding: 32px 0;
+`;
+
+const SText = styled.p`
+  text-align: center;
 `;

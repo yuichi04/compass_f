@@ -4,14 +4,15 @@ import { theme } from "../../assets/theme";
 
 type Props = {
   children: React.ReactNode;
+  maxWidth: "sm" | "md" | "lg";
 };
 
-const MuiContaier: React.FC<Props> = React.memo(({ children }) => {
+const MuiContaier: React.FC<Props> = React.memo(({ children, ...props }) => {
   return (
     <Container
-      maxWidth="md"
+      {...props}
       sx={{
-        boxShadow: "0 0 12px #ccc",
+        minHeight: "calc(100vh - 192px)",
         padding: "32px",
         [theme.breakpoints.down("sm")]: {
           padding: "16px",

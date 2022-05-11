@@ -2,7 +2,6 @@ import React from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
 import LoginIcon from "@mui/icons-material/Login";
-import HomeIcon from "@mui/icons-material/Home";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
 import { MuiButton, LinkTo, MuiTextFieldWithAdornment } from "../atoms";
@@ -10,14 +9,7 @@ import { IconWithPageTitle } from "../molecules";
 
 const LogIn: React.FC = React.memo(() => {
   return (
-    <MuiContainer>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <LinkTo to="/">
-          <HomeIcon fontSize="small" />
-        </LinkTo>
-        <p style={{ margin: "0 8px" }}>&gt;</p>
-        ログイン
-      </div>
+    <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="ログイン" icon={LoginIcon} />
       <SFormBox>
         <MuiTextFieldWithAdornment
