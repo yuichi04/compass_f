@@ -32,12 +32,33 @@ export const useSignUp = () => {
     [values]
   );
 
+  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>, params: SignUpParams) => {
+    e.preventDefault();
+    // Loadingフラグをon
+    console.log("signup");
+    // try {
+    //   const res = await signUp(params);
+    //   if (res.data.status === 200) {
+    //     // reduxにresのuserデータを格納する処理
+    //     // メインページに遷移させる
+    //     // Loadingフラグをoff
+    //   } else {
+    //     // エラーフラグをonに変更する処理
+    //     // Loadingフラグをoff
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   Loadingフラグをoff
+    // }
+  }, []);
+
   useEffect(() => {
-    console.log("change!");
     const isValidUsername = validateIsNotEmpty(values.username);
     const isValidEmail = validateEmailFormat(values.email);
     const isValidPassword = validateMoreThan8Characters(values.password);
     const isValidPasswordConfirmation = values.password === values.passwordConfirmation && true;
+
+    // validationをパスしたかしていないかを判定し、stateを更新
     if (isValidUsername && isValidEmail && isValidPassword && isValidPasswordConfirmation && isChecked) {
       setIsValid(true);
     } else {
@@ -50,7 +71,8 @@ export const useSignUp = () => {
     values,
     isChecked,
     isValid,
-    handleChange,
     setIsChecked,
+    handleChange,
+    handleSubmit,
   };
 };

@@ -8,6 +8,7 @@ type Props = {
   disabled?: boolean;
   fullWidth?: boolean;
   children: React.ReactNode;
+  type?: "submit" | "button";
 };
 
 const MuiButton: React.FC<Props> = React.memo(({ children, ...props }) => {

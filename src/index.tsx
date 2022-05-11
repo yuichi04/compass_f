@@ -2,6 +2,8 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./assets/theme";
 import App from "./App";
 import "./assets/styles/style.scss";
 import reportWebVitals from "./reportWebVitals";
@@ -12,7 +14,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );

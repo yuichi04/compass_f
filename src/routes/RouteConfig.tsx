@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Header } from "../components/organisms";
 import Footer from "../components/organisms/Footer";
 import { LogIn, NotFound404, PasswordReset, SignUp, Top, Main, PrivacyPolicy, Terms } from "../components/pages";
+import SentPasswordResetEmail from "../components/pages/static/SentPasswordResetEmail";
 import ScrollToTop from "../components/ScrollToTop";
 
 const RouteConfig: React.FC = () => {
@@ -17,6 +18,7 @@ const RouteConfig: React.FC = () => {
         <Route path="/passwordreset" element={<PasswordReset />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/sentpasswordresetemail" element={<SentPasswordResetEmail />} />
 
         {/* Need Authentication */}
         <Route path="/main" element={<Main />} />

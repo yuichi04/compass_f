@@ -10,12 +10,12 @@ import { ChipWithText, IconWithPageTitle } from "../molecules";
 import { useSignUp } from "../../hooks/useSignUp";
 
 const SignUp: React.FC = React.memo(() => {
-  const { errors, isValid, values, isChecked, handleChange, setIsChecked } = useSignUp();
+  const { errors, isValid, values, isChecked, handleChange, setIsChecked, handleSubmit } = useSignUp();
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
-      <SFormBox>
+      <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <ChipWithText text="ユーザー名" label="必須" size="small" color="error" variant="outlined" />
         {errors.username && <p style={{ color: "red" }}>スペースは使用できません</p>}
         <MuiTextFieldWithAdornment
@@ -67,7 +67,7 @@ const SignUp: React.FC = React.memo(() => {
           <LinkTo to="/">利用規約</LinkTo>と<LinkTo to="/privacypolicy">プライバシーポリシー</LinkTo>に同意する
         </SAgreement>
         <div className="module-spacer-md" />
-        <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid}>
+        <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           認証メールを送信する
         </MuiButton>
       </SFormBox>
@@ -87,8 +87,9 @@ const SFormBox = styled.form`
 const SAgreement = styled.div`
   display: flex;
   align-items: center;
+  font-weight: 600;
   a {
-    color: #1665c0;
+    color: #00aa99;
     text-decoration: underline;
   }
 `;

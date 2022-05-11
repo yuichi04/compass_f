@@ -30,8 +30,7 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const SFooter = styled.footer`
-  background: #d8dadf;
-  box-shadow: 0 -1px 4px #ccc;
+  background: #eaedef;
   width: 100vw;
   padding: 32px;
 `;

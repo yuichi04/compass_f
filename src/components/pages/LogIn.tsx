@@ -6,19 +6,22 @@ import styled from "styled-components";
 import { MuiContainer } from "../layouts";
 import { MuiButton, LinkTo, MuiTextFieldWithAdornment } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
+import { useLogIn } from "../../hooks/useLogIn";
 
 const LogIn: React.FC = React.memo(() => {
+  const { isValid, values, handleChange, handleSubmit } = useLogIn();
+
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="ログイン" icon={LoginIcon} />
-      <SFormBox>
+      <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <MuiTextFieldWithAdornment
           icon={<EmailIcon />}
           label="メールアドレス"
           type="email"
           fullWidth
-          value=""
-          onChange={() => console.log("onChange!")}
+          value={values.email}
+          onChange={(e) => handleChange(e, "email")}
           size="small"
           margin="dense"
         />
@@ -28,13 +31,14 @@ const LogIn: React.FC = React.memo(() => {
           label="パスワード"
           type="password"
           fullWidth
-          value=""
-          onChange={() => console.log("onChange!")}
+          value={values.password}
+          onChange={(e) => handleChange(e, "password")}
           size="small"
           margin="dense"
+          autoComplete="password"
         />
         <div className="module-spacer-md" />
-        <MuiButton variant="contained" color="primary" fullWidth>
+        <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           ログイン
         </MuiButton>
       </SFormBox>
@@ -42,7 +46,6 @@ const LogIn: React.FC = React.memo(() => {
         <p>
           まだユーザー登録されていませんか？<LinkTo to="/signup">こちら</LinkTo>から新規登録
         </p>
-        <br />
         <p>
           パスワードをお忘れの方は<LinkTo to="/passwordreset">こちら</LinkTo>
         </p>
