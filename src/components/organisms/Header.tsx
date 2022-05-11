@@ -31,7 +31,7 @@ export default Header;
 const SButton = styled.div`
   border-radius: 8px;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 8px 12px;
   transition: all 0.3s;
   &:hover {
     opacity: 0.8;

@@ -20,6 +20,7 @@ type Props = {
   size?: "small" | "medium";
   type?: React.HTMLInputTypeAttribute;
   variant?: "standard" | "outlined" | "filled";
+  autoComplete?: string;
 };
 
 const MuiTextFieldWithAdornment: React.FC<Props> = React.memo(({ ...props }) => {
