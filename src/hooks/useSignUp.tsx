@@ -10,20 +10,20 @@ export const useSignUp = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [values, setValues] = useState<SignUpParams>({
-    username: "",
+    name: "",
     email: "",
     password: "",
     passwordConfirmation: "",
   });
   const [errors, setErrors] = useState({
-    username: false,
+    name: false,
     email: false,
     password: false,
     passwordConfirmation: false,
   });
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: "username" | "email" | "password" | "passwordConfirmation") => {
+    (e: React.ChangeEvent<HTMLInputElement>, key: "name" | "email" | "password" | "passwordConfirmation") => {
       setValues({
         ...values,
         [key]: e.target.value,
@@ -36,24 +36,25 @@ export const useSignUp = () => {
     e.preventDefault();
     // Loadingフラグをon
     console.log("signup");
-    // try {
-    //   const res = await signUp(params);
-    //   if (res.data.status === 200) {
-    //     // reduxにresのuserデータを格納する処理
-    //     // メインページに遷移させる
-    //     // Loadingフラグをoff
-    //   } else {
-    //     // エラーフラグをonに変更する処理
-    //     // Loadingフラグをoff
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   Loadingフラグをoff
-    // }
+    try {
+      const res = await signUp(params);
+      if (res.data.status === 200) {
+        alert("アカウントが作成されました！");
+        // reduxにresのuserデータを格納する処理
+        // メインページに遷移させる
+        // Loadingフラグをoff
+      } else {
+        alert("アカウントの作成に失敗しました！");
+        // Loadingフラグをoff
+      }
+    } catch (error) {
+      console.log("例外: ", error);
+      // Loadingフラグをoff
+    }
   }, []);
 
   useEffect(() => {
-    const isValidUsername = validateIsNotEmpty(values.username);
+    const isValidUsername = validateIsNotEmpty(values.name);
     const isValidEmail = validateEmailFormat(values.email);
     const isValidPassword = validateMoreThan8Characters(values.password);
     const isValidPasswordConfirmation = values.password === values.passwordConfirmation && true;

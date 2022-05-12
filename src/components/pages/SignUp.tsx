@@ -17,12 +17,11 @@ const SignUp: React.FC = React.memo(() => {
       <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <ChipWithText text="ユーザー名" label="必須" size="small" color="error" variant="outlined" />
-        {errors.username && <p style={{ color: "red" }}>スペースは使用できません</p>}
         <MuiTextFieldWithAdornment
           icon={<PersonIcon />}
           fullWidth
-          value={values.username}
-          onChange={(e) => handleChange(e, "username")}
+          value={values.name}
+          onChange={(e) => handleChange(e, "name")}
           size="small"
           margin="dense"
         />
@@ -87,7 +86,6 @@ const SFormBox = styled.form`
 const SAgreement = styled.div`
   display: flex;
   align-items: center;
-  font-weight: 600;
   a {
     color: #00aa99;
     text-decoration: underline;
