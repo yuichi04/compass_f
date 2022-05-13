@@ -4,13 +4,18 @@ import { MuiAvatar, LinkTo } from "../atoms";
 
 type Props = {
   text: string;
+  greeting: string;
 };
 
 const AvatarWithText: React.FC<Props> = React.memo((props) => {
+  const { text, greeting } = props;
   return (
     <SFlex>
       <MuiAvatar />
-      <LinkTo to="/profile">{props.text}さん</LinkTo>
+      <p>
+        {greeting}
+        <LinkTo to="/profile">{text}</LinkTo>さん
+      </p>
     </SFlex>
   );
 });
@@ -21,7 +26,10 @@ const SFlex = styled.div`
   display: flex;
   align-items: center;
   margin-right: 16px;
-  a {
+  p {
     margin-left: 12px;
+    a {
+      text-decoration: underline;
+    }
   }
 `;

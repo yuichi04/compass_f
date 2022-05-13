@@ -5,13 +5,23 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { userState } from "../../lib/redux/userSlice";
-import { LinkTo, MuiAvatar, MuiButton } from "../atoms";
+import { LinkTo } from "../atoms";
 import { AvatarWithText } from "../molecules";
 import { MuiDrawer } from ".";
-// import { useLogOut } from "../../hooks/useLogOut";
+
+const date = new Date();
+const hours = date.getHours();
+const greeting = () => {
+  if (hours >= 3 && hours < 11) {
+    return "おはようございます。";
+  } else if (hours >= 11 && hours < 18) {
+    return "こんにちは。";
+  } else {
+    return "こんばんは。";
+  }
+};
 
 const SignedInHeader: React.FC = React.memo(() => {
-  // const { handleClick } = useLogOut();
   const user = useAppSelector(userState);
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -20,12 +30,8 @@ const SignedInHeader: React.FC = React.memo(() => {
           <Typography variant="h5" component="div" sx={{ flexGrow: 1, color: "#00aa99", fontWeight: "600" }}>
             <LinkTo to="/">COMPASS</LinkTo>
           </Typography>
-          <AvatarWithText text={user.name} />
-          {/* <MuiButton variant="contained" onClick={handleClick}>
-            ログアウト
-          </MuiButton> */}
-          {/* ハンバーガーメニューに変更する */}
-          <MuiDrawer />
+          <AvatarWithText text={user.name} greeting={greeting()} />
+          <MuiDrawer username={user.name} email={user.email} />
         </Toolbar>
       </AppBar>
     </Box>

@@ -17,6 +17,7 @@ export const useLogIn = () => {
     password: "",
   });
   const [error, setError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState("");
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, key: "email" | "password") => {
@@ -42,19 +43,20 @@ export const useLogIn = () => {
           };
           dispatch(logInAction(logInState));
           navigate("/");
+          console.log(res.data.user);
           alert("ログインしました");
         } else {
-          setError(!error);
+          setError(true);
+          setErrorMessages("メールアドレスまたはパスワードが間違っています");
         }
       } catch (error) {
         console.log(error);
       }
     },
-    [dispatch, navigate, error]
+    [dispatch, navigate]
   );
 
   useEffect(() => {
-    console.log("effect!");
     const isValidEmailFormat = validateEmailFormat(values.email);
     const isValidPassword = validateMoreThan8Characters(values.password);
 
@@ -69,6 +71,7 @@ export const useLogIn = () => {
     isValid,
     values,
     error,
+    errorMessages,
     handleChange,
     handleSubmit,
   };

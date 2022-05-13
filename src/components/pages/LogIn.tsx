@@ -9,12 +9,12 @@ import { IconWithPageTitle } from "../molecules";
 import { useLogIn } from "../../hooks/useLogIn";
 
 const LogIn: React.FC = React.memo(() => {
-  const { error, isValid, values, handleChange, handleSubmit } = useLogIn();
+  const { error, errorMessages, isValid, values, handleChange, handleSubmit } = useLogIn();
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="ログイン" icon={LoginIcon} />
-      {error && <ErrorText text="メールアドレスまたはパスワードが間違っています。" />}
+      {error && <ErrorText text={errorMessages} />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <MuiTextFieldWithAdornment
           icon={<EmailIcon />}

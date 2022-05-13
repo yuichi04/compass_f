@@ -52,8 +52,6 @@ export const useSignUp = () => {
         } else {
           setError(!error);
           setErrorMessages(res.data.message);
-          console.log(res.data.message);
-          alert("アカウントの作成に失敗しました！");
           // Loadingフラグをoff
         }
       } catch (error) {
