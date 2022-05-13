@@ -4,16 +4,17 @@ import KeyIcon from "@mui/icons-material/Key";
 import LoginIcon from "@mui/icons-material/Login";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { MuiButton, LinkTo, MuiTextFieldWithAdornment } from "../atoms";
+import { MuiButton, LinkTo, MuiTextFieldWithAdornment, ErrorText } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
 import { useLogIn } from "../../hooks/useLogIn";
 
 const LogIn: React.FC = React.memo(() => {
-  const { isValid, values, handleChange, handleSubmit } = useLogIn();
+  const { error, isValid, values, handleChange, handleSubmit } = useLogIn();
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="ログイン" icon={LoginIcon} />
+      {error && <ErrorText text="メールアドレスまたはパスワードが間違っています。" />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <MuiTextFieldWithAdornment
           icon={<EmailIcon />}

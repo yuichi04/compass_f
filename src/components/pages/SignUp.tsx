@@ -5,16 +5,17 @@ import KeyIcon from "@mui/icons-material/Key";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { MuiButton, LinkTo, MuiCheckBox, MuiTextFieldWithAdornment } from "../atoms";
+import { MuiButton, LinkTo, MuiCheckBox, MuiTextFieldWithAdornment, ErrorText } from "../atoms";
 import { ChipWithText, IconWithPageTitle } from "../molecules";
 import { useSignUp } from "../../hooks/useSignUp";
 
 const SignUp: React.FC = React.memo(() => {
-  const { errors, isValid, values, isChecked, handleChange, setIsChecked, handleSubmit } = useSignUp();
+  const { error, isValid, values, isChecked, handleChange, setIsChecked, handleSubmit } = useSignUp();
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
+      {error && <ErrorText text="入力内容に誤りがあります。" />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <ChipWithText text="ユーザー名" label="必須" size="small" color="error" variant="outlined" />
         <MuiTextFieldWithAdornment
@@ -71,7 +72,7 @@ const SignUp: React.FC = React.memo(() => {
         </MuiButton>
       </SFormBox>
       <SRight>
-        既に登録済みですか？<LinkTo to="/login">こちら</LinkTo>からログイン
+        既にご登録済みですか？<LinkTo to="/login">こちら</LinkTo>からログイン
       </SRight>
     </MuiContainer>
   );

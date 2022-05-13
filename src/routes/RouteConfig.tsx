@@ -1,10 +1,9 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { Header } from "../components/organisms";
-import Footer from "../components/organisms/Footer";
-import { LogIn, NotFound404, PasswordReset, SignUp, Top, Main, PrivacyPolicy, Terms } from "../components/pages";
-import SentPasswordResetEmail from "../components/pages/static/SentPasswordResetEmail";
-import ScrollToTop from "../components/ScrollToTop";
+import { Header, Footer } from "../components/organisms";
+import { LogIn, NotFound404, PasswordReset, SignUp, Top, PrivacyPolicy, Terms } from "../components/pages";
+import SentPasswordResetEmail from "../components/pages/SentPasswordResetEmail";
+import ScrollToTop from "../components/utils/ScrollToTop";
 
 const RouteConfig: React.FC = () => {
   return (
@@ -19,11 +18,6 @@ const RouteConfig: React.FC = () => {
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/sentpasswordresetemail" element={<SentPasswordResetEmail />} />
-
-        {/* Need Authentication */}
-        <Route path="/main" element={<Main />} />
-
-        {/* 404 Not found */}
         <Route path="*" element={<NotFound404 />} />
       </Routes>
       <Footer />

@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 type Props = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: "text" | "outlined" | "contained";
-  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning" | "inherit";
   disabled?: boolean;
   fullWidth?: boolean;
   children: React.ReactNode;

@@ -1,9 +1,9 @@
 import React from "react";
 import EmailIcon from "@mui/icons-material/Email";
 import styled from "styled-components";
-import { MuiContainer } from "../../layouts";
-import { LinkTo } from "../../atoms";
-import { IconWithPageTitle } from "../../molecules";
+import { MuiContainer } from "../layouts";
+import { LinkTo } from "../atoms";
+import { IconWithPageTitle } from "../molecules";
 
 const SentPasswordResetEmail: React.FC = React.memo(() => {
   return (

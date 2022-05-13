@@ -1,12 +1,17 @@
 import { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../lib/redux/hooks";
+import { logInAction } from "../lib/redux/userSlice";
 import { signUp } from "../lib/api/userAuth";
-import { SignUpParams } from "../types/userTypes";
+import { SignUpParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
 
 // validations
 const { validateIsNotEmpty, validateEmailFormat, validateMoreThan8Characters } = validations();
 
 export const useSignUp = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [values, setValues] = useState<SignUpParams>({
@@ -15,12 +20,7 @@ export const useSignUp = () => {
     password: "",
     passwordConfirmation: "",
   });
-  const [errors, setErrors] = useState({
-    name: false,
-    email: false,
-    password: false,
-    passwordConfirmation: false,
-  });
+  const [error, setError] = useState(false);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, key: "name" | "email" | "password" | "passwordConfirmation") => {
@@ -32,26 +32,34 @@ export const useSignUp = () => {
     [values]
   );
 
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>, params: SignUpParams) => {
-    e.preventDefault();
-    // Loadingフラグをon
-    console.log("signup");
-    try {
-      const res = await signUp(params);
-      if (res.data.status === 200) {
-        alert("アカウントが作成されました！");
-        // reduxにresのuserデータを格納する処理
-        // メインページに遷移させる
-        // Loadingフラグをoff
-      } else {
-        alert("アカウントの作成に失敗しました！");
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>, params: SignUpParams) => {
+      e.preventDefault();
+      // Loadingフラグをon
+      try {
+        const res = await signUp(params);
+        if (res.data.status === 200) {
+          const user = res.data.user;
+          const logInState: UserParams = {
+            name: user.name,
+            email: user.email,
+          };
+          // storeにユーザー情報を保存する
+          dispatch(logInAction(logInState));
+          navigate("/main");
+          // Loadingフラグをoff
+        } else {
+          setError(!error);
+          alert("アカウントの作成に失敗しました！");
+          // Loadingフラグをoff
+        }
+      } catch (error) {
+        console.log(error);
         // Loadingフラグをoff
       }
-    } catch (error) {
-      console.log("例外: ", error);
-      // Loadingフラグをoff
-    }
-  }, []);
+    },
+    [dispatch, navigate, error]
+  );
 
   useEffect(() => {
     const isValidUsername = validateIsNotEmpty(values.name);
@@ -68,7 +76,7 @@ export const useSignUp = () => {
   }, [isChecked, values]);
 
   return {
-    errors,
+    error,
     values,
     isChecked,
     isValid,

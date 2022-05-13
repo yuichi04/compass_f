@@ -1,21 +1,22 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogInParams } from "../types/userTypes";
+import { LogInParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
+import { logIn } from "../lib/api/userAuth";
+import { useAppDispatch } from "../lib/redux/hooks";
+import { logInAction } from "../lib/redux/userSlice";
 
 const { validateEmailFormat, validateMoreThan8Characters } = validations();
 
 export const useLogIn = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isValid, setIsValid] = useState<boolean>(false);
   const [values, setValues] = useState<LogInParams>({
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState({
-    email: false,
-    password: false,
-  });
+  const [error, setError] = useState(false);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, key: "email" | "password") => {
@@ -27,26 +28,30 @@ export const useLogIn = () => {
     [values]
   );
 
-  const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>, params: LogInParams) => {
-    e.preventDefault();
-    // Loadingフラグをon
-    console.log("login!");
-    navigate("/main");
-    // try {
-    // const res = await logIn(params);
-    // if (res.data.status === 200 ) {
-    //    reduxにresのuserデータを格納する処理
-    //    メインページに移動させる
-    //    Loadingフラグをoff
-    // } else {
-    //    エラーフラグをonにする処理
-    //    Loadingフラグをoff
-    // }
-    // } catch (error) {
-    //   console.log(error);
-    //    Loadingフラグをoff
-    // }
-  }, []);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>, params: LogInParams) => {
+      e.preventDefault();
+      // Loadingフラグをon
+      try {
+        const res = await logIn(params);
+        if (res.data.status === 200) {
+          const user = res.data.user;
+          const logInState: UserParams = {
+            name: user.name,
+            email: user.email,
+          };
+          dispatch(logInAction(logInState));
+          navigate("/main");
+          alert("ログインしました");
+        } else {
+          setError(!error);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [dispatch, navigate, error]
+  );
 
   useEffect(() => {
     console.log("effect!");
@@ -63,7 +68,7 @@ export const useLogIn = () => {
   return {
     isValid,
     values,
-    errors,
+    error,
     handleChange,
     handleSubmit,
   };
