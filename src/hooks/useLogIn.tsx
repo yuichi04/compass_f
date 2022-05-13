@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { LogInParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
 import { logIn } from "../lib/api/userAuth";
@@ -7,6 +8,7 @@ import { useAppDispatch } from "../lib/redux/hooks";
 import { logInAction } from "../lib/redux/userSlice";
 import { hideLoadingAction, showLoadingAction } from "../lib/redux/lodingSlice";
 
+// validations
 const { validateEmailFormat, validateMoreThan8Characters } = validations();
 
 export const useLogIn = () => {
@@ -32,9 +34,8 @@ export const useLogIn = () => {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>, params: LogInParams) => {
       e.preventDefault();
+      setIsValid(false); // ログインボタンを無効にする
       dispatch(showLoadingAction("ログイン中..."));
-      setIsValid(false);
-      // Loadingフラグをon
       try {
         const res = await logIn(params);
         if (res.data.status === 200) {
@@ -45,8 +46,7 @@ export const useLogIn = () => {
           };
           dispatch(logInAction(logInState));
           navigate("/");
-          console.log(res.data.user);
-          alert("ログインしました");
+          toast.success("ログインしました");
           dispatch(hideLoadingAction());
         } else {
           setError(true);

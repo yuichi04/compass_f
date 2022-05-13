@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { logOut } from "../lib/api/userAuth";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { logOutAction } from "../lib/redux/userSlice";
@@ -21,9 +22,10 @@ export const useLogOut = () => {
           dispatch(logOutAction());
           navigate("/");
           dispatch(hideLoadingAction());
+          toast.success("ログアウトしました");
         } else {
-          alert("ログアウトに失敗しました");
           dispatch(hideLoadingAction());
+          toast.error("ログアウトに失敗しました");
         }
       } catch (error) {
         console.log(error);

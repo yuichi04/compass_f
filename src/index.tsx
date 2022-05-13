@@ -8,6 +8,7 @@ import App from "./App";
 import "./assets/styles/style.scss";
 import reportWebVitals from "./reportWebVitals";
 import Spinner from "./components/organisms/Spinner";
+import { LToastContainer } from "./components/atoms";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -15,6 +16,7 @@ const root = createRoot(container);
 root.render(
   <React.Fragment>
     <Provider store={store}>
+      <LToastContainer />
       <ThemeProvider theme={theme}>
         <Spinner>
           <App />

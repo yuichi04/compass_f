@@ -6,6 +6,7 @@ import { signUp } from "../lib/api/userAuth";
 import { SignUpParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
 import { showLoadingAction, hideLoadingAction } from "../lib/redux/lodingSlice";
+import { Bounce, toast, Zoom } from "react-toastify";
 
 // validations
 const { validateIsNotEmpty, validateEmailFormat, validateMoreThan8Characters } = validations();
@@ -57,6 +58,9 @@ export const useSignUp = () => {
           dispatch(logInAction(logInState));
           navigate("/");
           dispatch(hideLoadingAction());
+          toast.success("アカウントが作成されました", {
+            transition: Bounce,
+          });
         } else {
           setErrors({ ...errors, api: true });
           setErrorMessages(res.data.message);
