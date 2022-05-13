@@ -5,6 +5,7 @@ import { validations } from "../modules/validations";
 import { logIn } from "../lib/api/userAuth";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { logInAction } from "../lib/redux/userSlice";
+import { hideLoadingAction, showLoadingAction } from "../lib/redux/lodingSlice";
 
 const { validateEmailFormat, validateMoreThan8Characters } = validations();
 
@@ -17,10 +18,9 @@ export const useLogIn = () => {
     password: "",
   });
   const [error, setError] = useState(false);
-  const [errorMessages, setErrorMessages] = useState("");
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: "email" | "password") => {
+    (e: React.ChangeEvent<HTMLInputElement>, key: "email" | "password" | string) => {
       setValues({
         ...values,
         [key]: e.target.value,
@@ -32,6 +32,8 @@ export const useLogIn = () => {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>, params: LogInParams) => {
       e.preventDefault();
+      dispatch(showLoadingAction("ログイン中..."));
+      setIsValid(false);
       // Loadingフラグをon
       try {
         const res = await logIn(params);
@@ -45,12 +47,14 @@ export const useLogIn = () => {
           navigate("/");
           console.log(res.data.user);
           alert("ログインしました");
+          dispatch(hideLoadingAction());
         } else {
           setError(true);
-          setErrorMessages("メールアドレスまたはパスワードが間違っています");
+          dispatch(hideLoadingAction());
         }
       } catch (error) {
         console.log(error);
+        dispatch(hideLoadingAction());
       }
     },
     [dispatch, navigate]
@@ -71,7 +75,6 @@ export const useLogIn = () => {
     isValid,
     values,
     error,
-    errorMessages,
     handleChange,
     handleSubmit,
   };

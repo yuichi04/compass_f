@@ -10,63 +10,73 @@ import { ChipWithText, IconWithPageTitle } from "../molecules";
 import { useSignUp } from "../../hooks/useSignUp";
 
 const SignUp: React.FC = React.memo(() => {
-  const { error, errorMessages, isValid, values, isChecked, handleChange, setIsChecked, handleSubmit } = useSignUp();
+  // カスタムフック
+  const { errors, errorMessages, isValid, values, isCheckedAgree, handleChange, setIsCheckedAgree, handleSubmit } =
+    useSignUp();
+
+  const formItems = () => (
+    <>
+      {[
+        {
+          type: "text",
+          value: values.name,
+          text: "ユーザー名",
+          icon: <PersonIcon />,
+          handle: "name",
+        },
+        {
+          type: "email",
+          value: values.email,
+          text: "メールアドレス",
+          icon: <EmailIcon />,
+          handle: "email",
+        },
+        {
+          type: "password",
+          value: values.password,
+          text: "パスワード（半角英数字8文字以上）",
+          icon: <KeyIcon />,
+          handle: "password",
+          autoComplete: "password",
+        },
+        {
+          type: "password",
+          value: values.passwordConfirmation,
+          text: "パスワードの確認",
+          icon: <KeyIcon />,
+          error: errors.confirmation,
+          handle: "passwordConfirmation",
+          autoComplete: "password",
+        },
+      ].map((item) => (
+        <SFormItem key={item.text}>
+          <ChipWithText text={item.text} label="必須" size="small" color="error" variant="outlined" />
+          <MuiTextFieldWithAdornment
+            icon={item.icon}
+            fullWidth
+            value={item.value}
+            type={item.type}
+            onChange={(e) => handleChange(e, item.handle)}
+            size="small"
+            margin="dense"
+            error={item.error}
+            autoComplete={item.autoComplete}
+          />
+        </SFormItem>
+      ))}
+    </>
+  );
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
-      {error && errorMessages.map((message) => <ErrorText key={message} text={message} />)}
+      {errors.api && errorMessages.map((message) => <ErrorText key={message} text={message} />)}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
-        <ChipWithText text="ユーザー名" label="必須" size="small" color="error" variant="outlined" />
-        <MuiTextFieldWithAdornment
-          icon={<PersonIcon />}
-          fullWidth
-          value={values.name}
-          onChange={(e) => handleChange(e, "name")}
-          size="small"
-          margin="dense"
-        />
-        <div className="module-spacer-md" />
-        <ChipWithText text="メールアドレス" label="必須" size="small" color="error" variant="outlined" />
-        <MuiTextFieldWithAdornment
-          icon={<EmailIcon />}
-          type="email"
-          fullWidth
-          value={values.email}
-          onChange={(e) => handleChange(e, "email")}
-          size="small"
-          margin="dense"
-        />
-        <div className="module-spacer-md" />
-        <ChipWithText text="パスワード" label="必須" size="small" color="error" variant="outlined" />
-        <MuiTextFieldWithAdornment
-          icon={<KeyIcon />}
-          type="password"
-          fullWidth
-          value={values.password}
-          onChange={(e) => handleChange(e, "password")}
-          size="small"
-          margin="dense"
-          autoComplete="password"
-        />
-        <small>※半角英数字を組み合わせ、8文字以上で入力してください</small>
-        <div className="module-spacer-md" />
-        <ChipWithText text="パスワードの確認" label="必須" size="small" color="error" variant="outlined" />
-        <MuiTextFieldWithAdornment
-          icon={<KeyIcon />}
-          type="password"
-          fullWidth
-          value={values.passwordConfirmation}
-          onChange={(e) => handleChange(e, "passwordConfirmation")}
-          size="small"
-          margin="dense"
-          autoComplete="password-confirmation"
-        />
+        {formItems()}
         <SAgreement>
-          <MuiCheckBox onChange={() => setIsChecked(!isChecked)} checked={isChecked} />
+          <MuiCheckBox onChange={() => setIsCheckedAgree(!isCheckedAgree)} checked={isCheckedAgree} />
           <LinkTo to="/">利用規約</LinkTo>と<LinkTo to="/privacypolicy">プライバシーポリシー</LinkTo>に同意する
         </SAgreement>
-        <div className="module-spacer-md" />
         <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           認証メールを送信する
         </MuiButton>
@@ -84,9 +94,14 @@ const SFormBox = styled.form`
   padding: 32px 0;
 `;
 
+const SFormItem = styled.div`
+  margin-bottom: 16px;
+`;
+
 const SAgreement = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
   a {
     color: #00aa99;
     text-decoration: underline;
@@ -96,7 +111,7 @@ const SAgreement = styled.div`
 const SRight = styled.div`
   text-align: right;
   a {
-    color: #1665c0;
+    color: #00aa99;
     text-decoration: underline;
   }
 `;

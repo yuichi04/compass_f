@@ -5,6 +5,7 @@ import { logInAction } from "../lib/redux/userSlice";
 import { signUp } from "../lib/api/userAuth";
 import { SignUpParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
+import { showLoadingAction, hideLoadingAction } from "../lib/redux/lodingSlice";
 
 // validations
 const { validateIsNotEmpty, validateEmailFormat, validateMoreThan8Characters } = validations();
@@ -12,19 +13,22 @@ const { validateIsNotEmpty, validateEmailFormat, validateMoreThan8Characters } =
 export const useSignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [isCheckedAgree, setIsCheckedAgree] = useState<boolean>(false);
   const [isValid, setIsValid] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [errors, setErrors] = useState({
+    api: false,
+    confirmation: false,
+  });
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [values, setValues] = useState<SignUpParams>({
     name: "",
     email: "",
     password: "",
     passwordConfirmation: "",
   });
-  const [error, setError] = useState(false);
-  const [errorMessages, setErrorMessages] = useState([]);
 
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: "name" | "email" | "password" | "passwordConfirmation") => {
+    (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
       setValues({
         ...values,
         [key]: e.target.value,
@@ -36,7 +40,11 @@ export const useSignUp = () => {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>, params: SignUpParams) => {
       e.preventDefault();
-      // Loadingフラグをon
+      dispatch(showLoadingAction("ユーザー作成中..."));
+      setIsValid(false);
+      setErrors({ ...errors, api: false });
+      setErrorMessages([""]);
+
       try {
         const res = await signUp(params);
         if (res.data.status === 200) {
@@ -45,21 +53,22 @@ export const useSignUp = () => {
             name: user.name,
             email: user.email,
           };
-          // storeにユーザー情報を保存する
+          // storeにユーザー情報を保存
           dispatch(logInAction(logInState));
           navigate("/");
-          // Loadingフラグをoff
+          dispatch(hideLoadingAction());
         } else {
-          setError(!error);
+          setErrors({ ...errors, api: true });
           setErrorMessages(res.data.message);
-          // Loadingフラグをoff
+          dispatch(hideLoadingAction());
         }
       } catch (error) {
         console.log(error);
-        // Loadingフラグをoff
+        dispatch(hideLoadingAction());
       }
     },
-    [dispatch, navigate, error]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [dispatch, navigate]
   );
 
   useEffect(() => {
@@ -68,21 +77,45 @@ export const useSignUp = () => {
     const isValidPassword = validateMoreThan8Characters(values.password);
     const isValidPasswordConfirmation = values.password === values.passwordConfirmation && true;
 
+    // 有効なパスワードが確認
+    if (isValidPassword) {
+      // パスワードが一致しているか確認
+      if (isValidPasswordConfirmation) {
+        setErrors({
+          ...errors,
+          confirmation: false,
+        });
+        setErrorMessages([""]);
+      } else {
+        setErrors({
+          ...errors,
+          confirmation: true,
+        });
+      }
+    } else {
+      // パスワードが一致しているかの確認は不要なため、不一致のエラーを非表示にする
+      setErrors({
+        ...errors,
+        confirmation: false,
+      });
+    }
+
     // validationをパスしたかしていないかを判定し、stateを更新
-    if (isValidUsername && isValidEmail && isValidPassword && isValidPasswordConfirmation && isChecked) {
+    if (isValidUsername && isValidEmail && isValidPassword && isValidPasswordConfirmation && isCheckedAgree) {
       setIsValid(true);
     } else {
       setIsValid(false);
     }
-  }, [isChecked, values]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCheckedAgree, values]);
 
   return {
-    error,
+    errors,
     errorMessages,
     values,
-    isChecked,
+    isCheckedAgree,
     isValid,
-    setIsChecked,
+    setIsCheckedAgree,
     handleChange,
     handleSubmit,
   };

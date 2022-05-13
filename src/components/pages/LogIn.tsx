@@ -9,36 +9,44 @@ import { IconWithPageTitle } from "../molecules";
 import { useLogIn } from "../../hooks/useLogIn";
 
 const LogIn: React.FC = React.memo(() => {
-  const { error, errorMessages, isValid, values, handleChange, handleSubmit } = useLogIn();
+  const { error, isValid, values, handleChange, handleSubmit } = useLogIn();
+
+  const formItems = () => (
+    <>
+      {[
+        { label: "メールアドレス", type: "email", value: values.email, handle: "email", icon: <EmailIcon /> },
+        {
+          label: "パスワード",
+          type: "password",
+          value: values.password,
+          handle: "password",
+          icon: <KeyIcon />,
+          autoComplete: "password",
+        },
+      ].map((item) => (
+        <SFormItem key={item.label}>
+          <MuiTextFieldWithAdornment
+            icon={item.icon}
+            label={item.label}
+            type={item.type}
+            fullWidth
+            value={item.value}
+            onChange={(e) => handleChange(e, item.handle)}
+            size="small"
+            margin="dense"
+            autoComplete={item.autoComplete}
+          />
+        </SFormItem>
+      ))}
+    </>
+  );
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="ログイン" icon={LoginIcon} />
-      {error && <ErrorText text={errorMessages} />}
+      {error && <ErrorText text="メールアドレスまたはパスワードが異なります" />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
-        <MuiTextFieldWithAdornment
-          icon={<EmailIcon />}
-          label="メールアドレス"
-          type="email"
-          fullWidth
-          value={values.email}
-          onChange={(e) => handleChange(e, "email")}
-          size="small"
-          margin="dense"
-        />
-        <div className="module-spacer-md" />
-        <MuiTextFieldWithAdornment
-          icon={<KeyIcon />}
-          label="パスワード"
-          type="password"
-          fullWidth
-          value={values.password}
-          onChange={(e) => handleChange(e, "password")}
-          size="small"
-          margin="dense"
-          autoComplete="password"
-        />
-        <div className="module-spacer-md" />
+        {formItems()}
         <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           ログイン
         </MuiButton>
@@ -61,10 +69,14 @@ const SFormBox = styled.form`
   padding: 32px 0;
 `;
 
+const SFormItem = styled.div`
+  margin-bottom: 16px;
+`;
+
 const SRight = styled.div`
   text-align: right;
   a {
-    color: #1665c0;
+    color: #00aa99;
     text-decoration: underline;
   }
 `;

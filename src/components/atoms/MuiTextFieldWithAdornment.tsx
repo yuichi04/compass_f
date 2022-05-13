@@ -5,7 +5,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 type Props = {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  icon: JSX.Element;
+  icon: JSX.Element | boolean;
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
   disabled?: boolean;
   error?: boolean;

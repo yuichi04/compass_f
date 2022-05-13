@@ -11,11 +11,11 @@ const AvatarWithText: React.FC<Props> = React.memo((props) => {
   const { text, greeting } = props;
   return (
     <SFlex>
-      <MuiAvatar />
       <p>
         {greeting}
-        <LinkTo to="/profile">{text}</LinkTo>さん
+        <LinkTo to="/accountinfo">{text}</LinkTo>さん
       </p>
+      <MuiAvatar />
     </SFlex>
   );
 });
@@ -27,7 +27,7 @@ const SFlex = styled.div`
   align-items: center;
   margin-right: 16px;
   p {
-    margin-left: 12px;
+    margin-right: 12px;
     a {
       text-decoration: underline;
     }

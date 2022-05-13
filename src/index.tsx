@@ -7,6 +7,7 @@ import { theme } from "./assets/theme";
 import App from "./App";
 import "./assets/styles/style.scss";
 import reportWebVitals from "./reportWebVitals";
+import Spinner from "./components/organisms/Spinner";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -15,7 +16,9 @@ root.render(
   <React.Fragment>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <App />
+        <Spinner>
+          <App />
+        </Spinner>
       </ThemeProvider>
     </Provider>
   </React.Fragment>

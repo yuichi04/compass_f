@@ -8,11 +8,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
-import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 import HelpIcon from "@mui/icons-material/Help";
 import QuizIcon from "@mui/icons-material/Quiz";
+import HomeIcon from "@mui/icons-material/Home";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import { useLogOut } from "../../hooks/useLogOut";
 import { LinkTo, MuiAvatar } from "../atoms";
@@ -52,19 +53,20 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
       <Divider />
       <List>
         {[
+          { to: "/", text: "メインページ", icon: <HomeIcon /> },
           { to: "/quizeindex", text: "クイズ一覧", icon: <QuizIcon /> },
           { to: "/memo", text: "作成したメモ", icon: <AutoAwesomeMotionIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
           { to: "/contactus", text: "お問い合わせ", icon: <MailIcon /> },
         ].map((data) => (
-          <ListItem key={data.text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>{data.icon}</ListItemIcon>
-              <LinkTo to={data.to}>
+          <LinkTo key={data.text} to={data.to}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>{data.icon}</ListItemIcon>
                 <ListItemText primary={data.text} />
-              </LinkTo>
-            </ListItemButton>
-          </ListItem>
+              </ListItemButton>
+            </ListItem>
+          </LinkTo>
         ))}
       </List>
       <Divider />
@@ -84,7 +86,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
   return (
     <>
       <IconButton aria-label="menus" onClick={toggleDrawer} sx={{ color: "#fff" }}>
-        <MenuOpenIcon fontSize="large" />
+        <MenuIcon fontSize="large" />
       </IconButton>
       <Drawer anchor="right" open={open} onClose={toggleDrawer} sx={{ wordBreak: "break-word" }}>
         {list()}

@@ -56,6 +56,6 @@ const SRight = styled.div`
   text-align: right;
   a {
     text-decoration: underline;
-    color: #1665c0;
+    color: #00aa99;
   }
 `;
