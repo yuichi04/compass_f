@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const BackToMain: React.FC = () => {
+const BackToTop: React.FC = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     console.log("back");
-    navigate("/main");
+    navigate("/");
     alert("ログイン済みです");
   }, [pathname, navigate]);
 
   return null;
 };
 
-export default BackToMain;
+export default BackToTop;

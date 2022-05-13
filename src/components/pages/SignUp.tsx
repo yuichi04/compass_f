@@ -10,12 +10,12 @@ import { ChipWithText, IconWithPageTitle } from "../molecules";
 import { useSignUp } from "../../hooks/useSignUp";
 
 const SignUp: React.FC = React.memo(() => {
-  const { error, isValid, values, isChecked, handleChange, setIsChecked, handleSubmit } = useSignUp();
+  const { error, errorMessages, isValid, values, isChecked, handleChange, setIsChecked, handleSubmit } = useSignUp();
 
   return (
     <MuiContainer maxWidth="sm">
       <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
-      {error && <ErrorText text="入力内容に誤りがあります。" />}
+      {error && errorMessages.map((message) => <ErrorText key={message} text={message} />)}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         <ChipWithText text="ユーザー名" label="必須" size="small" color="error" variant="outlined" />
         <MuiTextFieldWithAdornment

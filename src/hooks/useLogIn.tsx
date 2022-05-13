@@ -41,7 +41,7 @@ export const useLogIn = () => {
             email: user.email,
           };
           dispatch(logInAction(logInState));
-          navigate("/main");
+          navigate("/");
           alert("ログインしました");
         } else {
           setError(!error);

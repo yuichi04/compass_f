@@ -21,6 +21,7 @@ export const useSignUp = () => {
     passwordConfirmation: "",
   });
   const [error, setError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, key: "name" | "email" | "password" | "passwordConfirmation") => {
@@ -46,10 +47,12 @@ export const useSignUp = () => {
           };
           // storeにユーザー情報を保存する
           dispatch(logInAction(logInState));
-          navigate("/main");
+          navigate("/");
           // Loadingフラグをoff
         } else {
           setError(!error);
+          setErrorMessages(res.data.message);
+          console.log(res.data.message);
           alert("アカウントの作成に失敗しました！");
           // Loadingフラグをoff
         }
@@ -77,6 +80,7 @@ export const useSignUp = () => {
 
   return {
     error,
+    errorMessages,
     values,
     isChecked,
     isValid,
