@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -25,7 +25,7 @@ type Props = {
 
 const MuiDrawer: React.FC<Props> = React.memo((props) => {
   const { username, email } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const { handleClick } = useLogOut();
 
   const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -53,9 +53,9 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
       <Divider />
       <List>
         {[
-          { to: "/", text: "メインページ", icon: <HomeIcon /> },
-          { to: "/quizeindex", text: "クイズ一覧", icon: <QuizIcon /> },
-          { to: "/memo", text: "作成したメモ", icon: <AutoAwesomeMotionIcon /> },
+          { to: "/", text: "ホームに戻る", icon: <HomeIcon /> },
+          { to: "/quizeindex", text: "ストーリー", icon: <QuizIcon /> },
+          { to: "/memo", text: "作成した学習メモ", icon: <AutoAwesomeMotionIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
           { to: "/contactus", text: "お問い合わせ", icon: <MailIcon /> },
         ].map((data) => (

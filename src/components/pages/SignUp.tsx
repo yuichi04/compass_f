@@ -8,11 +8,14 @@ import { MuiContainer } from "../layouts";
 import { MuiButton, LinkTo, MuiCheckBox, MuiTextFieldWithAdornment, ErrorText } from "../atoms";
 import { ChipWithText, IconWithPageTitle } from "../molecules";
 import { useSignUp } from "../../hooks/useSignUp";
+import { useModal } from "../../hooks/useModal";
+import { MuiModalConfirmation } from "../organisms";
 
 const SignUp: React.FC = React.memo(() => {
   // カスタムフック
   const { errors, errorMessages, isValid, values, isCheckedAgree, handleChange, setIsCheckedAgree, handleSubmit } =
     useSignUp();
+  const { content, open, handleOpen, handleClose } = useModal();
 
   const formItems = () => (
     <>
@@ -68,30 +71,37 @@ const SignUp: React.FC = React.memo(() => {
   );
 
   return (
-    <MuiContainer maxWidth="sm">
-      <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
-      {errors.api && errorMessages.map((message) => <ErrorText key={message} text={message} />)}
-      <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
-        {formItems()}
-        <SAgreement>
-          <MuiCheckBox onChange={() => setIsCheckedAgree(!isCheckedAgree)} checked={isCheckedAgree} />
-          <LinkTo to="/">利用規約</LinkTo>と<LinkTo to="/privacypolicy">プライバシーポリシー</LinkTo>に同意する
-        </SAgreement>
-        <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
-          認証メールを送信する
-        </MuiButton>
-      </SFormBox>
-      <SRight>
-        既にご登録済みですか？<LinkTo to="/login">こちら</LinkTo>からログイン
-      </SRight>
-    </MuiContainer>
+    <>
+      <MuiContainer maxWidth="sm">
+        <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
+        {errors.api && errorMessages.map((message) => <ErrorText key={message} text={message} />)}
+        <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
+          {formItems()}
+          <SAgreement>
+            <MuiCheckBox onChange={() => setIsCheckedAgree(!isCheckedAgree)} checked={isCheckedAgree} />
+            <div>
+              <p onClick={() => handleOpen("terms")}>利用規約</p>と
+              <p onClick={() => handleOpen("privacypolicy")}>プライバシーポリシー</p>
+            </div>
+            に同意する
+          </SAgreement>
+          <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
+            認証メールを送信する
+          </MuiButton>
+        </SFormBox>
+        <SRight>
+          既にご登録済みですか？<LinkTo to="/login">こちら</LinkTo>からログイン
+        </SRight>
+      </MuiContainer>
+      <MuiModalConfirmation open={open} onClose={handleClose} content={content} />
+    </>
   );
 });
 
 export default SignUp;
 
 const SFormBox = styled.form`
-  padding: 32px 0;
+  margin-bottom: 32px;
 `;
 
 const SFormItem = styled.div`
@@ -102,9 +112,17 @@ const SAgreement = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-  a {
-    color: #00aa99;
-    text-decoration: underline;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    p {
+      cursor: pointer;
+      color: #00aa99;
+      text-decoration: underline;
+      font-weight: 600;
+    }
   }
 `;
 

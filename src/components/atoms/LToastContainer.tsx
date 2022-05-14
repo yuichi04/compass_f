@@ -5,7 +5,7 @@ const LToastContainer: React.FC = React.memo(() => {
   return (
     <ToastContainer
       autoClose={2000}
-      position="top-center"
+      position="top-right"
       theme="colored"
       closeOnClick
       transition={Flip}

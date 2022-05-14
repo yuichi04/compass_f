@@ -5,4 +5,4 @@ export { default as NotFound404 } from "./static/NotFound404";
 export { default as PrivacyPolicy } from "./static/PrivacyPolicy";
 export { default as Terms } from "./static/Terms";
 export { default as Top } from "./static/Top";
-export { default as Main } from "./Main";
+export { default as Home } from "./Home";

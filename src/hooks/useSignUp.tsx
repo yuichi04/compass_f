@@ -6,7 +6,7 @@ import { signUp } from "../lib/api/userAuth";
 import { SignUpParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
 import { showLoadingAction, hideLoadingAction } from "../lib/redux/lodingSlice";
-import { Bounce, toast, Zoom } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 
 // validations
 const { validateIsNotEmpty, validateEmailFormat, validateMoreThan8Characters } = validations();

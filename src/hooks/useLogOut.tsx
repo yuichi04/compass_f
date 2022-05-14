@@ -22,7 +22,9 @@ export const useLogOut = () => {
           dispatch(logOutAction());
           navigate("/");
           dispatch(hideLoadingAction());
-          toast.success("ログアウトしました");
+          toast.success("ログアウトしました", {
+            position: "top-center",
+          });
         } else {
           dispatch(hideLoadingAction());
           toast.error("ログアウトに失敗しました");
@@ -31,6 +33,8 @@ export const useLogOut = () => {
         console.log(error);
         dispatch(hideLoadingAction());
       }
+    } else {
+      dispatch(hideLoadingAction());
     }
   }, [dispatch, navigate]);
 
