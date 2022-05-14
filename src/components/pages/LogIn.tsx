@@ -4,7 +4,7 @@ import KeyIcon from "@mui/icons-material/Key";
 import LoginIcon from "@mui/icons-material/Login";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { MuiButton, LinkTo, MuiTextFieldWithAdornment, ErrorText } from "../atoms";
+import { MuiButton, LinkTo, MuiTextFieldWithAdornment, ErrorText, MuiCheckBox } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
 import { useLogIn } from "../../hooks/useLogIn";
 
@@ -47,6 +47,10 @@ const LogIn: React.FC = React.memo(() => {
       {error && <ErrorText text="メールアドレスまたはパスワードが異なります" />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         {formItems()}
+        <SRemember>
+          <MuiCheckBox onChange={() => console.log("remember")} />
+          <p>ログイン状態を保持する</p>
+        </SRemember>
         <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           ログイン
         </MuiButton>
@@ -79,4 +83,9 @@ const SRight = styled.div`
     color: #00aa99;
     text-decoration: underline;
   }
+`;
+
+const SRemember = styled.div`
+  display: flex;
+  align-items: center;
 `;

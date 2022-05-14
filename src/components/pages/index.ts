@@ -6,3 +6,5 @@ export { default as PrivacyPolicy } from "./static/PrivacyPolicy";
 export { default as Terms } from "./static/Terms";
 export { default as Top } from "./static/Top";
 export { default as Home } from "./Home";
+export { default as Profile } from "./Profile";
+export { default as Unsubscribe } from "./Unsubscribe";

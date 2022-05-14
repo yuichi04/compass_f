@@ -5,6 +5,7 @@ import { UserParams } from "../../types/userTypes";
 const initialState: UserParams = {
   name: "",
   email: "",
+  createdAt: "",
   isSignedIn: false,
   admin: false,
 };
@@ -17,6 +18,7 @@ export const userSlice = createSlice({
       state.isSignedIn = true;
       state.name = action.payload.name;
       state.email = action.payload.email;
+      state.createdAt = action.payload.createdAt;
     },
     logOutAction: () => {
       return { ...initialState };
@@ -25,5 +27,5 @@ export const userSlice = createSlice({
 });
 
 export const { logInAction, logOutAction } = userSlice.actions;
-export const userState = (state: RootState) => state.user;
+export const userSelector = (state: RootState) => state.user;
 export default userSlice.reducer;

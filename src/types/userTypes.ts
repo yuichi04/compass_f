@@ -13,6 +13,7 @@ export type LogInParams = {
 export type UserParams = {
   name: string;
   email: string;
+  createdAt: string;
   isSignedIn?: boolean;
   admin?: boolean;
 };

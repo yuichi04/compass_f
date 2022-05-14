@@ -53,6 +53,7 @@ export const useSignUp = () => {
           const logInState: UserParams = {
             name: user.name,
             email: user.email,
+            createdAt: user.createdAt,
           };
           // storeにユーザー情報を保存
           dispatch(logInAction(logInState));

@@ -12,14 +12,16 @@ const AvatarWithText: React.FC<Props> = React.memo((props) => {
   return (
     <SFlex>
       <p>
-        {greeting}
-        <br />
-        <LinkTo to="/accountinfo">
+        <LinkTo to="/profile">
+          <SGreeting>{greeting}</SGreeting>
+          <br />
           <SName>{text}</SName>
-        </LinkTo>{" "}
-        さん
+          <SGreeting>さん</SGreeting>
+        </LinkTo>
       </p>
-      <MuiAvatar />
+      <LinkTo to="/profile">
+        <MuiAvatar />
+      </LinkTo>
     </SFlex>
   );
 });
@@ -32,10 +34,11 @@ const SFlex = styled.div`
   margin-right: 16px;
   p {
     margin-right: 16px;
-    a {
-      text-decoration: underline;
-    }
   }
+`;
+
+const SGreeting = styled.span`
+  font-size: 14px;
 `;
 
 const SName = styled.span`

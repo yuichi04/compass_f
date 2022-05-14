@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useAppSelector } from "../../lib/redux/hooks";
-import { userState } from "../../lib/redux/userSlice";
+import { userSelector } from "../../lib/redux/userSlice";
 import { LinkTo } from "../atoms";
 import { AvatarWithText } from "../molecules";
 import { MuiDrawer } from ".";
@@ -14,16 +14,16 @@ const date = new Date();
 const hours = date.getHours();
 const greeting = () => {
   if (hours >= 3 && hours < 11) {
-    return "おはようございます";
+    return "おはようございます、";
   } else if (hours >= 11 && hours < 18) {
-    return "こんにちは";
+    return "こんにちは、";
   } else {
-    return "こんばんは";
+    return "こんばんは、";
   }
 };
 
 const SignedInHeader: React.FC = React.memo(() => {
-  const user = useAppSelector(userState);
+  const user = useAppSelector(userSelector);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ background: "#2a2f36", boxShadow: "0 2px 6px #333" }}>
@@ -41,7 +41,7 @@ const SignedInHeader: React.FC = React.memo(() => {
                 <LinkTo to="lessons">ストーリー</LinkTo>
               </Typography>
               <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
-                <LinkTo to="lessons">スライド</LinkTo>
+                <LinkTo to="lessons">エッセンス</LinkTo>
               </Typography>
               <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
                 <LinkTo to="lessons">コミュニティ</LinkTo>

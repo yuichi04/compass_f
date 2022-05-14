@@ -25,4 +25,5 @@ const SFlex = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 32px;
+  text-shadow: 0px 1px 1px #ddd;
 `;

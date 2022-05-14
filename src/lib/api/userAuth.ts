@@ -20,3 +20,8 @@ export const logOut = () => {
 export const listenAuthState = () => {
   return client.get(process.env.REACT_APP_SESSION_URL!);
 };
+
+// delete(退会)
+export const deleteAccount = () => {
+  return client.delete(process.env.REACT_APP_USER_URL!);
+};

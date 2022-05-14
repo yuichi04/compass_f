@@ -41,14 +41,16 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
   const list = () => (
     <Box role="presentation" onClick={toggleDrawer} onKeyDown={toggleDrawer} sx={{ width: "320px" }}>
       <List>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <MuiAvatar />
-            </ListItemIcon>
-            <ListItemText primary={username} secondary={email} />
-          </ListItemButton>
-        </ListItem>
+        <LinkTo to="/profile">
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <MuiAvatar />
+              </ListItemIcon>
+              <ListItemText primary={username} secondary={email} />
+            </ListItemButton>
+          </ListItem>
+        </LinkTo>
       </List>
       <Divider />
       <List>

@@ -43,6 +43,7 @@ export const useLogIn = () => {
           const logInState: UserParams = {
             name: user.name,
             email: user.email,
+            createdAt: user.createdAt,
           };
           dispatch(logInAction(logInState));
           navigate("/");

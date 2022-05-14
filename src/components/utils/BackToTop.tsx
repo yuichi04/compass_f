@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const BackToTop: React.FC = () => {
-  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("back");
     navigate("/");
-    alert("ログイン済みです");
-  }, [pathname, navigate]);
+    toast.error("既にログインしています", {
+      position: "top-center",
+    });
+  }, [navigate]);
 
   return null;
 };

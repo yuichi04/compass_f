@@ -15,6 +15,7 @@ export const useListenAuthState = () => {
         const logInState: UserParams = {
           name: user.name,
           email: user.email,
+          createdAt: user.createdAt,
         };
         dispatch(logInAction(logInState));
       }
