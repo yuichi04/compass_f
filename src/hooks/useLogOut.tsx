@@ -21,21 +21,17 @@ export const useLogOut = () => {
           // storeからユーザー情報を削除する
           dispatch(logOutAction());
           navigate("/");
-          dispatch(hideLoadingAction());
           toast.success("ログアウトしました", {
             position: "top-center",
           });
         } else {
-          dispatch(hideLoadingAction());
           toast.error("ログアウトに失敗しました");
         }
       } catch (error) {
         console.log(error);
-        dispatch(hideLoadingAction());
       }
-    } else {
-      dispatch(hideLoadingAction());
     }
+    dispatch(hideLoadingAction());
   }, [dispatch, navigate]);
 
   return {

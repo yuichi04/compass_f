@@ -48,15 +48,13 @@ export const useLogIn = () => {
           dispatch(logInAction(logInState));
           navigate("/");
           toast.success("ログインしました");
-          dispatch(hideLoadingAction());
         } else {
           setError(true);
-          dispatch(hideLoadingAction());
         }
       } catch (error) {
         console.log(error);
-        dispatch(hideLoadingAction());
       }
+      dispatch(hideLoadingAction());
     },
     [dispatch, navigate]
   );

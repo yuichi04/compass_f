@@ -4,7 +4,7 @@ import "react-toastify/scss/main.scss";
 const LToastContainer: React.FC = React.memo(() => {
   return (
     <ToastContainer
-      autoClose={2000}
+      autoClose={1500}
       position="top-right"
       theme="colored"
       closeOnClick

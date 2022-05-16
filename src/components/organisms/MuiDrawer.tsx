@@ -56,7 +56,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
       <List>
         {[
           { to: "/", text: "ホームに戻る", icon: <HomeIcon /> },
-          { to: "/quizeindex", text: "ストーリー", icon: <QuizIcon /> },
+          { to: "/story", text: "ストーリー", icon: <QuizIcon /> },
           { to: "/memo", text: "作成した学習メモ", icon: <AutoAwesomeMotionIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
           { to: "/contactus", text: "お問い合わせ", icon: <MailIcon /> },

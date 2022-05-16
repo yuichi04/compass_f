@@ -13,7 +13,15 @@ export type LogInParams = {
 export type UserParams = {
   name: string;
   email: string;
+  image?: string;
   createdAt: string;
   isSignedIn?: boolean;
   admin?: boolean;
+};
+
+export type UpdateUserInfo = {
+  name?: string;
+  email?: string;
+  password?: string;
+  image?: string;
 };

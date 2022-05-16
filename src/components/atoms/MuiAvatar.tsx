@@ -3,17 +3,13 @@ import Avatar from "@mui/material/Avatar";
 import { theme } from "../../assets/theme";
 
 type Props = {
-  variant?: "circular" | "rounded" | "square";
-  initial?: string;
+  src?: string;
+  sizes?: string;
 };
 
 const MuiAvatar: React.FC<Props> = React.memo(({ ...props }) => {
-  const { initial } = props;
-  return (
-    <Avatar {...props} sx={{ bgcolor: [theme.palette.primary.light] }} sizes="16px">
-      {initial}
-    </Avatar>
-  );
+  const { sizes } = props;
+  return <Avatar {...props} sx={{ bgcolor: [theme.palette.primary.light], height: sizes, width: sizes }} />;
 });
 
 export default MuiAvatar;

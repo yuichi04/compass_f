@@ -15,7 +15,7 @@ const Spinner: React.FC<Props> = ({ children }) => {
     <>
       {state && (
         <SLoadingContainer>
-          <CircularProgress size={50} />
+          <CircularProgress size={60} />
           <SText>{text}</SText>
         </SLoadingContainer>
       )}

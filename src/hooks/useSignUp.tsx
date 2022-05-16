@@ -1,127 +1,49 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { logInAction } from "../lib/redux/userSlice";
+import { toast } from "react-toastify";
 import { signUp } from "../lib/api/userAuth";
-import { SignUpParams, UserParams } from "../types/userTypes";
-import { validations } from "../modules/validations";
-import { showLoadingAction, hideLoadingAction } from "../lib/redux/lodingSlice";
-import { Bounce, toast } from "react-toastify";
-
-// validations
-const { validateIsNotEmpty, validateEmailFormat, validateMoreThan8Characters } = validations();
+import { useAppDispatch } from "../lib/redux/hooks";
+import { hideLoadingAction, showLoadingAction } from "../lib/redux/lodingSlice";
+import { logInAction } from "../lib/redux/userSlice";
+import { UserParams } from "../types/userTypes";
 
 export const useSignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [isCheckedAgree, setIsCheckedAgree] = useState<boolean>(false);
-  const [isValid, setIsValid] = useState<boolean>(false);
-  const [errors, setErrors] = useState({
-    api: false,
-    confirmation: false,
-  });
-  const [errorMessages, setErrorMessages] = useState<string[]>([]);
-  const [values, setValues] = useState<SignUpParams>({
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  });
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
-      setValues({
-        ...values,
-        [key]: e.target.value,
-      });
-    },
-    [values]
-  );
-
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>, params: SignUpParams) => {
-      e.preventDefault();
-      dispatch(showLoadingAction("ユーザー作成中..."));
-      setIsValid(false);
-      setErrors({ ...errors, api: false });
-      setErrorMessages([""]);
-
+  const register = useCallback(
+    async (token: string) => {
+      dispatch(showLoadingAction("認証情報を確認しています..."));
+      const params = {
+        token,
+      };
       try {
         const res = await signUp(params);
         if (res.data.status === 200) {
           const user = res.data.user;
-          const logInState: UserParams = {
+          const loginState: UserParams = {
             name: user.name,
             email: user.email,
             createdAt: user.createdAt,
           };
-          // storeにユーザー情報を保存
-          dispatch(logInAction(logInState));
+          dispatch(logInAction(loginState));
+          toast.success("認証が完了しました");
           navigate("/");
-          dispatch(hideLoadingAction());
-          toast.success("アカウントが作成されました", {
-            transition: Bounce,
-          });
+          console.log(res.data.message);
         } else {
-          setErrors({ ...errors, api: true });
-          setErrorMessages(res.data.message);
-          dispatch(hideLoadingAction());
+          toast.error("認証情報が確認できません");
+          navigate("/");
+          console.log(res.data.message);
         }
       } catch (error) {
+        // navigate("/");
+        toast.error("認証情報が確認できませんでした");
         console.log(error);
-        dispatch(hideLoadingAction());
       }
+      dispatch(hideLoadingAction());
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dispatch, navigate]
   );
 
-  useEffect(() => {
-    const isValidUsername = validateIsNotEmpty(values.name);
-    const isValidEmail = validateEmailFormat(values.email);
-    const isValidPassword = validateMoreThan8Characters(values.password);
-    const isValidPasswordConfirmation = values.password === values.passwordConfirmation && true;
-
-    // 有効なパスワードが確認
-    if (isValidPassword) {
-      // パスワードが一致しているか確認
-      if (isValidPasswordConfirmation) {
-        setErrors({
-          ...errors,
-          confirmation: false,
-        });
-        setErrorMessages([""]);
-      } else {
-        setErrors({
-          ...errors,
-          confirmation: true,
-        });
-      }
-    } else {
-      // パスワードが一致しているかの確認は不要なため、不一致のエラーを非表示にする
-      setErrors({
-        ...errors,
-        confirmation: false,
-      });
-    }
-
-    // validationをパスしたかしていないかを判定し、stateを更新
-    if (isValidUsername && isValidEmail && isValidPassword && isValidPasswordConfirmation && isCheckedAgree) {
-      setIsValid(true);
-    } else {
-      setIsValid(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCheckedAgree, values]);
-
-  return {
-    errors,
-    errorMessages,
-    values,
-    isCheckedAgree,
-    isValid,
-    setIsCheckedAgree,
-    handleChange,
-    handleSubmit,
-  };
+  return { register };
 };

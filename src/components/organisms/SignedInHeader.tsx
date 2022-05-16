@@ -14,11 +14,11 @@ const date = new Date();
 const hours = date.getHours();
 const greeting = () => {
   if (hours >= 3 && hours < 11) {
-    return "おはようございます、";
+    return "おはようございます。";
   } else if (hours >= 11 && hours < 18) {
-    return "こんにちは、";
+    return "こんにちは。";
   } else {
-    return "こんばんは、";
+    return "こんばんは。";
   }
 };
 
@@ -38,7 +38,7 @@ const SignedInHeader: React.FC = React.memo(() => {
                 <LinkTo to="/">COMPASS</LinkTo>
               </Typography>
               <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
-                <LinkTo to="lessons">ストーリー</LinkTo>
+                <LinkTo to="/story">ストーリー</LinkTo>
               </Typography>
               <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
                 <LinkTo to="lessons">エッセンス</LinkTo>
@@ -59,7 +59,7 @@ const SignedInHeader: React.FC = React.memo(() => {
                 justifyContent: "flex-end",
               }}
             >
-              <AvatarWithText text={user.name} greeting={greeting()} />
+              <AvatarWithText text={user.name} greeting={greeting()} src={user.image} />
               <MuiDrawer username={user.name} email={user.email} />
             </Grid>
           </Grid>

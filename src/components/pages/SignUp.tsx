@@ -7,14 +7,15 @@ import styled from "styled-components";
 import { MuiContainer } from "../layouts";
 import { MuiButton, LinkTo, MuiCheckBox, MuiTextFieldWithAdornment, ErrorText } from "../atoms";
 import { ChipWithText, IconWithPageTitle } from "../molecules";
-import { useSignUp } from "../../hooks/useSignUp";
+import { useSendAuthEmail } from "../../hooks/useSendAuthEmail";
 import { useModal } from "../../hooks/useModal";
 import { MuiModalConfirmation } from "../organisms";
+import { ListItemText } from "@mui/material";
 
 const SignUp: React.FC = React.memo(() => {
   // カスタムフック
   const { errors, errorMessages, isValid, values, isCheckedAgree, handleChange, setIsCheckedAgree, handleSubmit } =
-    useSignUp();
+    useSendAuthEmail();
   const { content, open, handleOpen, handleClose } = useModal();
 
   const formItems = () => (
@@ -31,13 +32,15 @@ const SignUp: React.FC = React.memo(() => {
           type: "email",
           value: values.email,
           text: "メールアドレス",
+          subText: "※ご本人のメールアドレスか確認のため、認証メールを送信します",
           icon: <EmailIcon />,
           handle: "email",
         },
         {
           type: "password",
           value: values.password,
-          text: "パスワード（半角英数字8文字以上）",
+          text: "パスワード",
+          subText: "※半角英数字8文字以上で入力してください",
           icon: <KeyIcon />,
           handle: "password",
           autoComplete: "password",
@@ -54,6 +57,7 @@ const SignUp: React.FC = React.memo(() => {
       ].map((item) => (
         <SFormItem key={item.text}>
           <ChipWithText text={item.text} label="必須" size="small" color="error" variant="outlined" />
+          <ListItemText secondary={item.subText} />
           <MuiTextFieldWithAdornment
             icon={item.icon}
             fullWidth

@@ -4,7 +4,7 @@ import { theme } from "../../assets/theme";
 
 type Props = {
   children: React.ReactNode;
-  maxWidth: "sm" | "md" | "lg";
+  maxWidth: "sm" | "md" | "lg" | "xl";
 };
 
 const style = {

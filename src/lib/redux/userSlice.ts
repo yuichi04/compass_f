@@ -2,10 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import { UserParams } from "../../types/userTypes";
 
+// テスト用
+import { Icons } from "../../assets/images/icons";
+
 const initialState: UserParams = {
   name: "",
   email: "",
   createdAt: "",
+  image: Icons.user02,
   isSignedIn: false,
   admin: false,
 };
@@ -18,6 +22,7 @@ export const userSlice = createSlice({
       state.isSignedIn = true;
       state.name = action.payload.name;
       state.email = action.payload.email;
+      // state.image = action.payload.image;
       state.createdAt = action.payload.createdAt;
     },
     logOutAction: () => {

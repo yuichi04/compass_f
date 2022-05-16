@@ -5,10 +5,11 @@ import { MuiAvatar, LinkTo } from "../atoms";
 type Props = {
   text: string;
   greeting: string;
+  src?: string;
 };
 
 const AvatarWithText: React.FC<Props> = React.memo((props) => {
-  const { text, greeting } = props;
+  const { text, greeting, src } = props;
   return (
     <SFlex>
       <p>
@@ -20,7 +21,7 @@ const AvatarWithText: React.FC<Props> = React.memo((props) => {
         </LinkTo>
       </p>
       <LinkTo to="/profile">
-        <MuiAvatar />
+        <MuiAvatar src={src} />
       </LinkTo>
     </SFlex>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Footer, SignedInHeader } from "../components/organisms";
-import { Home, NotFound404, Profile, Unsubscribe } from "../components/pages";
+import { SignedInHeader } from "../components/organisms";
+import { Home, NotFound404, Profile, Story, Unsubscribe } from "../components/pages";
 import BackToMain from "../components/utils/BackToTop";
 
 const SignedInRouteConfig: React.FC = () => {
@@ -14,9 +14,9 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/signup" element={<BackToMain />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
+        <Route path="/story" element={<Story />} />
         <Route path="*" element={<NotFound404 />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };

@@ -1,8 +1,13 @@
-import { LogInParams, SignUpParams } from "../../types/userTypes";
+import { LogInParams, SignUpParams, UpdateUserInfo } from "../../types/userTypes";
 import client from "./client";
 
+// EmailAuth
+export const sendAuthEmail = (params: SignUpParams) => {
+  return client.post(process.env.REACT_APP_REGISTRATION_URL!, params);
+};
+
 // Signup
-export const signUp = (params: SignUpParams) => {
+export const signUp = (params: { token: string }) => {
   return client.post(process.env.REACT_APP_USER_URL!, params);
 };
 
@@ -19,6 +24,11 @@ export const logOut = () => {
 // listen
 export const listenAuthState = () => {
   return client.get(process.env.REACT_APP_SESSION_URL!);
+};
+
+// update（アカウント情報の変更）
+export const updateUserInfo = (params: UpdateUserInfo) => {
+  return client.patch(process.env.REACT_APP_USER_URL!, params);
 };
 
 // delete(退会)

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import UnsubscribeIcon from "@mui/icons-material/Unsubscribe";
 import { Divider } from "@mui/material";
 import KeyIcon from "@mui/icons-material/Key";
 import { toast } from "react-toastify";
 import { LogInParams } from "../../types/userTypes";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { userSelector } from "../../lib/redux/userSlice";
+import { logOutAction, userSelector } from "../../lib/redux/userSlice";
 import { deleteAccount, logIn } from "../../lib/api/userAuth";
-import { MuiButton, MuiTextFieldWithAdornment, LinkTo } from "../atoms";
+import { MuiButton, MuiTextFieldWithAdornment, LinkTo, ErrorText } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
 import MuiContaier from "../layouts/MuiContainer";
 import { validations } from "../../modules/validations";
@@ -17,40 +17,49 @@ import { hideLoadingAction, showLoadingAction } from "../../lib/redux/lodingSlic
 
 const { validateMoreThan8Characters } = validations();
 
+// 退会処理（=アカウント削除）はこのページでしか実行しないため、カスタムフックは作らず、コンポーネント内で完結させる
 const Unsubscribe: React.FC = React.memo(() => {
+  const navigate = useNavigate();
   const user = useAppSelector(userSelector);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // 退会処理（=アカウント削除）はこのページでしか実行しないため、カスタムフックにはせず、コンポーネント内で完結させる
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(showLoadingAction("実行中"));
     setIsValid(false);
+    setError(false);
+    setErrorMessage("");
     const deleteUserParams: LogInParams = {
       email: user.email,
       password,
     };
     try {
+      // ユーザーの誤操作を防止するためにパスワードを入力させる
       const res = await logIn(deleteUserParams);
       if (res.data.status === 200) {
         const deleteRes = await deleteAccount();
         if (deleteRes.data.status === 200) {
           dispatch(hideLoadingAction());
+          dispatch(logOutAction());
           toast.success("アカウントの削除が完了しました", {
             position: "top-center",
           });
-          navigate("/"); // TODO::専用のページを作成する
+          // TODO::専用のページに遷移させる
+          navigate("/");
         } else {
           dispatch(hideLoadingAction());
-          toast.error("アカウントの削除に失敗しました");
+          toast.error("アカウントの削除に失敗しました", {
+            position: "top-center",
+          });
         }
       } else {
         dispatch(hideLoadingAction());
-        toast.error("有効ではないユーザーです");
-        navigate("/");
+        setError(true);
+        setErrorMessage("パスワードが異なります");
       }
     } catch (error) {
       dispatch(hideLoadingAction());
@@ -91,6 +100,7 @@ const Unsubscribe: React.FC = React.memo(() => {
         </SConsiderations>
       </dl>
       <Divider sx={{ margin: "24px 0" }} />
+      {error && <ErrorText text={errorMessage} />}
       <p>パスワードを入力してください</p>
       <form onSubmit={(e) => handleSubmit(e)}>
         <MuiTextFieldWithAdornment
