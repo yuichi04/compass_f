@@ -14,8 +14,17 @@ import { ListItemText } from "@mui/material";
 
 const SignUp: React.FC = React.memo(() => {
   // カスタムフック
-  const { errors, errorMessages, isValid, values, isCheckedAgree, handleChange, setIsCheckedAgree, handleSubmit } =
-    useSendAuthEmail();
+  const {
+    nameError,
+    emailError,
+    passwordError,
+    isValid,
+    values,
+    isCheckedAgree,
+    handleChange,
+    setIsCheckedAgree,
+    handleSubmit,
+  } = useSendAuthEmail();
   const { content, open, handleOpen, handleClose } = useModal();
 
   const formItems = () => (
@@ -27,6 +36,7 @@ const SignUp: React.FC = React.memo(() => {
           text: "ユーザー名",
           icon: <PersonIcon />,
           handle: "name",
+          error: nameError,
         },
         {
           type: "email",
@@ -35,6 +45,7 @@ const SignUp: React.FC = React.memo(() => {
           subText: "※ご本人のメールアドレスか確認のため、認証メールを送信します",
           icon: <EmailIcon />,
           handle: "email",
+          error: emailError,
         },
         {
           type: "password",
@@ -50,9 +61,9 @@ const SignUp: React.FC = React.memo(() => {
           value: values.passwordConfirmation,
           text: "パスワードの確認",
           icon: <KeyIcon />,
-          error: errors.confirmation,
           handle: "passwordConfirmation",
           autoComplete: "password",
+          error: passwordError,
         },
       ].map((item) => (
         <SFormItem key={item.text}>
@@ -78,7 +89,8 @@ const SignUp: React.FC = React.memo(() => {
     <>
       <MuiContainer maxWidth="sm">
         <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
-        {errors.api && errorMessages.map((message) => <ErrorText key={message} text={message} />)}
+        {nameError && <ErrorText text="ユーザー名は20文字以内で入力してください" />}
+        {emailError && <ErrorText text="メールアドレスは255文字以下のものをご利用ください" />}
         <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
           {formItems()}
           <SAgreement>

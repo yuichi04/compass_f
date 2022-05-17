@@ -22,5 +22,9 @@ export const validations = () => {
     return regex.test(password);
   };
 
-  return { validateEmailFormat, validateIsNotEmpty, validateMoreThan8Characters };
+  return {
+    validateEmailFormat,
+    validateIsNotEmpty,
+    validateMoreThan8Characters,
+  };
 };

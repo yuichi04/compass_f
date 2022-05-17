@@ -31,9 +31,8 @@ export const useSignUp = () => {
           navigate("/");
           console.log(res.data.message);
         } else {
-          toast.error("認証情報が確認できません");
+          toast.error("認証コードの有効期限が切れています。");
           navigate("/");
-          console.log(res.data.message);
         }
       } catch (error) {
         // navigate("/");

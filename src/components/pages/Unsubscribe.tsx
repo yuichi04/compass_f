@@ -38,26 +38,21 @@ const Unsubscribe: React.FC = React.memo(() => {
       password,
     };
     try {
-      // ユーザーの誤操作を防止するためにパスワードを入力させる
       const res = await logIn(deleteUserParams);
       if (res.data.status === 200) {
         const deleteRes = await deleteAccount();
         if (deleteRes.data.status === 200) {
-          dispatch(hideLoadingAction());
           dispatch(logOutAction());
           toast.success("アカウントの削除が完了しました", {
             position: "top-center",
           });
-          // TODO::専用のページに遷移させる
           navigate("/");
         } else {
-          dispatch(hideLoadingAction());
           toast.error("アカウントの削除に失敗しました", {
             position: "top-center",
           });
         }
       } else {
-        dispatch(hideLoadingAction());
         setError(true);
         setErrorMessage("パスワードが異なります");
       }
@@ -65,6 +60,7 @@ const Unsubscribe: React.FC = React.memo(() => {
       dispatch(hideLoadingAction());
       console.log(error);
     }
+    dispatch(hideLoadingAction());
   };
 
   useEffect(() => {
