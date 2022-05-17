@@ -1,25 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import { Typography } from "@mui/material";
 import { MuiAvatar, LinkTo } from "../atoms";
 
 type Props = {
-  text: string;
+  name: string;
   greeting: string;
   src?: string;
 };
 
 const AvatarWithText: React.FC<Props> = React.memo((props) => {
-  const { text, greeting, src } = props;
+  const { name, greeting, src } = props;
   return (
     <SFlex>
-      <p>
-        <LinkTo to="/profile">
-          <SGreeting>{greeting}</SGreeting>
-          <br />
-          <SName>{text}</SName>
-          <SGreeting>さん</SGreeting>
-        </LinkTo>
-      </p>
+      <LinkTo to="/profile">
+        <Typography variant="body2" component="div">
+          {greeting}
+          <Typography variant="body1" fontWeight={600}>
+            {name}
+            <Typography variant="body2" component="span">
+              さん
+            </Typography>
+          </Typography>
+        </Typography>
+      </LinkTo>
       <LinkTo to="/profile">
         <MuiAvatar src={src} />
       </LinkTo>
@@ -36,13 +40,4 @@ const SFlex = styled.div`
   p {
     margin-right: 16px;
   }
-`;
-
-const SGreeting = styled.span`
-  font-size: 14px;
-`;
-
-const SName = styled.span`
-  font-weight: 600;
-  letter-spacing: 0.05rem;
 `;

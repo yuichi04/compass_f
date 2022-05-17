@@ -5,16 +5,15 @@ import Email from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
 import EventIcon from "@mui/icons-material/Event";
+import { Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { userSelector } from "../../lib/redux/userSlice";
+import MuiContaier from "../layouts/MuiContainer";
+import { AvatarAndUploadButton } from "../organisms";
 import { MuiTextFieldWithAdornment, MuiButton, LinkTo } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
-import MuiContaier from "../layouts/MuiContainer";
-import { Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
-import { AvatarAndUploadButton } from "../organisms";
 
 // テスト用アイコンのインポート
-import { Icons } from "../../assets/images/icons";
 import { usePasswordUpdate } from "../../hooks/usePasswordUpdate";
 
 const Profile: React.FC = React.memo(() => {
@@ -75,7 +74,7 @@ const Profile: React.FC = React.memo(() => {
 
   return (
     <MuiContaier maxWidth="md">
-      <IconWithPageTitle icon={AccountCircleIcon} title="アカウント情報の確認と変更" />
+      <IconWithPageTitle icon={AccountCircleIcon} title="アカウント情報の確認と変更" iconColor="primary" />
       <h2>基本情報</h2>
       <Divider />
       <Grid container sx={{ padding: "32px 0", marginBottom: "32px" }}>
@@ -85,11 +84,11 @@ const Profile: React.FC = React.memo(() => {
         <Grid item xs={7}>
           <List>
             {infoList()}
-            {/* <ListItem>
+            <ListItem>
               <MuiButton variant="outlined" fullWidth>
                 変更する
               </MuiButton>
-            </ListItem> */}
+            </ListItem>
           </List>
         </Grid>
       </Grid>

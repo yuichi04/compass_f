@@ -29,6 +29,9 @@ const Unsubscribe: React.FC = React.memo(() => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const confirm = window.confirm("アカウントを削除してよろしいでしょうか？");
+    if (!confirm) return;
+
     dispatch(showLoadingAction("実行中"));
     setIsValid(false);
     setError(false);

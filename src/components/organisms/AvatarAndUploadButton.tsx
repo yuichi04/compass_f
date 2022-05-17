@@ -11,7 +11,7 @@ const AvatarAndUploadButton: React.FC<Props> = React.memo((props) => {
   return (
     <SBox>
       <SAvatarWrap>
-        <MuiAvatar src={src} sizes="240px" />
+        <MuiAvatar src={src} size="240px" />
       </SAvatarWrap>
       <SButtonWrap>
         <MuiUploadButton />

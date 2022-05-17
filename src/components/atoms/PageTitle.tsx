@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import Typography from "@mui/material/Typography";
 
 type Props = {
   title: string;
@@ -7,11 +7,11 @@ type Props = {
 
 const PageTitle: React.FC<Props> = React.memo((props) => {
   const { title } = props;
-  return <SH1>{title}</SH1>;
+  return (
+    <Typography variant="h4" component="h1" fontWeight={600}>
+      {title}
+    </Typography>
+  );
 });
 
 export default PageTitle;
-
-const SH1 = styled.h1`
-  text-align: center;
-`;

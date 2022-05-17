@@ -1,5 +1,5 @@
 import React from "react";
-import MuiContaier from "../../layouts/MuiContainer";
+import MuiContaier from "../layouts/MuiContainer";
 
 const Top = () => {
   return (

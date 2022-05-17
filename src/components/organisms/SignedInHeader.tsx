@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { userSelector } from "../../lib/redux/userSlice";
 import { LinkTo } from "../atoms";
-import { AvatarWithText } from "../molecules";
+import { AvatarWithName } from "../molecules";
 import { MuiDrawer } from ".";
 import { Grid } from "@mui/material";
 
@@ -29,7 +29,7 @@ const SignedInHeader: React.FC = React.memo(() => {
       <AppBar position="static" sx={{ background: "#2a2f36", boxShadow: "0 2px 6px #333" }}>
         <Toolbar>
           <Grid container>
-            <Grid item sm={6} sx={{ display: "flex", alignItems: "center" }}>
+            <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
               <Typography
                 variant="h5"
                 component="div"
@@ -52,15 +52,15 @@ const SignedInHeader: React.FC = React.memo(() => {
             </Grid>
             <Grid
               item
-              sm={6}
+              xs={4}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-end",
               }}
             >
-              <AvatarWithText text={user.name} greeting={greeting()} src={user.image} />
-              <MuiDrawer username={user.name} email={user.email} />
+              <AvatarWithName name={user.name} greeting={greeting()} src={user.image} />
+              <MuiDrawer username={user.name} email={user.email} src={user.image} />
             </Grid>
           </Grid>
         </Toolbar>

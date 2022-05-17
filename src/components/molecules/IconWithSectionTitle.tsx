@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Icon } from "@mui/material";
-import { PageTitle } from "../atoms";
+import { SectionTitle } from "../atoms";
 
 type Props = {
   title: string;
@@ -9,22 +9,20 @@ type Props = {
   iconColor?: "inherit" | "primary" | "disabled" | "action" | "secondary" | "error" | "info" | "success" | "warning";
 };
 
-const IconWithPageTitle: React.FC<Props> = React.memo((props) => {
+const IconWithSectionTitle: React.FC<Props> = React.memo((props) => {
   const { title, icon, iconColor } = props;
   return (
     <SFlex>
-      <Icon fontSize="large" color={iconColor} component={icon} sx={{ marginRight: "8px" }} />
-      <PageTitle title={title} />
+      <Icon color={iconColor} fontSize="medium" component={icon} sx={{ mr: "8px" }} />
+      <SectionTitle title={title} />
     </SFlex>
   );
 });
 
-export default IconWithPageTitle;
+export default IconWithSectionTitle;
 
 const SFlex = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 32px;
-  text-shadow: 0px 1px 1px #ddd;
+  margin-bottom: 16px;
 `;

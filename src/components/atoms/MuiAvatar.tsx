@@ -4,12 +4,12 @@ import { theme } from "../../assets/theme";
 
 type Props = {
   src?: string;
-  sizes?: string;
+  size?: string;
 };
 
 const MuiAvatar: React.FC<Props> = React.memo(({ ...props }) => {
-  const { sizes } = props;
-  return <Avatar {...props} sx={{ bgcolor: [theme.palette.primary.light], height: sizes, width: sizes }} />;
+  const { size } = props;
+  return <Avatar {...props} sx={{ bgcolor: [theme.palette.primary.light], height: size, width: size }} />;
 });
 
 export default MuiAvatar;

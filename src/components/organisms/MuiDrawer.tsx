@@ -21,10 +21,11 @@ import { LinkTo, MuiAvatar } from "../atoms";
 type Props = {
   username: string;
   email: string;
+  src?: string;
 };
 
 const MuiDrawer: React.FC<Props> = React.memo((props) => {
-  const { username, email } = props;
+  const { username, email, src } = props;
   const [open, setOpen] = useState(false);
   const { handleClick } = useLogOut();
 
@@ -45,7 +46,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <MuiAvatar />
+                <MuiAvatar src={src} />
               </ListItemIcon>
               <ListItemText primary={username} secondary={email} />
             </ListItemButton>

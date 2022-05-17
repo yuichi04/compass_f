@@ -51,7 +51,7 @@ export const useSendAuthEmail = () => {
         const res = await sendAuthEmail(params);
         if (res.data.status === 200) {
           navigate("/sentauthemail");
-          toast.success("認証メールが送信されました");
+          toast.info("認証メールが送信されました");
         } else {
           toast.error("認証メールの送信に失敗しました");
         }

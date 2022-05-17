@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MuiContainer } from "../../layouts";
+import { MuiContainer } from "../layouts";
 
 const PrivacyPolicy: React.FC = () => {
   return (

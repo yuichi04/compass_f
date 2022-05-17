@@ -7,5 +7,6 @@ export { default as ErrorText } from "./ErrorText";
 export { default as LinkTo } from "./LinkTo";
 export { default as PageTitle } from "./PageTitle";
 export { default as MuiAvatar } from "./MuiAvatar";
-export { default as LToastContainer } from "./LToastContainer";
+export { default as ToastContainer } from "./ToastContainer";
 export { default as MuiUploadButton } from "./MuiUploadButton";
+export { default as SectionTitle } from "./SectionTitle";

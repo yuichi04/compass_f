@@ -9,7 +9,7 @@ const initialState: UserParams = {
   name: "",
   email: "",
   createdAt: "",
-  image: Icons.user02,
+  image: Icons.user13,
   isSignedIn: false,
   admin: false,
 };

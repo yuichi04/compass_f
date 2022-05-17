@@ -1,15 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import Typography from "@mui/material/Typography";
 
 type Props = { text: string };
 
 const ErrorText: React.FC<Props> = React.memo((props) => {
-  return <SText>{props.text}</SText>;
+  const { text } = props;
+  return (
+    <Typography color="error" variant="body1" component="p" sx={{ textAlign: "center" }}>
+      ※{text}
+    </Typography>
+  );
 });
 
 export default ErrorText;
-
-const SText = styled.p`
-  color: #c62828;
-  text-align: center;
-`;

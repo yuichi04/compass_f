@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MuiContaier from "../../layouts/MuiContainer";
+import MuiContaier from "../layouts/MuiContainer";
 
 const NoFound: React.FC = () => {
   return (

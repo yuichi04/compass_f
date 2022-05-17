@@ -28,8 +28,15 @@ export const theme = createTheme({
       dark: "#eee",
       contrastText: "#00aa99",
     },
+    success: {
+      main: "#00766b",
+    },
     background: {
       paper: "#f8fbfe",
+    },
+    text: {
+      primary: "#333",
+      secondary: "#444",
     },
   },
 });

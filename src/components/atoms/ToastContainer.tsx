@@ -1,9 +1,9 @@
 import React from "react";
-import { ToastContainer, Flip } from "react-toastify";
+import { ToastContainer as Toastify, Flip } from "react-toastify";
 import "react-toastify/scss/main.scss";
-const LToastContainer: React.FC = React.memo(() => {
+const ToastContainer: React.FC = React.memo(() => {
   return (
-    <ToastContainer
+    <Toastify
       autoClose={1500}
       position="top-right"
       theme="colored"
@@ -14,4 +14,4 @@ const LToastContainer: React.FC = React.memo(() => {
   );
 });
 
-export default LToastContainer;
+export default ToastContainer;

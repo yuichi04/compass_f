@@ -8,7 +8,9 @@ const Footer: React.FC = () => {
     <SFooter>
       <Grid container>
         <Grid item xs={6}>
-          <h2>COMPASS</h2>
+          <LinkTo to="/">
+            <h2>COMPASS</h2>
+          </LinkTo>
           <small>&copy;COMPASSS-2022</small>
         </Grid>
         <Grid item xs={6} sx={{ display: "flex", justifyContent: "flex-end", fontSize: "14px" }}>
@@ -30,7 +32,7 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const SFooter = styled.footer`
-  background: #f8fbfe;
+  background: #eaedef;
   border-top: 1px solid #efefef;
   width: 100vw;
   padding: 32px;
