@@ -55,3 +55,19 @@ const SBalloon = styled.div<StyleProps>`
     box-shadow: 1px 3px 6px #bbb;
   }
 `;
+
+const dataset = {
+  chapter: {
+    chapter1: {
+      title: "第1章「説明上手になるとは？」",
+      text: "相手になるほどと思ってもらうこと",
+      image: "../../image01.png",
+      secen: {
+        character_image: "../../fun01.png",
+        bgm: "enjoy",
+        order: 2,
+        secene1: {},
+      },
+    },
+  },
+};
