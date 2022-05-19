@@ -15,10 +15,10 @@ const Home: React.FC = React.memo(() => {
         <IconWithPageTitle title="ようこそ、COMPASSへ" icon={LocalLibraryIcon} iconColor="primary" />
         <Grid container spacing={4}>
           <Grid item xs={9}>
-            <Box sx={{ mb: "32px" }}>
+            <Box sx={{ mb: "64px" }}>
               <DashBoard />
             </Box>
-            <Box sx={{ mb: "32px" }}>
+            <Box sx={{ mb: "64px" }}>
               <IconWithSectionTitle title="基本コース" icon={MenuBookIcon} iconColor="primary" />
               <CourseCardList />
             </Box>

@@ -1,16 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ContactBoard, SignedInHeader } from "../components/organisms";
-import {
-  Home,
-  NotFound404,
-  PrivacyPolicy,
-  Profile,
-  Story,
-  StoryChapter1,
-  Terms,
-  Unsubscribe,
-} from "../components/pages";
+import { Home, NotFound404, PrivacyPolicy, Profile, Story, Chapter1, Terms, Unsubscribe } from "../components/pages";
 import BackToMain from "../components/utils/BackToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
 
@@ -26,7 +17,7 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/story" element={<Story />}>
-          <Route path="chapter1" element={<StoryChapter1 />} />
+          <Route path="chapter1" element={<Chapter1 />} />
         </Route>
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

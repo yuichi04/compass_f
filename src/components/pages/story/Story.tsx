@@ -1,14 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import { StoryContainer } from "../layouts";
 
 const Story: React.FC = React.memo(() => {
   return (
     <SBackground>
-      <StoryContainer>
-        <Outlet />
-      </StoryContainer>
+      <Outlet />
     </SBackground>
   );
 });

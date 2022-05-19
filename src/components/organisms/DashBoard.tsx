@@ -39,7 +39,7 @@ const DashBoard: React.FC = React.memo(() => {
       <Divider orientation="vertical" flexItem sx={{ m: "0 32px" }} />
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <Typography variant="overline" component="div" color="text.secondary">
-          チャプタークリア数
+          チャプタークリア
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <MilitaryTechIcon sx={{ color: "#ffc107" }} />
@@ -51,7 +51,7 @@ const DashBoard: React.FC = React.memo(() => {
       <Divider orientation="vertical" flexItem sx={{ m: "0 32px" }} />
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <Typography variant="overline" component="div" color="text.secondary">
-          セクションクリア数
+          セクションクリア
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <StarsIcon color="warning" sx={{ mr: "8px" }} />

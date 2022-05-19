@@ -1,0 +1,32 @@
+.fade_in {
+  animation-name: fadeInAnime;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes fadeInAnime {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade_out {
+  animation-name: fadeOutAnime;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeOutAnime {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    display: none;
+  }
+}

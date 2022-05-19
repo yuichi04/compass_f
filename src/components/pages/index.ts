@@ -10,5 +10,5 @@ export { default as SentAuthEmail } from "./SentAuthEmail";
 export { default as SignUp } from "./SignUp";
 export { default as Unsubscribe } from "./Unsubscribe";
 export { default as ListenAuthUser } from "./ListenAuthUser";
-export { default as Story } from "./Story";
-export { default as StoryChapter1 } from "./StoryChapter1";
+export { default as Story } from "./story/Story";
+export { default as Chapter1 } from "./story/Chapter1";
