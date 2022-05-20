@@ -30,3 +30,78 @@
     display: none;
   }
 }
+
+/* スライドショー */
+// 共通のアニメーション
+.animation-settings {
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+// 左からスライド
+.slide-left-in {
+  animation-name: slideLeftInAnime;
+  @extend .animation-settings;
+}
+@keyframes slideLeftInAnime {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+// 左にスライド
+.slide-left-out {
+  animation-name: slideLeftOutAnime;
+  @extend .animation-settings;
+}
+@keyframes slideLeftOutAnime {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+// 右からスライド
+.slide-right-in {
+  animation-name: slideRightInAnime;
+  @extend .animation-settings;
+}
+@keyframes slideRightInAnime {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-100%);
+  }
+}
+
+// 右にスライド
+.slide-right-out {
+  animation-name: slideRightOutAnime;
+  @extend .animation-settings;
+}
+@keyframes slideRightOutAnime {
+  0% {
+    opacity: 1;
+    transform: translate(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+.display-none {
+  display: none;
+}
