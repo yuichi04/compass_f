@@ -5,7 +5,7 @@ import { SlideListItem } from "./index";
 
 type Props = {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: (open: boolean) => void;
   contents: {
     title: string;
     sectionTitle: string;

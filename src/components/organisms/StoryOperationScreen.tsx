@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import { Grid } from "@mui/material";
-import { Box } from "@mui/system";
+import { Grid, Box, IconButton, Tooltip, Divider } from "@mui/material";
+import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BackgroundImage } from "../../assets/images/background";
 import { CharacterGuideImages } from "../../assets/images/character/guide";
 import { MuiButton, Balloon } from "../atoms";
@@ -17,8 +18,18 @@ const styles = {
     height: "calc(100vh - 60px)",
     background: `url(${BackgroundImage.dayoffice}) no-repeat center`,
     backgroundSize: "cover",
-    padding: "8px;",
   },
+  utilButtonBox: {
+    position: "absolute",
+    left: "8px",
+    bottom: "8px",
+    display: "flex",
+    bgcolor: "rgba(255,255,255,0.3)",
+    backdropFilter: "blur(10px)",
+    padding: "12px",
+    borderRadius: "12px",
+  },
+  utilButton: {},
 };
 
 type Props = {
@@ -43,15 +54,40 @@ const StoryOperationScreen: React.FC<Props> = React.memo((props) => {
   return (
     <>
       <Grid container sx={styles.container}>
-        <Grid item xs={3}>
-          <Box sx={{ bgcolor: "#fff", width: "250px", height: "50%", boxShadow: "1px 3px 6px #bbb" }}>
-            <MuiButton color="warning" variant="contained" onClick={() => setOpen(true)}>
-              スライドを確認
-            </MuiButton>
+        <Grid item xs={3} sx={{ position: "relative" }}>
+          <Box sx={styles.utilButtonBox}>
+            <Tooltip title="スライドを確認する">
+              <IconButton
+                sx={{
+                  bgcolor: "info.dark",
+                  color: "#fff",
+                  borderRadius: "8px",
+                  mr: "16px",
+                  "&:hover": { bgcolor: "info.dark", transform: "scale(1.1)" },
+                }}
+                onClick={() => setOpen(true)}
+              >
+                <AutoAwesomeMotionIcon fontSize="large" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="メモを書く">
+              <IconButton
+                sx={{
+                  bgcolor: "warning.dark",
+                  color: "#fff",
+                  borderRadius: "8px",
+                  transition: "0.1s",
+                  "&:hover": { bgcolor: "warning.dark", transform: "scale(1.1)" },
+                }}
+                onClick={() => setOpen(true)}
+              >
+                <BorderColorIcon fontSize="large" />
+              </IconButton>
+            </Tooltip>
           </Box>
         </Grid>
         <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
-          <Box sx={{ position: "absolute", bottom: "32px", width: "100%" }}>
+          <Box sx={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", width: "80%" }}>
             <MuiButton variant="contained" fullWidth>
               初めまして
             </MuiButton>
@@ -76,22 +112,10 @@ const StoryOperationScreen: React.FC<Props> = React.memo((props) => {
         </Grid>
       </Grid>
       <Box sx={styles.character}>
-        <SCharacter src={CharacterGuideImages.normal} alt="character" />
+        <img className="character-move-normal" src={CharacterGuideImages.normal} alt="character" />
       </Box>
     </>
   );
 });
 
 export default StoryOperationScreen;
-
-const move = keyframes`
-  50% {
-    transform: rotateZ(-1deg) translate(1px) scale(1.02)
-  }
-`;
-
-const SCharacter = styled.img`
-  // animation-name: ${move};
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-`;

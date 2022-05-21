@@ -16,7 +16,7 @@ type Props = {
   title: string;
   sectionTitle: string;
   last: number;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: (open: boolean) => void;
 };
 
 const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
@@ -27,7 +27,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
       <Box
         sx={{
           position: "relative",
-          bgcolor: "#fff",
+          bgcolor: "#f8fbfe",
           height: "100%",
           width: "100%",
           padding: "64px",
@@ -37,14 +37,12 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
         <IconButton sx={{ position: "absolute", right: "16px", top: "16px" }} onClick={() => setOpen(false)}>
           <CancelIcon fontSize="large" />
         </IconButton>
-        <Typography color="text.disabled" variant="h6" fontWeight={300}>
+        <Typography variant="h6" fontWeight={300}>
           {title}
         </Typography>
         <Typography variant="h4">{sectionTitle}</Typography>
         <Box sx={{ padding: "64px" }}>
-          <Typography variant="h6" color="text.secondary">
-            {children}
-          </Typography>
+          <Typography variant="h6">{children}</Typography>
         </Box>
         <Box
           sx={{
@@ -74,5 +72,5 @@ export default SlideListItem;
 const SContent = styled.div`
   min-width: 100%;
   height: 100%;
-  padding: 64px;
+  padding: 64px 128px;
 `;

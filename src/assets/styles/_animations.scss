@@ -33,7 +33,7 @@
 
 /* スライドショー */
 // 共通のアニメーション
-.animation-settings {
+.slide-show-settings {
   animation-duration: 0.6s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
@@ -42,7 +42,7 @@
 // 左からスライド
 .slide-left-in {
   animation-name: slideLeftInAnime;
-  @extend .animation-settings;
+  @extend .slide-show-settings;
 }
 @keyframes slideLeftInAnime {
   0% {
@@ -57,7 +57,7 @@
 // 左にスライド
 .slide-left-out {
   animation-name: slideLeftOutAnime;
-  @extend .animation-settings;
+  @extend .slide-show-settings;
 }
 @keyframes slideLeftOutAnime {
   0% {
@@ -73,7 +73,7 @@
 // 右からスライド
 .slide-right-in {
   animation-name: slideRightInAnime;
-  @extend .animation-settings;
+  @extend .slide-show-settings;
 }
 @keyframes slideRightInAnime {
   0% {
@@ -89,7 +89,7 @@
 // 右にスライド
 .slide-right-out {
   animation-name: slideRightOutAnime;
-  @extend .animation-settings;
+  @extend .slide-show-settings;
 }
 @keyframes slideRightOutAnime {
   0% {
@@ -105,3 +105,26 @@
 .display-none {
   display: none;
 }
+
+/* キャラクターのアニメーション */
+// 通常
+.character-move-normal {
+  animation-name: characterMoveNormal;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+@keyframes characterMoveNormal {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(0.5deg) scale(1.01);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+// 喜び
+// 怒り
+// 悲しみ

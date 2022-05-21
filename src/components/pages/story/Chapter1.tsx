@@ -7,7 +7,8 @@ import { SlideContentList } from "../../../dataset";
 const StoryChapter1: React.FC = React.memo(() => {
   const { chapter1, setChapter1 } = SlideContentList();
   const { open, setOpen } = useModal();
-  const handleClickNext = useCallback(
+
+  const handleClickNextSlide = useCallback(
     (order: number) => {
       const newContents = chapter1.map((content) => {
         if (content.order === order) {
@@ -32,7 +33,7 @@ const StoryChapter1: React.FC = React.memo(() => {
     [chapter1, setChapter1]
   );
 
-  const handleClickBack = useCallback(
+  const handleClickBackSlide = useCallback(
     (order: number) => {
       const newContents = chapter1.map((content) => {
         if (content.order === order) {
@@ -57,11 +58,32 @@ const StoryChapter1: React.FC = React.memo(() => {
     [chapter1, setChapter1]
   );
 
+  // スライドのオン・オフを切り替える
+  const handleOpenSlide = useCallback(
+    (open: boolean) => {
+      const newChapter1 = chapter1.map((content) => {
+        return {
+          ...content,
+          className: "",
+        };
+      });
+      setChapter1(newChapter1);
+      setOpen(open);
+    },
+    [chapter1, setChapter1, setOpen]
+  );
+
   return (
     <Box sx={{ position: "relative", height: "100vh", width: "100vw" }}>
       <StoryOperationScreen setOpen={setOpen} />
       {/* スライドコンポーネント */}
-      <SlideListModal open={open} setOpen={setOpen} contents={chapter1} next={handleClickNext} back={handleClickBack} />
+      <SlideListModal
+        open={open}
+        setOpen={handleOpenSlide}
+        contents={chapter1}
+        next={handleClickNextSlide}
+        back={handleClickBackSlide}
+      />
     </Box>
   );
 });
