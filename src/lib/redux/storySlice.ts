@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
 type InitialState = {
   chapter: {
-    title: string;
-    text: string;
     order: number;
     scenes: {
       order: number;
+      characterImage: string;
       lines: {
         text: string;
         order: number;
@@ -21,12 +21,11 @@ type InitialState = {
 
 const initialState: InitialState = {
   chapter: {
-    title: "",
-    text: "",
     order: 0,
     scenes: [
       {
         order: 0,
+        characterImage: "",
         lines: [
           {
             text: "",
@@ -47,5 +46,16 @@ const initialState: InitialState = {
 export const storySlice = createSlice({
   name: "story",
   initialState,
-  reducers: {},
+  reducers: {
+    startChapterAction: (state, action) => {
+      state.chapter.order = action.payload.order;
+    },
+    endChapterAction: () => {
+      return { ...initialState };
+    },
+  },
 });
+
+export const { startChapterAction, endChapterAction } = storySlice.actions;
+export const chapterSelector = (state: RootState) => state.story.chapter;
+export default storySlice.reducer;

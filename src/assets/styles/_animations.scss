@@ -118,7 +118,7 @@
     transform: rotateZ(0deg);
   }
   50% {
-    transform: rotateZ(0.5deg) scale(1.01);
+    transform: rotateZ(0.5deg) scale(1.01) translateY(5px);
   }
   100% {
     transform: rotateZ(0deg);

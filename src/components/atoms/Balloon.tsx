@@ -17,7 +17,7 @@ const Balloon: React.FC<Props> = React.memo(({ children, ...props }) => {
   return (
     <SBalloon className={className} background={background}>
       {title && <Typography variant="h6">{title}</Typography>}
-      <Typography>{children}</Typography>
+      <Typography fontWeight={600}>{children}</Typography>
     </SBalloon>
   );
 });
@@ -27,14 +27,14 @@ export default Balloon;
 const SBalloon = styled.div<StyleProps>`
   position: relative;
   background: ${(props) => props.background};
-  border-radius: 15px;
-  padding: 16px;
-  box-shadow: 1px 3px 6px #bbb;
+  border-radius: 24px;
+  box-shadow: 0 0 3px #ccc;
+  padding: 16px 24px;
 
   &:before {
     content: "";
     position: absolute;
-    left: -38px;
+    left: -40px;
     width: 13px;
     height: 12px;
     bottom: 0;

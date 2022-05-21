@@ -65,7 +65,6 @@ export const useSendAuthEmail = () => {
 
   // バリデーションをリアルタイムで監視
   useEffect(() => {
-    console.log("監視！");
     const isValidUsername = validateIsNotEmpty(values.name);
     const isValidEmail = validateEmailFormat(values.email);
     const isValidPassword = validateMoreThan8Characters(values.password);
