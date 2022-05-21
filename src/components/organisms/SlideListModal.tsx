@@ -8,6 +8,7 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   contents: {
     title: string;
+    sectionTitle: string;
     sentence: React.ReactNode;
     order: number;
     className: string;
@@ -21,16 +22,16 @@ const SlideList: React.FC<Props> = React.memo((props) => {
   const lastSlideNum = contents.slice(-1)[0].order;
 
   return (
-    <Modal open={!open} onClose={() => setOpen(false)}>
+    <Modal open={open} onClose={() => setOpen(true)}>
       <Box
         sx={{
+          display: "flex",
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
+          height: "100%",
           width: "100%",
-          height: "600px",
-          display: "flex",
         }}
       >
         {contents.map((content) => (
@@ -41,7 +42,9 @@ const SlideList: React.FC<Props> = React.memo((props) => {
             next={next}
             back={back}
             title={content.title}
+            sectionTitle={content.sectionTitle}
             last={lastSlideNum}
+            setOpen={setOpen}
           >
             {content.sentence}
           </SlideListItem>

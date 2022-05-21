@@ -1,7 +1,7 @@
 .fade_in {
   animation-name: fadeInAnime;
   animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease-out;
 }
 @keyframes fadeInAnime {
   0% {
@@ -17,7 +17,7 @@
 .fade_out {
   animation-name: fadeOutAnime;
   animation-duration: 0.5s;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
 @keyframes fadeOutAnime {
@@ -34,7 +34,7 @@
 /* スライドショー */
 // 共通のアニメーション
 .animation-settings {
-  animation-duration: 1s;
+  animation-duration: 0.6s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -47,11 +47,11 @@
 @keyframes slideLeftInAnime {
   0% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translate(-100%, 10%) scale(0.6);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(0) scale(1);
   }
 }
 // 左にスライド
@@ -62,11 +62,11 @@
 @keyframes slideLeftOutAnime {
   0% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(0) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translate(-100%, 10%) scale(0.6);
   }
 }
 
@@ -78,11 +78,11 @@
 @keyframes slideRightInAnime {
   0% {
     opacity: 0;
-    transform: translateX(0);
+    transform: translate(0, 10%) scale(0.6);
   }
   100% {
     opacity: 1;
-    transform: translate(-100%);
+    transform: translate(-100%, 0) scale(1);
   }
 }
 
@@ -94,11 +94,11 @@
 @keyframes slideRightOutAnime {
   0% {
     opacity: 1;
-    transform: translate(-100%);
+    transform: translate(-100%, 0) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translate(0);
+    transform: translate(0, 10%) scale(0.6);
   }
 }
 

@@ -11,3 +11,4 @@ export { default as LearningProgress } from "./LearningProgress";
 export { default as ContactBoard } from "./ContactBoard";
 export { default as SlideListModal } from "./SlideListModal";
 export { default as SlideListItem } from "./SlideListItem";
+export { default as StoryOperationScreen } from "./StoryOperationScreen";

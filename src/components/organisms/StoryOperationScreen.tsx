@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { BackgroundImage } from "../../assets/images/background";
 import { CharacterGuideImages } from "../../assets/images/character/guide";
 import { MuiButton, Balloon } from "../atoms";
-import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-import { toast } from "react-toastify";
-import { MuiDrawer } from "../organisms";
 
 const styles = {
   character: {
@@ -24,26 +21,34 @@ const styles = {
   },
 };
 
+type Props = {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 const wordList = ["ふふ、そうですね。", "あれ、そうでしたか？", "ごめんなさい。最近物忘れがひどくて・・・。"];
 
-const StoryOperationScreen: React.FC = React.memo(() => {
+const StoryOperationScreen: React.FC<Props> = React.memo((props) => {
+  const { setOpen } = props;
   // test
-  const [open, setOpen] = useState(false);
+  const [word, setWord] = useState(false);
   const [text, setText] = useState("");
 
   useEffect(() => {
-    console.log("effect");
-    if (open) {
+    if (word) {
       const rand = wordList[Math.floor(Math.random() * wordList.length)];
       setText(rand);
     }
-  }, [open]);
+  }, [word]);
 
   return (
     <>
       <Grid container sx={styles.container}>
         <Grid item xs={3}>
-          <Box></Box>
+          <Box sx={{ bgcolor: "#fff", width: "250px", height: "50%", boxShadow: "1px 3px 6px #bbb" }}>
+            <MuiButton color="warning" variant="contained" onClick={() => setOpen(true)}>
+              スライドを確認
+            </MuiButton>
+          </Box>
         </Grid>
         <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
           <Box sx={{ position: "absolute", bottom: "32px", width: "100%" }}>
@@ -55,7 +60,7 @@ const StoryOperationScreen: React.FC = React.memo(() => {
               うせろ
             </MuiButton>
             <div className="module-spacer-sm" />
-            <MuiButton variant="contained" fullWidth onClick={() => setOpen(!open)}>
+            <MuiButton variant="contained" fullWidth onClick={() => setWord(!word)}>
               昨日会ったじゃん
             </MuiButton>
           </Box>
@@ -63,7 +68,7 @@ const StoryOperationScreen: React.FC = React.memo(() => {
         <Grid item xs={3} sx={{ position: "relative", zIndex: 10 }}>
           <Box sx={{ position: "absolute", left: "-50%", padding: "16px 16px 0 0" }}>
             {text && (
-              <Balloon className={open ? "fade_in" : "fade_out"} background="#fff">
+              <Balloon className={word ? "fade_in" : "fade_out"} background="#fff">
                 {text}
               </Balloon>
             )}

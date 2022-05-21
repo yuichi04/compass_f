@@ -13,7 +13,7 @@ const Story: React.FC = React.memo(() => {
 export default Story;
 
 const SBackground = styled.div`
-  // overflow: hidden;
+  overflow: hidden;
   height: calc(100vh - 60px);
   z-index: -999;
 `;

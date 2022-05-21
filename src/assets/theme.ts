@@ -36,7 +36,8 @@ export const theme = createTheme({
     },
     text: {
       primary: "#333",
-      secondary: "#444",
+      secondary: "#555",
+      disabled: "#666",
     },
   },
 });
