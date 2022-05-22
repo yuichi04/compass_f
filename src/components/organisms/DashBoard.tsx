@@ -5,7 +5,7 @@ import StarsIcon from "@mui/icons-material/Stars";
 import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 import { MuiAvatar } from "../atoms";
 import { useAppSelector } from "../../lib/redux/hooks";
-import { userSelector } from "../../lib/redux/userSlice";
+import { userSelector } from "../../lib/redux/features/userSlice";
 
 const DashBoard: React.FC = React.memo(() => {
   const user = useAppSelector(userSelector);

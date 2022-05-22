@@ -52,12 +52,12 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           }}
         >
           {order !== 0 && (
-            <IconButton onClick={() => back(order)} sx={{ padding: 0 }}>
+            <IconButton onClick={() => back(order)} sx={{ p: 0 }}>
               <ArrowLeftIcon sx={{ fontSize: "70px" }} />
             </IconButton>
           )}
           {order !== last && (
-            <IconButton onClick={() => next(order)} sx={{ padding: 0 }}>
+            <IconButton onClick={() => next(order)} sx={{ p: 0, ml: "16px" }}>
               <ArrowForwardIosIcon sx={{ fontSize: "70px" }} />
             </IconButton>
           )}

@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LogInParams, UserParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
-import { logIn } from "../lib/api/userAuth";
+import { logIn } from "../lib/api/userApi";
 import { useAppDispatch } from "../lib/redux/hooks";
-import { logInAction } from "../lib/redux/userSlice";
-import { hideLoadingAction, showLoadingAction } from "../lib/redux/lodingSlice";
+import { logInAction } from "../lib/redux/features/userSlice";
+import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
 
 // validations
 const { validateEmailFormat, validateMoreThan8Characters } = validations();

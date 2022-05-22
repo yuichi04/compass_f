@@ -7,7 +7,7 @@ import KeyIcon from "@mui/icons-material/Key";
 import EventIcon from "@mui/icons-material/Event";
 import { Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { useAppSelector } from "../../lib/redux/hooks";
-import { userSelector } from "../../lib/redux/userSlice";
+import { userSelector } from "../../lib/redux/features/userSlice";
 import MuiContaier from "../layouts/MuiContainer";
 import { AvatarAndUploadButton } from "../organisms";
 import { MuiTextFieldWithAdornment, MuiButton, LinkTo } from "../atoms";

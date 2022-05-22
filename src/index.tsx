@@ -7,7 +7,7 @@ import { theme } from "./assets/theme";
 import App from "./App";
 import "./assets/styles/style.scss";
 import reportWebVitals from "./reportWebVitals";
-import Spinner from "./components/organisms/Spinner";
+import Spinner from "./components/molecules/Spinner";
 import { ToastContainer } from "./components/atoms";
 
 const container = document.getElementById("root")!;

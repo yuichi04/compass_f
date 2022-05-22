@@ -11,7 +11,7 @@ import { useModal } from "../../hooks/useModal";
 import { theme } from "../../assets/theme";
 import { LinkTo, MuiButton, MuiTextField } from "../atoms";
 import { useAppSelector } from "../../lib/redux/hooks";
-import { userSelector } from "../../lib/redux/userSlice";
+import { userSelector } from "../../lib/redux/features/userSlice";
 
 const ContactBoard: React.FC = React.memo(() => {
   const user = useAppSelector(userSelector);

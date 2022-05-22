@@ -2,6 +2,7 @@ import React from "react";
 import { IconButton, Tooltip, Box } from "@mui/material";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
 type Props = {
   setOpen: (open: boolean) => void;
@@ -11,11 +12,12 @@ const styles = {
   utilButtonBox: {
     position: "absolute",
     left: "8px",
-    bottom: "8px",
+    top: "8px",
     display: "flex",
-    bgcolor: "rgba(255,255,255,0.3)",
+    flexDirection: "column",
+    bgcolor: "rgba(0,0,0,0.3)",
     backdropFilter: "blur(10px)",
-    padding: "12px 16px",
+    padding: "12px",
     borderRadius: "12px",
   },
 };
@@ -25,29 +27,44 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
   return (
     <>
       <Box sx={styles.utilButtonBox}>
-        <Tooltip title="スライドを確認する">
+        <Tooltip title="ヒントを見る" placement="right-start">
           <IconButton
             sx={{
-              bgcolor: "info.dark",
+              bgcolor: "warning.light",
               color: "#fff",
               borderRadius: "8px",
-              mr: "16px",
+              mb: "16px",
               transition: "0.2s",
-              "&:hover": { bgcolor: "info.dark", transform: "scale(1.075)" },
+              "&:hover": { bgcolor: "warning.light", transform: "scale(1.075)" },
+            }}
+            onClick={() => setOpen(true)}
+          >
+            <LightbulbIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="スライドを確認する" placement="right-start">
+          <IconButton
+            sx={{
+              bgcolor: "info.light",
+              color: "#fff",
+              borderRadius: "8px",
+              mb: "16px",
+              transition: "0.2s",
+              "&:hover": { bgcolor: "info.light", transform: "scale(1.075)" },
             }}
             onClick={() => setOpen(true)}
           >
             <AutoAwesomeMotionIcon fontSize="large" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="メモを書く">
+        <Tooltip title="メモを書く" placement="right-start">
           <IconButton
             sx={{
-              bgcolor: "warning.dark",
+              bgcolor: "error.light",
               color: "#fff",
               borderRadius: "8px",
               transition: "0.2s",
-              "&:hover": { bgcolor: "warning.dark", transform: "scale(1.075)" },
+              "&:hover": { bgcolor: "error.light", transform: "scale(1.075)" },
             }}
             onClick={() => setOpen(true)}
           >

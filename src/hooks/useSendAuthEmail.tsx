@@ -1,10 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../lib/redux/hooks";
-import { sendAuthEmail } from "../lib/api/userAuth";
+import { sendAuthEmail } from "../lib/api/userApi";
 import { SignUpParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
-import { showLoadingAction, hideLoadingAction } from "../lib/redux/lodingSlice";
+import { showLoadingAction, hideLoadingAction } from "../lib/redux/features/lodingSlice";
 import { toast } from "react-toastify";
 
 // validations
@@ -51,7 +51,7 @@ export const useSendAuthEmail = () => {
         const res = await sendAuthEmail(params);
         if (res.data.status === 200) {
           navigate("/sentauthemail");
-          toast.info("認証メールが送信されました");
+          toast.success("認証メールが送信されました");
         } else {
           toast.error("認証メールの送信に失敗しました");
         }

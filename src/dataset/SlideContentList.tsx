@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const SlideContentList = () => {
-  const [chapter1, setChapter1] = useState([
+  const [chapter1Contents, setChapter1Contents] = useState([
     {
       title: "Chapter 1「説明の種類を知ろう」",
       sectionTitle: "自分主導の説明と相手主導の説明",
@@ -72,7 +72,7 @@ const SlideContentList = () => {
       className: "",
     },
   ]);
-  return { chapter1, setChapter1 };
+  return { chapter1Contents, setChapter1Contents };
 };
 
 export default SlideContentList;

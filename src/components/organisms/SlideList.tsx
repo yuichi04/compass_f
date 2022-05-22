@@ -1,28 +1,88 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { SlideListItem } from "./index";
+import { SlideContentList } from "../../dataset/index";
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  contents: {
-    title: string;
-    sectionTitle: string;
-    sentence: React.ReactNode;
-    order: number;
-    className: string;
-  }[];
-  next: (order: number) => void;
-  back: (order: number) => void;
 };
 
 const SlideList: React.FC<Props> = React.memo((props) => {
-  const { open, setOpen, contents, next, back } = props;
-  const lastSlideNum = contents.slice(-1)[0].order;
+  const { open, setOpen } = props;
+  const { chapter1Contents, setChapter1Contents } = SlideContentList();
+  const lastSlideNum = chapter1Contents.slice(-1)[0].order;
+
+  // スライド表示のオン・オフ
+  const handleOpenSlide = useCallback(
+    (open: boolean) => {
+      const newChapter1 = chapter1Contents.map((content) => {
+        return {
+          ...content,
+          className: "",
+        };
+      });
+      setChapter1Contents(newChapter1);
+      setOpen(open);
+    },
+    [chapter1Contents, setChapter1Contents, setOpen]
+  );
+
+  // 次のスライドへ
+  const handleClickNextSlide = useCallback(
+    (order: number) => {
+      const newContents = chapter1Contents.map((content) => {
+        if (content.order === order) {
+          return {
+            ...content,
+            className: "slide-left-out",
+          };
+        } else if (content.order === order + 1) {
+          return {
+            ...content,
+            className: "slide-right-in",
+          };
+        } else {
+          return {
+            ...content,
+            className: "display-none",
+          };
+        }
+      });
+      setChapter1Contents(newContents);
+    },
+    [chapter1Contents, setChapter1Contents]
+  );
+
+  // 前のスライドへ
+  const handleClickBackSlide = useCallback(
+    (order: number) => {
+      const newContents = chapter1Contents.map((content) => {
+        if (content.order === order) {
+          return {
+            ...content,
+            className: "slide-right-out",
+          };
+        } else if (content.order === order - 1) {
+          return {
+            ...content,
+            className: "slide-left-in",
+          };
+        } else {
+          return {
+            ...content,
+            className: "display-none",
+          };
+        }
+      });
+      setChapter1Contents(newContents);
+    },
+    [chapter1Contents, setChapter1Contents]
+  );
 
   return (
-    <Modal open={open} onClose={() => setOpen(true)}>
+    <Modal open={open} onClose={() => handleOpenSlide(false)}>
       <Box
         sx={{
           display: "flex",
@@ -34,17 +94,17 @@ const SlideList: React.FC<Props> = React.memo((props) => {
           width: "100%",
         }}
       >
-        {contents.map((content) => (
+        {chapter1Contents.map((content) => (
           <SlideListItem
             key={content.order}
             order={content.order}
             className={content.className}
-            next={next}
-            back={back}
+            next={handleClickNextSlide}
+            back={handleClickBackSlide}
             title={content.title}
             sectionTitle={content.sectionTitle}
             last={lastSlideNum}
-            setOpen={setOpen}
+            setOpen={handleOpenSlide}
           >
             {content.sentence}
           </SlideListItem>

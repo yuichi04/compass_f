@@ -7,13 +7,13 @@ import KeyIcon from "@mui/icons-material/Key";
 import { toast } from "react-toastify";
 import { LogInParams } from "../../types/userTypes";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { logOutAction, userSelector } from "../../lib/redux/userSlice";
-import { deleteAccount, logIn } from "../../lib/api/userAuth";
+import { logOutAction, userSelector } from "../../lib/redux/features/userSlice";
+import { deleteAccount, logIn } from "../../lib/api/userApi";
 import { MuiButton, MuiTextFieldWithAdornment, LinkTo, ErrorText } from "../atoms";
 import { IconWithPageTitle } from "../molecules";
 import MuiContaier from "../layouts/MuiContainer";
 import { validations } from "../../modules/validations";
-import { hideLoadingAction, showLoadingAction } from "../../lib/redux/lodingSlice";
+import { hideLoadingAction, showLoadingAction } from "../../lib/redux/features/lodingSlice";
 
 const { validateMoreThan8Characters } = validations();
 

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useAppSelector } from "../../lib/redux/hooks";
-import { userSelector } from "../../lib/redux/userSlice";
+import { userSelector } from "../../lib/redux/features/userSlice";
 import { LinkTo } from "../atoms";
 import { AvatarWithName } from "../molecules";
 import { MuiDrawer } from ".";
@@ -37,16 +37,13 @@ const SignedInHeader: React.FC = React.memo(() => {
               >
                 <LinkTo to="/">COMPASS</LinkTo>
               </Typography>
-              <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
+              <Typography component="p" sx={{ marginRight: "32px" }}>
                 <LinkTo to="/story">ストーリー</LinkTo>
               </Typography>
-              <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
-                <LinkTo to="lessons">エッセンス</LinkTo>
+              <Typography component="p" sx={{ marginRight: "32px" }}>
+                <LinkTo to="lessons">スライド一覧</LinkTo>
               </Typography>
-              <Typography variant="body1" component="p" sx={{ marginRight: "32px" }}>
-                <LinkTo to="lessons">コミュニティ</LinkTo>
-              </Typography>
-              <Typography variant="body1" component="p">
+              <Typography component="p">
                 <LinkTo to="lessons">ヘルプ</LinkTo>
               </Typography>
             </Grid>
