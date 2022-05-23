@@ -5,7 +5,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 
 type Props = {
-  setOpen: (open: boolean) => void;
+  setClose: (open: boolean) => void;
 };
 
 const styles = {
@@ -23,7 +23,7 @@ const styles = {
 };
 
 const TooltipBar: React.FC<Props> = React.memo((props) => {
-  const { setOpen } = props;
+  const { setClose } = props;
   return (
     <>
       <Box sx={styles.utilButtonBox}>
@@ -37,7 +37,7 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
               transition: "0.2s",
               "&:hover": { bgcolor: "warning.light", transform: "scale(1.075)" },
             }}
-            onClick={() => setOpen(true)}
+            onClick={() => setClose(false)}
           >
             <LightbulbIcon fontSize="large" />
           </IconButton>
@@ -52,7 +52,7 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
               transition: "0.2s",
               "&:hover": { bgcolor: "info.light", transform: "scale(1.075)" },
             }}
-            onClick={() => setOpen(true)}
+            onClick={() => setClose(false)}
           >
             <AutoAwesomeMotionIcon fontSize="large" />
           </IconButton>
@@ -66,7 +66,7 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
               transition: "0.2s",
               "&:hover": { bgcolor: "error.light", transform: "scale(1.075)" },
             }}
-            onClick={() => setOpen(true)}
+            onClick={() => setClose(false)}
           >
             <BorderColorIcon fontSize="large" />
           </IconButton>

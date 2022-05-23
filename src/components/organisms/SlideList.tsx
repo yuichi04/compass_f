@@ -15,8 +15,8 @@ const SlideList: React.FC<Props> = React.memo((props) => {
   const lastSlideNum = chapter1Contents.slice(-1)[0].order;
 
   // スライド表示のオン・オフ
-  const handleOpenSlide = useCallback(
-    (open: boolean) => {
+  const handleCloseSlide = useCallback(
+    (close: boolean) => {
       const newChapter1 = chapter1Contents.map((content) => {
         return {
           ...content,
@@ -24,7 +24,7 @@ const SlideList: React.FC<Props> = React.memo((props) => {
         };
       });
       setChapter1Contents(newChapter1);
-      setOpen(open);
+      setOpen(close);
     },
     [chapter1Contents, setChapter1Contents, setOpen]
   );
@@ -82,12 +82,13 @@ const SlideList: React.FC<Props> = React.memo((props) => {
   );
 
   return (
-    <Modal open={open} onClose={() => handleOpenSlide(false)}>
+    <Modal open={!open} onClose={() => handleCloseSlide(true)}>
       <Box
+        className="expand_center"
         sx={{
           display: "flex",
           position: "absolute",
-          top: "50%",
+          top: "55%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           height: "100%",
@@ -104,7 +105,7 @@ const SlideList: React.FC<Props> = React.memo((props) => {
             title={content.title}
             sectionTitle={content.sectionTitle}
             last={lastSlideNum}
-            setOpen={handleOpenSlide}
+            setClose={handleCloseSlide}
           >
             {content.sentence}
           </SlideListItem>

@@ -1,8 +1,7 @@
-// 汎用的なアニメーション
 .expand_center {
   animation-name: img-wrap;
-  animation-duration: 1.5s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
 }
 @keyframes img-wrap {
   0% {
@@ -63,8 +62,6 @@
   }
 }
 
-// =============================================================
-
 /* スライドショー */
 // 共通のアニメーション
 .slide-show-settings {
@@ -81,7 +78,7 @@
 @keyframes slideLeftInAnime {
   0% {
     opacity: 0;
-    transform: translate(-100%, 10%) scale(0.6);
+    transform: translate(-100%, 10%) scale(0.5);
   }
   100% {
     opacity: 1;
@@ -100,7 +97,7 @@
   }
   100% {
     opacity: 0;
-    transform: translate(-100%, 10%) scale(0.6);
+    transform: translate(-100%, 10%) scale(0.5);
   }
 }
 
@@ -112,7 +109,7 @@
 @keyframes slideRightInAnime {
   0% {
     opacity: 0;
-    transform: translate(0, 10%) scale(0.6);
+    transform: translate(0, 10%) scale(0.5);
   }
   100% {
     opacity: 1;
@@ -132,7 +129,7 @@
   }
   100% {
     opacity: 0;
-    transform: translate(0, 10%) scale(0.6);
+    transform: translate(0, 10%) scale(0.5);
   }
 }
 
@@ -162,3 +159,48 @@
 // 喜び
 // 怒り
 // 悲しみ
+
+/* ホバー時にアンダーラインを引く */
+.hover_text_underline {
+  display: flex;
+  list-style: none;
+}
+
+.hover_text_underline li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.hover_text_underline li a {
+  position: relative;
+}
+
+.hover_text_underline li.current a,
+.hover_text_underline li a:hover {
+  color: #00aa99;
+  font-weight: 600;
+}
+
+.hover_text_underline li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: #00aa99;
+  transition: all 0.2s;
+  transform: scale(0, 1);
+  transform-origin: left top;
+}
+.hover_text_underline li.current a::after,
+.hover_text_underline li a:hover::after {
+  transform: scale(1, 1);
+}
+
+/* 文字の下半分にマーカー風の線を引く */
+.text_yellow_underline {
+  background: linear-gradient(transparent 75%, #ffce5b 75%);
+  display: inline-block;
+}

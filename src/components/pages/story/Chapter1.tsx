@@ -8,7 +8,7 @@ const StoryChapter1: React.FC = React.memo(() => {
 
   return (
     <Box sx={{ position: "relative", height: "100vh", width: "100vw" }}>
-      <Scene setOpen={setOpen} />
+      <Scene setClose={setOpen} />
       <SlideList open={open} setOpen={setOpen} />
     </Box>
   );

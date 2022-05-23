@@ -23,13 +23,13 @@ const styles = {
 };
 
 type Props = {
-  setOpen: (open: boolean) => void;
+  setClose: (close: boolean) => void;
 };
 
 const Scene: React.FC<Props> = React.memo((props) => {
   const { handleFetchChapter } = useFetchChapter();
   // スライドリストの表示フラグ
-  const { setOpen } = props;
+  const { setClose } = props;
 
   const dispatch = useAppDispatch();
   // 現在のシーンの状態をstoreから取得
@@ -68,52 +68,50 @@ const Scene: React.FC<Props> = React.memo((props) => {
 
   return (
     <>
-      {characterImage && (
-        <div className="expand_center">
-          <Grid container sx={styles.container}>
-            <Grid item xs={3} sx={{ position: "relative" }}>
-              <TooltipBar setOpen={setOpen} />
-            </Grid>
-            <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
-              <Box
-                sx={{
-                  position: "absolute",
-                  bottom: "32px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: "80%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                {options.map((option) => (
-                  <div key={option.id} className={balloon ? "slide_in" : ""}>
-                    <Box sx={{ mb: "8px" }}>
-                      <MuiButton variant="contained" fullWidth onClick={() => handleClickNextScene(option.nextSceneId)}>
-                        {option.text}
-                      </MuiButton>
-                    </Box>
-                  </div>
-                ))}
-              </Box>
-            </Grid>
-            <Grid item xs={3} sx={{ position: "relative", zIndex: 10 }}>
-              <Box sx={{ position: "absolute", left: "-50%", padding: "16px 16px 0 0" }}>
-                <Balloon className={balloon ? "fade_in" : ""} background="#e0edff">
-                  {word.text}
-                </Balloon>
-              </Box>
-            </Grid>
-          </Grid>
-          <Box sx={styles.character}>
-            <img
-              className="character-move-normal"
-              src={require(`../../assets/images/characters/guide/${characterImage}`)}
-              alt="character"
-            />
+      <Grid container sx={styles.container}>
+        <Grid item xs={3} sx={{ position: "relative" }}>
+          <TooltipBar setClose={setClose} />
+        </Grid>
+        <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: "32px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "80%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {options.map((option) => (
+              <div key={option.id} className={balloon ? "slide_in" : ""}>
+                <Box sx={{ mb: "8px" }}>
+                  <MuiButton variant="contained" fullWidth onClick={() => handleClickNextScene(option.nextSceneId)}>
+                    {option.text}
+                  </MuiButton>
+                </Box>
+              </div>
+            ))}
           </Box>
-        </div>
-      )}
+        </Grid>
+        <Grid item xs={3} sx={{ position: "relative", zIndex: 10 }}>
+          <Box sx={{ position: "absolute", left: "-50%", padding: "16px 16px 0 0" }}>
+            <Balloon className={balloon ? "fade_in" : ""} background="#fff">
+              {word.text}
+            </Balloon>
+          </Box>
+        </Grid>
+      </Grid>
+      <Box sx={styles.character}>
+        {characterImage && (
+          <img
+            // className="character-move-normal"
+            src={require(`../../assets/images/characters/guide/${characterImage}`)}
+            alt="character"
+          />
+        )}
+      </Box>
     </>
   );
 });

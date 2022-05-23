@@ -8,15 +8,15 @@ import { Grid } from "@mui/material";
 
 type Props = {
   image?: string;
+  chapter: string;
   title?: string;
-  subTitle?: string;
   link: string;
   text?: string;
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning" | "inherit";
 };
 
 const CourseCard: React.FC<Props> = React.memo((props) => {
-  const { image, title, subTitle, link, text, color } = props;
+  const { image, title, chapter, link, text, color } = props;
   return (
     <Card
       sx={{
@@ -32,10 +32,10 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
         </Grid>
         <Grid item xs={8} sx={{ textAlign: "center" }}>
           <Typography variant="h5" color="text.secondary" fontWeight={400}>
-            {title}
+            {chapter}
           </Typography>
           <Typography variant="h5" fontWeight={600} color="text.secondary" sx={{ mb: "8px" }}>
-            {subTitle}
+            {title}
           </Typography>
           <CardContent>
             <Typography variant="body2" color="text.secondary" sx={{ mb: "8px" }}>
