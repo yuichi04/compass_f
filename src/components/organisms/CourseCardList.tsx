@@ -13,8 +13,8 @@ const CourseCardList: React.FC = React.memo(() => {
           link="/story/chapter1"
           image={Icons.user02}
           chapter="Chapter 1"
-          title="伝わる説明術「超」入門"
-          text="自分の考えを明確にする"
+          title="伝わる説明術「超入門」編"
+          text="結論より先に自分の考えを明確にしよう"
           color="primary"
         />
       </Grid>
@@ -24,7 +24,7 @@ const CourseCardList: React.FC = React.memo(() => {
           image={Icons.user07}
           chapter="Chapter 2"
           title="伝わる説明術「入門」編"
-          text="伝わる説明の順番を知る"
+          text="伝わりやすい順番で話を組み立てよう"
           color="info"
         />
       </Grid>
@@ -34,7 +34,7 @@ const CourseCardList: React.FC = React.memo(() => {
           image={Icons.user04}
           chapter="Chapter 3"
           title="伝わる説明術「初級」編"
-          text="相手のレベルに合わせて話す"
+          text="説明で一番大切！相手のレベルに合わせて話す意識を持とう"
           color="error"
         />
       </Grid>

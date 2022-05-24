@@ -11,3 +11,6 @@ export { default as ToastContainer } from "./ToastContainer";
 export { default as MuiUploadButton } from "./MuiUploadButton";
 export { default as SectionTitle } from "./SectionTitle";
 export { default as Balloon } from "./Balloon";
+export { default as MuiTypographyBoldAccent } from "./MuiTypographyBoldAccent";
+export { default as MuiTypographyBold } from "./MuiTypographyBold";
+export { default as MuiTypographyDiv } from "./MuiTypographyDiv";

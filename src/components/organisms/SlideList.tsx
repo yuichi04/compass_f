@@ -88,7 +88,7 @@ const SlideList: React.FC<Props> = React.memo((props) => {
         sx={{
           display: "flex",
           position: "absolute",
-          top: "55%",
+          top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           height: "100%",

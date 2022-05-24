@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { Divider, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowRight";
@@ -29,21 +29,23 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           position: "relative",
           height: "100%",
           width: "100%",
-          bgcolor: "#fff",
+          bgcolor: "#d1e8cf",
+
           borderRadius: "16px",
           overflow: "hidden",
         }}
       >
         <Box
           sx={{
-            bgcolor: "#00aa99",
             display: "flex",
+            bgcolor: "#8c9c8a",
+            boxShadow: "0 2px 6px #333",
             flexDirection: "column",
             justifyContent: "center",
             padding: "32px",
           }}
         >
-          <IconButton sx={{ position: "absolute", right: "16px", top: "16px" }} onClick={() => setClose(true)}>
+          <IconButton sx={{ position: "absolute", right: 0, top: 0 }} onClick={() => setClose(true)}>
             <CancelIcon fontSize="large" />
           </IconButton>
           <Typography variant="h6" fontWeight={300} color="primary.contrastText">
@@ -53,7 +55,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
             {sectionTitle}
           </Typography>
         </Box>
-        <Box sx={{ padding: "48px" }}>{children}</Box>
+        <Box sx={{ p: "64px" }}>{children}</Box>
         <Box
           sx={{
             position: "absolute",
@@ -82,5 +84,5 @@ export default SlideListItem;
 const SContent = styled.div`
   min-width: 100%;
   height: 100%;
-  padding: 64px 128px;
+  padding: 48px 96px;
 `;
