@@ -8,34 +8,43 @@ import { Icons } from "../../assets/images/icons";
 const CourseCardList: React.FC = React.memo(() => {
   return (
     <Grid container spacing={2}>
-      <Grid item md={12}>
+      <Grid item xs={4}>
         <CourseCard
-          link="/story/chapter1"
+          link="/lesson/chapter1"
           image={Icons.user02}
-          chapter="Chapter 1"
-          title="伝わる説明術「超入門」編"
-          text="結論より先に自分の考えを明確にしよう"
+          course="ロジカルシンキング"
+          grade="初級編"
+          title="演繹法と帰納法"
+          text={
+            <>
+              ロジカルシンキングの基本
+              <br />
+              事実や事象から結論を導くことができるようになります
+            </>
+          }
           color="primary"
         />
       </Grid>
-      <Grid item md={12}>
+      <Grid item xs={4}>
         <CourseCard
-          link="/"
-          image={Icons.user07}
-          chapter="Chapter 2"
-          title="伝わる説明術「入門」編"
-          text="伝わりやすい順番で話を組み立てよう"
-          color="info"
+          link="/lesson/main"
+          image={Icons.user06}
+          course="ロジカルシンキング"
+          grade="中級編"
+          title="ロジックツリー"
+          text="※実装予定"
+          color="primary"
         />
       </Grid>
-      <Grid item md={12}>
+      <Grid item xs={4}>
         <CourseCard
-          link="/"
-          image={Icons.user04}
-          chapter="Chapter 3"
-          title="伝わる説明術「初級」編"
-          text="説明で一番大切！相手のレベルに合わせて話す意識を持とう"
-          color="error"
+          link="/lesson/main"
+          image={Icons.user01}
+          course="ロジカルシンキング"
+          grade="上級編"
+          title="フレームワーク"
+          text="※実装予定"
+          color="primary"
         />
       </Grid>
     </Grid>

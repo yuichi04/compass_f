@@ -38,11 +38,11 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
         <Box
           sx={{
             display: "flex",
-            bgcolor: "#8c9c8a",
-            boxShadow: "0 2px 6px #333",
+            bgcolor: "primary.main",
+            boxShadow: "0 2px 6px #999",
             flexDirection: "column",
             justifyContent: "center",
-            padding: "32px",
+            padding: "32px 64px",
           }}
         >
           <IconButton sx={{ position: "absolute", right: 0, top: 0 }} onClick={() => setClose(true)}>

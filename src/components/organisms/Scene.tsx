@@ -67,7 +67,7 @@ const Scene: React.FC<Props> = React.memo((props) => {
   }, [handleFetchChapter]);
 
   return (
-    <>
+    <Box sx={{ overflow: "hidden" }}>
       <Grid container sx={styles.container}>
         <Grid item xs={3} sx={{ position: "relative" }}>
           <TooltipBar setClose={setClose} />
@@ -112,7 +112,7 @@ const Scene: React.FC<Props> = React.memo((props) => {
           />
         )}
       </Box>
-    </>
+    </Box>
   );
 });
 

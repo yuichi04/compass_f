@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-const Story: React.FC = React.memo(() => {
+const Lesson: React.FC = React.memo(() => {
   return (
     <SBackground>
       <Outlet />
@@ -10,10 +10,11 @@ const Story: React.FC = React.memo(() => {
   );
 });
 
-export default Story;
+export default Lesson;
 
 const SBackground = styled.div`
   overflow: hidden;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   z-index: -999;
+  background: #f8fbfe;
 `;

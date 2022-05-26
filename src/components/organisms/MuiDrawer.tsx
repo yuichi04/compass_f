@@ -12,9 +12,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import HelpIcon from "@mui/icons-material/Help";
-import QuizIcon from "@mui/icons-material/Quiz";
 import HomeIcon from "@mui/icons-material/Home";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { useLogOut } from "../../hooks/useLogOut";
 import { LinkTo, MuiAvatar } from "../atoms";
 
@@ -57,7 +57,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
       <List>
         {[
           { to: "/", text: "ホームに戻る", icon: <HomeIcon /> },
-          { to: "/story", text: "ストーリー", icon: <QuizIcon /> },
+          { to: "/lesson/main", text: "レッスン一覧", icon: <LocalLibraryIcon /> },
           { to: "/memo", text: "作成した学習メモ", icon: <AutoAwesomeMotionIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
           { to: "/contactus", text: "お問い合わせ", icon: <MailIcon /> },

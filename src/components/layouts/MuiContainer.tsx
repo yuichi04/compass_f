@@ -9,7 +9,7 @@ type Props = {
 
 const style = {
   minHeight: "calc(100vh - 192px)",
-  padding: "32px",
+  padding: "64px",
   [theme.breakpoints.down("sm")]: {
     padding: "8px",
   },
