@@ -47,13 +47,7 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
             {title}
           </Typography>
         </CardContent>
-        <CardMedia
-          component="img"
-          height="160"
-          image={image}
-          alt="info"
-          sx={{ borderRadius: "100%", width: "160px", m: "0 auto 16px auto" }}
-        />
+        <CardMedia component="img" height="168" image={image} alt="info" sx={{ m: "0 auto 16px auto" }} />
         <CardContent>
           <Typography textAlign="center" variant="body2" color="text.secondary">
             {text}

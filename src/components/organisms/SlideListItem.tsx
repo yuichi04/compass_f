@@ -57,14 +57,8 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
             {sectionTitle}
           </Typography>
         </Box>
-        <Box sx={{ p: "64px" }}>{children}</Box>
-        <Box
-          sx={{
-            position: "absolute",
-            bottom: "16px",
-            right: "16px",
-          }}
-        >
+        <Box p="64px">{children}</Box>
+        <Box position="absolute" bottom="16px" right="16px">
           {order !== 0 && (
             <IconButton onClick={() => back(order)} sx={{ p: 0 }}>
               <ArrowLeftIcon sx={{ fontSize: "70px" }} color="primary" />
@@ -86,4 +80,5 @@ export default SlideListItem;
 const SContent = styled.div`
   min-width: 100%;
   height: 100%;
+  // padding: 32px;
 `;

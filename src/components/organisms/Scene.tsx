@@ -15,8 +15,8 @@ const styles = {
     transform: "translateX(-50%)",
   },
   container: {
+    height: "calc(100vh - 64px)",
     position: "relative",
-    height: "calc(100vh - 60px)",
     background: `url(${BackgroundImage.dayoffice}) no-repeat center`,
     backgroundSize: "cover",
   },
@@ -67,7 +67,7 @@ const Scene: React.FC<Props> = React.memo((props) => {
   }, [handleFetchChapter]);
 
   return (
-    <Box sx={{ overflow: "hidden" }}>
+    <Box>
       <Grid container sx={styles.container}>
         <Grid item xs={3} sx={{ position: "relative" }}>
           <TooltipBar setClose={setClose} />
@@ -95,7 +95,7 @@ const Scene: React.FC<Props> = React.memo((props) => {
             ))}
           </Box>
         </Grid>
-        <Grid item xs={3} sx={{ position: "relative", zIndex: 10 }}>
+        <Grid item xs={3} sx={{ position: "relative", zIndex: 999 }}>
           <Box sx={{ position: "absolute", left: "-50%", padding: "16px 16px 0 0" }}>
             <Balloon className={balloon ? "fade_in" : ""} background="#fff">
               {word.text}

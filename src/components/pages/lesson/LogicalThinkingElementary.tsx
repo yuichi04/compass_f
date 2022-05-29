@@ -9,7 +9,7 @@ const LessonMain: React.FC = React.memo(() => {
   const { contents, setContents } = LogicalThinkingElementaryDataset();
 
   return (
-    <Box sx={{ position: "relative", height: "calc(100vh - 60px)", width: "100vw", overflow: "hidden" }}>
+    <Box sx={{ position: "relative", height: "calc(100vh - 64px)", width: "100vw", overflow: "hidden" }}>
       <Scene setClose={setOpen} />
       <SlideList open={open} setOpen={setOpen} contents={contents} setContents={setContents} />
     </Box>

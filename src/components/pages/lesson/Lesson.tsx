@@ -14,7 +14,7 @@ export default Lesson;
 
 const SBackground = styled.div`
   overflow: hidden;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 64px);
   z-index: -999;
   background: #f8fbfe;
 `;
