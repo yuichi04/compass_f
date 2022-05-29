@@ -29,8 +29,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           position: "relative",
           height: "100%",
           width: "100%",
-          bgcolor: "#d1e8cf",
-
+          background: "linear-gradient(to left, #e0f2f1, #fff, #e0f2f1)",
           borderRadius: "16px",
           overflow: "hidden",
         }}
@@ -38,20 +37,23 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
         <Box
           sx={{
             display: "flex",
-            bgcolor: "primary.main",
+            background: "linear-gradient(to left, #00766b, #00aa99, #00766b)",
             boxShadow: "0 2px 6px #999",
             flexDirection: "column",
             justifyContent: "center",
             padding: "32px 64px",
           }}
         >
-          <IconButton sx={{ position: "absolute", right: 0, top: 0 }} onClick={() => setClose(true)}>
+          <IconButton
+            sx={{ position: "absolute", right: "16px", top: "16px", zIndex: "999" }}
+            onClick={() => setClose(true)}
+          >
             <CancelIcon fontSize="large" />
           </IconButton>
-          <Typography variant="h6" fontWeight={300} color="primary.contrastText">
+          <Typography variant="subtitle1" color="primary.contrastText">
             {title}
           </Typography>
-          <Typography fontWeight={600} variant="h4" color="primary.contrastText">
+          <Typography variant="h5" color="primary.contrastText">
             {sectionTitle}
           </Typography>
         </Box>
@@ -84,5 +86,4 @@ export default SlideListItem;
 const SContent = styled.div`
   min-width: 100%;
   height: 100%;
-  padding: 48px 96px;
 `;

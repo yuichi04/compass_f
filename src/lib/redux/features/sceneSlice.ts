@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { CurrentSceneType, OptionType, SceneType, WordType } from "../../../types/chapterType";
+import { CurrentSceneType, OptionType, SceneType, WordType } from "../../../types/lessonItemTypes";
 
 type InitialState = {
   id: string;
@@ -43,8 +43,8 @@ const initialState: InitialState = {
   },
 };
 
-export const storySlice = createSlice({
-  name: "chapter",
+export const sceneSlice = createSlice({
+  name: "scene",
   initialState,
   reducers: {
     setChapterAction: (state, action) => {
@@ -76,7 +76,7 @@ export const storySlice = createSlice({
   },
 });
 
-export const { setChapterAction, setSceneAction, setNextSceneAction } = storySlice.actions;
-export const chapterSelector = (state: RootState) => state.chapter;
-export const currentSceneSelector = (state: RootState) => state.chapter.currentScene;
-export default storySlice.reducer;
+export const { setChapterAction, setSceneAction, setNextSceneAction } = sceneSlice.actions;
+export const sceneSelector = (state: RootState) => state.scene;
+export const currentSceneSelector = (state: RootState) => state.scene.currentScene;
+export default sceneSlice.reducer;

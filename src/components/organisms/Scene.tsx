@@ -4,7 +4,7 @@ import { BackgroundImage } from "../../assets/images/background";
 import { Balloon, MuiButton } from "../atoms";
 import { TooltipBar } from "./index";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { currentSceneSelector, setNextSceneAction, setSceneAction } from "../../lib/redux/features/chapterSlice";
+import { currentSceneSelector, setNextSceneAction, setSceneAction } from "../../lib/redux/features/sceneSlice";
 import { useFetchChapter } from "../../hooks/useFetchChapter";
 
 const styles = {

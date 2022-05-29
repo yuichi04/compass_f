@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { fetchChapter } from "../lib/api/chapterApi";
-import { setChapterAction, setSceneAction } from "../lib/redux/features/chapterSlice";
+import { setChapterAction, setSceneAction } from "../lib/redux/features/sceneSlice";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
 

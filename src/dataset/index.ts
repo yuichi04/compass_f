@@ -1,1 +1,1 @@
-export { default as SlideContentList } from "./SlideContentList";
+export { default as LogicalThinkingElementaryDataset } from "./logical_thinking/LogicalThinkingElementaryDataset";

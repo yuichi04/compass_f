@@ -10,7 +10,7 @@ const CourseCardList: React.FC = React.memo(() => {
     <Grid container spacing={2}>
       <Grid item xs={4}>
         <CourseCard
-          link="/lesson/chapter1"
+          link="/lesson/logicalthinking/elementary"
           image={Icons.user02}
           course="ロジカルシンキング"
           grade="初級編"
@@ -19,7 +19,7 @@ const CourseCardList: React.FC = React.memo(() => {
             <>
               ロジカルシンキングの基本
               <br />
-              事実や事象から結論を導くことができるようになります
+              物事を整理して結論を導くことができるようになります
             </>
           }
           color="primary"
@@ -27,7 +27,7 @@ const CourseCardList: React.FC = React.memo(() => {
       </Grid>
       <Grid item xs={4}>
         <CourseCard
-          link="/lesson/main"
+          link="/lesson/home"
           image={Icons.user06}
           course="ロジカルシンキング"
           grade="中級編"
@@ -38,7 +38,7 @@ const CourseCardList: React.FC = React.memo(() => {
       </Grid>
       <Grid item xs={4}>
         <CourseCard
-          link="/lesson/main"
+          link="/lesson/home"
           image={Icons.user01}
           course="ロジカルシンキング"
           grade="上級編"

@@ -11,5 +11,5 @@ export { default as SignUp } from "./SignUp";
 export { default as Unsubscribe } from "./Unsubscribe";
 export { default as ListenAuthUser } from "./ListenAuthUser";
 export { default as Lesson } from "./lesson/Lesson";
-export { default as Chapter1 } from "./lesson/Chapter1";
-export { default as LessonMain } from "./lesson/LessonMain";
+export { default as LessonHome } from "./lesson/LessonHome";
+export { default as LogicalThinkingElementary } from "./lesson/LogicalThinkingElementary";

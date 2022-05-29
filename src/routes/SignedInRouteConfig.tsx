@@ -7,10 +7,10 @@ import {
   PrivacyPolicy,
   Profile,
   Lesson,
-  Chapter1,
   Terms,
   Unsubscribe,
-  LessonMain,
+  LessonHome,
+  LogicalThinkingElementary,
 } from "../components/pages";
 import BackToMain from "../components/utils/BackToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
@@ -27,8 +27,8 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/lesson" element={<Lesson />}>
-          <Route path="main" element={<LessonMain />} />
-          <Route path="chapter1" element={<Chapter1 />} />
+          <Route path="home" element={<LessonHome />} />
+          <Route path="logicalthinking/elementary" element={<LogicalThinkingElementary />} />
         </Route>
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

@@ -19,10 +19,6 @@ const LessonMain: React.FC = React.memo(() => {
         <IconWithSectionTitle title="伝わりやすい説明編" icon={BookmarkIcon} iconColor="primary" />
         <CourseCardList />
       </Box>
-      <Box sx={{ mb: "64px", color: "#444" }}>
-        <IconWithSectionTitle title="前回の続き" icon={BookmarkIcon} iconColor="primary" />
-        <CourseCardList />
-      </Box>
     </MuiContainer>
   );
 });

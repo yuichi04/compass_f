@@ -2,37 +2,48 @@ import React, { useCallback } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { SlideListItem } from "./index";
-import { SlideContentList } from "../../dataset/index";
+import { LessonDatasetType } from "../../types/lessonItemTypes";
 
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
+  contents: LessonDatasetType;
+  setContents: React.Dispatch<
+    React.SetStateAction<
+      {
+        title: string;
+        sectionTitle: string;
+        sentence: JSX.Element;
+        order: number;
+        className: string;
+      }[]
+    >
+  >;
 };
 
 const SlideList: React.FC<Props> = React.memo((props) => {
-  const { open, setOpen } = props;
-  const { chapter1Contents, setChapter1Contents } = SlideContentList();
-  const lastSlideNum = chapter1Contents.slice(-1)[0].order;
+  const { open, setOpen, contents, setContents } = props;
+  const lastSlideNum = contents.slice(-1)[0].order;
 
-  // スライド表示のオン・オフ
+  // スライドのon・offを管理
   const handleCloseSlide = useCallback(
     (close: boolean) => {
-      const newChapter1 = chapter1Contents.map((content) => {
+      const newChapter1 = contents.map((content) => {
         return {
           ...content,
           className: "",
         };
       });
-      setChapter1Contents(newChapter1);
+      setContents(newChapter1);
       setOpen(close);
     },
-    [chapter1Contents, setChapter1Contents, setOpen]
+    [contents, setContents, setOpen]
   );
 
   // 次のスライドへ
   const handleClickNextSlide = useCallback(
     (order: number) => {
-      const newContents = chapter1Contents.map((content) => {
+      const newContents = contents.map((content) => {
         if (content.order === order) {
           return {
             ...content,
@@ -50,15 +61,15 @@ const SlideList: React.FC<Props> = React.memo((props) => {
           };
         }
       });
-      setChapter1Contents(newContents);
+      setContents(newContents);
     },
-    [chapter1Contents, setChapter1Contents]
+    [contents, setContents]
   );
 
   // 前のスライドへ
   const handleClickBackSlide = useCallback(
     (order: number) => {
-      const newContents = chapter1Contents.map((content) => {
+      const newContents = contents.map((content) => {
         if (content.order === order) {
           return {
             ...content,
@@ -76,9 +87,9 @@ const SlideList: React.FC<Props> = React.memo((props) => {
           };
         }
       });
-      setChapter1Contents(newContents);
+      setContents(newContents);
     },
-    [chapter1Contents, setChapter1Contents]
+    [contents, setContents]
   );
 
   return (
@@ -95,7 +106,7 @@ const SlideList: React.FC<Props> = React.memo((props) => {
           width: "100%",
         }}
       >
-        {chapter1Contents.map((content) => (
+        {contents.map((content) => (
           <SlideListItem
             key={content.order}
             order={content.order}

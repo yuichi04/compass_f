@@ -6,7 +6,7 @@ type Props = { children: React.ReactNode; className?: string };
 const MuiTypographyBold: React.FC<Props> = React.memo(({ children, ...props }) => {
   const { className } = props;
   return (
-    <Typography className={className} variant="h5" component="span" fontWeight={600}>
+    <Typography className={className} variant="h6" component="span" fontWeight={600}>
       {children}
     </Typography>
   );
