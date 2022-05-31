@@ -1,11 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Box } from "@mui/material";
 import { BackgroundImage } from "../../assets/images/background";
-import { Balloon, MuiButton } from "../atoms";
+import { Balloon, FadeInTypography, MuiButton, MuiTextField } from "../atoms";
 import { TooltipBar } from "./index";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { currentSceneSelector, setNextSceneAction, setSceneAction } from "../../lib/redux/features/sceneSlice";
-import { useFetchChapter } from "../../hooks/useFetchChapter";
+import {
+  setSceneAction,
+  sceneSelector,
+  initializeSceneAction,
+  setAnswerAction,
+  setBalloonAction,
+} from "../../lib/redux/features/chapter1Slice";
 
 const styles = {
   character: {
@@ -27,44 +32,49 @@ type Props = {
 };
 
 const Scene: React.FC<Props> = React.memo((props) => {
-  const { handleFetchChapter } = useFetchChapter();
-  // スライドリストの表示フラグ
   const { setClose } = props;
-
   const dispatch = useAppDispatch();
-  // 現在のシーンの状態をstoreから取得
-  const currentScene = useAppSelector(currentSceneSelector);
-  const order = currentScene.order;
-  const word = currentScene.word;
-  const options = currentScene.options;
-  const characterImage = currentScene.characterImage;
+  const scene = useAppSelector(sceneSelector);
+  const characterImage = scene.characterImage;
+  const characterLines = scene.characterLines;
+  const action = scene.action;
+  const actionValue = scene.actionValue;
+  const balloon = scene.balloon;
 
-  // 吹き出しの表示・非表示のフラグを管理
-  const [balloon, setBalloon] = useState(true);
+  // ユーザーの回答を管理
+  const [answer, setAnswer] = useState("");
 
-  // 次のシーンに切り替える処理
-  const handleClickNextScene = useCallback(
-    (nextSceneId: string) => {
-      // 選択肢がクリックされたら吹き出しを非表示にする
-      setBalloon(false);
-      // 表示するシーンを変更する
-      dispatch(setNextSceneAction(nextSceneId));
-    },
-    [dispatch]
-  );
+  // 回答の入力
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.target.value);
+  };
 
-  // シーン切り替え時に発火させる
+  // ユーザーの回答をstoreに保存
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (answer === "") return false;
+    setAnswer("");
+    dispatch(setBalloonAction(false));
+    dispatch(setAnswerAction(answer));
+  };
+
+  // 次のシーンに切り替える
+  const handleClickNextScene = useCallback(() => {
+    dispatch(setBalloonAction(false));
+    dispatch(setSceneAction(1));
+  }, [dispatch]);
+
+  // シーンが切り替わったら吹き出しを表示
   useEffect(() => {
-    // シーンの切り替えをstoreに伝える
-    dispatch(setSceneAction(order));
-    // 吹き出しを表示
-    setBalloon(true);
-  }, [dispatch, order]);
+    dispatch(setBalloonAction(true));
+  }, [characterLines, dispatch]);
 
-  // 初期値をセット
+  // シーンの初期値をセット
   useEffect(() => {
-    handleFetchChapter(1);
-  }, [handleFetchChapter]);
+    dispatch(initializeSceneAction());
+    dispatch(setSceneAction(1));
+    dispatch(setBalloonAction(true));
+  }, [dispatch]);
 
   return (
     <Box>
@@ -73,33 +83,57 @@ const Scene: React.FC<Props> = React.memo((props) => {
           <TooltipBar setClose={setClose} />
         </Grid>
         <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
-          <Box
-            sx={{
-              position: "absolute",
-              bottom: "32px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "80%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            {options.map((option) => (
-              <div key={option.id} className={balloon ? "slide_in" : ""}>
-                <Box sx={{ mb: "8px" }}>
-                  <MuiButton variant="contained" fullWidth onClick={() => handleClickNextScene(option.nextSceneId)}>
-                    {option.text}
-                  </MuiButton>
-                </Box>
-              </div>
-            ))}
-          </Box>
+          {action === "" ? null : (
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: "64px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "80%",
+                display: "flex",
+                flexDirection: "column",
+                bgcolor: "#e0f2f1",
+                borderRadius: "8px",
+                padding: "16px 32px",
+              }}
+            >
+              {action === "button" ? (
+                <MuiButton variant="contained" color="primary" onClick={handleClickNextScene}>
+                  {actionValue}
+                </MuiButton>
+              ) : (
+                action === "textField" && (
+                  <form onSubmit={handleSubmit} className="fade_in">
+                    <MuiTextField
+                      label={actionValue}
+                      onChange={handleChange}
+                      value={answer}
+                      fullWidth
+                      autoComplete="off"
+                      margin="none"
+                    />
+                    <div className="module-spacer-sm" />
+                    <MuiButton variant="contained" color="primary" fullWidth type="submit">
+                      回答する
+                    </MuiButton>
+                  </form>
+                )
+              )}
+            </Box>
+          )}
         </Grid>
         <Grid item xs={3} sx={{ position: "relative", zIndex: 999 }}>
           <Box sx={{ position: "absolute", left: "-50%", padding: "16px 16px 0 0" }}>
-            <Balloon className={balloon ? "fade_in" : ""} background="#fff">
-              {word.text}
-            </Balloon>
+            {balloon && (
+              <Balloon>
+                {characterLines.map((line, index) => (
+                  <FadeInTypography delay={index} key={index}>
+                    {line}
+                  </FadeInTypography>
+                ))}
+              </Balloon>
+            )}
           </Box>
         </Grid>
       </Grid>

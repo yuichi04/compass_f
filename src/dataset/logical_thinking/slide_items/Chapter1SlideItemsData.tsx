@@ -3,10 +3,10 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CancelIcon from "@mui/icons-material/Cancel";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { MuiButton, MuiTypographyBold, MuiTypographyBoldAccent, MuiTypographyDiv } from "../../components/atoms";
+import { MuiButton, MuiTypographyBold, MuiTypographyBoldAccent, MuiTypographyDiv } from "../../../components/atoms";
 import { Grid } from "@mui/material";
 
-const LogicalThinkingElementary = () => {
+const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング初級編";
   const styles = {
     list: {
@@ -37,7 +37,7 @@ const LogicalThinkingElementary = () => {
       p: "4px",
     },
   };
-  const [contents, setContents] = useState([
+  const [slideItems, setSlideItems] = useState([
     {
       title,
       sectionTitle: "ようこそ、ロジカルシンキング初級編へ",
@@ -70,16 +70,16 @@ const LogicalThinkingElementary = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  ※先にクイズを試されたい方はスライド右上の
+                  ※スライドをスキップしてクイズに進みたい場合は右上の
                   <CancelIcon fontSize="small" />
-                  マークからクイズに進めます。
+                  をクリックしてください。
                 </Typography>
               </MuiTypographyDiv>
             </Grid>
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ position: "absolute", right: "-64px", top: "-160px" }}>
-              <img src={require("../../assets/images/characters/guide/guide_normal_b.png")} alt="character" />
+              <img src={require("../../../assets/images/characters/guide/guide_normal_b.png")} alt="character" />
             </Box>
           </Grid>
         </Box>
@@ -221,7 +221,7 @@ const LogicalThinkingElementary = () => {
             <Grid item xs={6}>
               <Box bgcolor="#f9fbe7" borderRadius="16px" p="16px" pb={0}>
                 <img
-                  src={require("../../assets/images/charts/inductive03.png")}
+                  src={require("../../../assets/images/charts/inductive03.png")}
                   alt="inductive chart"
                   style={{ width: "100%", height: "100%" }}
                 />
@@ -310,7 +310,7 @@ const LogicalThinkingElementary = () => {
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ position: "absolute", right: "-64px", top: "-160px" }}>
-              <img src={require("../../assets/images/characters/guide/guide_smile_a.png")} alt="character" />
+              <img src={require("../../../assets/images/characters/guide/guide_smile_a.png")} alt="character" />
             </Box>
           </Grid>
         </Box>
@@ -319,7 +319,7 @@ const LogicalThinkingElementary = () => {
       className: "",
     },
   ]);
-  return { contents, setContents };
+  return { slideItems, setSlideItems };
 };
 
-export default LogicalThinkingElementary;
+export default Chapter1SlideItemsData;

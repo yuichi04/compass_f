@@ -1,7 +1,7 @@
 export const validations = () => {
   // ========================================
   // 入力値が空になっていないかチェック
-  const validateIsNotEmpty = (str: string): boolean => {
+  const validateIsNotEmpty = (str: string) => {
     let validator = true;
     const newStr = str.replace(/\s/g, "");
     if (newStr === "") return (validator = false);
@@ -10,14 +10,14 @@ export const validations = () => {
 
   // ========================================
   // メールアドレスの形式をチェック
-  const validateEmailFormat = (email: string): boolean => {
+  const validateEmailFormat = (email: string) => {
     const regex = /^[a-zA-Z0-9_+-]+(.[a-zA-Z0-9_+-]+)*@([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]*\.)+[a-zA-Z]{2,}$/;
     return regex.test(email);
   };
 
   // ========================================
   // パスワードが8文字以上の半角英数字であるかチェック
-  const validateMoreThan8Characters = (password: string): boolean => {
+  const validateMoreThan8Characters = (password: string) => {
     const regex = /^([a-zA-Z0-9]{8,})$/;
     return regex.test(password);
   };

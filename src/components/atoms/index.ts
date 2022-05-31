@@ -14,3 +14,4 @@ export { default as Balloon } from "./Balloon";
 export { default as MuiTypographyBoldAccent } from "./MuiTypographyBoldAccent";
 export { default as MuiTypographyBold } from "./MuiTypographyBold";
 export { default as MuiTypographyDiv } from "./MuiTypographyDiv";
+export { default as FadeInTypography } from "./FadeInTypography";

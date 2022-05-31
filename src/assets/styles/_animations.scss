@@ -25,7 +25,6 @@
 @keyframes fadeInAnime {
   0% {
     opacity: 0;
-    transform: translateY(15px);
   }
 
   100% {
@@ -146,13 +145,13 @@
 }
 @keyframes characterMoveNormal {
   0% {
-    transform: rotateZ(0deg);
+    transform: rotateZ(-0.1deg);
   }
   50% {
-    transform: rotateZ(0.5deg) scale(1.01) translateY(5px);
+    transform: rotateZ(0.1deg) scale(1.01) translateY(2px);
   }
   100% {
-    transform: rotateZ(0deg);
+    transform: rotateZ(-0.1deg);
   }
 }
 

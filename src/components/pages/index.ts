@@ -12,4 +12,4 @@ export { default as Unsubscribe } from "./Unsubscribe";
 export { default as ListenAuthUser } from "./ListenAuthUser";
 export { default as Lesson } from "./lesson/Lesson";
 export { default as LessonHome } from "./lesson/LessonHome";
-export { default as LogicalThinkingElementary } from "./lesson/LogicalThinkingElementary";
+export { default as LogicalThinking } from "./lesson/LogicalThinking";

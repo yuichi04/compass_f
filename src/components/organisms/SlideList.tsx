@@ -7,8 +7,8 @@ import { LessonDatasetType } from "../../types/lessonItemTypes";
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
-  contents: LessonDatasetType;
-  setContents: React.Dispatch<
+  slideItems: LessonDatasetType;
+  setSlideItems: React.Dispatch<
     React.SetStateAction<
       {
         title: string;
@@ -22,74 +22,74 @@ type Props = {
 };
 
 const SlideList: React.FC<Props> = React.memo((props) => {
-  const { open, setOpen, contents, setContents } = props;
-  const lastSlideNum = contents.slice(-1)[0].order;
+  const { open, setOpen, slideItems, setSlideItems } = props;
+  const lastSlideNum = slideItems.slice(-1)[0].order;
 
   // スライドのon・offを管理
   const handleCloseSlide = useCallback(
     (close: boolean) => {
-      const newChapter1 = contents.map((content) => {
+      const newChapter1 = slideItems.map((slideItem) => {
         return {
-          ...content,
+          ...slideItem,
           className: "",
         };
       });
-      setContents(newChapter1);
+      setSlideItems(newChapter1);
       setOpen(close);
     },
-    [contents, setContents, setOpen]
+    [slideItems, setSlideItems, setOpen]
   );
 
   // 次のスライドへ
   const handleClickNextSlide = useCallback(
     (order: number) => {
-      const newContents = contents.map((content) => {
-        if (content.order === order) {
+      const newSlideItems = slideItems.map((slideItem) => {
+        if (slideItem.order === order) {
           return {
-            ...content,
+            ...slideItem,
             className: "slide-left-out",
           };
-        } else if (content.order === order + 1) {
+        } else if (slideItem.order === order + 1) {
           return {
-            ...content,
+            ...slideItem,
             className: "slide-right-in",
           };
         } else {
           return {
-            ...content,
+            ...slideItem,
             className: "display-none",
           };
         }
       });
-      setContents(newContents);
+      setSlideItems(newSlideItems);
     },
-    [contents, setContents]
+    [slideItems, setSlideItems]
   );
 
   // 前のスライドへ
   const handleClickBackSlide = useCallback(
     (order: number) => {
-      const newContents = contents.map((content) => {
-        if (content.order === order) {
+      const newSlideItems = slideItems.map((slideItem) => {
+        if (slideItem.order === order) {
           return {
-            ...content,
+            ...slideItem,
             className: "slide-right-out",
           };
-        } else if (content.order === order - 1) {
+        } else if (slideItem.order === order - 1) {
           return {
-            ...content,
+            ...slideItem,
             className: "slide-left-in",
           };
         } else {
           return {
-            ...content,
+            ...slideItem,
             className: "display-none",
           };
         }
       });
-      setContents(newContents);
+      setSlideItems(newSlideItems);
     },
-    [contents, setContents]
+    [slideItems, setSlideItems]
   );
 
   return (
@@ -106,19 +106,19 @@ const SlideList: React.FC<Props> = React.memo((props) => {
           width: "100%",
         }}
       >
-        {contents.map((content) => (
+        {slideItems.map((slideItem) => (
           <SlideListItem
-            key={content.order}
-            order={content.order}
-            className={content.className}
+            key={slideItem.order}
+            order={slideItem.order}
+            className={slideItem.className}
             next={handleClickNextSlide}
             back={handleClickBackSlide}
-            title={content.title}
-            sectionTitle={content.sectionTitle}
+            title={slideItem.title}
+            sectionTitle={slideItem.sectionTitle}
             last={lastSlideNum}
             setClose={handleCloseSlide}
           >
-            {content.sentence}
+            {slideItem.sentence}
           </SlideListItem>
         ))}
       </Box>

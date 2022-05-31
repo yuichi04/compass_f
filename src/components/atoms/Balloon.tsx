@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 type StyleProps = {
   background?: string;
@@ -9,27 +9,46 @@ type StyleProps = {
 type Props = {
   children: React.ReactNode;
   title?: string;
-  className?: string;
 } & StyleProps;
 
 const Balloon: React.FC<Props> = React.memo(({ children, ...props }) => {
-  const { className, title, background } = props;
+  const { title, background } = props;
   return (
-    <SBalloon className={className} background={background}>
+    <SBalloon background={background}>
       {title && <Typography variant="h6">{title}</Typography>}
-      <Typography fontWeight={600}>{children}</Typography>
+      <Typography fontWeight={600} component="div" color="text.secondary">
+        {children}
+      </Typography>
     </SBalloon>
   );
 });
 
 export default Balloon;
 
+const fadeInAnime = keyframes`
+  from {
+    opacity: 0;
+    transform : translateX(-15px);
+  }
+  to {
+    opacity: 1;
+  }
+
+`;
+
 const SBalloon = styled.div<StyleProps>`
   position: relative;
-  background: ${(props) => props.background};
+  background: #e0f2f1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 6px #999;
   border-radius: 24px;
-  box-shadow: 0 0 3px #ccc;
   padding: 16px 24px;
+  text-align: center;
+  animation-name: ${fadeInAnime};
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  margin-bottom: 4px;
 
   &:before {
     content: "";
@@ -38,9 +57,9 @@ const SBalloon = styled.div<StyleProps>`
     width: 13px;
     height: 12px;
     bottom: 0;
-    background: ${(props) => props.background};
+    background: #e0f2f1;
+    box-shadow: 0 2px 6px #999;
     border-radius: 50%;
-    box-shadow: 1px 3px 6px #bbb;
   }
 
   &:after {
@@ -49,9 +68,9 @@ const SBalloon = styled.div<StyleProps>`
     left: -24px;
     width: 20px;
     height: 18px;
+    background: #e0f2f1;
+    box-shadow: 0 2px 6px #999;
     bottom: 3px;
-    background: ${(props) => props.background};
     border-radius: 50%;
-    box-shadow: 1px 3px 6px #bbb;
   }
 `;

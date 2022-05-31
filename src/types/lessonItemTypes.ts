@@ -31,4 +31,5 @@ export type LessonDatasetType = {
   sentence: JSX.Element;
   order: number;
   className: string;
+  characterImage?: string;
 }[];
