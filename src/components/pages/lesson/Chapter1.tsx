@@ -27,10 +27,6 @@ const styles = {
   },
 };
 
-// type Props = {
-//   setClose: (close: boolean) => void;
-// };
-
 const Scene: React.FC = React.memo(() => {
   // const { setClose } = props;
   const dispatch = useAppDispatch();
@@ -77,7 +73,18 @@ const Scene: React.FC = React.memo(() => {
   }, [dispatch]);
 
   return (
-    <Box>
+    <Box
+      className="expand_center"
+      sx={{
+        display: "flex",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        height: "100%",
+        width: "100%",
+      }}
+    >
       <Grid container sx={styles.container}>
         <Grid item xs={3} sx={{ position: "relative" }}>
           <TooltipBar />

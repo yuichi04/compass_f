@@ -1,7 +1,7 @@
 // 画面中央から円が広がってフェードインするアニメーション
 .expand_center {
   animation-name: img-wrap;
-  animation-duration: 0.8s;
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
 }
 @keyframes img-wrap {
@@ -78,12 +78,10 @@
 @keyframes slideLeftInAnime {
   0% {
     opacity: 0;
-    // transform: translate(-100%, 10%) scale(0.6);
     transform: translateX(-100%);
   }
   100% {
     opacity: 1;
-    // transform: translate(0) scale(1);
     transform: translate(0);
   }
 }
@@ -127,7 +125,7 @@
   0% {
     transform: translateX(-100%);
   }
-  100% {
+  50% {
     opacity: 0;
     transform: translate(0);
   }

@@ -65,7 +65,7 @@ const SBoard = styled.div`
   z-index: 999;
   position: fixed;
   bottom: 0;
-  right: 16px;
+  left: 0;
 `;
 
 const style = {

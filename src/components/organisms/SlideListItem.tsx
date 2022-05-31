@@ -17,7 +17,6 @@ type Props = {
   title: string;
   sectionTitle: string;
   last: number;
-  setClose: (close: boolean) => void;
 };
 
 const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
@@ -32,7 +31,6 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           height: "100%",
           width: "100%",
           background: "linear-gradient(to left, #e0f2f1, #fff, #e0f2f1)",
-          borderRadius: "16px",
           overflow: "hidden",
         }}
       >
@@ -43,7 +41,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
             boxShadow: "0 2px 6px #999",
             flexDirection: "column",
             justifyContent: "center",
-            padding: "32px 64px",
+            padding: "16px 64px",
           }}
         >
           <IconButton
@@ -60,7 +58,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           </Typography>
         </Box>
         <Box p="64px">{children}</Box>
-        <Box position="absolute" bottom="16px" right="16px">
+        <Box position="absolute" bottom="0px" right="16px">
           {order !== 0 && (
             <IconButton onClick={() => back(order)} sx={{ p: 0 }}>
               <ArrowLeftIcon sx={{ fontSize: "70px" }} color="primary" />

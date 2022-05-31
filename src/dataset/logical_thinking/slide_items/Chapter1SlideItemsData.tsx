@@ -5,38 +5,41 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { MuiButton, MuiTypographyBold, MuiTypographyBoldAccent, MuiTypographyDiv } from "../../../components/atoms";
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
+const styles = {
+  list: {
+    listStyle: "revert",
+    listStylePosition: "inside",
+    li: {
+      mb: "12px",
+      "&:last-child": {
+        mb: 0,
+      },
+    },
+  },
+  bgcolorBox: {
+    bgcolor: "#80cbc4",
+    borderRadius: "4px",
+    p: "4px",
+  },
+  bgcolorBoxLight: {
+    bgcolor: "#b2dfdb",
+    borderRadius: "4px",
+    p: "4px",
+    mb: "4px",
+  },
+  bgcolorBoxDark: {
+    bgcolor: "#4db6ac",
+    borderRadius: "4px",
+    color: "#fff",
+    p: "4px",
+  },
+};
 
 const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング初級編";
-  const styles = {
-    list: {
-      listStyle: "revert",
-      listStylePosition: "inside",
-      li: {
-        mb: "12px",
-        "&:last-child": {
-          mb: 0,
-        },
-      },
-    },
-    bgcolorBox: {
-      bgcolor: "#80cbc4",
-      borderRadius: "4px",
-      p: "4px",
-    },
-    bgcolorBoxLight: {
-      bgcolor: "#b2dfdb",
-      borderRadius: "4px",
-      p: "4px",
-      mb: "4px",
-    },
-    bgcolorBoxDark: {
-      bgcolor: "#4db6ac",
-      borderRadius: "4px",
-      color: "#fff",
-      p: "4px",
-    },
-  };
+  const navigate = useNavigate();
   const [slideItems, setSlideItems] = useState([
     {
       title,
@@ -299,11 +302,15 @@ const Chapter1SlideItemsData = () => {
                 <br />
                 いかがでしょうか？何となくイメージはできるようになりましたか？
                 <br />
-                では、さっそくクイズで試してみましょう！
+                では、さっそく問題で試してみましょう！
                 <br />
                 <br />
-                <MuiButton variant="contained" color="primary">
-                  クイズに進む
+                <MuiButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => navigate("/lesson/logicalthinking/chapter1")}
+                >
+                  問題に挑戦する
                 </MuiButton>
               </MuiTypographyDiv>
             </Grid>
