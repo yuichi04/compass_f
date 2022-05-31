@@ -28,7 +28,7 @@ const Home: React.FC = React.memo(() => {
                   <CourseCard
                     grade="初級編"
                     course="ロジカルシンキング"
-                    link="lesson/logicalthinking/elementary"
+                    link="lesson/logicalthinking/chapter1/slide"
                     color="primary"
                     title="演繹法と帰納法"
                     text={
@@ -45,7 +45,7 @@ const Home: React.FC = React.memo(() => {
                   <CourseCard
                     course="説明方法"
                     grade="初級編"
-                    link="lesson/logicalthinking/elementary"
+                    link="/"
                     color="error"
                     title="伝わる話の組み立て方"
                     text={<>相手のレベルに合わせたわかりやすい説明ができるようになります</>}

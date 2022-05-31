@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Box } from "@mui/material";
-import { BackgroundImage } from "../../assets/images/background";
-import { Balloon, FadeInTypography, MuiButton, MuiTextField } from "../atoms";
-import { TooltipBar } from "./index";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
+import { BackgroundImage } from "../../../assets/images/background";
+import { Balloon, FadeInTypography, MuiButton, MuiTextField } from "../../atoms";
+import { TooltipBar } from "../../organisms/index";
+import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
   setSceneAction,
   sceneSelector,
   initializeSceneAction,
   setAnswerAction,
   setBalloonAction,
-} from "../../lib/redux/features/chapter1Slice";
+} from "../../../lib/redux/features/chapter1Slice";
 
 const styles = {
   character: {
@@ -27,12 +27,12 @@ const styles = {
   },
 };
 
-type Props = {
-  setClose: (close: boolean) => void;
-};
+// type Props = {
+//   setClose: (close: boolean) => void;
+// };
 
-const Scene: React.FC<Props> = React.memo((props) => {
-  const { setClose } = props;
+const Scene: React.FC = React.memo(() => {
+  // const { setClose } = props;
   const dispatch = useAppDispatch();
   const scene = useAppSelector(sceneSelector);
   const characterImage = scene.characterImage;
@@ -80,7 +80,7 @@ const Scene: React.FC<Props> = React.memo((props) => {
     <Box>
       <Grid container sx={styles.container}>
         <Grid item xs={3} sx={{ position: "relative" }}>
-          <TooltipBar setClose={setClose} />
+          <TooltipBar />
         </Grid>
         <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
           {action === "" ? null : (
@@ -139,11 +139,7 @@ const Scene: React.FC<Props> = React.memo((props) => {
       </Grid>
       <Box sx={styles.character}>
         {characterImage && (
-          <img
-            // className="character-move-normal"
-            src={require(`../../assets/images/characters/guide/${characterImage}`)}
-            alt="character"
-          />
+          <img src={require(`../../../assets/images/characters/guide/${characterImage}`)} alt="character" />
         )}
       </Box>
     </Box>

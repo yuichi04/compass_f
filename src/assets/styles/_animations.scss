@@ -78,11 +78,13 @@
 @keyframes slideLeftInAnime {
   0% {
     opacity: 0;
-    transform: translate(-100%, 10%) scale(0.6);
+    // transform: translate(-100%, 10%) scale(0.6);
+    transform: translateX(-100%);
   }
   100% {
     opacity: 1;
-    transform: translate(0) scale(1);
+    // transform: translate(0) scale(1);
+    transform: translate(0);
   }
 }
 // 左にスライド
@@ -92,12 +94,11 @@
 }
 @keyframes slideLeftOutAnime {
   0% {
-    transform: translate(0) scale(1);
+    transform: translate(0);
   }
   100% {
     opacity: 0;
     transform: translateX(-100%);
-    transform: translate(-100%, 10%) scale(0.6);
   }
 }
 
@@ -109,11 +110,11 @@
 @keyframes slideRightInAnime {
   0% {
     opacity: 0;
-    transform: translate(0, 10%) scale(0.6);
+    transform: translate(0);
   }
   100% {
     opacity: 1;
-    transform: translate(-100%, 0) scale(1);
+    transform: translateX(-100%);
   }
 }
 
@@ -124,11 +125,11 @@
 }
 @keyframes slideRightOutAnime {
   0% {
-    transform: translate(-100%, 0) scale(1);
+    transform: translateX(-100%);
   }
   100% {
     opacity: 0;
-    transform: translate(0, 10%) scale(0.6);
+    transform: translate(0);
   }
 }
 

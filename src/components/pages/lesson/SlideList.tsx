@@ -1,28 +1,13 @@
 import React, { useCallback } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import { SlideListItem } from "./index";
-import { LessonDatasetType } from "../../types/lessonItemTypes";
+import { SlideListItem } from "../../organisms/index";
+import Chapter1SlideItemsData from "../../../dataset/logical_thinking/slide_items/Chapter1SlideItemsData";
+import { useModal } from "../../../hooks/useModal";
 
-type Props = {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  slideItems: LessonDatasetType;
-  setSlideItems: React.Dispatch<
-    React.SetStateAction<
-      {
-        title: string;
-        sectionTitle: string;
-        sentence: JSX.Element;
-        order: number;
-        className: string;
-      }[]
-    >
-  >;
-};
-
-const SlideList: React.FC<Props> = React.memo((props) => {
-  const { open, setOpen, slideItems, setSlideItems } = props;
+const SlideList: React.FC = React.memo(() => {
+  const { slideItems, setSlideItems } = Chapter1SlideItemsData();
+  const { open, setOpen } = useModal();
   const lastSlideNum = slideItems.slice(-1)[0].order;
 
   // スライドのon・offを管理

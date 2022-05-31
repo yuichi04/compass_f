@@ -3,10 +3,7 @@ import { IconButton, Tooltip, Box } from "@mui/material";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-
-type Props = {
-  setClose: (open: boolean) => void;
-};
+import { useNavigate } from "react-router-dom";
 
 const styles = {
   utilButtonBox: {
@@ -22,8 +19,8 @@ const styles = {
   },
 };
 
-const TooltipBar: React.FC<Props> = React.memo((props) => {
-  const { setClose } = props;
+const TooltipBar: React.FC = React.memo(() => {
+  const navigate = useNavigate();
   return (
     <>
       <Box sx={styles.utilButtonBox}>
@@ -37,7 +34,7 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
               transition: "0.2s",
               "&:hover": { bgcolor: "warning.light", transform: "scale(1.075)" },
             }}
-            onClick={() => setClose(false)}
+            onClick={() => navigate("slide")}
           >
             <LightbulbIcon fontSize="large" />
           </IconButton>
@@ -52,7 +49,7 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
               transition: "0.2s",
               "&:hover": { bgcolor: "info.light", transform: "scale(1.075)" },
             }}
-            onClick={() => setClose(false)}
+            onClick={() => navigate("slide")}
           >
             <AutoAwesomeMotionIcon fontSize="large" />
           </IconButton>
@@ -66,7 +63,7 @@ const TooltipBar: React.FC<Props> = React.memo((props) => {
               transition: "0.2s",
               "&:hover": { bgcolor: "error.light", transform: "scale(1.075)" },
             }}
-            onClick={() => setClose(false)}
+            onClick={() => navigate("slide")}
           >
             <BorderColorIcon fontSize="large" />
           </IconButton>

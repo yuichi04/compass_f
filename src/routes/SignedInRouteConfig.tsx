@@ -9,8 +9,10 @@ import {
   Lesson,
   Terms,
   Unsubscribe,
-  LessonHome,
+  LessonIndex,
   LogicalThinking,
+  Chapter1,
+  SlideList,
 } from "../components/pages";
 import BackToMain from "../components/utils/BackToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
@@ -27,8 +29,11 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/lesson" element={<Lesson />}>
-          <Route path="home" element={<LessonHome />} />
-          <Route path="logicalthinking/elementary" element={<LogicalThinking />} />
+          <Route path="index" element={<LessonIndex />} />
+          <Route path="logicalthinking" element={<LogicalThinking />}>
+            <Route path="chapter1/slide" element={<SlideList />} />
+            <Route path="chapter1" element={<Chapter1 />} />
+          </Route>
         </Route>
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

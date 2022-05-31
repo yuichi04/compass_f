@@ -10,7 +10,7 @@ const CourseCardList: React.FC = React.memo(() => {
     <Grid container spacing={2}>
       <Grid item xs={4}>
         <CourseCard
-          link="/lesson/logicalthinking/elementary"
+          link="/lesson/logicalthinking/chapter1/slide"
           image={Icons.user02}
           course="ロジカルシンキング"
           grade="初級編"

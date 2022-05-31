@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
@@ -20,7 +21,8 @@ type Props = {
 };
 
 const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
-  const { next, back, order, className, title, sectionTitle, last, setClose } = props;
+  const { next, back, order, className, title, sectionTitle, last } = props;
+  const navigate = useNavigate();
 
   return (
     <SContent className={className}>
@@ -46,7 +48,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
         >
           <IconButton
             sx={{ position: "absolute", right: "16px", top: "16px", zIndex: "999" }}
-            onClick={() => setClose(true)}
+            onClick={() => navigate("/lesson/logicalthinking/chapter1")}
           >
             <CancelIcon fontSize="large" />
           </IconButton>
@@ -80,5 +82,4 @@ export default SlideListItem;
 const SContent = styled.div`
   min-width: 100%;
   height: 100%;
-  // padding: 32px;
 `;
