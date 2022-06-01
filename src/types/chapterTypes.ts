@@ -1,6 +1,10 @@
 export type Chapter1QuestionType = {
   id: number;
-  characterLines: string[];
+  characterLines: {
+    line: string;
+    delay?: number;
+    duration?: number;
+  }[];
   characterImage: string;
   sampleAnswer: string;
   action: "button" | "textField" | "";

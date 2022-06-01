@@ -70,6 +70,8 @@ const SlideList: React.FC = React.memo(() => {
         transform: "translate(-50%, -50%)",
         height: "100%",
         width: "100%",
+        zIndex: "999",
+        bgcolor: "#fff",
       }}
     >
       {slideItems.map((slideItem) => (

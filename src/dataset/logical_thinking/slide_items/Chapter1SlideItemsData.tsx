@@ -298,11 +298,9 @@ const Chapter1SlideItemsData = () => {
           <Grid container>
             <Grid item xs={8}>
               <MuiTypographyDiv>
-                以上で帰納法についてのスライドは終わりです。
-                <br />
                 いかがでしょうか？何となくイメージはできるようになりましたか？
                 <br />
-                では、さっそく問題で試してみましょう！
+                では、さっそく問題に挑戦してみましょう。
                 <br />
                 <br />
                 <MuiButton

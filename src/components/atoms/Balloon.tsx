@@ -38,14 +38,13 @@ const fadeInAnime = keyframes`
 
 const SBalloon = styled.div<StyleProps>`
   position: relative;
-  background: #e0f2f1;
-  backdrop-filter: blur(10px);
+  background: #fff;
   box-shadow: 0 2px 6px #999;
   border-radius: 24px;
   padding: 16px 24px;
   text-align: center;
   animation-name: ${fadeInAnime};
-  animation-duration: 1.2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
   opacity: 0;
   margin-bottom: 4px;
@@ -57,7 +56,7 @@ const SBalloon = styled.div<StyleProps>`
     width: 13px;
     height: 12px;
     bottom: 0;
-    background: #e0f2f1;
+    background: #fff;
     box-shadow: 0 2px 6px #999;
     border-radius: 50%;
   }
@@ -68,7 +67,7 @@ const SBalloon = styled.div<StyleProps>`
     left: -24px;
     width: 20px;
     height: 18px;
-    background: #e0f2f1;
+    background: #fff;
     box-shadow: 0 2px 6px #999;
     bottom: 3px;
     border-radius: 50%;

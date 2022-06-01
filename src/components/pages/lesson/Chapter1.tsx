@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Grid, Box } from "@mui/material";
+import CreateIcon from "@mui/icons-material/Create";
 import { BackgroundImage } from "../../../assets/images/background";
-import { Balloon, FadeInTypography, MuiButton, MuiTextField } from "../../atoms";
+import { Balloon, FadeInTypography, MuiButton, MuiTextFieldWithAdornment } from "../../atoms";
 import { TooltipBar } from "../../organisms/index";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
@@ -100,9 +101,11 @@ const Scene: React.FC = React.memo(() => {
                 width: "80%",
                 display: "flex",
                 flexDirection: "column",
-                bgcolor: "#e0f2f1",
-                borderRadius: "8px",
+                bgcolor: "rgba(255,255,255,0.8)",
+                backdropFilter: "blur(3px)",
                 padding: "16px 32px",
+                boxShadow: "0 0 6px rgba(255,255,255,0.8)",
+                borderRadius: "8px",
               }}
             >
               {action === "button" ? (
@@ -112,13 +115,15 @@ const Scene: React.FC = React.memo(() => {
               ) : (
                 action === "textField" && (
                   <form onSubmit={handleSubmit} className="fade_in">
-                    <MuiTextField
-                      label={actionValue}
+                    <MuiTextFieldWithAdornment
+                      icon={<CreateIcon />}
                       onChange={handleChange}
                       value={answer}
                       fullWidth
                       autoComplete="off"
                       margin="none"
+                      label={actionValue}
+                      variant="standard"
                     />
                     <div className="module-spacer-sm" />
                     <MuiButton variant="contained" color="primary" fullWidth type="submit">
@@ -135,8 +140,8 @@ const Scene: React.FC = React.memo(() => {
             {balloon && (
               <Balloon>
                 {characterLines.map((line, index) => (
-                  <FadeInTypography delay={index} key={index}>
-                    {line}
+                  <FadeInTypography delay={line.delay ? index + line.delay : index} key={index}>
+                    {line.line}
                   </FadeInTypography>
                 ))}
               </Balloon>

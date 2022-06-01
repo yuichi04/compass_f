@@ -29,14 +29,15 @@ export const chapter1Slice = createSlice({
         state.sampleAnswer = newScene.sampleAnswer;
       }
     },
-    // 表示する回答の文章を生成
+    // 表示する回答を生成
     setAnswerAction: (state, action) => {
       state.characterLines = [
-        `あなたの回答は「${action.payload}」ですね。`,
-        `わたしの回答は「${state.sampleAnswer}」です。`,
+        { line: `あなたの回答は「${action.payload}」ですね。` },
+        { line: `わたしの回答は「${state.sampleAnswer}」です。` },
       ];
       state.action = "";
       state.actionValue = "";
+      state.characterImage = "guide_smile_a.png";
     },
     // 吹き出しの表示・非表示を管理
     setBalloonAction: (state, action) => {
