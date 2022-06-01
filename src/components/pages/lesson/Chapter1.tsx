@@ -37,6 +37,7 @@ const Scene: React.FC = React.memo(() => {
   const action = scene.action;
   const actionValue = scene.actionValue;
   const balloon = scene.balloon;
+  const auto = scene.auto;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -56,15 +57,20 @@ const Scene: React.FC = React.memo(() => {
   };
 
   // 次のシーンに切り替える
-  const handleClickNextScene = useCallback(() => {
+  const changeNextScene = useCallback(() => {
     dispatch(setBalloonAction(false));
     dispatch(setSceneAction(1));
   }, [dispatch]);
 
-  // シーンが切り替わったら吹き出しを表示
+  // シーンの切り替わりを検知
   useEffect(() => {
+    // 吹き出しを表示する
     dispatch(setBalloonAction(true));
-  }, [characterLines, dispatch]);
+    // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後シーンを切り替える
+    if (auto?.progress) {
+      setTimeout(() => changeNextScene(), auto.displayTime * 1000);
+    }
+  }, [characterLines, dispatch, auto?.displayTime, auto?.progress, changeNextScene]);
 
   // シーンの初期値をセット
   useEffect(() => {
@@ -109,7 +115,7 @@ const Scene: React.FC = React.memo(() => {
               }}
             >
               {action === "button" ? (
-                <MuiButton variant="contained" color="primary" onClick={handleClickNextScene}>
+                <MuiButton variant="contained" color="primary" onClick={changeNextScene}>
                   {actionValue}
                 </MuiButton>
               ) : (
@@ -140,8 +146,8 @@ const Scene: React.FC = React.memo(() => {
             {balloon && (
               <Balloon>
                 {characterLines.map((line, index) => (
-                  <FadeInTypography delay={line.delay ? index + line.delay : index} key={index}>
-                    {line.line}
+                  <FadeInTypography delay={index} key={index}>
+                    {line}
                   </FadeInTypography>
                 ))}
               </Balloon>

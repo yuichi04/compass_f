@@ -11,6 +11,10 @@ const initialState: Chapter1QuestionType = {
   action: "",
   actionValue: "",
   balloon: false,
+  auto: {
+    progress: false,
+    displayTime: 0,
+  },
 };
 
 export const chapter1Slice = createSlice({
@@ -27,13 +31,14 @@ export const chapter1Slice = createSlice({
         state.action = newScene.action;
         state.actionValue = newScene.actionValue;
         state.sampleAnswer = newScene.sampleAnswer;
+        state.auto = newScene.auto;
       }
     },
     // 表示する回答を生成
     setAnswerAction: (state, action) => {
       state.characterLines = [
-        { line: `あなたの回答は「${action.payload}」ですね。` },
-        { line: `わたしの回答は「${state.sampleAnswer}」です。` },
+        `あなたの回答は「${action.payload}」ですね。`,
+        `わたしの回答は「${state.sampleAnswer}」です。`,
       ];
       state.action = "";
       state.actionValue = "";
