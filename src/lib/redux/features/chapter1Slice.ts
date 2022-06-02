@@ -32,6 +32,7 @@ export const chapter1Slice = createSlice({
     setSceneAction: (state, action) => {
       state.isOpenBalloon = false;
       state.isOpenActionBox = false;
+      state.isOpenSlideList = false;
       state.id = action.payload + 1;
       const newScene = chapter1QuestionItems.find((item) => item.id === state.id);
       if (newScene) {
@@ -95,11 +96,11 @@ export const chapter1Slice = createSlice({
 export const {
   setSceneAction,
   setAnswerAction,
-  setBalloonAction,
   initializeSceneAction,
-  setResultAction,
   setSlideListAction,
   setActionBoxAction,
+  setBalloonAction,
+  setResultAction,
 } = chapter1Slice.actions;
 // selector
 export const chapter1Selector = (state: RootState) => state.chapter1;

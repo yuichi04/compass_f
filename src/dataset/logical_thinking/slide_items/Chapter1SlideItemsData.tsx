@@ -3,9 +3,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CancelIcon from "@mui/icons-material/Cancel";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { MuiButton, MuiTypographyBold, MuiTypographyBoldAccent, MuiTypographyDiv } from "../../../components/atoms";
+import { MuiTypographyBold, MuiTypographyBoldAccent, MuiTypographyDiv } from "../../../components/atoms";
 import { Grid } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const styles = {
   list: {
@@ -39,7 +38,6 @@ const styles = {
 
 const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング初級編";
-  const navigate = useNavigate();
   const [slideItems, setSlideItems] = useState([
     {
       order: 0,
@@ -63,7 +61,7 @@ const Chapter1SlideItemsData = () => {
                   </li>
                 </Box>
                 <br />
-                ビジネスマンに必要不可欠とも言われるロジカルシンキングの基本を学んでいきましょう！
+                ビジネスマンに必要不可欠と言われるロジカルシンキングの基本を学んでいきましょう！
                 <br />
                 それでは、次のスライドへ！
                 <br />
@@ -83,7 +81,7 @@ const Chapter1SlideItemsData = () => {
             </Grid>
           </Grid>
           <Grid item xs={4}>
-            <Box sx={{ position: "absolute", right: "-160px", top: "-80px" }}>
+            <Box sx={{ position: "absolute", right: "-160px", top: "-128px" }}>
               <img src={require("../../../assets/images/characters/guide/guide_normal_b.png")} alt="character" />
             </Box>
           </Grid>
@@ -308,15 +306,6 @@ const Chapter1SlideItemsData = () => {
                 いかがでしょうか？何となくイメージはできるようになりましたか？
                 <br />
                 ここまでの内容をまとめましたので、サクッと確認して、問題に挑戦しましょう。
-                <br />
-                <br />
-                <MuiButton
-                  variant="contained"
-                  color="primary"
-                  onClick={() => navigate("/lesson/logicalthinking/chapter1")}
-                >
-                  問題に挑戦する
-                </MuiButton>
               </MuiTypographyDiv>
             </Grid>
           </Grid>
