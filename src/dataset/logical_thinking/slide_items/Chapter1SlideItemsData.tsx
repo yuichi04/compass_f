@@ -299,21 +299,12 @@ const Chapter1SlideItemsData = () => {
       title,
       sectionTitle: "ここでスライドは終わりです",
       sentence: (
-        <Box position="relative" textAlign="center">
-          <Grid container>
-            <Grid item xs={8}>
-              <MuiTypographyDiv>
-                いかがでしょうか？何となくイメージはできるようになりましたか？
-                <br />
-                ここまでの内容をまとめましたので、サクッと確認して、問題に挑戦しましょう。
-              </MuiTypographyDiv>
-            </Grid>
-          </Grid>
-          <Grid item xs={4}>
-            <Box sx={{ position: "absolute", right: "-64px", top: "-160px" }}>
-              <img src={require("../../../assets/images/characters/guide/guide_smile_a.png")} alt="character" />
-            </Box>
-          </Grid>
+        <Box textAlign="center" position="absolute" top="35%" left="50%" sx={{ transform: "translate(-50%, -50%)" }}>
+          <MuiTypographyDiv>
+            いかがでしょうか？何となくイメージはできるようになりましたか？
+            <br />
+            次は問題に挑戦してみましょう。
+          </MuiTypographyDiv>
         </Box>
       ),
     },

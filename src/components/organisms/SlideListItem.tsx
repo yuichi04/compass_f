@@ -46,7 +46,26 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
             </Typography>
           </SHeaderInner>
         </SHeader>
-        <SContent>{children}</SContent>
+        <SContent>
+          {children}
+          {order === last && (
+            <Box position="relative" height="100%">
+              <Box position="absolute" top="35%" left="50%" sx={{ transform: "translate(-50%, -50%)" }} width="400px">
+                <MuiButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => dispatch(setSceneAction(sceneId))}
+                  fullWidth
+                >
+                  問題に挑戦
+                </MuiButton>
+              </Box>
+              <Box position="absolute" right="-200px" top="-128px">
+                <img src={require("../../assets/images/characters/guide/guide_smile_a.png")} alt="character" />
+              </Box>
+            </Box>
+          )}
+        </SContent>
 
         <Box position="absolute" bottom="0px" right="16px">
           {order !== 0 && (

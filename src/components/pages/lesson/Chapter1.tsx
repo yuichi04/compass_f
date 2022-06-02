@@ -51,14 +51,15 @@ const Scene: React.FC = React.memo(() => {
     if (auto) {
       // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後にシーンを切り替える
       if (auto.progress) {
-        const timer = setTimeout(() => dispatch(setSceneAction(sceneId)), auto.displayTime * 1000);
-        return () => clearTimeout(timer);
-      }
+        const display = setTimeout(() => dispatch(setSceneAction(sceneId)), auto.displayTime * 1000);
 
-      // 最後のシーンだった場合は、一定時間後に回答一覧を表示する
-      if (sceneId === lastSceneId) {
-        const timer = setTimeout(() => dispatch(setResultAction(true)), auto.displayTime * 1000);
-        return () => clearTimeout(timer);
+        // 最後のシーンだった場合は、一定時間後に回答一覧を表示する
+        if (sceneId === lastSceneId) {
+          const timer = setTimeout(() => dispatch(setResultAction(true)), auto.displayTime * 1000);
+          return () => clearTimeout(timer);
+        }
+
+        return () => clearTimeout(display);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
