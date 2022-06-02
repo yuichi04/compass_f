@@ -9,5 +9,7 @@ export { default as CourseCardList } from "./CourseCardList";
 export { default as LearningCalendar } from "./LearningCalendar";
 export { default as LearningProgress } from "./LearningProgress";
 export { default as ContactBoard } from "./ContactBoard";
-export { default as SlideListItem } from "./SlideListItem";
 export { default as TooltipBar } from "./TooltipBar";
+export { default as SlideList } from "./SlideList";
+export { default as SlideListItem } from "./SlideListItem";
+export { default as Chapter1UserOperationBox } from "./Chapter1UserOperationBox";

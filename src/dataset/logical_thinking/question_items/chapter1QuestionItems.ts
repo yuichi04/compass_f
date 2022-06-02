@@ -1,7 +1,7 @@
-import { Chapter1QuestionType } from "../../../types/chapterTypes";
+import { Chapter1QuestionItemType } from "../../../types/chapterTypes";
 
 // シーンごとの要素を持った配列
-export const chapter1QuestionItems: Chapter1QuestionType[] = [
+export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
   {
     id: 1,
     action: "button",
@@ -78,5 +78,16 @@ export const chapter1QuestionItems: Chapter1QuestionType[] = [
     ],
     characterImage: "guide_normal_b.png",
     sampleAnswer: "消費者は環境配慮した製品を求める",
+  },
+  {
+    id: 7,
+    auto: {
+      progress: true,
+      displayTime: 5,
+    },
+    action: "",
+    actionValue: "",
+    characterLines: ["これにて全問終了です。", "最後にあなたの回答一覧を表示しますね。", "お疲れさまでした。"],
+    characterImage: "guide_smile_a.png",
   },
 ];

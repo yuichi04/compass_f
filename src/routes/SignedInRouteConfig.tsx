@@ -12,7 +12,6 @@ import {
   LessonIndex,
   LogicalThinking,
   Chapter1,
-  SlideList,
 } from "../components/pages";
 import BackToMain from "../components/utils/BackToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
@@ -31,7 +30,6 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/lesson" element={<Lesson />}>
           <Route path="index" element={<LessonIndex />} />
           <Route path="logicalthinking" element={<LogicalThinking />}>
-            <Route path="chapter1/slide" element={<SlideList />} />
             <Route path="chapter1" element={<Chapter1 />} />
           </Route>
         </Route>

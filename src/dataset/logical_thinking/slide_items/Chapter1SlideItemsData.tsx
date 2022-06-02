@@ -83,7 +83,7 @@ const Chapter1SlideItemsData = () => {
             </Grid>
           </Grid>
           <Grid item xs={4}>
-            <Box sx={{ position: "absolute", right: "-64px", top: "-128px" }}>
+            <Box sx={{ position: "absolute", right: "-160px", top: "-80px" }}>
               <img src={require("../../../assets/images/characters/guide/guide_normal_b.png")} alt="character" />
             </Box>
           </Grid>

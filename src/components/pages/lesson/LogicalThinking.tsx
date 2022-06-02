@@ -1,21 +1,8 @@
 import React from "react";
-import Box from "@mui/material/Box";
 import { Outlet } from "react-router-dom";
 
-const LessonMain: React.FC = React.memo(() => {
-  return (
-    <Box
-      sx={{
-        position: "relative",
-        height: "calc(100vh - 64px)",
-        width: "100vw",
-        overflow: "hidden",
-        bgcolor: "#fff",
-      }}
-    >
-      <Outlet />
-    </Box>
-  );
+const LogicalThinking: React.FC = React.memo(() => {
+  return <Outlet />;
 });
 
-export default LessonMain;
+export default LogicalThinking;

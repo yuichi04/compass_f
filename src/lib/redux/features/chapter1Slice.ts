@@ -1,29 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Chapter1QuestionType } from "../../../types/chapterTypes";
+import { Chapter1QuestionItemType, Chapter1QuestionType } from "../../../types/chapterTypes";
 import { chapter1QuestionItems } from "../../../dataset/logical_thinking/question_items/chapter1QuestionItems";
 import { RootState } from "../store";
 
-const initialState: Chapter1QuestionType = {
+type InitialState = Chapter1QuestionType & Chapter1QuestionItemType;
+
+const initialState: InitialState = {
   id: 0,
   characterLines: [],
   characterImage: "",
   sampleAnswer: "",
   action: "",
   actionValue: "",
-  balloon: false,
   auto: {
     progress: false,
     displayTime: 0,
   },
+  userAnswerList: [],
+  sceneCount: chapter1QuestionItems.length,
+  isOpenActionBox: false,
+  isOpenBalloon: false,
+  isOpenResult: false,
+  isOpenSlideList: true,
 };
 
 export const chapter1Slice = createSlice({
   name: "chapter1",
   initialState,
   reducers: {
-    // datasetから必要なデータを取得
+    // シーンの切り替え処理
     setSceneAction: (state, action) => {
-      state.id = state.id + action.payload;
+      state.isOpenBalloon = false;
+      state.isOpenActionBox = false;
+      state.id = action.payload + 1;
       const newScene = chapter1QuestionItems.find((item) => item.id === state.id);
       if (newScene) {
         state.characterLines = newScene.characterLines;
@@ -34,6 +43,7 @@ export const chapter1Slice = createSlice({
         state.auto = newScene.auto;
       }
     },
+
     // 表示する回答を生成
     setAnswerAction: (state, action) => {
       state.characterLines = [
@@ -44,12 +54,37 @@ export const chapter1Slice = createSlice({
       state.action = "button";
       state.actionValue = "次の問題に進む";
       state.characterImage = "guide_smile_a.png";
+      // ユーザーの回答を配列に格納
+      if (state.userAnswerList) {
+        const newUserAnswer = {
+          id: state.id,
+          answer: action.payload,
+        };
+        state.userAnswerList = [...state.userAnswerList, newUserAnswer];
+      }
     },
+
+    // リザルト画面の表示・非表示を管理
+    setResultAction: (state, action) => {
+      state.isOpenResult = action.payload;
+    },
+
+    // スライドの表示・非表示を管理
+    setSlideListAction: (state, action) => {
+      state.isOpenSlideList = action.payload;
+    },
+
+    // ユーザーのアクションボックスの表示・非表示を管理
+    setActionBoxAction: (state, action) => {
+      state.isOpenActionBox = action.payload;
+    },
+
     // 吹き出しの表示・非表示を管理
     setBalloonAction: (state, action) => {
-      state.balloon = action.payload;
+      state.isOpenBalloon = action.payload;
     },
-    // シーンを初期化
+
+    // 初期化
     initializeSceneAction: () => {
       return { ...initialState };
     },
@@ -57,8 +92,16 @@ export const chapter1Slice = createSlice({
 });
 
 // actions
-export const { setSceneAction, setAnswerAction, setBalloonAction, initializeSceneAction } = chapter1Slice.actions;
+export const {
+  setSceneAction,
+  setAnswerAction,
+  setBalloonAction,
+  initializeSceneAction,
+  setResultAction,
+  setSlideListAction,
+  setActionBoxAction,
+} = chapter1Slice.actions;
 // selector
-export const sceneSelector = (state: RootState) => state.chapter1;
+export const chapter1Selector = (state: RootState) => state.chapter1;
 // reducer
 export default chapter1Slice.reducer;
