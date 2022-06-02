@@ -28,7 +28,7 @@ export default Balloon;
 const fadeInAnime = keyframes`
   from {
     opacity: 0;
-    transform : translateX(-15px);
+    transform : translateX(-10px);
   }
   to {
     opacity: 1;
@@ -39,23 +39,24 @@ const fadeInAnime = keyframes`
 const SBalloon = styled.div<StyleProps>`
   position: relative;
   background: #fff;
-  box-shadow: 0 2px 6px #999;
+  box-shadow: 0 2px 6px #ccc;
   border-radius: 24px;
-  padding: 16px 24px;
+  padding: 16px;
   text-align: center;
   animation-name: ${fadeInAnime};
-  animation-duration: 1s;
+  animation-duration: 2s;
   animation-fill-mode: forwards;
   opacity: 0;
   margin-bottom: 4px;
+  word-break: break-all;
 
   &:before {
     content: "";
     position: absolute;
-    left: -40px;
+    left: -42px;
     width: 13px;
     height: 12px;
-    bottom: 0;
+    bottom: -12px;
     background: #fff;
     box-shadow: 0 2px 6px #999;
     border-radius: 50%;
@@ -69,7 +70,7 @@ const SBalloon = styled.div<StyleProps>`
     height: 18px;
     background: #fff;
     box-shadow: 0 2px 6px #999;
-    bottom: 3px;
+    bottom: -6px;
     border-radius: 50%;
   }
 `;

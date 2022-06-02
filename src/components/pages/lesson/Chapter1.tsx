@@ -12,6 +12,7 @@ import {
   setAnswerAction,
   setBalloonAction,
 } from "../../../lib/redux/features/chapter1Slice";
+import { showLoadingAction, hideLoadingAction } from "../../../lib/redux/features/lodingSlice";
 
 const styles = {
   character: {
@@ -29,7 +30,6 @@ const styles = {
 };
 
 const Scene: React.FC = React.memo(() => {
-  // const { setClose } = props;
   const dispatch = useAppDispatch();
   const scene = useAppSelector(sceneSelector);
   const characterImage = scene.characterImage;
@@ -38,6 +38,7 @@ const Scene: React.FC = React.memo(() => {
   const actionValue = scene.actionValue;
   const balloon = scene.balloon;
   const auto = scene.auto;
+  const elementCount = characterLines.length;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -52,8 +53,16 @@ const Scene: React.FC = React.memo(() => {
     e.preventDefault();
     if (answer === "") return false;
     setAnswer("");
-    dispatch(setBalloonAction(false));
-    dispatch(setAnswerAction(answer));
+    // TODO:ユーザーの回答をサーバーに送信する
+    // サーバーからレスポンスが返ってくるまでローディングを表示する
+    // 下のコードはテスト用
+    const loading = () => {
+      dispatch(hideLoadingAction());
+      dispatch(setBalloonAction(false));
+      dispatch(setAnswerAction(answer));
+    };
+    dispatch(showLoadingAction("回答確認中..."));
+    setTimeout(() => loading(), 500);
   };
 
   // 次のシーンに切り替える
@@ -66,7 +75,7 @@ const Scene: React.FC = React.memo(() => {
   useEffect(() => {
     // 吹き出しを表示する
     dispatch(setBalloonAction(true));
-    // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後シーンを切り替える
+    // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後にシーンを切り替える
     if (auto?.progress) {
       setTimeout(() => changeNextScene(), auto.displayTime * 1000);
     }
@@ -99,19 +108,22 @@ const Scene: React.FC = React.memo(() => {
         <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
           {action === "" ? null : (
             <Box
+              className="fade_in"
               sx={{
                 position: "absolute",
-                bottom: "64px",
+                bottom: "32px",
                 left: "50%",
                 transform: "translateX(-50%)",
                 width: "80%",
                 display: "flex",
                 flexDirection: "column",
+                padding: "16px 32px",
                 bgcolor: "rgba(255,255,255,0.8)",
                 backdropFilter: "blur(3px)",
-                padding: "16px 32px",
                 boxShadow: "0 0 6px rgba(255,255,255,0.8)",
                 borderRadius: "8px",
+                animationDelay: `${elementCount + 1}s`,
+                opacity: 0,
               }}
             >
               {action === "button" ? (
@@ -142,7 +154,7 @@ const Scene: React.FC = React.memo(() => {
           )}
         </Grid>
         <Grid item xs={3} sx={{ position: "relative", zIndex: 999 }}>
-          <Box sx={{ position: "absolute", left: "-50%", padding: "16px 16px 0 0" }}>
+          <Box sx={{ position: "absolute", left: "-50%", top: "32px", pr: "32px" }}>
             {balloon && (
               <Balloon>
                 {characterLines.map((line, index) => (

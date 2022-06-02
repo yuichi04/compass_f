@@ -39,9 +39,10 @@ export const chapter1Slice = createSlice({
       state.characterLines = [
         `あなたの回答は「${action.payload}」ですね。`,
         `わたしの回答は「${state.sampleAnswer}」です。`,
+        "理由はLorem ipsum dolor sit, amet consectetur adipisicing elit. Ut, dolor totam. Consequatur fugit, voluptate pariatur totam, id odit reiciendis possimus non, doloremque quae doloribus voluptatem maiores placeat minus illum iureです!",
       ];
-      state.action = "";
-      state.actionValue = "";
+      state.action = "button";
+      state.actionValue = "次の問題に進む";
       state.characterImage = "guide_smile_a.png";
     },
     // 吹き出しの表示・非表示を管理

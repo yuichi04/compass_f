@@ -57,7 +57,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
             {sectionTitle}
           </Typography>
         </Box>
-        <Box p="64px">{children}</Box>
+        <Box p="32px 64px">{children}</Box>
         <Box position="absolute" bottom="0px" right="16px">
           {order !== 0 && (
             <IconButton onClick={() => back(order)} sx={{ p: 0 }}>

@@ -30,7 +30,7 @@ const styles = {
     mb: "4px",
   },
   bgcolorBoxDark: {
-    bgcolor: "#4db6ac",
+    bgcolor: "#999",
     borderRadius: "4px",
     color: "#fff",
     p: "4px",
@@ -42,6 +42,8 @@ const Chapter1SlideItemsData = () => {
   const navigate = useNavigate();
   const [slideItems, setSlideItems] = useState([
     {
+      order: 0,
+      className: "",
       title,
       sectionTitle: "ようこそ、ロジカルシンキング初級編へ",
       sentence: (
@@ -81,16 +83,16 @@ const Chapter1SlideItemsData = () => {
             </Grid>
           </Grid>
           <Grid item xs={4}>
-            <Box sx={{ position: "absolute", right: "-64px", top: "-160px" }}>
+            <Box sx={{ position: "absolute", right: "-64px", top: "-128px" }}>
               <img src={require("../../../assets/images/characters/guide/guide_normal_b.png")} alt="character" />
             </Box>
           </Grid>
         </Box>
       ),
-      order: 0,
-      className: "",
     },
     {
+      order: 1,
+      className: "",
       title,
       sectionTitle: "ロジカルシンキングを身につけるメリット",
       sentence: (
@@ -131,10 +133,10 @@ const Chapter1SlideItemsData = () => {
           </Box>
         </MuiTypographyDiv>
       ),
-      order: 1,
-      className: "",
     },
     {
+      order: 2,
+      className: "",
       title: "帰納法と演繹法",
       sectionTitle: "ロジカルシンキング 2つの柱",
       sentence: (
@@ -187,10 +189,10 @@ const Chapter1SlideItemsData = () => {
           </Box>
         </MuiTypographyDiv>
       ),
-      order: 2,
-      className: "",
     },
     {
+      order: 3,
+      className: "",
       title: "帰納法の使い方を確認しましょう！",
       sectionTitle: "帰納法（1）",
       sentence: (
@@ -203,28 +205,33 @@ const Chapter1SlideItemsData = () => {
               <MuiTypographyBoldAccent>
                 「いくつかの情報や考えから共通するパターンを見つけて、結論を導き出す方法」
               </MuiTypographyBoldAccent>
-              と説明しましたが、
+              と説明しましたが、実際には結論の次にアクションが続くことが多いです。
               <br />
-              図で表すと、右の図のような構造になります。 実例としては、
+              図で表すと、右の図のような構造になります。
+              <br />
+              例を交えて解説しますね。 <br />
+              例えば、「収入を多く得るにはどうしたら良いか」という疑問があったとします。
               <Box p="16px">
                 「<MuiTypographyBold>東京都民の平均年収は高い</MuiTypographyBold>（情報A）」
                 <br />「<MuiTypographyBold>大阪府民の平均年収は高い</MuiTypographyBold>（情報B）」
                 <br />「<MuiTypographyBold>神奈川県民の平均年収は高い</MuiTypographyBold>（情報C）」
                 <br />
                 <KeyboardArrowDownIcon fontSize="large" />
-                <br />「<MuiTypographyBold>大都市圏の平均年収は高い</MuiTypographyBold>（共通するパターン）」
+                <br />「<MuiTypographyBold>大都市圏の平均年収は高い</MuiTypographyBold>（結論）」
                 <br />
-                <KeyboardArrowDownIcon fontSize="large" />
-                <br />「<MuiTypographyBold>収入を多く得るには大都市圏で生活した方が良い</MuiTypographyBold>（結論）」
+                <br />
+                となり、そして、この結論から「
+                <MuiTypographyBold>収入を多く得るには大都市圏で生活した方が良い</MuiTypographyBold>
+                」のようなアクションにつながります。
               </Box>
               <Typography variant="h6" textAlign="center">
-                といった感じになります。もう少し例を見ていきましょう。
+                もう少し例を見ていきましょう。
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <Box bgcolor="#f9fbe7" borderRadius="16px" p="16px" pb={0}>
                 <img
-                  src={require("../../../assets/images/charts/inductive03.png")}
+                  src={require("../../../assets/images/charts/inductive.png")}
                   alt="inductive chart"
                   style={{ width: "100%", height: "100%" }}
                 />
@@ -233,10 +240,10 @@ const Chapter1SlideItemsData = () => {
           </Grid>
         </MuiTypographyDiv>
       ),
-      order: 3,
-      className: "",
     },
     {
+      order: 4,
+      className: "",
       title: "帰納法の使い方を確認しましょう！",
       sectionTitle: "帰納法（2）",
       sentence: (
@@ -287,10 +294,10 @@ const Chapter1SlideItemsData = () => {
           </Grid>
         </MuiTypographyDiv>
       ),
-      order: 4,
-      className: "",
     },
     {
+      order: 5,
+      className: "",
       title,
       sectionTitle: "ここでスライドは終わりです",
       sentence: (
@@ -300,7 +307,7 @@ const Chapter1SlideItemsData = () => {
               <MuiTypographyDiv>
                 いかがでしょうか？何となくイメージはできるようになりましたか？
                 <br />
-                では、さっそく問題に挑戦してみましょう。
+                ここまでの内容をまとめましたので、サクッと確認して、問題に挑戦しましょう。
                 <br />
                 <br />
                 <MuiButton
@@ -320,8 +327,6 @@ const Chapter1SlideItemsData = () => {
           </Grid>
         </Box>
       ),
-      order: 5,
-      className: "",
     },
   ]);
   return { slideItems, setSlideItems };
