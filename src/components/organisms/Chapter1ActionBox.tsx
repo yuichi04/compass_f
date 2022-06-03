@@ -55,17 +55,10 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
             <Box
               className="fade_in"
               sx={{
-                position: "absolute",
-                bottom: "64px",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "80%",
                 display: "flex",
                 flexDirection: "column",
                 padding: "16px 32px",
-                bgcolor: "rgba(255,255,255,0.8)",
-                backdropFilter: "blur(3px)",
-                boxShadow: "0 0 6px rgba(255,255,255,0.8)",
+                bgcolor: "#e0f2f1",
                 borderRadius: "8px",
                 animationDelay: `${characterLinesCount + 1}s`, // キャラクターがセリフを言い終わってから1秒遅延させる
                 opacity: 0,

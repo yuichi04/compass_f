@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Box } from "@mui/material";
+import styled from "styled-components";
 import { BackgroundImage } from "../../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
@@ -12,20 +12,6 @@ import {
 } from "../../../lib/redux/features/chapter1Slice";
 import { Balloon, FadeInTypography } from "../../atoms";
 import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result } from "../../organisms";
-
-const styles = {
-  character: {
-    position: "absolute",
-    top: 0,
-    left: "50%",
-    transform: "translateX(-50%)",
-  },
-  container: {
-    height: "100%",
-    background: `url(${BackgroundImage.dayoffice}) no-repeat center`,
-    backgroundSize: "cover",
-  },
-};
 
 const Scene: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
@@ -56,7 +42,6 @@ const Scene: React.FC = React.memo(() => {
           const timer = setTimeout(() => dispatch(setResultAction(true)), auto.displayTime * 1000);
           return () => clearTimeout(timer);
         }
-
         // タイマーをリセット
         return () => clearTimeout(display);
       }
@@ -71,23 +56,23 @@ const Scene: React.FC = React.memo(() => {
 
   return (
     <>
-      <Box
-        className="expand_center"
-        sx={{
-          position: "relative",
-          overflow: "hidden",
-          height: "calc(100vh - 64px)",
-        }}
-      >
-        <Grid container sx={styles.container}>
-          <Grid item xs={3} sx={{ position: "relative" }}>
-            <TooltipBar />
-          </Grid>
-          <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
-            <Chapter1ActionBox />
-          </Grid>
-          <Grid item xs={3} sx={{ zIndex: 1, position: "relative" }}>
-            <Box sx={{ position: "absolute", left: "-50%", top: "32px", pr: "32px" }}>
+      <SChapter1 className="expand_center">
+        <STooltipBar>
+          <TooltipBar />
+        </STooltipBar>
+        <SActionBox>
+          <Chapter1ActionBox />
+        </SActionBox>
+        <SCharacter>
+          <SCharacterImage>
+            {characterImage && (
+              <img
+                style={{ minHeight: "200%" }}
+                src={require(`../../../assets/images/characters/guide/${characterImage}`)}
+                alt="character"
+              />
+            )}
+            <SBalloon>
               {isOpenBalloon && (
                 <Balloon>
                   {characterLines.map((line, index) => (
@@ -97,19 +82,53 @@ const Scene: React.FC = React.memo(() => {
                   ))}
                 </Balloon>
               )}
-            </Box>
-          </Grid>
-        </Grid>
-        <Box sx={styles.character}>
-          {characterImage && (
-            <img src={require(`../../../assets/images/characters/guide/${characterImage}`)} alt="character" />
-          )}
-        </Box>
+            </SBalloon>
+          </SCharacterImage>
+        </SCharacter>
         <Chapter1Result />
-      </Box>
+      </SChapter1>
       <SlideList />
     </>
   );
 });
 
 export default Scene;
+
+const SChapter1 = styled.div`
+  position: relative;
+  overflow: hidden;
+  height: calc(100vh - 64px);
+  background: url(${BackgroundImage.dayoffice}) no-repeat center;
+  background-size: cover;
+`;
+const STooltipBar = styled.div`
+  position: absolute;
+  top: 16px;
+  left: 16px;
+`;
+const SActionBox = styled.div`
+  z-index: 999;
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
+  transform: translateX(-50%);
+  min-width: 600px;
+`;
+const SCharacter = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+`;
+const SCharacterImage = styled.div`
+  position: relative;
+  height: 100%;
+`;
+const SBalloon = styled.div`
+  position: absolute;
+  right: 25%;
+  top: 3%;
+  transform: translateX(100%);
+  max-width: 400px;
+`;

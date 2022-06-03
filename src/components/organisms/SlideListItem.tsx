@@ -28,6 +28,12 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
   const sceneId = selector.id;
   const isStart = selector.isStart;
 
+  // シーンをセットして、スライドを閉じる
+  const handleClickStartQuiz = () => {
+    dispatch(setSceneAction(sceneId));
+    dispatch(setSlideListAction(false));
+  };
+
   return (
     <SContainer className={className}>
       <SInner>
@@ -35,7 +41,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           <SHeaderInner>
             <IconButton
               sx={{ position: "absolute", right: "16px", top: "16px", zIndex: "999" }}
-              onClick={() => (isStart ? dispatch(setSlideListAction(false)) : dispatch(setSceneAction(sceneId)))}
+              onClick={() => (isStart ? dispatch(setSlideListAction(false)) : handleClickStartQuiz())}
             >
               <CancelIcon fontSize="large" />
             </IconButton>
@@ -51,11 +57,11 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           {children}
           {order === last && (
             <Box position="relative" height="100%">
-              <Box position="absolute" top="35%" left="50%" sx={{ transform: "translate(-50%, -50%)" }} width="400px">
+              <Box position="absolute" top="35%" left="50%" sx={{ transform: "translate(-50%, -50%)" }}>
                 <MuiButton
                   variant="contained"
                   color="primary"
-                  onClick={() => (isStart ? dispatch(setSlideListAction(false)) : dispatch(setSceneAction(sceneId)))}
+                  onClick={() => (isStart ? dispatch(setSlideListAction(false)) : handleClickStartQuiz())}
                   fullWidth
                 >
                   {isStart ? "問題に戻る" : "問題に挑戦"}

@@ -34,7 +34,6 @@ export const chapter1Slice = createSlice({
       state.id = action.payload + 1;
       state.isOpenBalloon = false;
       state.isOpenActionBox = false;
-      state.isOpenSlideList = false;
       state.isStart = true;
       const newScene = chapter1QuestionItems.find((item) => item.id === state.id);
       if (newScene) {
