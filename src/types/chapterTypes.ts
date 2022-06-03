@@ -1,9 +1,11 @@
 export type Chapter1QuestionType = {
   userAnswerList: {
     id: number;
+    questions: string[];
     answer: string;
   }[];
   sceneCount: number;
+  isStart: boolean;
   isOpenActionBox: boolean;
   isOpenResult: boolean;
   isOpenSlideList: boolean;

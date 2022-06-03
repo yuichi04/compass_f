@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Box, Modal } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { BackgroundImage } from "../../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
@@ -10,8 +10,8 @@ import {
   setResultAction,
   setActionBoxAction,
 } from "../../../lib/redux/features/chapter1Slice";
-import { Balloon, FadeInTypography, LinkTo, MuiButton } from "../../atoms";
-import { TooltipBar, SlideList, Chapter1UserOperationBox } from "../../organisms";
+import { Balloon, FadeInTypography } from "../../atoms";
+import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result } from "../../organisms";
 
 const styles = {
   character: {
@@ -35,8 +35,6 @@ const Scene: React.FC = React.memo(() => {
   const characterLines = selector.characterLines;
   const auto = selector.auto;
   const isOpenBalloon = selector.isOpenBalloon;
-  const isOpenResult = selector.isOpenResult;
-  const userAnswerList = selector.userAnswerList;
   const lastSceneId = selector.sceneCount;
 
   // シーンの切り替わりを検知
@@ -47,7 +45,7 @@ const Scene: React.FC = React.memo(() => {
     // 操作パネルを表示する
     dispatch(setActionBoxAction(true));
 
-    // 自動進行シーンの処理
+    // 自動進行シーンの切り替え処理
     if (auto) {
       // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後にシーンを切り替える
       if (auto.progress) {
@@ -59,6 +57,7 @@ const Scene: React.FC = React.memo(() => {
           return () => clearTimeout(timer);
         }
 
+        // タイマーをリセット
         return () => clearTimeout(display);
       }
     }
@@ -85,9 +84,9 @@ const Scene: React.FC = React.memo(() => {
             <TooltipBar />
           </Grid>
           <Grid item xs={6} sx={{ zIndex: 1, position: "relative" }}>
-            <Chapter1UserOperationBox />
+            <Chapter1ActionBox />
           </Grid>
-          <Grid item xs={3} sx={{ position: "relative", zIndex: 999 }}>
+          <Grid item xs={3} sx={{ zIndex: 1, position: "relative" }}>
             <Box sx={{ position: "absolute", left: "-50%", top: "32px", pr: "32px" }}>
               {isOpenBalloon && (
                 <Balloon>
@@ -106,33 +105,7 @@ const Scene: React.FC = React.memo(() => {
             <img src={require(`../../../assets/images/characters/guide/${characterImage}`)} alt="character" />
           )}
         </Box>
-        <Modal open={isOpenResult}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "80%",
-              height: "90vh",
-              bgcolor: "background.paper",
-              boxShadow: 12,
-              p: 4,
-              overflow: "scroll",
-            }}
-          >
-            <ul>
-              {userAnswerList.map((answer) => (
-                <li key={answer.id}>{answer.answer}</li>
-              ))}
-            </ul>
-            <LinkTo to="/">
-              <MuiButton variant="contained" color="primary">
-                終了する
-              </MuiButton>
-            </LinkTo>
-          </Box>
-        </Modal>
+        <Chapter1Result />
       </Box>
       <SlideList />
     </>

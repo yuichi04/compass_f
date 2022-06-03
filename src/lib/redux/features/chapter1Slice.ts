@@ -22,6 +22,7 @@ const initialState: InitialState = {
   isOpenBalloon: false,
   isOpenResult: false,
   isOpenSlideList: true,
+  isStart: false,
 };
 
 export const chapter1Slice = createSlice({
@@ -30,10 +31,11 @@ export const chapter1Slice = createSlice({
   reducers: {
     // シーンの切り替え処理
     setSceneAction: (state, action) => {
+      state.id = action.payload + 1;
       state.isOpenBalloon = false;
       state.isOpenActionBox = false;
       state.isOpenSlideList = false;
-      state.id = action.payload + 1;
+      state.isStart = true;
       const newScene = chapter1QuestionItems.find((item) => item.id === state.id);
       if (newScene) {
         state.characterLines = newScene.characterLines;
@@ -57,11 +59,15 @@ export const chapter1Slice = createSlice({
       state.characterImage = "guide_smile_a.png";
       // ユーザーの回答を配列に格納
       if (state.userAnswerList) {
-        const newUserAnswer = {
-          id: state.id,
-          answer: action.payload,
-        };
-        state.userAnswerList = [...state.userAnswerList, newUserAnswer];
+        const item = chapter1QuestionItems.find((item) => item.id === state.id);
+        if (item) {
+          const newUserAnswer = {
+            id: state.id,
+            questions: item.characterLines,
+            answer: action.payload,
+          };
+          state.userAnswerList = [...state.userAnswerList, newUserAnswer];
+        }
       }
     },
 

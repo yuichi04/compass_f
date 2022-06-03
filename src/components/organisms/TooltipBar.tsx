@@ -4,6 +4,8 @@ import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../lib/redux/hooks";
+import { setSlideListAction } from "../../lib/redux/features/chapter1Slice";
 
 const styles = {
   utilButtonBox: {
@@ -21,6 +23,7 @@ const styles = {
 
 const TooltipBar: React.FC = React.memo(() => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   return (
     <>
       <Box sx={styles.utilButtonBox}>
@@ -49,7 +52,7 @@ const TooltipBar: React.FC = React.memo(() => {
               transition: "0.2s",
               "&:hover": { bgcolor: "info.light", transform: "scale(1.075)" },
             }}
-            onClick={() => navigate("slide")}
+            onClick={() => dispatch(setSlideListAction(true))}
           >
             <AutoAwesomeMotionIcon fontSize="large" />
           </IconButton>

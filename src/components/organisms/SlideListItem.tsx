@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { chapter1Selector, setSceneAction } from "../../lib/redux/features/chapter1Slice";
+import { chapter1Selector, setSceneAction, setSlideListAction } from "../../lib/redux/features/chapter1Slice";
 import { MuiButton } from "../atoms";
 
 type Props = {
@@ -26,6 +26,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
   const dispatch = useAppDispatch();
   const selector = useAppSelector(chapter1Selector);
   const sceneId = selector.id;
+  const isStart = selector.isStart;
 
   return (
     <SContainer className={className}>
@@ -34,7 +35,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
           <SHeaderInner>
             <IconButton
               sx={{ position: "absolute", right: "16px", top: "16px", zIndex: "999" }}
-              onClick={() => dispatch(setSceneAction(sceneId))}
+              onClick={() => (isStart ? dispatch(setSlideListAction(false)) : dispatch(setSceneAction(sceneId)))}
             >
               <CancelIcon fontSize="large" />
             </IconButton>
@@ -54,10 +55,10 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
                 <MuiButton
                   variant="contained"
                   color="primary"
-                  onClick={() => dispatch(setSceneAction(sceneId))}
+                  onClick={() => (isStart ? dispatch(setSlideListAction(false)) : dispatch(setSceneAction(sceneId)))}
                   fullWidth
                 >
-                  問題に挑戦
+                  {isStart ? "問題に戻る" : "問題に挑戦"}
                 </MuiButton>
               </Box>
               <Box position="absolute" right="-200px" top="-128px">
