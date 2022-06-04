@@ -10,6 +10,7 @@ const initialState: InitialState = {
   characterLines: [],
   characterImage: "",
   sampleAnswer: "",
+  sampleCommonFactor: "",
   action: "",
   actionValue: "",
   auto: {
@@ -17,12 +18,15 @@ const initialState: InitialState = {
     displayTime: 0,
   },
   userAnswerList: [],
-  sceneCount: chapter1QuestionItems.length,
+  answer: "",
+  commonFactor: "",
+  lastSceneId: chapter1QuestionItems.length,
   isOpenActionBox: false,
   isOpenBalloon: false,
   isOpenResult: false,
   isOpenSlideList: true,
   isStart: false,
+  isFullCommonFactor: false,
 };
 
 export const chapter1Slice = createSlice({
@@ -34,6 +38,7 @@ export const chapter1Slice = createSlice({
       state.id = action.payload + 1;
       state.isOpenBalloon = false;
       state.isOpenActionBox = false;
+      state.isFullCommonFactor = false;
       state.isStart = true;
       const newScene = chapter1QuestionItems.find((item) => item.id === state.id);
       if (newScene) {
@@ -41,32 +46,50 @@ export const chapter1Slice = createSlice({
         state.characterImage = newScene.characterImage;
         state.action = newScene.action;
         state.actionValue = newScene.actionValue;
-        state.sampleAnswer = newScene.sampleAnswer;
         state.auto = newScene.auto;
+        state.sampleCommonFactor = newScene.sampleCommonFactor;
+        state.sampleAnswer = newScene.sampleAnswer;
       }
     },
 
-    // 表示する回答を生成
+    // ユーザーの回答に対するレスポンスを生成
     setAnswerAction: (state, action) => {
-      state.characterLines = [
-        `あなたの回答は「${action.payload}」ですね。`,
-        `わたしの回答は「${state.sampleAnswer}」です。`,
-        "理由はLorem ipsum dolor sit, amet consectetur adipisicing elit. Ut, dolor totam. Consequatur fugit, voluptate pariatur totam, id odit reiciendis possimus non, doloremque quae doloribus voluptatem maiores placeat minus illum iureです!",
-      ];
-      state.action = "button";
-      state.actionValue = "次の問題に進む";
-      state.characterImage = "guide_smile_a.png";
-      // ユーザーの回答を配列に格納
-      if (state.userAnswerList) {
+      if (state.isFullCommonFactor) {
+        state.answer = action.payload;
+        state.characterLines = [
+          `結論は「${state.answer}」ですね。`,
+          `この問題の回答例は「${state.sampleAnswer}」です。`,
+        ];
+        state.action = "button";
+        state.actionValue = "次の問題に進む";
+        state.characterImage = "guide_smile_a.png";
+
+        // ユーザーの回答を格納
+        // 現在のシーンIDと一致するデータを取得
         const item = chapter1QuestionItems.find((item) => item.id === state.id);
         if (item) {
           const newUserAnswer = {
             id: state.id,
             questions: item.characterLines,
-            answer: action.payload,
+            commonFactor: state.commonFactor,
+            answer: state.answer,
+            sampleCommonFactor: state.sampleCommonFactor,
+            sampleAnswer: state.sampleAnswer,
           };
           state.userAnswerList = [...state.userAnswerList, newUserAnswer];
+        } else {
+          console.log("サンプルデータが存在しません。");
         }
+      } else {
+        state.commonFactor = action.payload;
+        state.characterLines = [
+          `「${state.commonFactor}」ですね。`,
+          `この問題の回答例は「${state.sampleCommonFactor}」です。`,
+          "それでは次に、このことから導き出される結論を述べてください。",
+        ];
+        state.action = "textField";
+        state.actionValue = "ここに入力してください";
+        state.isFullCommonFactor = true;
       }
     },
 

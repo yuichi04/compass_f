@@ -24,7 +24,7 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
 
-  // 回答の入力
+  // 回答を入力
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAnswer(e.target.value);
   };
@@ -35,6 +35,10 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
     if (answer === "") return false;
     setAnswer("");
     // TODO:ユーザーの回答をサーバーに送信する
+    // dispatch(setBalloonAction(false));
+    // dispatch(setActionBoxAction(false));
+    // dispatch(setAnswerAction(answer));
+    // dispatch(hideLoadingAction());
     // サーバーからレスポンスが返ってくるまでローディングを表示する
     // 下のコードはテスト用
     const loading = () => {
@@ -80,6 +84,7 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
                       margin="none"
                       label={actionValue}
                       variant="standard"
+                      autoFocus
                     />
                     <div className="module-spacer-sm" />
                     <MuiButton variant="contained" color="primary" fullWidth type="submit">

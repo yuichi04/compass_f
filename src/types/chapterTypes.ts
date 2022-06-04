@@ -1,19 +1,31 @@
+export type SceneId = number;
+export type CommonFactor = string;
+export type Answer = string;
+export type SampleCommonFactor = string;
+export type SampleAnswer = string;
+
 export type Chapter1QuestionType = {
   userAnswerList: {
-    id: number;
+    id: SceneId;
     questions: string[];
-    answer: string;
+    answer: Answer;
+    commonFactor: CommonFactor;
+    sampleCommonFactor: SampleCommonFactor;
+    sampleAnswer: SampleAnswer;
   }[];
-  sceneCount: number;
+  lastSceneId: number;
   isStart: boolean;
   isOpenActionBox: boolean;
   isOpenResult: boolean;
   isOpenSlideList: boolean;
   isOpenBalloon?: boolean;
+  isFullCommonFactor: boolean;
+  commonFactor: CommonFactor;
+  answer: Answer;
 };
 
 export type Chapter1QuestionItemType = {
-  id: number;
+  id: SceneId;
   action: "button" | "textField" | "";
   actionValue: string;
   auto?: {
@@ -22,5 +34,6 @@ export type Chapter1QuestionItemType = {
   };
   characterLines: string[];
   characterImage: string;
-  sampleAnswer?: string;
+  sampleCommonFactor: SampleCommonFactor;
+  sampleAnswer: SampleAnswer;
 };

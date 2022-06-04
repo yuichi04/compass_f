@@ -2,20 +2,13 @@ import { Typography } from "@mui/material";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-type StyleProps = {
-  background?: string;
-};
-
 type Props = {
   children: React.ReactNode;
-  title?: string;
-} & StyleProps;
+};
 
-const Balloon: React.FC<Props> = React.memo(({ children, ...props }) => {
-  const { title, background } = props;
+const Balloon: React.FC<Props> = React.memo(({ children }) => {
   return (
-    <SBalloon background={background}>
-      {title && <Typography variant="h6">{title}</Typography>}
+    <SBalloon>
       <Typography fontWeight={600} component="div" color="text.secondary">
         {children}
       </Typography>
@@ -36,10 +29,10 @@ const fadeInAnime = keyframes`
 
 `;
 
-const SBalloon = styled.div<StyleProps>`
+const SBalloon = styled.div`
   position: relative;
   background: #fff;
-  box-shadow: 0 2px 6px #ccc;
+  box-shadow: 0 0 24px #bbb;
   border-radius: 24px;
   padding: 16px;
   text-align: center;
@@ -58,7 +51,7 @@ const SBalloon = styled.div<StyleProps>`
     height: 12px;
     bottom: -12px;
     background: #fff;
-    box-shadow: 0 2px 6px #999;
+    box-shadow: 0 0 24px #bbb;
     border-radius: 50%;
   }
 
@@ -69,7 +62,7 @@ const SBalloon = styled.div<StyleProps>`
     width: 20px;
     height: 18px;
     background: #fff;
-    box-shadow: 0 2px 6px #999;
+    box-shadow: 0 0 24px #bbb;
     bottom: -6px;
     border-radius: 50%;
   }

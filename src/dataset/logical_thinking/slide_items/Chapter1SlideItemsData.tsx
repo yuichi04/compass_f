@@ -303,7 +303,7 @@ const Chapter1SlideItemsData = () => {
           <MuiTypographyDiv>
             いかがでしょうか？何となくイメージはできるようになりましたか？
             <br />
-            次は問題に挑戦してみましょう。
+            それでは次は問題に挑戦してみましょう。
           </MuiTypographyDiv>
         </Box>
       ),

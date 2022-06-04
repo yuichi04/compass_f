@@ -21,7 +21,7 @@ const Scene: React.FC = React.memo(() => {
   const characterLines = selector.characterLines;
   const auto = selector.auto;
   const isOpenBalloon = selector.isOpenBalloon;
-  const lastSceneId = selector.sceneCount;
+  const lastSceneId = selector.lastSceneId;
 
   // シーンの切り替わりを検知
   useEffect(() => {

@@ -78,6 +78,7 @@ const SlideList: React.FC = React.memo(() => {
             height: "100%",
             width: "100%",
             background: "rgba(0,0,0,0.4)",
+            overflow: "hidden",
           }}
         >
           {slideItems.map((slideItem) => (
