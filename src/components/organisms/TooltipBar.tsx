@@ -14,9 +14,9 @@ const styles = {
     top: "8px",
     display: "flex",
     flexDirection: "column",
-    bgcolor: "rgba(0,0,0,0.3)",
+    bgcolor: "rgba(255,255,255,0.8)",
     backdropFilter: "blur(10px)",
-    padding: "12px",
+    padding: "24px 12px",
     borderRadius: "12px",
   },
 };
@@ -27,7 +27,7 @@ const TooltipBar: React.FC = React.memo(() => {
   return (
     <>
       <Box sx={styles.utilButtonBox}>
-        <Tooltip title="ヒントを見る" placement="right-start">
+        {/* <Tooltip title="ヒントを見る" placement="right-start">
           <IconButton
             sx={{
               bgcolor: "warning.light",
@@ -41,23 +41,23 @@ const TooltipBar: React.FC = React.memo(() => {
           >
             <LightbulbIcon fontSize="large" />
           </IconButton>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip title="スライドを確認する" placement="right-start">
           <IconButton
             sx={{
-              bgcolor: "info.light",
+              bgcolor: "primary.main",
               color: "#fff",
               borderRadius: "8px",
-              mb: "16px",
+              // mb: "16px",
               transition: "0.2s",
-              "&:hover": { bgcolor: "info.light", transform: "scale(1.075)" },
+              "&:hover": { bgcolor: "primary.main", transform: "scale(1.075)" },
             }}
             onClick={() => dispatch(setSlideListAction(true))}
           >
             <AutoAwesomeMotionIcon fontSize="large" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="メモを書く" placement="right-start">
+        {/* <Tooltip title="メモを書く" placement="right-start">
           <IconButton
             sx={{
               bgcolor: "error.light",
@@ -70,7 +70,7 @@ const TooltipBar: React.FC = React.memo(() => {
           >
             <BorderColorIcon fontSize="large" />
           </IconButton>
-        </Tooltip>
+        </Tooltip> */}
       </Box>
     </>
   );

@@ -5,6 +5,7 @@ export type SampleCommonFactor = string;
 export type SampleAnswer = string;
 
 export type Chapter1QuestionType = {
+  id: number;
   userAnswerList: {
     id: SceneId;
     questions: string[];
@@ -25,13 +26,14 @@ export type Chapter1QuestionType = {
 };
 
 export type Chapter1QuestionItemType = {
-  id: SceneId;
+  // id: SceneId;
   action: "button" | "textField" | "";
   actionValue: string;
   auto?: {
     progress: boolean;
     displayTime: number;
   };
+  isClickToContinue: boolean;
   characterLines: string[];
   characterImage: string;
   sampleCommonFactor: SampleCommonFactor;

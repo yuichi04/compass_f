@@ -62,9 +62,10 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "16px 32px",
-                bgcolor: "#e0f2f1",
+                bgcolor: "rgba(255,255,255,0.8)",
+                backdropFilter: "blur(10px)",
                 borderRadius: "8px",
-                animationDelay: `${characterLinesCount + 1}s`, // キャラクターがセリフを言い終わってから1秒遅延させる
+                animationDelay: `${characterLinesCount / 2 + characterLinesCount + 0.5}s`, // キャラクターがセリフを言い終わってから1秒遅延させる
                 opacity: 0,
               }}
             >

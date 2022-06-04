@@ -25,7 +25,7 @@ const CourseCardList: React.FC = React.memo(() => {
           color="primary"
         />
       </Grid>
-      <Grid item xs={4}>
+      {/* <Grid item xs={4}>
         <CourseCard
           link="/lesson/index"
           image={Icons.user06}
@@ -46,7 +46,7 @@ const CourseCardList: React.FC = React.memo(() => {
           text="※実装予定"
           color="primary"
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 });

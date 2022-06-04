@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { Box } from "@mui/material";
 import { BackgroundImage } from "../../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
@@ -15,13 +16,14 @@ import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result } from "../../
 
 const Scene: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
-  const selector = useAppSelector(chapter1Selector);
-  const sceneId = selector.id;
-  const characterImage = selector.characterImage;
-  const characterLines = selector.characterLines;
-  const auto = selector.auto;
-  const isOpenBalloon = selector.isOpenBalloon;
-  const lastSceneId = selector.lastSceneId;
+  const chapter1 = useAppSelector(chapter1Selector);
+  const sceneId = chapter1.id;
+  const characterImage = chapter1.characterImage;
+  const characterLines = chapter1.characterLines;
+  const auto = chapter1.auto;
+  const isOpenBalloon = chapter1.isOpenBalloon;
+  const isClickToContinue = chapter1.isClickToContinue;
+  const lastSceneId = chapter1.lastSceneId;
 
   // シーンの切り替わりを検知
   useEffect(() => {
@@ -63,28 +65,36 @@ const Scene: React.FC = React.memo(() => {
         <SActionBox>
           <Chapter1ActionBox />
         </SActionBox>
-        <SCharacter>
-          <SCharacterImage>
-            {characterImage && (
-              <img
-                style={{ minHeight: "200%" }}
-                src={require(`../../../assets/images/characters/guide/${characterImage}`)}
-                alt="character"
-              />
-            )}
-            <SBalloon>
-              {isOpenBalloon && (
-                <Balloon>
-                  {characterLines.map((line, index) => (
-                    <FadeInTypography delay={index} key={index}>
-                      {line}
-                    </FadeInTypography>
-                  ))}
-                </Balloon>
+        <Box
+          width="100%"
+          height="100%"
+          sx={{ cursor: "pointer" }}
+          onClick={() => isClickToContinue && dispatch(setSceneAction(sceneId))}
+        >
+          <SCharacter>
+            <SCharacterImage>
+              {characterImage && (
+                <img
+                  className="fade_in"
+                  style={{ minHeight: "200%" }}
+                  src={require(`../../../assets/images/characters/${characterImage}`)}
+                  alt="character"
+                />
               )}
-            </SBalloon>
-          </SCharacterImage>
-        </SCharacter>
+              <SBalloon>
+                {isOpenBalloon && (
+                  <Balloon>
+                    {characterLines.map((line, index) => (
+                      <FadeInTypography delay={index} key={index}>
+                        {line}
+                      </FadeInTypography>
+                    ))}
+                  </Balloon>
+                )}
+              </SBalloon>
+            </SCharacterImage>
+          </SCharacter>
+        </Box>
         <Chapter1Result />
       </SChapter1>
       <SlideList />
@@ -98,7 +108,7 @@ const SChapter1 = styled.div`
   position: relative;
   overflow: hidden;
   height: calc(100vh - 64px);
-  background: url(${BackgroundImage.dayoffice}) no-repeat center;
+  background: #000 url(${BackgroundImage.dayoffice}) no-repeat center;
   background-size: cover;
 `;
 const STooltipBar = styled.div`

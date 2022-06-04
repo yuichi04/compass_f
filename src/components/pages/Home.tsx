@@ -41,7 +41,7 @@ const Home: React.FC = React.memo(() => {
                     image={Icons.user02}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                {/* <Grid item xs={6}>
                   <CourseCard
                     course="説明方法"
                     grade="初級編"
@@ -51,17 +51,17 @@ const Home: React.FC = React.memo(() => {
                     text={<>相手のレベルに合わせたわかりやすい説明ができるようになります</>}
                     image={Icons.user07}
                   />
-                </Grid>
+                </Grid> */}
               </Grid>
             </Box>
-            <Box sx={{ mb: "64px", color: "#444" }}>
+            {/* <Box sx={{ mb: "64px", color: "#444" }}>
               <Box sx={{ mb: "64px", color: "#444" }}>
                 <IconWithSectionTitle title="前回の続き" icon={BookmarkIcon} iconColor="primary" />
                 <CourseCardList />
               </Box>
               <IconWithSectionTitle title="学習中のコース" icon={BookmarkIcon} iconColor="primary" />
               <CourseCardList />
-            </Box>
+            </Box> */}
           </Grid>
           <Grid item xs={3}>
             <Box sx={{ mb: "64px" }}>

@@ -15,10 +15,10 @@ const LessonMain: React.FC = React.memo(() => {
         <IconWithSectionTitle title="ロジカルシンキング編" icon={MenuBookIcon} iconColor="primary" />
         <CourseCardList />
       </Box>
-      <Box sx={{ mb: "64px", color: "#444" }}>
+      {/* <Box sx={{ mb: "64px", color: "#444" }}>
         <IconWithSectionTitle title="伝わりやすい説明編" icon={BookmarkIcon} iconColor="primary" />
         <CourseCardList />
-      </Box>
+      </Box> */}
     </MuiContainer>
   );
 });

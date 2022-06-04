@@ -28,52 +28,6 @@ const Chapter1Result: React.FC = React.memo(() => {
             <Grid container height="calc(100% - 64px)">
               <Grid item xs={5.8} height="100%" textAlign="center" overflow="scroll" sx={{ wordBreak: "break-word" }}>
                 <Typography textAlign="center" variant="h6" mb="8px">
-                  {username}さんの回答
-                </Typography>
-                {userAnswerList.map((item, index) => (
-                  <SAnswerItem key={item.id}>
-                    <Typography variant="h6" fontWeight={600} mb="8px">
-                      第{index + 1}問
-                    </Typography>
-                    <SItemAnswerSubTitle>
-                      <Typography variant="subtitle1" fontWeight={600}>
-                        問題
-                      </Typography>
-                    </SItemAnswerSubTitle>
-                    <SItemInner>
-                      {item.questions.map((question) => (
-                        <Typography key={question} component="li">
-                          {question}
-                        </Typography>
-                      ))}
-                    </SItemInner>
-                    <SItemAnswerSubTitle>
-                      <Typography variant="subtitle1" fontWeight={600}>
-                        回答例
-                      </Typography>
-                    </SItemAnswerSubTitle>
-                    <SItemInner>
-                      <Typography component="dl" mb="16px">
-                        <Typography variant="subtitle1" fontWeight={600} component="dt">
-                          結論
-                        </Typography>
-                        <Typography component="dd">{item.answer}</Typography>
-                      </Typography>
-                      <Typography component="dl">
-                        <Typography variant="subtitle1" fontWeight={600} component="dt">
-                          共通するパターン
-                        </Typography>
-                        <Typography component="dd">{item.commonFactor}</Typography>
-                      </Typography>
-                    </SItemInner>
-                  </SAnswerItem>
-                ))}
-              </Grid>
-              <Grid item xs={0.4} display="flex" alignItems="center" justifyContent="center">
-                <Divider orientation="vertical" />
-              </Grid>
-              <Grid item xs={5.8} height="100%" textAlign="center" overflow="scroll" sx={{ wordBreak: "break-word" }}>
-                <Typography textAlign="center" variant="h6" mb="8px">
                   回答例
                 </Typography>
                 {userAnswerList.map((item, index) => (
@@ -113,6 +67,52 @@ const Chapter1Result: React.FC = React.memo(() => {
                       </Typography>
                     </SItemInner>
                   </SSampleAnswerItem>
+                ))}
+              </Grid>
+              <Grid item xs={0.4} display="flex" alignItems="center" justifyContent="center">
+                <Divider orientation="vertical" />
+              </Grid>{" "}
+              <Grid item xs={5.8} height="100%" textAlign="center" overflow="scroll" sx={{ wordBreak: "break-word" }}>
+                <Typography textAlign="center" variant="h6" mb="8px">
+                  {username}さんの回答
+                </Typography>
+                {userAnswerList.map((item, index) => (
+                  <SAnswerItem key={item.id}>
+                    <Typography variant="h6" fontWeight={600} mb="8px">
+                      第{index + 1}問
+                    </Typography>
+                    <SItemAnswerSubTitle>
+                      <Typography variant="subtitle1" fontWeight={600}>
+                        問題
+                      </Typography>
+                    </SItemAnswerSubTitle>
+                    <SItemInner>
+                      {item.questions.map((question) => (
+                        <Typography key={question} component="li">
+                          {question}
+                        </Typography>
+                      ))}
+                    </SItemInner>
+                    <SItemAnswerSubTitle>
+                      <Typography variant="subtitle1" fontWeight={600}>
+                        回答例
+                      </Typography>
+                    </SItemAnswerSubTitle>
+                    <SItemInner>
+                      <Typography component="dl" mb="16px">
+                        <Typography variant="subtitle1" fontWeight={600} component="dt">
+                          結論
+                        </Typography>
+                        <Typography component="dd">{item.answer}</Typography>
+                      </Typography>
+                      <Typography component="dl">
+                        <Typography variant="subtitle1" fontWeight={600} component="dt">
+                          共通するパターン
+                        </Typography>
+                        <Typography component="dd">{item.commonFactor}</Typography>
+                      </Typography>
+                    </SItemInner>
+                  </SAnswerItem>
                 ))}
               </Grid>
             </Grid>
@@ -161,7 +161,7 @@ const SAnswerItem = styled.div`
 `;
 const SSampleAnswerItem = styled.div`
   ${SItemStyle}
-  background: #f9fbe7;
+  background: #eee;
 `;
 
 const SItemAnswerSubTitle = styled.div`
@@ -170,7 +170,7 @@ const SItemAnswerSubTitle = styled.div`
 `;
 const SItemSampleAnswerSubTitle = styled.div`
   ${SItemSubTitleStyle}
-  background: #f0f4c3;
+  background: #ccc;
 `;
 const SItemInner = styled.ul`
   padding: 16px;

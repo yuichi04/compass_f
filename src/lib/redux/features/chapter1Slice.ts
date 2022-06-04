@@ -27,6 +27,7 @@ const initialState: InitialState = {
   isOpenSlideList: true,
   isStart: false,
   isFullCommonFactor: false,
+  isClickToContinue: false,
 };
 
 export const chapter1Slice = createSlice({
@@ -40,7 +41,7 @@ export const chapter1Slice = createSlice({
       state.isOpenActionBox = false;
       state.isFullCommonFactor = false;
       state.isStart = true;
-      const newScene = chapter1QuestionItems.find((item) => item.id === state.id);
+      const newScene = chapter1QuestionItems.find((item, index) => index + 1 === state.id);
       if (newScene) {
         state.characterLines = newScene.characterLines;
         state.characterImage = newScene.characterImage;
@@ -49,6 +50,7 @@ export const chapter1Slice = createSlice({
         state.auto = newScene.auto;
         state.sampleCommonFactor = newScene.sampleCommonFactor;
         state.sampleAnswer = newScene.sampleAnswer;
+        state.isClickToContinue = newScene.isClickToContinue;
       }
     },
 
@@ -66,7 +68,7 @@ export const chapter1Slice = createSlice({
 
         // ユーザーの回答を格納
         // 現在のシーンIDと一致するデータを取得
-        const item = chapter1QuestionItems.find((item) => item.id === state.id);
+        const item = chapter1QuestionItems.find((item, index) => index + 1 === state.id);
         if (item) {
           const newUserAnswer = {
             id: state.id,
