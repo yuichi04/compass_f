@@ -17,9 +17,9 @@ export type Chapter1QuestionType = {
   lastSceneId: number;
   isStart: boolean;
   isOpenActionBox: boolean;
+  isOpenBalloon?: boolean;
   isOpenResult: boolean;
   isOpenSlideList: boolean;
-  isOpenBalloon?: boolean;
   isFullCommonFactor: boolean;
   commonFactor: CommonFactor;
   answer: Answer;
@@ -33,9 +33,19 @@ export type Chapter1QuestionItemType = {
     progress: boolean;
     displayTime: number;
   };
+  isOpenDocument: boolean;
   isClickToContinue: boolean;
   characterLines: string[];
-  characterImage: string;
+  characterImage: {
+    src: string;
+    role: "user" | "guide" | "customer" | "";
+  };
   sampleCommonFactor: SampleCommonFactor;
   sampleAnswer: SampleAnswer;
+  questions: string[];
+  response: {
+    role: "user" | "guide" | "customer" | "";
+    lines: string[];
+    image: string;
+  };
 };

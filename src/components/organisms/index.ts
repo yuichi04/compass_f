@@ -14,3 +14,4 @@ export { default as SlideList } from "./SlideList";
 export { default as SlideListItem } from "./SlideListItem";
 export { default as Chapter1ActionBox } from "./Chapter1ActionBox";
 export { default as Chapter1Result } from "./Chapter1Result";
+export { default as Chapter1Document } from "./Chapter1Document";

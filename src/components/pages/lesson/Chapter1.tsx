@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { BackgroundImage } from "../../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
@@ -12,7 +13,7 @@ import {
   setActionBoxAction,
 } from "../../../lib/redux/features/chapter1Slice";
 import { Balloon, FadeInTypography } from "../../atoms";
-import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result } from "../../organisms";
+import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result, Chapter1Document } from "../../organisms";
 
 const Scene: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
@@ -73,14 +74,29 @@ const Scene: React.FC = React.memo(() => {
         >
           <SCharacter>
             <SCharacterImage>
-              {characterImage && (
-                <img
-                  className="fade_in"
-                  style={{ minHeight: "200%" }}
-                  src={require(`../../../assets/images/characters/${characterImage}`)}
-                  alt="character"
-                />
-              )}
+              {characterImage.src &&
+                (characterImage.role === "user" ? (
+                  <Box className="fade_in" width="700px" textAlign="center" pt="30%" sx={{ opacity: 0 }}>
+                    <img
+                      className="scale_up-down"
+                      style={{
+                        width: "240px",
+                        background: "#fff",
+                        borderRadius: "100%",
+                        padding: "32px",
+                      }}
+                      src={require(`../../../assets/images/characters/${characterImage.src}`)}
+                      alt="user"
+                    />
+                  </Box>
+                ) : (
+                  <img
+                    className="fade_in"
+                    style={{ minHeight: "200%" }}
+                    src={require(`../../../assets/images/characters/${characterImage.src}`)}
+                    alt="character"
+                  />
+                ))}
               <SBalloon>
                 {isOpenBalloon && (
                   <Balloon>
@@ -89,12 +105,23 @@ const Scene: React.FC = React.memo(() => {
                         {line}
                       </FadeInTypography>
                     ))}
+                    {isClickToContinue && (
+                      <FadeInTypography delay={characterLines.length - 0.5}>
+                        <Box className="up_down" display="flex" alignItems="center" justifyContent="flex-end">
+                          <Typography variant="body2" fontWeight={600} color="primary.light">
+                            次へ
+                          </Typography>
+                          <ArrowRightIcon color="primary" />
+                        </Box>
+                      </FadeInTypography>
+                    )}
                   </Balloon>
                 )}
               </SBalloon>
             </SCharacterImage>
           </SCharacter>
         </Box>
+        <Chapter1Document />
         <Chapter1Result />
       </SChapter1>
       <SlideList />

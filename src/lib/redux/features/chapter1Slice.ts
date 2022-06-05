@@ -7,27 +7,37 @@ type InitialState = Chapter1QuestionType & Chapter1QuestionItemType;
 
 const initialState: InitialState = {
   id: 0,
-  characterLines: [],
-  characterImage: "",
-  sampleAnswer: "",
-  sampleCommonFactor: "",
-  action: "",
-  actionValue: "",
   auto: {
     progress: false,
     displayTime: 0,
   },
-  userAnswerList: [],
+  action: "",
+  actionValue: "",
   answer: "",
+  characterLines: [],
+  characterImage: {
+    src: "",
+    role: "",
+  },
   commonFactor: "",
-  lastSceneId: chapter1QuestionItems.length,
   isOpenActionBox: false,
   isOpenBalloon: false,
+  isOpenDocument: false,
   isOpenResult: false,
   isOpenSlideList: true,
   isStart: false,
   isFullCommonFactor: false,
   isClickToContinue: false,
+  lastSceneId: chapter1QuestionItems.length,
+  questions: [],
+  response: {
+    role: "",
+    lines: [],
+    image: "",
+  },
+  sampleAnswer: "",
+  sampleCommonFactor: "",
+  userAnswerList: [],
 };
 
 export const chapter1Slice = createSlice({
@@ -51,6 +61,7 @@ export const chapter1Slice = createSlice({
         state.sampleCommonFactor = newScene.sampleCommonFactor;
         state.sampleAnswer = newScene.sampleAnswer;
         state.isClickToContinue = newScene.isClickToContinue;
+        state.isOpenDocument = newScene.isOpenDocument;
       }
     },
 
@@ -58,27 +69,33 @@ export const chapter1Slice = createSlice({
     setAnswerAction: (state, action) => {
       if (state.isFullCommonFactor) {
         state.answer = action.payload;
-        state.characterLines = [
-          `結論は「${state.answer}」ですね。`,
-          `この問題の回答例は「${state.sampleAnswer}」です。`,
-        ];
-        state.action = "button";
-        state.actionValue = "次の問題に進む";
-        state.characterImage = "guide_smile_a.png";
-
-        // ユーザーの回答を格納
-        // 現在のシーンIDと一致するデータを取得
         const item = chapter1QuestionItems.find((item, index) => index + 1 === state.id);
+
+        // 相手キャラクターの締めセリフを生成
         if (item) {
-          const newUserAnswer = {
-            id: state.id,
-            questions: item.characterLines,
-            commonFactor: state.commonFactor,
-            answer: state.answer,
-            sampleCommonFactor: state.sampleCommonFactor,
-            sampleAnswer: state.sampleAnswer,
-          };
-          state.userAnswerList = [...state.userAnswerList, newUserAnswer];
+          state.characterLines = [`なるほど、「${state.answer}」ですね。`];
+          // 相手のセリフデータ取得し格納
+          item.response.lines.forEach((line) => {
+            state.characterLines = [...state.characterLines, line];
+          });
+          state.action = "button";
+          state.actionValue = "電話を切る";
+          state.characterImage.src = item.response.image;
+          state.characterImage.role = item.response.role;
+
+          if (item.questions) {
+            // ユーザーの回答を格納
+            // 現在のシーンIDと一致するデータを取得
+            const newUserAnswer = {
+              id: state.id,
+              questions: item.questions,
+              commonFactor: state.commonFactor,
+              answer: state.answer,
+              sampleCommonFactor: state.sampleCommonFactor,
+              sampleAnswer: state.sampleAnswer,
+            };
+            state.userAnswerList = [...state.userAnswerList, newUserAnswer];
+          }
         } else {
           console.log("サンプルデータが存在しません。");
         }
@@ -86,8 +103,8 @@ export const chapter1Slice = createSlice({
         state.commonFactor = action.payload;
         state.characterLines = [
           `「${state.commonFactor}」ですね。`,
-          `この問題の回答例は「${state.sampleCommonFactor}」です。`,
-          "それでは次に、このことから導き出される結論を述べてください。",
+          "それでは、最後にお客様に解決案を案内しましょう。",
+          "案内に正解はないです。あなたが最善だと思う解決案を案内してもらえれば大丈夫です。",
         ];
         state.action = "textField";
         state.actionValue = "ここに入力してください";
@@ -115,6 +132,11 @@ export const chapter1Slice = createSlice({
       state.isOpenBalloon = action.payload;
     },
 
+    // 資料の表示・非表示を管理
+    setDocumentAction: (state, action) => {
+      state.isOpenDocument = action.payload;
+    },
+
     // 初期化
     initializeSceneAction: () => {
       return { ...initialState };
@@ -131,6 +153,7 @@ export const {
   setActionBoxAction,
   setBalloonAction,
   setResultAction,
+  setDocumentAction,
 } = chapter1Slice.actions;
 // selector
 export const chapter1Selector = (state: RootState) => state.chapter1;

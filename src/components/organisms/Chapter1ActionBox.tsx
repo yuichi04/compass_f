@@ -89,7 +89,7 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
                     />
                     <div className="module-spacer-sm" />
                     <MuiButton variant="contained" color="primary" fullWidth type="submit">
-                      回答する
+                      決定
                     </MuiButton>
                   </form>
                 )

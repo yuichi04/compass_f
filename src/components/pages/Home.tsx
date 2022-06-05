@@ -41,17 +41,18 @@ const Home: React.FC = React.memo(() => {
                     image={Icons.user02}
                   />
                 </Grid>
-                {/* <Grid item xs={6}>
+                <Grid item xs={6}>
                   <CourseCard
                     course="説明方法"
                     grade="初級編"
                     link="/"
                     color="error"
                     title="伝わる話の組み立て方"
-                    text={<>相手のレベルに合わせたわかりやすい説明ができるようになります</>}
+                    text="実装予定"
+                    // text={<>相手のレベルに合わせたわかりやすい説明ができるようになります</>}
                     image={Icons.user07}
                   />
-                </Grid> */}
+                </Grid>
               </Grid>
             </Box>
             {/* <Box sx={{ mb: "64px", color: "#444" }}>

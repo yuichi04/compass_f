@@ -16,6 +16,60 @@
     clip-path: circle(100% at 50% 50%);
   }
 }
+
+.slide-up {
+  animation-name: slideUpAnime;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@keyframes slideUpAnime {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// scale up,down
+.scale_up-down {
+  animation-name: upDownScale;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes upDownScale {
+  0% {
+    transform: scale(0.99);
+    border: 4px solid #00aa99;
+  }
+  50% {
+    transform: scale(1);
+    border: 0px solid #00aa99;
+  }
+  100% {
+    transform: scale(0.99);
+    border: 4px solid #00aa99;
+  }
+}
+// up,down
+.up_down {
+  animation-name: upDownAnime;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes upDownAnime {
+  0% {
+    transform: translateY(-1px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(-1px);
+  }
+}
 // fade-in,out
 .fade_in {
   animation-name: fadeInAnime;

@@ -15,7 +15,7 @@ const FadeInTypography: React.FC<Props> = React.memo(({ children, ...props }) =>
   const { delay } = props;
   return (
     <SFadeInTypography delay={delay}>
-      <Typography fontWeight={600} component="p" variant="subtitle1">
+      <Typography fontWeight={600} component="div" variant="subtitle1">
         {children}
       </Typography>
     </SFadeInTypography>

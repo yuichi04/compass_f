@@ -1,10 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
-import { LinkTo } from "../atoms";
+import { Box, Divider, Grid, Typography } from "@mui/material";
+import { MuiButton } from "../atoms";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { chapter1Selector } from "../../lib/redux/features/chapter1Slice";
-import CancelIcon from "@mui/icons-material/Cancel";
 import { userSelector } from "../../lib/redux/features/userSlice";
 
 const Chapter1Result: React.FC = React.memo(() => {
@@ -18,18 +17,28 @@ const Chapter1Result: React.FC = React.memo(() => {
       {isOpenResult && (
         <SResult>
           <SInner className="expand_center">
-            <Box textAlign="right">
-              <LinkTo to="/">
-                <IconButton>
-                  <CancelIcon fontSize="large" />
-                </IconButton>
-              </LinkTo>
-            </Box>
-            <Grid container height="calc(100% - 64px)">
-              <Grid item xs={5.8} height="100%" textAlign="center" overflow="scroll" sx={{ wordBreak: "break-word" }}>
+            <Grid container height="calc(100% - 64px)" mb="32px">
+              <Grid item xs={5.8}>
                 <Typography textAlign="center" variant="h6" mb="8px">
                   回答例
                 </Typography>
+              </Grid>
+              <Grid item xs={0.4} display="flex" alignItems="center" justifyContent="center">
+                <Divider orientation="vertical" />
+              </Grid>
+              <Grid item xs={5.8}>
+                <Typography textAlign="center" variant="h6" mb="8px">
+                  {username}さんの回答
+                </Typography>
+              </Grid>
+              <Grid
+                item
+                xs={5.8}
+                height="calc(100% - 32px)"
+                textAlign="center"
+                overflow="scroll"
+                sx={{ wordBreak: "break-word" }}
+              >
                 {userAnswerList.map((item, index) => (
                   <SSampleAnswerItem key={item.id}>
                     <Typography variant="h6" fontWeight={600} mb="8px">
@@ -71,11 +80,15 @@ const Chapter1Result: React.FC = React.memo(() => {
               </Grid>
               <Grid item xs={0.4} display="flex" alignItems="center" justifyContent="center">
                 <Divider orientation="vertical" />
-              </Grid>{" "}
-              <Grid item xs={5.8} height="100%" textAlign="center" overflow="scroll" sx={{ wordBreak: "break-word" }}>
-                <Typography textAlign="center" variant="h6" mb="8px">
-                  {username}さんの回答
-                </Typography>
+              </Grid>
+              <Grid
+                item
+                xs={5.8}
+                height="calc(100% - 32px)"
+                textAlign="center"
+                overflow="scroll"
+                sx={{ wordBreak: "break-word" }}
+              >
                 {userAnswerList.map((item, index) => (
                   <SAnswerItem key={item.id}>
                     <Typography variant="h6" fontWeight={600} mb="8px">
@@ -110,12 +123,18 @@ const Chapter1Result: React.FC = React.memo(() => {
                           共通するパターン
                         </Typography>
                         <Typography component="dd">{item.commonFactor}</Typography>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit perspiciatis voluptatem nulla
+                        provident eius ipsam ex dolores unde cum totam quibusdam, ratione rerum incidunt quo ipsa
+                        perferendis optio, nisi architecto!
                       </Typography>
                     </SItemInner>
                   </SAnswerItem>
                 ))}
               </Grid>
             </Grid>
+            <Box textAlign="right">
+              <MuiButton variant="contained">次に進む</MuiButton>
+            </Box>
           </SInner>
         </SResult>
       )}
@@ -150,10 +169,9 @@ const SInner = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  height: 90%;
+  height: calc(100% - 64px);
   background: #fff;
-  padding: 16px 32px;
-  overflow: scroll;
+  padding: 32px;
 `;
 const SAnswerItem = styled.div`
   ${SItemStyle}

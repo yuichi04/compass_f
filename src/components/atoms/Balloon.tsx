@@ -35,7 +35,7 @@ const SBalloon = styled.div`
   box-shadow: 0 0 24px #bbb;
   border-radius: 24px;
   padding: 16px;
-  text-align: center;
+  text-align: left;
   animation-name: ${fadeInAnime};
   animation-duration: 2s;
   animation-fill-mode: forwards;

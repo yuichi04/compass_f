@@ -1,11 +1,10 @@
 import React from "react";
 import { IconButton, Tooltip, Box } from "@mui/material";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import { useNavigate } from "react-router-dom";
+import FindInPageIcon from "@mui/icons-material/FindInPage";
+import ArticleIcon from "@mui/icons-material/Article";
 import { useAppDispatch } from "../../lib/redux/hooks";
-import { setSlideListAction } from "../../lib/redux/features/chapter1Slice";
+import { setDocumentAction, setSlideListAction } from "../../lib/redux/features/chapter1Slice";
 
 const styles = {
   utilButtonBox: {
@@ -22,12 +21,26 @@ const styles = {
 };
 
 const TooltipBar: React.FC = React.memo(() => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   return (
     <>
       <Box sx={styles.utilButtonBox}>
-        {/* <Tooltip title="ヒントを見る" placement="right-start">
+        <Tooltip title="スライドを確認する" placement="right-start">
+          <IconButton
+            sx={{
+              bgcolor: "primary.main",
+              color: "#fff",
+              borderRadius: "8px",
+              mb: "16px",
+              transition: "0.2s",
+              "&:hover": { bgcolor: "primary.main", transform: "scale(1.075)" },
+            }}
+            onClick={() => dispatch(setSlideListAction(true))}
+          >
+            <AutoAwesomeMotionIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="資料を見る" placement="right-start">
           <IconButton
             sx={{
               bgcolor: "warning.light",
@@ -37,40 +50,25 @@ const TooltipBar: React.FC = React.memo(() => {
               transition: "0.2s",
               "&:hover": { bgcolor: "warning.light", transform: "scale(1.075)" },
             }}
-            onClick={() => navigate("slide")}
+            onClick={() => dispatch(setDocumentAction(true))}
           >
-            <LightbulbIcon fontSize="large" />
+            <ArticleIcon fontSize="large" />
           </IconButton>
-        </Tooltip> */}
-        <Tooltip title="スライドを確認する" placement="right-start">
+        </Tooltip>
+        <Tooltip title="ログを確認" placement="right-start">
           <IconButton
             sx={{
-              bgcolor: "primary.main",
+              bgcolor: "info.light",
               color: "#fff",
               borderRadius: "8px",
-              // mb: "16px",
               transition: "0.2s",
-              "&:hover": { bgcolor: "primary.main", transform: "scale(1.075)" },
+              "&:hover": { bgcolor: "info.light", transform: "scale(1.075)" },
             }}
             onClick={() => dispatch(setSlideListAction(true))}
           >
-            <AutoAwesomeMotionIcon fontSize="large" />
+            <FindInPageIcon fontSize="large" />
           </IconButton>
         </Tooltip>
-        {/* <Tooltip title="メモを書く" placement="right-start">
-          <IconButton
-            sx={{
-              bgcolor: "error.light",
-              color: "#fff",
-              borderRadius: "8px",
-              transition: "0.2s",
-              "&:hover": { bgcolor: "error.light", transform: "scale(1.075)" },
-            }}
-            onClick={() => navigate("slide")}
-          >
-            <BorderColorIcon fontSize="large" />
-          </IconButton>
-        </Tooltip> */}
       </Box>
     </>
   );
