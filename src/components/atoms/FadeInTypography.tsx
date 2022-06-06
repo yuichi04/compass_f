@@ -38,7 +38,7 @@ const fadeInAnime = keyframes`
 const SFadeInTypography = styled.div<StyleProps>`
   animation-name: ${fadeInAnime};
   animation-duration: 1s;
-  animation-delay: ${(props) => props.delay / 2 + (props.delay + 1)}s;
+  animation-delay: ${(props) => props.delay / 2 + props.delay + 1}s;
   animation-fill-mode: forwards;
   opacity: 0;
 `;

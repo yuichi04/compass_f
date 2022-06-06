@@ -9,10 +9,8 @@
     opacity: 0;
     clip-path: circle(0 at 50% 50%);
   }
-  50% {
-    opacity: 1;
-  }
   100% {
+    opacity: 1;
     clip-path: circle(100% at 50% 50%);
   }
 }
@@ -194,18 +192,18 @@
 // 通常
 .character-move-normal {
   animation-name: characterMoveNormal;
-  animation-duration: 4s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
 }
 @keyframes characterMoveNormal {
   0% {
-    transform: rotateZ(-0.1deg);
+    transform: scale(1);
   }
   50% {
-    transform: rotateZ(0.1deg) scale(1.01) translateY(2px);
+    transform: scale(1.01) translateY(1px) rotate(0.5deg);
   }
   100% {
-    transform: rotateZ(-0.1deg);
+    transform: scale(1);
   }
 }
 

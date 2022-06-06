@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Divider, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { chapter1Selector, setDocumentAction } from "../../lib/redux/features/chapter1Slice";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
@@ -25,13 +25,13 @@ const Chapter1Document: React.FC = React.memo(() => {
             <Typography>英語が話せる男女数百人に勉強方法のアンケートを取った結果以下のことが判明した。</Typography>
             <SContentItems>
               <Typography component="li" fontWeight={600}>
-                英語が話せる人は音読を中心に学習している
+                音読を中心に学習している
               </Typography>
               <Typography component="li" fontWeight={600}>
-                英語が話せる人は英会話に力を入れている
+                英会話に力を入れている
               </Typography>
               <Typography component="li" fontWeight={600}>
-                英語が話せる人で発音の練習をしていない人はいなかった
+                発音の練習をしていない人はいなかった
               </Typography>
             </SContentItems>
           </SContentBox>

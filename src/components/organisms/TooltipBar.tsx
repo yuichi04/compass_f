@@ -55,7 +55,7 @@ const TooltipBar: React.FC = React.memo(() => {
             <ArticleIcon fontSize="large" />
           </IconButton>
         </Tooltip>
-        <Tooltip title="ログを確認" placement="right-start">
+        <Tooltip title="会話ログを確認" placement="right-start">
           <IconButton
             sx={{
               bgcolor: "info.light",

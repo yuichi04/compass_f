@@ -11,6 +11,7 @@ import {
   setBalloonAction,
   setResultAction,
   setActionBoxAction,
+  setCharacterImageAction,
 } from "../../../lib/redux/features/chapter1Slice";
 import { Balloon, FadeInTypography } from "../../atoms";
 import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result, Chapter1Document } from "../../organisms";
@@ -19,28 +20,31 @@ const Scene: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
   const chapter1 = useAppSelector(chapter1Selector);
   const sceneId = chapter1.id;
+  const isStart = chapter1.isStart;
   const characterImage = chapter1.characterImage;
   const characterLines = chapter1.characterLines;
   const auto = chapter1.auto;
   const isOpenBalloon = chapter1.isOpenBalloon;
-  const isClickToContinue = chapter1.isClickToContinue;
+  const isShowCharacter = chapter1.isShowCharacter;
+  const allowProgress = chapter1.allowProgress;
   const lastSceneId = chapter1.lastSceneId;
+  const characterLinesCount = chapter1.characterLines.length;
 
   // シーンの切り替わりを検知
   useEffect(() => {
     // 吹き出しを表示する
     dispatch(setBalloonAction(true));
-
     // 操作パネルを表示する
     dispatch(setActionBoxAction(true));
-
+    // キャラクターを表示する
+    dispatch(setCharacterImageAction(true));
     // 自動進行シーンの切り替え処理
     if (auto) {
       // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後にシーンを切り替える
       if (auto.progress) {
         const display = setTimeout(() => dispatch(setSceneAction(sceneId)), auto.displayTime * 1000);
 
-        // 最後のシーンだった場合は、一定時間後に回答一覧を表示する
+        // 最後のシーンだった場合は、一定時間後にResultを表示する
         if (sceneId === lastSceneId) {
           const timer = setTimeout(() => dispatch(setResultAction(true)), auto.displayTime * 1000);
           return () => clearTimeout(timer);
@@ -59,7 +63,7 @@ const Scene: React.FC = React.memo(() => {
 
   return (
     <>
-      <SChapter1 className="expand_center">
+      <SChapter1 className={isStart ? "expand_center" : ""}>
         <STooltipBar>
           <TooltipBar />
         </STooltipBar>
@@ -70,11 +74,11 @@ const Scene: React.FC = React.memo(() => {
           width="100%"
           height="100%"
           sx={{ cursor: "pointer" }}
-          onClick={() => isClickToContinue && dispatch(setSceneAction(sceneId))}
+          onClick={() => allowProgress && dispatch(setSceneAction(sceneId))}
         >
           <SCharacter>
             <SCharacterImage>
-              {characterImage.src &&
+              {isShowCharacter &&
                 (characterImage.role === "user" ? (
                   <Box className="fade_in" width="700px" textAlign="center" pt="30%" sx={{ opacity: 0 }}>
                     <img
@@ -92,9 +96,9 @@ const Scene: React.FC = React.memo(() => {
                 ) : (
                   <img
                     className="fade_in"
-                    style={{ minHeight: "200%" }}
+                    style={{ minHeight: "200%", opacity: 0 }}
                     src={require(`../../../assets/images/characters/${characterImage.src}`)}
-                    alt="character"
+                    alt="guide"
                   />
                 ))}
               <SBalloon>
@@ -105,10 +109,10 @@ const Scene: React.FC = React.memo(() => {
                         {line}
                       </FadeInTypography>
                     ))}
-                    {isClickToContinue && (
-                      <FadeInTypography delay={characterLines.length - 0.5}>
+                    {allowProgress && (
+                      <FadeInTypography delay={characterLinesCount / 2 + characterLinesCount - 1}>
                         <Box className="up_down" display="flex" alignItems="center" justifyContent="flex-end">
-                          <Typography variant="body2" fontWeight={600} color="primary.light">
+                          <Typography className="fade_in" variant="body2" fontWeight={600} color="primary.light">
                             次へ
                           </Typography>
                           <ArrowRightIcon color="primary" />
@@ -135,7 +139,7 @@ const SChapter1 = styled.div`
   position: relative;
   overflow: hidden;
   height: calc(100vh - 64px);
-  background: #000 url(${BackgroundImage.dayoffice}) no-repeat center;
+  background: url(${BackgroundImage.dayoffice}) no-repeat center;
   background-size: cover;
 `;
 const STooltipBar = styled.div`

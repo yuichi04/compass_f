@@ -95,7 +95,6 @@ export default SlideListItem;
 
 const SContainer = styled.div`
   min-width: 100%;
-  padding: 16px;
 `;
 const SInner = styled.div`
   position: relative;

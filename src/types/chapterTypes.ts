@@ -6,21 +6,24 @@ export type SampleAnswer = string;
 
 export type Chapter1QuestionType = {
   id: number;
-  userAnswerList: {
+  resultData: {
     id: SceneId;
-    questions: string[];
+    data: string[];
     answer: Answer;
     commonFactor: CommonFactor;
     sampleCommonFactor: SampleCommonFactor;
     sampleAnswer: SampleAnswer;
-  }[];
+  };
   lastSceneId: number;
-  isStart: boolean;
+  isFullCommonFactor: boolean;
   isOpenActionBox: boolean;
   isOpenBalloon?: boolean;
+  isOpenDocument: boolean;
   isOpenResult: boolean;
   isOpenSlideList: boolean;
-  isFullCommonFactor: boolean;
+  isProgressScene: boolean;
+  isShowCharacter: boolean;
+  isStart: boolean;
   commonFactor: CommonFactor;
   answer: Answer;
 };
@@ -33,8 +36,7 @@ export type Chapter1QuestionItemType = {
     progress: boolean;
     displayTime: number;
   };
-  isOpenDocument: boolean;
-  isClickToContinue: boolean;
+  allowProgress: boolean;
   characterLines: string[];
   characterImage: {
     src: string;
@@ -42,10 +44,11 @@ export type Chapter1QuestionItemType = {
   };
   sampleCommonFactor: SampleCommonFactor;
   sampleAnswer: SampleAnswer;
-  questions: string[];
+  data: string[];
   response: {
     role: "user" | "guide" | "customer" | "";
     lines: string[];
     image: string;
   };
+  isOpenDocument?: boolean;
 };

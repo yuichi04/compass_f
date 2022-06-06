@@ -5,21 +5,22 @@ import {
   chapter1Selector,
   setSceneAction,
   setBalloonAction,
-  setAnswerAction,
+  setCharacterLinesAction,
   setActionBoxAction,
 } from "../../lib/redux/features/chapter1Slice";
-import { showLoadingAction, hideLoadingAction } from "../../lib/redux/features/lodingSlice";
+// import { showLoadingAction, hideLoadingAction } from "../../lib/redux/features/lodingSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
 import { MuiTextFieldWithAdornment, MuiButton } from "../atoms";
 
 const Chapter1UserOperationBox: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
-  const selector = useAppSelector(chapter1Selector);
-  const sceneId = selector.id;
-  const action = selector.action;
-  const actionValue = selector.actionValue;
-  const isOpenActionBox = selector.isOpenActionBox;
-  const characterLinesCount = selector.characterLines.length;
+  const chapter1 = useAppSelector(chapter1Selector);
+  const sceneId = chapter1.id;
+  const action = chapter1.action;
+  const actionValue = chapter1.actionValue;
+  const isOpenActionBox = chapter1.isOpenActionBox;
+  const isProgressScene = chapter1.isProgressScene;
+  const characterLinesCount = chapter1.characterLines.length;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -34,21 +35,14 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
     e.preventDefault();
     if (answer === "") return false;
     setAnswer("");
-    // TODO:ユーザーの回答をサーバーに送信する
-    // dispatch(setBalloonAction(false));
-    // dispatch(setActionBoxAction(false));
-    // dispatch(setAnswerAction(answer));
-    // dispatch(hideLoadingAction());
-    // サーバーからレスポンスが返ってくるまでローディングを表示する
-    // 下のコードはテスト用
-    const loading = () => {
-      dispatch(setBalloonAction(false));
-      dispatch(setActionBoxAction(false));
-      dispatch(setAnswerAction(answer));
-      dispatch(hideLoadingAction());
-    };
-    dispatch(showLoadingAction("回答確認中..."));
-    setTimeout(() => loading(), 500);
+    /**
+     * TODO:
+     * ユーザーの回答をサーバーに送信する
+     * サーバーからレスポンスが返ってくるまでローディングを表示する
+     * */
+    dispatch(setBalloonAction(false));
+    dispatch(setActionBoxAction(false));
+    dispatch(setCharacterLinesAction(answer));
   };
 
   return (
@@ -65,12 +59,18 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
                 bgcolor: "rgba(255,255,255,0.8)",
                 backdropFilter: "blur(10px)",
                 borderRadius: "8px",
-                animationDelay: `${characterLinesCount / 2 + characterLinesCount + 0.5}s`, // キャラクターがセリフを言い終わってから1秒遅延させる
+                animationDelay: `${characterLinesCount / 2 + characterLinesCount + 1}s`, // キャラクターがセリフを言い終わってから1秒遅延させる
                 opacity: 0,
               }}
             >
               {action === "button" ? (
-                <MuiButton variant="contained" color="primary" onClick={() => dispatch(setSceneAction(sceneId))}>
+                <MuiButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() =>
+                    isProgressScene ? dispatch(setSceneAction(sceneId)) : dispatch(setCharacterLinesAction(""))
+                  }
+                >
                   {actionValue}
                 </MuiButton>
               ) : (
