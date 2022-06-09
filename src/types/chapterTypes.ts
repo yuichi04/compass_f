@@ -6,6 +6,7 @@ export type SampleAnswer = string;
 
 export type Chapter1QuestionType = {
   id: number;
+  section: number;
   resultData: {
     id: SceneId;
     data: string[];
@@ -14,7 +15,6 @@ export type Chapter1QuestionType = {
     sampleCommonFactor: SampleCommonFactor;
     sampleAnswer: SampleAnswer;
   };
-  lastSceneId: number;
   isFullCommonFactor: boolean;
   isOpenActionBox: boolean;
   isOpenBalloon?: boolean;
@@ -30,9 +30,10 @@ export type Chapter1QuestionType = {
 
 export type Chapter1QuestionItemType = {
   // id: SceneId;
+  section: number;
   action: "button" | "textField" | "";
   actionValue: string;
-  auto?: {
+  auto: {
     progress: boolean;
     displayTime: number;
   };
@@ -51,4 +52,5 @@ export type Chapter1QuestionItemType = {
     image: string;
   };
   isOpenDocument?: boolean;
+  isLastScene?: boolean;
 };

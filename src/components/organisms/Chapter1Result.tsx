@@ -19,6 +19,11 @@ const Chapter1Result: React.FC = React.memo(() => {
       {isOpenResult && (
         <SResult>
           <SInner className="expand_center">
+            <Box textAlign="right" mb="16px">
+              <MuiButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
+                次に進む
+              </MuiButton>
+            </Box>
             <Grid container mb="32px" bgcolor="#fff8e1" p="16px" borderRadius="8px">
               <Grid item xs={5.8} textAlign="center">
                 <SItemTitle>
@@ -36,10 +41,10 @@ const Chapter1Result: React.FC = React.memo(() => {
               <Grid item xs={0.4} display="flex" alignItems="center" justifyContent="center">
                 <Divider orientation="vertical" />
               </Grid>
-              <Grid item xs={5.8} textAlign="center">
+              <Grid item xs={5.8}>
                 <SItemTitle>
-                  <Typography variant="subtitle1" fontWeight={600}>
-                    情報一覧
+                  <Typography variant="subtitle1" fontWeight={600} textAlign="center">
+                    情報
                   </Typography>
                 </SItemTitle>
                 <SItemInner>
@@ -56,7 +61,7 @@ const Chapter1Result: React.FC = React.memo(() => {
             <Grid item xs={12} mb="32px">
               <Divider />
             </Grid>
-            <Grid container mb="32px" minHeight="calc(100% - 288px)">
+            <Grid container mb="16px" minHeight="calc(100% - 288px)">
               <Grid item xs={5.8} textAlign="center" sx={{ wordBreak: "break-word" }}>
                 <SSampleAnswerItem>
                   <SItemSampleAnswerSubTitle>
@@ -151,7 +156,7 @@ const SInner = styled.div`
   height: calc(100% - 32px);
   background: #fff;
   border-radius: 8px;
-  padding: 32px;
+  padding: 16px 32px;
   overflow: scroll;
 `;
 const SAnswerItem = styled.div`

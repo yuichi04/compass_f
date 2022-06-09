@@ -27,8 +27,8 @@ const DashBoard: React.FC = React.memo(() => {
         }}
       >
         <MuiAvatar src={user.image} size="96px" />
-        <Box sx={{ ml: "16px" }}>
-          <Typography variant="body1" component="div" fontWeight={600}>
+        <Box sx={{ ml: "24px" }}>
+          <Typography component="div" fontWeight={600}>
             {user.name}
           </Typography>
           <Typography variant="overline" component="div" color="text.secondary">

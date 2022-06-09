@@ -6,9 +6,17 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
    * シーン1
    */
   {
+    section: 1,
     action: "",
     actionValue: "",
-    characterLines: ["「なんでも相談サポートセンター」へようこそ。", "私はこのセンターで管理者をしているNと申します。"],
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
+    characterLines: [
+      "「なんでも相談サポートセンター」へようこそ。",
+      "私はこのセンターで管理者をしている亀井と申します。",
+    ],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
     allowProgress: true,
     data: [],
@@ -17,8 +25,13 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
       "さっそくですが、これからあなたにはこのサポートセンターのオペレーターとして、お問い合わせ対応をしてもらいます。",
     ],
@@ -30,8 +43,13 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
       "このセンターはその名の通りジャンル問わず、様々なお問い合わせをいただきますが、スライドで学んだことを生かして対応してもらえれば大丈夫です。",
     ],
@@ -43,13 +61,18 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "button",
-    actionValue: "はい。大丈夫です",
+    actionValue: "大丈夫です",
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
       "案内に絶対の正解はありませんので、あなたが良いと思う案内をしていきましょう。",
       "今回はわたしもサポートするので安心してくださいね。",
-      "また、案内終了後に「あなたの回答」と「回答例」を表示しますので確認してみてください。",
       "それでは準備は良いですか？",
+      `（※案内終了後に「あなたの回答」と「回答例」が表示されます。比較してみてください。）`,
     ],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
     allowProgress: false,
@@ -59,9 +82,14 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
-    characterLines: ["はい。それでは、よろしくお願いします。"],
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
+    characterLines: ["はい。", "それでは、よろしくお願いします。"],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
     allowProgress: true,
     data: [],
@@ -70,6 +98,7 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
     auto: {
@@ -85,23 +114,29 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
     auto: {
       progress: true,
-      displayTime: 3.5,
+      displayTime: 4,
     },
-    characterLines: ["さっそくお問い合わせが来たみたいですね。", "電話を取ってみましょう。"],
+    characterLines: ["あっ、さっそくお問い合わせが来たみたいですね。", "電話を取ってみましょう。"],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
-    allowProgress: false,
+    allowProgress: true,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "button",
     actionValue: "電話を取る",
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: ["Prrrrr....", "Prrrrr...."],
     characterImage: { src: "customer/dansei_05.png", role: "customer" },
     allowProgress: false,
@@ -111,51 +146,70 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
-    characterLines: ["ピッ", "お問い合わせありがとうございます。", "担当のAdministratorが承ります。"],
+    auto: {
+      progress: true,
+      displayTime: 6,
+    },
+    characterLines: ["ピッ", "お問い合わせありがとうございます。", "なんでも相談サポートセンターです。"],
     characterImage: {
       src: "phone.png",
       role: "user",
     },
-    allowProgress: true,
+    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
-    characterLines: ["あ、もしもし。", "あの、相談なんですが、英語を話せるようになるにはどうしたら良いですか？"],
+    auto: {
+      progress: true,
+      displayTime: 4,
+    },
+    characterLines: ["あ、もしもし。", "あのー、相談なんですが、"],
     characterImage: { src: "customer/dansei_05_b.png", role: "customer" },
-    allowProgress: true,
+    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
+    allowProgress: true,
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
-      "将来英語を使った仕事をしたくて、でも全然英語が話せないんです。",
-      "何か良い方法があれば教えて欲しいです。",
+      "僕は将来アメリカで仕事をしたいと思っているんですけど英語が全然話せなくて・・・、",
+      "なので、英語が話せるようになる方法があったら教えて欲しいです。",
     ],
     characterImage: { src: "customer/dansei_05_b.png", role: "customer" },
-    allowProgress: true,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
     allowProgress: true,
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
-      "なるほど。",
-      "このお客様は英語を話せるようになりたいみたいですね。",
+      "このお客様は英語が話せるようになりたいみたいですね。",
       "ちょうど使えそうな資料があるので、確認してみましょう。",
     ],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
@@ -165,12 +219,18 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     sampleCommonFactor: "",
   },
   {
+    section: 1,
     action: "",
     actionValue: "",
     allowProgress: true,
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
-      "資料にはアンケート結果が記載されているみたいですね。",
-      "これなら帰納法を使って解決案を導き出せそうです。",
+      "この資料にはアンケート結果が記載されているみたいですね。",
+      "ふむふむ・・・",
+      "この情報なら「帰納法」を使って解決案を導き出せそうですね。",
     ],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
     data: [],
@@ -180,19 +240,42 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     isOpenDocument: true,
   },
   {
-    action: "textField",
-    actionValue: "ここに共通するパターンを入力してください",
-    allowProgress: false,
+    section: 1,
+    action: "",
+    actionValue: "",
+    allowProgress: true,
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
     characterLines: [
-      "帰納法を使うときは、まず最初に共通するパターンは何かを考えるんでしたね。",
-      "それでは資料を見て共通するパターンを考えてみましょう。",
+      "帰納法を使うときのポイントとして、まず最初に複数の情報から共通することは何かを考えるんでしたね。",
+      "ということで、まずは、資料を見て共通することを導き出していきましょう。",
     ],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
+    data: [],
+    response: { role: "", lines: [], image: "" },
+    sampleAnswer: "",
+    sampleCommonFactor: "",
+    isOpenDocument: true,
+  },
+  {
+    section: 1,
+    action: "textField",
+    actionValue: "ここに共通することを入力してください",
+    allowProgress: false,
+    auto: {
+      progress: false,
+      displayTime: 0,
+    },
+    characterLines: ["ポイントとしては、", "1、", "2、", "3、", "ですね。"],
+    characterImage: { src: "guide/guide_normal_a.png", role: "guide" },
     data: [
-      "英語が話せる人に対するアンケート結果",
+      "「英語が話せる人に対するアンケート結果」",
       "・音読を中心に学習している",
-      "・英会話に力を入れている",
-      "・発音の練習をしていない人はいなかった",
+      "・英会話の機会を増やすために、英会話アプリやサービスを利用している",
+      "・ネイティブと話すなど、生の英語に触れる機会を作っている",
+      "・洋画や海外ドラマなどで実践的な英語に触れる機会を増やしている",
     ],
     response: {
       role: "customer",
@@ -202,10 +285,11 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
       ],
       image: "customer/dansei_05_h.png",
     },
-    sampleAnswer: "英語は声に出すことを中心に勉強すると良い",
-    sampleCommonFactor: "英語が話せる人は声に出すことを重要視している",
+    sampleAnswer: "発音やリスニングなど「話す」「聞く」を重点的に勉強すると良い",
+    sampleCommonFactor: "実際の会話を想定した方法で勉強している",
   },
   {
+    section: 1,
     auto: {
       progress: true,
       displayTime: 5,
@@ -219,6 +303,7 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
     sampleCommonFactor: "",
+    isLastScene: true,
   },
   /**
    * シーン2

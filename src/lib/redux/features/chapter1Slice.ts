@@ -7,6 +7,7 @@ type InitialState = Chapter1QuestionType & Chapter1QuestionItemType;
 
 const initialState: InitialState = {
   id: 0,
+  section: 1,
   auto: {
     progress: false,
     displayTime: 0,
@@ -30,7 +31,7 @@ const initialState: InitialState = {
   isProgressScene: true,
   isShowCharacter: false,
   isStart: false,
-  lastSceneId: chapter1QuestionItems.length,
+  isLastScene: false,
   data: [],
   response: {
     role: "",
@@ -55,19 +56,20 @@ export const chapter1Slice = createSlice({
   reducers: {
     // シーンの切り替え処理
     setSceneAction: (state, action) => {
+      state.isStart = true;
       state.isOpenActionBox = false;
       state.isOpenBalloon = false;
       state.isOpenResult = false;
+      state.isLastScene = false;
 
-      // シーンの進行可否を管理する
-      state.isStart = true;
-
-      // シーンを進行する場合の処理
+      // シーンを進める場合の処理
       if (state.isProgressScene) {
         // 次のシーンidに更新する
         state.id = action.payload + 1;
+
         // 次のシーンのデータを取得する
         const newScene = chapter1QuestionItems.find((item, index) => index + 1 === state.id);
+
         // 取得したデータから必要なデータをstateに保存する
         if (newScene) {
           state.characterLines = newScene.characterLines;
@@ -78,15 +80,21 @@ export const chapter1Slice = createSlice({
           state.sampleAnswer = newScene.sampleAnswer;
           state.allowProgress = newScene.allowProgress;
 
-          // キャラクター役割に変更がある場合は、fade_inを適用するためにキャラクターを非表示にしてから画像を更新する
+          // キャラクターの役割に変更がある場合は、フェードインアニメーションを適用するためにキャラクターを非表示にする
           if (state.characterImage.role !== newScene.characterImage.role) {
             state.isShowCharacter = false;
           }
+          // キャラクターの画像情報を更新する
           state.characterImage = newScene.characterImage;
 
           // 資料の表示設定がある場合はstateを更新する
           if (newScene.isOpenDocument) {
             state.isOpenDocument = newScene.isOpenDocument;
+          }
+
+          // 最後のシーンが設定されている場合
+          if (newScene.isLastScene) {
+            state.isLastScene = true;
           }
         }
       }
@@ -113,10 +121,11 @@ export const chapter1Slice = createSlice({
           state.characterImage.src = scene.response.image;
           state.characterImage.role = scene.response.role;
 
+          // データが設定されている場合の処理
           if (scene.data) {
             // ユーザーの回答を格納
             // 現在のシーンIDと一致するデータを取得
-            const newUserAnswer = {
+            const newResultData = {
               id: state.id,
               data: scene.data,
               commonFactor: state.commonFactor,
@@ -124,7 +133,7 @@ export const chapter1Slice = createSlice({
               sampleCommonFactor: state.sampleCommonFactor,
               sampleAnswer: state.sampleAnswer,
             };
-            state.resultData = newUserAnswer;
+            state.resultData = newResultData;
             state.isProgressScene = true;
             state.isOpenDocument = false;
           }
@@ -134,9 +143,9 @@ export const chapter1Slice = createSlice({
         // 共通するパターンが入力済みの場合
       } else if (state.commonFactor) {
         state.answer = action.payload;
-        state.characterLines = [""];
+        state.characterLines = ["なるほど、良い考えですね。", "それでは、その解決方法をお客様にご案内してみましょう。"];
         state.action = "button";
-        state.actionValue = "解決案を案内する";
+        state.actionValue = "解決方法を案内する";
         state.isProgressScene = false;
         // まだ何も入力されていない場合
       } else {
@@ -144,11 +153,11 @@ export const chapter1Slice = createSlice({
         state.commonFactor = action.payload;
         state.characterLines = [
           `「${state.commonFactor}」ですね。`,
-          "それでは、このことから解決案を考えましょう。",
-          "絶対的な正解はないので、あなたが良いと思う案で大丈夫です。",
+          "それでは、この共通するパターンから解決方法を考えましょう。",
+          "解決方法といっても絶対的な正解はないので、あなたが良いと思うことで大丈夫ですよ。",
         ];
         state.action = "textField";
-        state.actionValue = "ここに入力してください";
+        state.actionValue = "ここにあなたの解決方法を入力してください";
       }
     },
 

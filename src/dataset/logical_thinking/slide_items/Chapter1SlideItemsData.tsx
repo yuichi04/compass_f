@@ -200,9 +200,9 @@ const Chapter1SlideItemsData = () => {
               それでは、「帰納法」について学んでいきます。
               <br />
               帰納法は
-              <MuiTypographyBoldAccent>
+              <MuiTypographyBold>
                 「いくつかの情報や考えから共通するパターンを見つけて、結論を導き出す方法」
-              </MuiTypographyBoldAccent>
+              </MuiTypographyBold>
               と説明しましたが、実際には結論の次にアクションが続くことが多いです。
               <br />
               図で表すと、右の図のような構造になります。

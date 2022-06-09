@@ -27,8 +27,8 @@ const Scene: React.FC = React.memo(() => {
   const isOpenBalloon = chapter1.isOpenBalloon;
   const isShowCharacter = chapter1.isShowCharacter;
   const allowProgress = chapter1.allowProgress;
-  const lastSceneId = chapter1.lastSceneId;
   const characterLinesCount = chapter1.characterLines.length;
+  const isLastScene = chapter1.isLastScene;
 
   // シーンの切り替わりを検知
   useEffect(() => {
@@ -38,6 +38,7 @@ const Scene: React.FC = React.memo(() => {
     dispatch(setActionBoxAction(true));
     // キャラクターを表示する
     dispatch(setCharacterImageAction(true));
+
     // 自動進行シーンの切り替え処理
     if (auto) {
       // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後にシーンを切り替える
@@ -45,7 +46,7 @@ const Scene: React.FC = React.memo(() => {
         const display = setTimeout(() => dispatch(setSceneAction(sceneId)), auto.displayTime * 1000);
 
         // 最後のシーンだった場合は、一定時間後にResultを表示する
-        if (sceneId === lastSceneId) {
+        if (isLastScene) {
           const timer = setTimeout(() => dispatch(setResultAction(true)), auto.displayTime * 1000);
           return () => clearTimeout(timer);
         }
@@ -93,16 +94,30 @@ const Scene: React.FC = React.memo(() => {
                       alt="user"
                     />
                   </Box>
-                ) : (
+                ) : characterImage.role === "guide" ? (
                   <img
                     className="fade_in"
                     style={{ minHeight: "200%", opacity: 0 }}
                     src={require(`../../../assets/images/characters/${characterImage.src}`)}
                     alt="guide"
                   />
+                ) : characterImage.role === "customer" ? (
+                  <img
+                    className="fade_in"
+                    style={{ minHeight: "200%", opacity: 0 }}
+                    src={require(`../../../assets/images/characters/${characterImage.src}`)}
+                    alt="customer"
+                  />
+                ) : (
+                  <img
+                    className="fade_in"
+                    style={{ minHeight: "200%", opacity: 0 }}
+                    src={require("../../../assets/images/characters/empty.png")}
+                    alt="none"
+                  />
                 ))}
-              <SBalloon>
-                {isOpenBalloon && (
+              {isOpenBalloon && (
+                <SBalloon>
                   <Balloon>
                     {characterLines.map((line, index) => (
                       <FadeInTypography delay={index} key={index}>
@@ -120,8 +135,8 @@ const Scene: React.FC = React.memo(() => {
                       </FadeInTypography>
                     )}
                   </Balloon>
-                )}
-              </SBalloon>
+                </SBalloon>
+              )}
             </SCharacterImage>
           </SCharacter>
         </Box>
