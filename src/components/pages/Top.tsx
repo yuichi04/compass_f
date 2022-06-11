@@ -1,10 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MuiContaier from "../layouts/MuiContainer";
 
+import applyCaseMiddleware from "axios-case-converter";
+import axios from "axios";
+
+const options = {
+  ignoreHeaders: true,
+};
+
+const client = applyCaseMiddleware(
+  axios.create({
+    baseURL: process.env.REACT_APP_BASE_URL,
+  }),
+  options
+);
+
+const execTest = () => {
+  return client.get("/test");
+};
+
 const Top = () => {
+  const [message, setMessage] = useState<string>("");
+
+  const handleExecTest = async () => {
+    const res = await execTest();
+
+    if (res.status === 200) {
+      setMessage(res.data.message);
+    } else {
+      setMessage("error");
+    }
+  };
+
+  useEffect(() => {
+    handleExecTest();
+  }, []);
+
   return (
     <div>
       <MuiContaier maxWidth="md">
+        <h1>メッセージ:{message}</h1>
         <p>
           「COMPASS」は説明が苦手な人に向けた、
           <br />
