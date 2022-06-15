@@ -9,7 +9,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Icons } from "../../../assets/images/icons";
 import { Grid } from "@mui/material";
 
-const LessonMain: React.FC = React.memo(() => {
+const Lessons: React.FC = React.memo(() => {
   return (
     <MuiContainer maxWidth="lg">
       <IconWithPageTitle title="レッスン一覧" icon={LocalLibraryIcon} iconColor="primary" />
@@ -38,4 +38,4 @@ const LessonMain: React.FC = React.memo(() => {
   );
 });
 
-export default LessonMain;
+export default Lessons;

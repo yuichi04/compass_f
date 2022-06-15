@@ -9,7 +9,7 @@ import {
   Lesson,
   Terms,
   Unsubscribe,
-  LessonIndex,
+  Lessons,
   LogicalThinking,
   Chapter1,
 } from "../components/pages";
@@ -28,7 +28,7 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/lesson" element={<Lesson />}>
-          <Route path="index" element={<LessonIndex />} />
+          <Route path="lessons" element={<Lessons />} />
           <Route path="logicalthinking" element={<LogicalThinking />}>
             <Route path="chapter1" element={<Chapter1 />} />
           </Route>

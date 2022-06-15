@@ -7,7 +7,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -57,10 +56,9 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
       <List>
         {[
           { to: "/", text: "ホームに戻る", icon: <HomeIcon /> },
-          { to: "/lesson/main", text: "レッスン一覧", icon: <LocalLibraryIcon /> },
+          { to: "/lesson/lessons", text: "レッスン一覧", icon: <LocalLibraryIcon /> },
           { to: "/memo", text: "作成した学習メモ", icon: <AutoAwesomeMotionIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
-          { to: "/contactus", text: "お問い合わせ", icon: <MailIcon /> },
         ].map((data) => (
           <LinkTo key={data.text} to={data.to}>
             <ListItem disablePadding>

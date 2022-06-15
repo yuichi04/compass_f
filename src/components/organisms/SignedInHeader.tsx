@@ -39,13 +39,13 @@ const SignedInHeader: React.FC = React.memo(() => {
               </Typography>
               <ul className="hover_text_underline">
                 <Typography component="li" sx={{ marginRight: "32px" }}>
-                  <LinkTo to="/lesson/index">レッスン一覧</LinkTo>
+                  <LinkTo to="lesson/lessons">レッスン一覧</LinkTo>
                 </Typography>
                 <Typography component="li" sx={{ marginRight: "32px" }}>
-                  <LinkTo to="lessons">スライド一覧</LinkTo>
+                  <LinkTo to="lesson/lessons">スライド一覧</LinkTo>
                 </Typography>
                 <Typography component="li">
-                  <LinkTo to="lessons">ヘルプ</LinkTo>
+                  <LinkTo to="lesson/lessons">ヘルプ</LinkTo>
                 </Typography>
               </ul>
             </Grid>

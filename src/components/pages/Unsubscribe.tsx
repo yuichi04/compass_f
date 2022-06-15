@@ -81,20 +81,13 @@ const Unsubscribe: React.FC = React.memo(() => {
         &lt; <span style={{ textDecoration: "underline" }}>戻る</span>
       </LinkTo>
       <IconWithPageTitle icon={UnsubscribeIcon} title="退会の申請" />
-      <p>
-        ※以下の注意事項を<span style={{ textDecoration: "underline" }}>必ず</span>
-        ご確認の上、同意できる場合に限り、退会の申請をお願い致します。
-      </p>
+      <p>※以下の注意事項を必ずご確認の上、同意できる場合に限り、退会の申請をお願い致します。</p>
       <div className="module-spacer-md" />
       <dl>
         <dt>注意事項</dt>
         <SConsiderations>
-          <li>
-            「退会する」ボタンを押すと、即時アカウント削除処理が実行されます。処理実行後に退会のキャンセルはできません。
-          </li>
-          <li>
-            アカウントの削除処理が実行されると、アカウントに関する全てのデータが完全に抹消されます。そのため、いかなる理由があってもデータの復旧はできません。
-          </li>
+          <li>「退会する」ボタンを押すと即時アカウントの削除が実行されます。実行後にキャンセルはできません。</li>
+          <li>アカウントに関する全てのデータは完全に抹消されます。いかなる理由があっても復旧はできません。</li>
           <li>退会をすることによって生じる影響について、当方はその一切の責任を負いません。</li>
         </SConsiderations>
       </dl>

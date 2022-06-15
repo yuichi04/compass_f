@@ -21,7 +21,9 @@ const Footer: React.FC = () => {
             <li>
               <LinkTo to="/terms">利用規約</LinkTo>
             </li>
-            <li>お問い合わせ</li>
+            <li>
+              <LinkTo to="/contact">お問い合わせ</LinkTo>
+            </li>
           </ul>
         </Grid>
       </Grid>

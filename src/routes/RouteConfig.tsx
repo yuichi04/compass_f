@@ -11,6 +11,7 @@ import {
   Terms,
   SentAuthEmail,
   ListenAuthUser,
+  Contact,
 } from "../components/pages";
 import SentPasswordResetEmail from "../components/pages/SentPasswordResetEmail";
 import ScrollToTop from "../components/utils/ScrollToTop";
@@ -22,6 +23,7 @@ const RouteConfig: React.FC = () => {
       <Header />
       <Routes>
         <Route index element={<Top />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/passwordreset" element={<PasswordReset />} />

@@ -14,11 +14,20 @@ export const useContactBorad = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [values, setValues] = useState<ContactBoardType>({
-    name: user.name,
     email: user.email,
     category: "",
     content: "",
   });
+
+  const handleChangeEmail = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setValues({
+        ...values,
+        email: e.target.value,
+      });
+    },
+    [values]
+  );
 
   const handleChangeContent = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,6 +97,7 @@ export const useContactBorad = () => {
     setIsValid,
     values,
     setValues,
+    handleChangeEmail,
     handleChangeContent,
     handleChangeCategory,
     handleSubmit,
