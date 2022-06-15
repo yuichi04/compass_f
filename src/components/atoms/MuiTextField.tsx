@@ -19,6 +19,8 @@ type Props = {
   type?: React.HTMLInputTypeAttribute;
   variant?: "filled" | "outlined" | "standard";
   autoComplete?: string;
+  select?: boolean;
+  defaultValue?: string;
 };
 
 const MuiTextField: React.FC<Props> = React.memo(({ ...props }) => {

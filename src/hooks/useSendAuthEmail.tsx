@@ -19,8 +19,8 @@ export const useSendAuthEmail = () => {
     password: "",
     passwordConfirmation: "",
   });
-  const [isCheckedAgree, setIsCheckedAgree] = useState<boolean>(false);
-  const [isValid, setIsValid] = useState<boolean>(false);
+  const [isCheckedAgree, setIsCheckedAgree] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   // エラーフラグの管理
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);

@@ -19,9 +19,7 @@ export const useLogOut = () => {
         // storeからユーザー情報を削除する
         dispatch(logOutAction());
         navigate("/");
-        toast.success("ログアウトしました", {
-          position: "top-center",
-        });
+        toast.success("ログアウトしました");
       } else {
         toast.error("ログアウトに失敗しました");
       }

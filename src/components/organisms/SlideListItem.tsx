@@ -67,8 +67,12 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
                   {isStart ? "問題に戻る" : "問題に挑戦"}
                 </MuiButton>
               </Box>
-              <Box position="absolute" right="-200px" top="-128px">
-                <img src={require("../../assets/images/characters/guide/guide_smile_a.png")} alt="character" />
+              <Box position="absolute" right="-128px" top="-128px">
+                <img
+                  style={{ height: "120%", width: "120%" }}
+                  src={require("../../assets/images/characters/guide/guide_smile_a.png")}
+                  alt="character"
+                />
               </Box>
             </Box>
           )}

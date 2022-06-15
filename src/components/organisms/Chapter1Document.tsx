@@ -33,13 +33,13 @@ const Chapter1Document: React.FC = React.memo(() => {
                   音読を中心に学習している
                 </Typography>
                 <Typography component="li" fontWeight={600}>
-                  英会話アプリやサービスを積極的に利用している
+                  英会話アプリやサービスなどを積極的に利用している
                 </Typography>
                 <Typography component="li" fontWeight={600}>
-                  生の英語に触れるために、ネイティブとの会話の機会を作っている
+                  ネイティブと会話する機会を積極的に作っている
                 </Typography>
                 <Typography component="li" fontWeight={600}>
-                  洋画や海外ドラマなどで実践的な英語に触れる機会を増やしている
+                  洋画や海外ドラマなどで実践的な英語を学ぶようにしている
                 </Typography>
               </SContentItems>
             </SContentBox>

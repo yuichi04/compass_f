@@ -7,50 +7,77 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Grid } from "@mui/material";
-import { useModal } from "../../hooks/useModal";
 import { theme } from "../../assets/theme";
 import { LinkTo, MuiButton, MuiTextField } from "../atoms";
-import { useAppSelector } from "../../lib/redux/hooks";
-import { userSelector } from "../../lib/redux/features/userSlice";
+import { SelectBox } from "../molecules";
+import useContactBorad from "../../hooks/useContactBorad";
+
+const options = [
+  { value: "lesson", label: "レッスン内容について" },
+  { value: "opinion", label: "ご意見・ご要望" },
+  { value: "error", label: "エラー・バグ報告" },
+  { value: "other", label: "その他" },
+];
 
 const ContactBoard: React.FC = React.memo(() => {
-  const user = useAppSelector(userSelector);
-  const { open, setOpen } = useModal();
+  const { isValid, values, handleChangeContent, handleChangeCategory, handleSubmit, isOpen, setIsOpen } =
+    useContactBorad();
   return (
     <SBoard>
-      <MuiButton variant="contained" color="success" onClick={() => setOpen(true)}>
-        <HelpOutlineIcon sx={{ mr: "4px" }} />
-        お問い合わせ
-      </MuiButton>
+      <SContactButton>
+        <MuiButton color="secondary" onClick={() => setIsOpen(true)}>
+          <HelpOutlineIcon fontSize="small" sx={{ mr: "4px" }} />
+          お問い合わせ
+        </MuiButton>
+      </SContactButton>
 
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} sx={{ zIndex: 998 }}>
         <Box sx={style.box}>
-          <IconButton onClick={() => setOpen(false)} sx={style.icon} size="small">
-            <CloseIcon />
+          <IconButton onClick={() => setIsOpen(false)} sx={style.icon}>
+            <CloseIcon fontSize="small" />
           </IconButton>
           <Grid container spacing={4}>
-            <Grid item xs={7}>
+            <Grid item xs={6}>
               <Typography>
                 COMPASSをご利用頂きありがとうございます。 <br />
-                ご不明点やご意見がございましたら、フォームよりご連絡ください。
+                ご不明点やご意見・ご要望などがございましたら、フォームよりご連絡ください。
                 <br />
                 <br />
                 また、
-                <Typography sx={{ color: "#33bbad" }} component="span" onClick={() => setOpen(false)}>
+                <Typography color="primary.light" component="span" onClick={() => setIsOpen(false)}>
                   <LinkTo to="/help">ヘルプページ</LinkTo>
                 </Typography>
-                にサービスに関するご質問を記載しておりますので合わせてご確認ください。
-                <br />
-                <br />
-                いただきましたご意見は、今後の開発に生かしてまいります。
+                にサービスに関することや、よくあるご質問について記載しておりますので合わせてご確認ください。
               </Typography>
+              <br />
+              お問い合わせいただいた内容につきましては、メールにて順次ご返信いたします。
             </Grid>
-            <Grid item xs={5}>
-              <MuiTextField type="email" value={user.email} onChange={() => null} fullWidth />
-              <MuiTextField type="text" multiline rows={10} onChange={() => null} value="" fullWidth />
-              <MuiButton variant="contained" fullWidth>
-                送信する
-              </MuiButton>
+            <Grid item xs={6}>
+              <form onSubmit={handleSubmit}>
+                <SelectBox
+                  label="- 選択してください -"
+                  options={options}
+                  category={values.category}
+                  onChange={handleChangeCategory}
+                  fullWidth
+                />
+                <br />
+                <br />
+                <MuiTextField
+                  type="text"
+                  multiline
+                  rows={10}
+                  onChange={handleChangeContent}
+                  value={values.content}
+                  fullWidth
+                  label="お問い合わせ内容を入力してください"
+                />
+                <br />
+                <br />
+                <MuiButton type="submit" variant="contained" fullWidth disabled={!isValid}>
+                  送信する
+                </MuiButton>
+              </form>
             </Grid>
           </Grid>
         </Box>
@@ -67,6 +94,12 @@ const SBoard = styled.div`
   bottom: 0;
   right: 0;
 `;
+const SContactButton = styled.div`
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  background: #00aa99;
+  z-index: 999;
+`;
 
 const style = {
   box: {
@@ -74,8 +107,7 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "900px",
-    height: "585px",
+    minWidth: "900px",
     bgcolor: "background.paper",
     boxShadow: 12,
     p: 4,

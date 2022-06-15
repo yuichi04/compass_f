@@ -1,4 +1,4 @@
-import { LogInParams, SignUpParams, UpdateUserInfo } from "../../types/userTypes";
+import { ContactBoardType, LogInParams, SignUpParams, UpdateUserInfo } from "../../types/userTypes";
 import client from "./client";
 
 // EmailAuth
@@ -34,4 +34,9 @@ export const updateUserInfo = (params: UpdateUserInfo) => {
 // delete(退会)
 export const deleteAccount = () => {
   return client.delete(process.env.REACT_APP_USER_URL!);
+};
+
+// 問い合わせ
+export const sendContactEmail = (params: ContactBoardType) => {
+  return client.post(process.env.REACT_APP_CONTACT_EMAIL!, params);
 };

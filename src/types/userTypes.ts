@@ -25,3 +25,11 @@ export type UpdateUserInfo = {
   password?: string;
   image?: string;
 };
+
+// 問い合わせ用
+export type ContactBoardType = {
+  name: string;
+  email: string;
+  category: string;
+  content: string;
+};

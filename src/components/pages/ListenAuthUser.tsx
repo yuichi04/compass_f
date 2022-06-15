@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import MuiContaier from "../layouts/MuiContainer";
-import { PageTitle } from "../atoms";
 import { useSignUp } from "../../hooks/useSignUp";
+import { Typography } from "@mui/material";
 
 const ListenAuthUser: React.FC = React.memo(() => {
   const { pathname } = useLocation();
@@ -19,7 +19,9 @@ const ListenAuthUser: React.FC = React.memo(() => {
 
   return (
     <MuiContaier maxWidth="xl">
-      <PageTitle title="ユーザー情報確認中" />
+      <Typography variant="h3" textAlign="center">
+        ユーザー情報認証中
+      </Typography>
     </MuiContaier>
   );
 });

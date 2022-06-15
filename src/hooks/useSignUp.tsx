@@ -35,8 +35,8 @@ export const useSignUp = () => {
           navigate("/");
         }
       } catch (error) {
-        // navigate("/");
         toast.error("認証情報が確認できませんでした");
+        navigate("/");
         console.log(error);
       }
       dispatch(hideLoadingAction());

@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import { MuiContainer } from "../layouts";
 import { DashBoard, CourseCardList, LearningCalendar, LearningProgress } from "../organisms";
 import { IconWithSectionTitle, IconWithPageTitle, CourseCard } from "../molecules";
@@ -13,7 +12,7 @@ import { Icons } from "../../assets/images/icons";
 
 const Home: React.FC = React.memo(() => {
   return (
-    <Box sx={{ bgcolor: "#f8fbfe" }}>
+    <>
       <MuiContainer maxWidth="lg">
         <IconWithPageTitle title="ようこそ、COMPASSへ" icon={HomeIcon} iconColor="primary" />
         <Grid container spacing={4}>
@@ -72,7 +71,7 @@ const Home: React.FC = React.memo(() => {
           </Grid>
         </Grid>
       </MuiContainer>
-    </Box>
+    </>
   );
 });
 

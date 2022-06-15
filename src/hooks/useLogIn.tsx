@@ -14,7 +14,7 @@ const { validateEmailFormat, validateMoreThan8Characters } = validations();
 export const useLogIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [isValid, setIsValid] = useState<boolean>(false);
+  const [isValid, setIsValid] = useState(false);
   const [values, setValues] = useState<LogInParams>({
     email: "",
     password: "",
