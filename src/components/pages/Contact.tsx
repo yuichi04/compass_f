@@ -13,8 +13,7 @@ const options = [
 ];
 
 const Contact = () => {
-  const { values, isValid, handleChangeEmail, handleChangeCategory, handleChangeContent, handleSubmit } =
-    useContactBorad();
+  const { values, isValid, handleChange, handleSubmit } = useContactBorad();
   return (
     <>
       <MuiContaier maxWidth="md">
@@ -24,20 +23,25 @@ const Contact = () => {
         </Typography>
         <br />
         <form onSubmit={handleSubmit}>
-          <MuiTextField onChange={handleChangeEmail} value={values.email} label="メールアドレス" fullWidth />
+          <MuiTextField
+            onChange={(e) => handleChange(e, "email")}
+            value={values.email}
+            label="メールアドレス"
+            fullWidth
+          />
           <br />
           <br />
           <SelectBox
             label="- 選択してください -"
             category={values.category}
             options={options}
-            onChange={handleChangeCategory}
+            onChange={(e) => handleChange(e, "category")}
             fullWidth
           />
           <br />
           <br />
           <MuiTextField
-            onChange={handleChangeContent}
+            onChange={(e) => handleChange(e, "content")}
             value={values.content}
             label="お問い合わせ内容を入力してください"
             multiline

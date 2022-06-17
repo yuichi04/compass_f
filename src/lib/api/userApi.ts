@@ -1,37 +1,42 @@
 import { ContactBoardType, LogInParams, SignUpParams, UpdateUserInfo } from "../../types/userTypes";
 import client from "./client";
 
-// EmailAuth
+// メールアドレスの認証メールを送信する
 export const sendAuthEmail = (params: SignUpParams) => {
   return client.post(process.env.REACT_APP_REGISTRATION_URL!, params);
 };
 
-// Signup
+// 新規ユーザー登録
 export const signUp = (params: { token: string }) => {
   return client.post(process.env.REACT_APP_USER_URL!, params);
 };
 
-// Login
+// ログイン
 export const logIn = (params: LogInParams) => {
   return client.post(process.env.REACT_APP_SESSION_URL!, params);
 };
 
-// logout
+// ログアウト
 export const logOut = () => {
   return client.delete(process.env.REACT_APP_SESSION_URL!);
 };
 
-// listen
+// 認証状態を確認する
 export const listenAuthState = () => {
   return client.get(process.env.REACT_APP_SESSION_URL!);
 };
 
-// update（アカウント情報の変更）
-export const updateUserInfo = (params: UpdateUserInfo) => {
-  return client.patch(process.env.REACT_APP_USER_URL!, params);
+// ユーザーネームの更新
+export const updateUserName = (params: UpdateUserInfo) => {
+  return client.patch(process.env.REACT_APP_UPDATE_USER_NAME!, params);
 };
 
-// delete(退会)
+// パスワードの更新
+export const updateUserPassword = (params: UpdateUserInfo) => {
+  return client.patch(process.env.REACT_APP_UPDATE_USER_PASSWORD!, params);
+};
+
+// 退会（ユーザー削除）
 export const deleteAccount = () => {
   return client.delete(process.env.REACT_APP_USER_URL!);
 };

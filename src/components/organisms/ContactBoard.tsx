@@ -20,8 +20,7 @@ const options = [
 ];
 
 const ContactBoard: React.FC = React.memo(() => {
-  const { isValid, values, handleChangeContent, handleChangeCategory, handleSubmit, isOpen, setIsOpen } =
-    useContactBorad();
+  const { isValid, values, handleChange, handleSubmit, isOpen, setIsOpen } = useContactBorad();
   return (
     <SBoard>
       <SContactButton>
@@ -58,7 +57,7 @@ const ContactBoard: React.FC = React.memo(() => {
                   label="- 選択してください -"
                   options={options}
                   category={values.category}
-                  onChange={handleChangeCategory}
+                  onChange={(e) => handleChange(e, "category")}
                   fullWidth
                 />
                 <br />
@@ -67,7 +66,7 @@ const ContactBoard: React.FC = React.memo(() => {
                   type="text"
                   multiline
                   rows={10}
-                  onChange={handleChangeContent}
+                  onChange={(e) => handleChange(e, "content")}
                   value={values.content}
                   fullWidth
                   label="お問い合わせ内容を入力してください"
@@ -92,13 +91,18 @@ const SBoard = styled.div`
   z-index: 998;
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 32px;
 `;
 const SContactButton = styled.div`
+  z-index: 999;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   background: #00aa99;
-  z-index: 999;
+  padding: 0 8px;
+  transition: 0.3s;
+  &:hover {
+    background: #00766b;
+  }
 `;
 
 const style = {

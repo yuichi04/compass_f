@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
-import { updateUserInfo } from "../lib/api/userApi";
+import { updateUserPassword } from "../lib/api/userApi";
 import { useAppDispatch } from "../lib/redux/hooks";
 import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
 import { validations } from "../modules/validations";
@@ -16,8 +16,9 @@ export const usePasswordUpdate = () => {
   const [isErrorPassword, setIsErrorPassword] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
 
+  type Key = "newPassword" | "newPasswordConfirmation";
   const handleChangePassword = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
+    (e: React.ChangeEvent<HTMLInputElement>, key: Key) => {
       setPasswords({
         ...passwords,
         [key]: e.target.value,
@@ -26,7 +27,7 @@ export const usePasswordUpdate = () => {
     [passwords]
   );
 
-  const handleSubmitPassword = useCallback(
+  const handleSubmitNewPassword = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       dispatch(showLoadingAction("更新中..."));
@@ -35,7 +36,7 @@ export const usePasswordUpdate = () => {
         password: passwords.newPassword,
       };
       try {
-        const res = await updateUserInfo(newPassword);
+        const res = await updateUserPassword(newPassword);
         if (res.data.status === 200) {
           setPasswords({
             newPassword: "",
@@ -79,6 +80,6 @@ export const usePasswordUpdate = () => {
     isErrorPassword,
     isValidPassword,
     handleChangePassword,
-    handleSubmitPassword,
+    handleSubmitNewPassword,
   };
 };

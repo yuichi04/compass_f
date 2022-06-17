@@ -29,7 +29,6 @@ export const useSignUp = () => {
           dispatch(logInAction(loginState));
           toast.success("認証が完了しました");
           navigate("/");
-          console.log(res.data.message);
         } else {
           toast.error("認証コードの有効期限が切れています。");
           navigate("/");

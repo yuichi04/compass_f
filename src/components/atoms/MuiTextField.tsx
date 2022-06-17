@@ -21,6 +21,7 @@ type Props = {
   autoComplete?: string;
   select?: boolean;
   defaultValue?: string;
+  placeholder?: string;
 };
 
 const MuiTextField: React.FC<Props> = React.memo(({ ...props }) => {

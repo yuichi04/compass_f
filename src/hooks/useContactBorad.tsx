@@ -19,31 +19,12 @@ export const useContactBorad = () => {
     content: "",
   });
 
-  const handleChangeEmail = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+  type Key = "email" | "category" | "content";
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>, key: Key) => {
       setValues({
         ...values,
-        email: e.target.value,
-      });
-    },
-    [values]
-  );
-
-  const handleChangeContent = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({
-        ...values,
-        content: e.target.value,
-      });
-    },
-    [values]
-  );
-
-  const handleChangeCategory = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValues({
-        ...values,
-        category: e.target.value,
+        [key]: e.target.value,
       });
     },
     [values]
@@ -97,9 +78,7 @@ export const useContactBorad = () => {
     setIsValid,
     values,
     setValues,
-    handleChangeEmail,
-    handleChangeContent,
-    handleChangeCategory,
+    handleChange,
     handleSubmit,
     isOpen,
     setIsOpen,

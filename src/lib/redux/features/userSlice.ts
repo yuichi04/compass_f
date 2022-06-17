@@ -3,13 +3,13 @@ import { RootState } from "../store";
 import { UserParams } from "../../../types/userTypes";
 
 // テスト用
-// import { Icons } from "../../../assets/images/icons";
+import { Icons } from "../../../assets/images/icons";
 
 const initialState: UserParams = {
   name: "",
   email: "",
   createdAt: "",
-  image: "",
+  image: Icons.user08,
   isSignedIn: false,
   admin: false,
 };
