@@ -18,7 +18,7 @@ const ListenAuthUser: React.FC = React.memo(() => {
   }, [pathname]);
 
   return (
-    <MuiContaier maxWidth="xl">
+    <MuiContaier maxWidth="sm">
       <Typography variant="h3" textAlign="center">
         ユーザー情報認証中
       </Typography>

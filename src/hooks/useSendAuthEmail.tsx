@@ -52,6 +52,8 @@ export const useSendAuthEmail = () => {
         if (res.data.status === 200) {
           navigate("/sentauthemail");
           toast.success("認証メールが送信されました");
+        } else if (res.data.message === "already") {
+          toast.error("既に使用されているメールアドレスです");
         } else {
           toast.error("認証メールの送信に失敗しました");
         }

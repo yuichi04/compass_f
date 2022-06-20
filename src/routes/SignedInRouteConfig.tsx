@@ -13,6 +13,7 @@ import {
   LogicalThinking,
   Chapter1,
 } from "../components/pages";
+import UpdateEmail from "../components/pages/UpdateEmail";
 import BackToMain from "../components/utils/BackToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
 
@@ -23,6 +24,7 @@ const SignedInRouteConfig: React.FC = () => {
       <SignedInHeader />
       <Routes>
         <Route index element={<Home />} />
+        <Route path="/updateemail/*" element={<UpdateEmail />} />
         <Route path="/login" element={<BackToMain />} />
         <Route path="/signup" element={<BackToMain />} />
         <Route path="/profile" element={<Profile />} />

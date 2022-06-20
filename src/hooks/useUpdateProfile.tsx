@@ -3,10 +3,15 @@ import { toast } from "react-toastify";
 import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
 import { validations } from "../modules/validations";
 import { useAppDispatch } from "../lib/redux/hooks";
-import { updateUserName } from "../lib/api/userApi";
+import { sendAuthEmailForUpdate, updateEmail, updateUserName } from "../lib/api/userApi";
 import { useListenAuthState } from "./useListenAuthState";
+import { useNavigate } from "react-router-dom";
+
+// どの項目を更新するかの型を定義
+type Key = "name" | "email";
 
 export const useUpdateProfile = () => {
+  const navigate = useNavigate();
   const { handleListenAuthState } = useListenAuthState();
   const dispatch = useAppDispatch();
   const { validateEmailFormat, validateIsNotEmpty } = validations();
@@ -23,7 +28,7 @@ export const useUpdateProfile = () => {
     email: false,
   });
 
-  type Key = "name" | "email";
+  // ユーザーの入力値をステートに保管
   const handleChangeUserProfile = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, key: Key) => {
       setValues({
@@ -34,6 +39,7 @@ export const useUpdateProfile = () => {
     [values]
   );
 
+  // 編集モードへの切り替え
   const handleClickEditMode = useCallback(
     (key: Key, bool: boolean) => {
       setEdit({
@@ -44,19 +50,20 @@ export const useUpdateProfile = () => {
     [edit]
   );
 
+  // ユーザー情報の更新
+  // ユーザーネームの場合は更新完了まで実行
+  // メールアドレスの場合は認証メールを送信する
   const handleSubmitNewUserProfile = useCallback(
     async (e: React.FormEvent<HTMLFormElement>, key: Key) => {
       e.preventDefault();
-      dispatch(showLoadingAction("更新中..."));
       switch (key) {
         case "name":
+          dispatch(showLoadingAction("更新中..."));
           try {
             const newUserName = {
               name: values.name,
             };
-            console.log(values.name);
             const res = await updateUserName(newUserName);
-            console.log(newUserName);
             if (res.data.status === 200) {
               setValues({
                 ...values,
@@ -70,13 +77,33 @@ export const useUpdateProfile = () => {
               handleListenAuthState();
               toast.success("ユーザーネームを更新しました");
             } else {
-              toast.success("ユーザーネームに失敗しました");
+              toast.success("ユーザーネームの更新に失敗しました");
             }
           } catch (error) {
             console.log(error);
           }
           break;
         case "email":
+          dispatch(showLoadingAction("認証メール送信中..."));
+          try {
+            const newEmail = {
+              email: values.email,
+            };
+            const res = await sendAuthEmailForUpdate(newEmail);
+            if (res.data.status === 200) {
+              toast.success("認証メールを送信しました。");
+            } else if (res.data.message === "already") {
+              toast.error("既に使用されているメールアドレスです", {
+                position: "top-center",
+                autoClose: false,
+              });
+            } else {
+              toast.error("認証メールの送信に失敗しました。");
+            }
+          } catch (error) {
+            console.log(error);
+            toast.error("認証メールの送信に失敗しました。");
+          }
           break;
       }
       dispatch(hideLoadingAction());
@@ -84,6 +111,32 @@ export const useUpdateProfile = () => {
     [dispatch, values, edit, handleListenAuthState]
   );
 
+  // メールアドレスを更新
+  const handleUpdateEmail = useCallback(
+    async (token: string) => {
+      dispatch(showLoadingAction("メールアドレス認証中..."));
+      const params = {
+        token,
+      };
+      try {
+        const res = await updateEmail(params);
+        if (res.data.status === 200) {
+          handleListenAuthState();
+          toast.success("メールアドレスを更新しました");
+        } else {
+          toast.error("メールアドレスの更新に失敗しました");
+        }
+      } catch (error) {
+        toast.error("認証情報が確認できませんでした。");
+      }
+      navigate("/profile");
+      dispatch(hideLoadingAction());
+    },
+    [dispatch, navigate, handleListenAuthState]
+  );
+
+  // ユーザーの入力に合わせてバリデーションを実行
+  // ユーザーネーム
   useEffect(() => {
     const isValidName = validateIsNotEmpty(values.name);
     setValid({
@@ -92,9 +145,9 @@ export const useUpdateProfile = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values.name]);
-
+  // メールアドレス
   useEffect(() => {
-    const isValidEmail = validateIsNotEmpty(values.email);
+    const isValidEmail = validateEmailFormat(values.email);
     setValid({
       ...valid,
       email: isValidEmail,
@@ -106,6 +159,7 @@ export const useUpdateProfile = () => {
     valid,
     values,
     edit,
+    handleUpdateEmail,
     handleClickEditMode,
     handleChangeUserProfile,
     handleSubmitNewUserProfile,

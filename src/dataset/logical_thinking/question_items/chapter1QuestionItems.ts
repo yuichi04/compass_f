@@ -89,7 +89,7 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
       progress: false,
       displayTime: 0,
     },
-    characterLines: ["はい。", "それでは、よろしくお願いします。"],
+    characterLines: ["それでは、よろしくお願いします。"],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
     allowProgress: true,
     data: [],

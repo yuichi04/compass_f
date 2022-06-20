@@ -26,14 +26,24 @@ export const listenAuthState = () => {
   return client.get(process.env.REACT_APP_SESSION_URL!);
 };
 
-// ユーザーネームの更新
+// ユーザーネームの変更
 export const updateUserName = (params: UpdateUserInfo) => {
   return client.patch(process.env.REACT_APP_UPDATE_USER_NAME!, params);
 };
 
-// パスワードの更新
-export const updateUserPassword = (params: UpdateUserInfo) => {
-  return client.patch(process.env.REACT_APP_UPDATE_USER_PASSWORD!, params);
+// メールアドレス変更用の認証メールを送信
+export const sendAuthEmailForUpdate = (params: UpdateUserInfo) => {
+  return client.post(process.env.REACT_APP_SEND_AUTH_EMAIL_FOR_UPDATE!, params);
+};
+
+// メールアドレスの変更
+export const updateEmail = (params: { token: string }) => {
+  return client.patch(process.env.REACT_APP_UPDATE_EMAIL!, params);
+};
+
+// パスワードの変更
+export const updatePassword = (params: UpdateUserInfo) => {
+  return client.patch(process.env.REACT_APP_UPDATE_PASSWORD!, params);
 };
 
 // 退会（ユーザー削除）

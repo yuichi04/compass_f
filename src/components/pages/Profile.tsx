@@ -77,21 +77,25 @@ const Profile: React.FC = React.memo(() => {
               <Typography variant="subtitle2">メールアドレス</Typography>
             </Box>
             {edit.email ? (
-              <>
+              <form onSubmit={(e) => handleSubmitNewUserProfile(e, "email")}>
                 <MuiTextField
                   value={values.email}
-                  onChange={(e) => handleChangeUserProfile(e, "name")}
+                  onChange={(e) => handleChangeUserProfile(e, "email")}
                   fullWidth
                   size="small"
+                  placeholder="ご希望のメールアドレスを入力してください"
                 />
+                <Typography variant="subtitle2">メールアドレスは認証後に変更が完了します。</Typography>
                 <Box display="flex" alignItems="cneter" justifyContent="right" mt="8px">
-                  <MuiButton variant="contained">更新</MuiButton>
+                  <MuiButton type="submit" variant="contained" disabled={!valid.email}>
+                    認証メールを送信
+                  </MuiButton>
                   <Box width="8px" />
                   <MuiButton variant="contained" color="secondary" onClick={() => handleClickEditMode("email", false)}>
                     キャンセル
                   </MuiButton>
                 </Box>
-              </>
+              </form>
             ) : (
               <Box display="flex" alignItems="center" justifyContent="space-between">
                 <Typography>{user.email}</Typography>
