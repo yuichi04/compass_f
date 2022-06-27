@@ -85,7 +85,7 @@ const Profile: React.FC = React.memo(() => {
                   size="small"
                   placeholder="ご希望のメールアドレスを入力してください"
                 />
-                <Typography variant="subtitle2">メールアドレスは認証後に変更が完了します。</Typography>
+                <Typography variant="subtitle2">※メールアドレスは認証後に変更が完了します。</Typography>
                 <Box display="flex" alignItems="cneter" justifyContent="right" mt="8px">
                   <MuiButton type="submit" variant="contained" disabled={!valid.email}>
                     認証メールを送信

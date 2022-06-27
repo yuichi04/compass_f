@@ -14,8 +14,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
       displayTime: 0,
     },
     characterLines: [
-      "「なんでも相談サポートセンター」へようこそ。",
-      "私はこのセンターで管理者をしている亀井と申します。",
+      "ようこそ、なんでも相談サポートセンターへ！",
+      "私はこのセンターで管理者をしているカメイと申します。",
     ],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
     allowProgress: true,

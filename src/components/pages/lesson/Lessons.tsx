@@ -14,21 +14,20 @@ const Lessons: React.FC = React.memo(() => {
     <MuiContainer maxWidth="lg">
       <IconWithPageTitle title="レッスン一覧" icon={LocalLibraryIcon} iconColor="primary" />
       <Box sx={{ mb: "64px" }}>
-        <IconWithSectionTitle title="ロジカルシンキング編" icon={MenuBookIcon} iconColor="primary" />
+        <IconWithSectionTitle title="ロジカルシンキング基本編" icon={MenuBookIcon} iconColor="primary" />
         <CourseCardList />
       </Box>
       <Box sx={{ mb: "64px", color: "#444" }}>
-        <IconWithSectionTitle title="伝わりやすい説明編" icon={BookmarkIcon} iconColor="primary" />
+        <IconWithSectionTitle title="ロジカルシンキング応用篇" icon={BookmarkIcon} iconColor="primary" />
         <Grid container>
           <Grid item xs={4}>
             <CourseCard
               course="説明方法"
-              grade="初級編"
+              grade="応用編"
               link="/lesson/index"
               color="error"
               title="伝わる話の組み立て方"
-              text="実装予定"
-              // text={<>相手のレベルに合わせたわかりやすい説明ができるようになります</>}
+              text="※実装予定"
               image={Icons.user07}
             />
           </Grid>
