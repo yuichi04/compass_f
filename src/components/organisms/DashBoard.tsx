@@ -31,9 +31,6 @@ const DashBoard: React.FC = React.memo(() => {
           <Typography component="div" fontWeight={600}>
             {user.name}
           </Typography>
-          <Typography variant="overline" component="div" color="text.secondary">
-            見習い訓練兵 Lv.1
-          </Typography>
         </Box>
       </Box>
       <Divider orientation="vertical" flexItem sx={{ m: "0 32px" }} />

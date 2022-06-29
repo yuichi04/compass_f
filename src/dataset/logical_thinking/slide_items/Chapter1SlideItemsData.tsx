@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styled from "styled-components";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import ArrowCircleRightSharpIcon from "@mui/icons-material/ArrowCircleRightSharp";
@@ -15,6 +16,68 @@ import { Grid, Paper } from "@mui/material";
 import InThought from "../../../assets/images/illustrations/inthought.svg";
 import Merit from "../../../assets/images/illustrations/merit.svg";
 import Warning from "../../../assets/images/illustrations/warning.svg";
+
+const SArrowDown = styled.div`
+  position: relative;
+  width: 4px;
+  height: 40px;
+  background: #999;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    height: 16px;
+    background: #999;
+    transform-origin: bottom;
+  }
+  &::before {
+    transform: rotateZ(-45deg);
+  }
+  &::after {
+    transform: rotateZ(45deg);
+  }
+`;
+const SArrowRight = styled.div`
+  position: relative;
+  width: 50px;
+  height: 4px;
+  background: #999;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #999;
+    width: 16px;
+    height: 4px;
+    transform-origin: right;
+  }
+  &::before {
+    transform: rotateZ(45deg);
+  }
+  &::after {
+    transform: rotateZ(-45deg);
+  }
+`;
+const SVerticalLine = styled.div`
+  position: relative;
+  width: 4px;
+  height: 128px;
+  background: #999;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 155px;
+    height: 4px;
+    background: #999;
+  }
+`;
 
 const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング基本編「帰納法」";
@@ -98,10 +161,7 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "ロジカルシンキングについて",
       sentence: (
         <Box>
-          <Paper
-            elevation={8}
-            sx={{ position: "relative", p: "36px 32px 12px", mb: "64px", border: "2px solid #b2dfdb" }}
-          >
+          <Paper elevation={8} sx={{ position: "relative", p: "36px 32px 12px", border: "2px solid #b2dfdb" }}>
             <Paper
               elevation={8}
               sx={{
@@ -135,7 +195,10 @@ const Chapter1SlideItemsData = () => {
             <br />
             では、身につけることでどんなメリットがあるのでしょうか？
           </Paper>
-          <Paper elevation={8} sx={{ position: "relative", p: "36px 32px 12px", border: "2px solid #b2dfdb" }}>
+          <Box textAlign="center">
+            <ArrowDropDownIcon sx={{ fontSize: "80px", color: "#666" }} />
+          </Box>
+          <Paper elevation={8} sx={{ position: "relative", p: "36px 32px 16px", border: "2px solid #b2dfdb" }}>
             <Paper
               elevation={8}
               sx={{
@@ -171,7 +234,7 @@ const Chapter1SlideItemsData = () => {
               そのためロジカルシンキングができる人材は実際のビジネスの現場において非常に重宝されており、もしビジネスマンとしての価値を上げたいのであれば身につけるべきスキルであることは間違いありません。
             </Box>
             <Box>
-              ただし、実はロジカルシンキングを使うときに注意しなくてはならないことがあります。
+              ただし、ロジカルシンキングを使うときに注意しなくてはならないことがあります。
               <br />
               それは
               <Typography variant="h6" component="span" fontWeight={600}>
@@ -315,7 +378,7 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "ロジカルシンキング2つの柱",
       sentence: (
         <>
-          <Box textAlign="center">
+          <Typography component="div" variant="h6" fontWeight={600} textAlign="center">
             ロジカルシンキングには2つの柱と言われている思考法があります。
             <br />
             それは「
@@ -328,7 +391,7 @@ const Chapter1SlideItemsData = () => {
             >
               帰納法
             </Typography>
-            <Typography variant="body2" component="span" color="text.secondary">
+            <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
               （きのう法）
             </Typography>
             」と「
@@ -341,17 +404,17 @@ const Chapter1SlideItemsData = () => {
             >
               演繹法
             </Typography>
-            <Typography variant="body2" component="span" color="text.secondary">
+            <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
               （えんえき法）
             </Typography>
             」です。
             <br />
             この2つを理解することはロジカルシンキングを身につける上で欠かせません。
-          </Box>
+          </Typography>
           <Box textAlign="center" mb="16px">
             <ArrowDropDownIcon sx={{ fontSize: "80px", color: "#666" }} />
           </Box>
-          <Grid container spacing={6}>
+          <Grid container spacing={7}>
             <Grid item xs={6} textAlign="center">
               <Paper elevation={8} sx={{ position: "relative", p: "48px 0 32px", border: "1px solid #83c3f7" }}>
                 <Paper
@@ -370,23 +433,57 @@ const Chapter1SlideItemsData = () => {
                   </Typography>
                 </Paper>
                 <Box display="flex" alignItems="center" mb="32px" justifyContent="center">
-                  <CheckCircleIcon sx={{ fontSize: "24px", color: "primary.main", mr: "4px" }} />
-                  <Typography variant="h5" fontWeight={600}>
+                  <CheckCircleIcon sx={{ fontSize: "24px", mr: "4px", color: "#83c3f7" }} />
+                  <Typography
+                    variant="h5"
+                    color="text.secondary"
+                    fontWeight={600}
+                    sx={{ textDecoration: "underline double #83c3f7" }}
+                  >
                     複数の情報から共通点を探し出し結論を導く方法
                   </Typography>
                 </Box>
-                <Box>
-                  <Box
-                    component="img"
-                    src={require("../../../assets/images/charts/inductive.png")}
-                    alt="inductive chart"
-                    style={{ width: "312px", height: "228px" }}
-                  />
+                <Box display="flex" flexDirection="column" alignItems="center" justifyContent="space-between">
+                  <Box display="flex">
+                    <Box display="flex" flexDirection="column" alignItems="center">
+                      <Paper elevation={8} sx={{ p: "8px 16px", bgcolor: "#666", color: "#fff", width: "100px" }}>
+                        情報A
+                      </Paper>
+                      <Box width="4px" height="32px" bgcolor="#999" />
+                    </Box>
+                    <Box display="flex" flexDirection="column" alignItems="center">
+                      <Paper
+                        elevation={8}
+                        sx={{ m: "0 32px", p: "8px 16px", bgcolor: "#666", color: "#fff", width: "100px" }}
+                      >
+                        情報B
+                      </Paper>
+                      <Box width="4px" height="32px" bgcolor="#999" />
+                    </Box>
+                    <Box display="flex" flexDirection="column" alignItems="center">
+                      <Paper elevation={8} sx={{ p: "8px 16px", bgcolor: "#666", color: "#fff", width: "100px" }}>
+                        情報C
+                      </Paper>
+                      <Box width="4px" height="32px" bgcolor="#999" />
+                    </Box>
+                  </Box>
+                  <Box width="268px" height="4px" bgcolor="#999" />
+                  <SArrowDown />
+                  <Paper elevation={8} sx={{ p: "8px 0", bgcolor: "primary.light", color: "#fff", width: "100px" }}>
+                    共通点
+                  </Paper>
+                  <SArrowDown />
+                  <Paper elevation={8} sx={{ p: "8px 16px", bgcolor: "primary.dark", color: "#fff", width: "100px" }}>
+                    結論
+                  </Paper>
                 </Box>
               </Paper>
             </Grid>
             <Grid item xs={6} textAlign="center">
-              <Paper elevation={8} sx={{ position: "relative", p: "48px 0 32px", border: "1px solid #c2647c" }}>
+              <Paper
+                elevation={8}
+                sx={{ height: "100%", position: "relative", p: "48px 0 32px", border: "1px solid #c2647c" }}
+              >
                 <Paper
                   elevation={8}
                   sx={{
@@ -403,18 +500,39 @@ const Chapter1SlideItemsData = () => {
                   </Typography>
                 </Paper>
                 <Box display="flex" alignItems="center" mb="32px" justifyContent="center">
-                  <CheckCircleIcon sx={{ fontSize: "24px", color: "primary.main", mr: "4px" }} />
-                  <Typography variant="h5" fontWeight={600}>
+                  <CheckCircleIcon sx={{ fontSize: "24px", color: "#c2647c", mr: "4px" }} />
+                  <Typography
+                    variant="h5"
+                    color="text.secondary"
+                    fontWeight={600}
+                    sx={{ textDecoration: "underline double #c2647c" }}
+                  >
                     自分の考えを一般論に当てはめて結論を導く方法
                   </Typography>
                 </Box>
-                <Box>
-                  <Box
-                    component="img"
-                    src={require("../../../assets/images/charts/deductive.png")}
-                    alt="inductive chart"
-                    style={{ width: "312px", height: "228px" }}
-                  />
+                <Box sx={{ transform: "translateX(32px)" }}>
+                  <Grid container>
+                    <Grid item xs={6} display="flex" flexDirection="column" alignItems="center">
+                      <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "primary.light", color: "#fff" }}>
+                        一般論
+                      </Paper>
+                      <SVerticalLine />
+                      <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "primary.light", color: "#fff" }}>
+                        自分の考え
+                      </Paper>
+                    </Grid>
+                    <Grid item xs={6} display="flex" alignItems="center">
+                      <Box display="flex" alignItems="center">
+                        <SArrowRight />
+                        <Paper
+                          elevation={8}
+                          sx={{ width: "128px", p: "8px 0", bgcolor: "primary.dark", color: "#fff" }}
+                        >
+                          結論
+                        </Paper>
+                      </Box>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Paper>
             </Grid>
@@ -430,7 +548,7 @@ const Chapter1SlideItemsData = () => {
       sentence: (
         <Box position="relative">
           <Typography variant="h6" fontWeight={600} textAlign="center">
-            以下の例を見てそれぞれの思考法の使い方を確認しましょう。次のスライドからは「帰納法」について具体的に学んでいきます。
+            以下の例で帰納法・演繹法それぞれの使い方をさっと確認しましょう。以降は「帰納法」について具体的に学んでいきます。
           </Typography>
           <Typography
             variant="body1"
@@ -470,7 +588,7 @@ const Chapter1SlideItemsData = () => {
                         component="dd"
                         sx={{
                           borderRadius: "100%",
-                          bgcolor: "#ccc",
+                          bgcolor: "#b33e5c",
                           color: "#fff",
                           height: "64px",
                           width: "124px",
@@ -488,7 +606,7 @@ const Chapter1SlideItemsData = () => {
                         component="dd"
                         sx={{
                           borderRadius: "100%",
-                          bgcolor: "#ccc",
+                          bgcolor: "#fbb73b",
                           color: "#fff",
                           height: "64px",
                           width: "124px",
@@ -506,7 +624,7 @@ const Chapter1SlideItemsData = () => {
                         component="dd"
                         sx={{
                           borderRadius: "100%",
-                          bgcolor: "#ccc",
+                          bgcolor: "#8561c5",
                           color: "#fff",
                           height: "64px",
                           width: "124px",
@@ -608,7 +726,7 @@ const Chapter1SlideItemsData = () => {
                         elevation={8}
                         sx={{
                           borderRadius: "100%",
-                          bgcolor: "#80cbc4",
+                          bgcolor: "primary.light",
                           color: "#fff",
                           height: "160px",
                           width: "160px",
@@ -631,7 +749,7 @@ const Chapter1SlideItemsData = () => {
                         elevation={8}
                         sx={{
                           borderRadius: "100%",
-                          bgcolor: "#80cbc4",
+                          bgcolor: "primary.light",
                           color: "#fff",
                           height: "160px",
                           width: "160px",

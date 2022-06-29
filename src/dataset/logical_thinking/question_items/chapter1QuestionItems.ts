@@ -51,7 +51,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
       displayTime: 0,
     },
     characterLines: [
-      "このセンターはその名の通りジャンル問わず、様々なお問い合わせをいただきますが、スライドで学んだことを生かして対応してもらえれば大丈夫です。",
+      "このセンターはその名の通りジャンル問わず様々なお問い合わせをいただきますが、",
+      "スライドで学んだことを生かして対応してもらえれば大丈夫です。",
     ],
     characterImage: { src: "guide/guide_normal_a.png", role: "guide" },
     allowProgress: true,
@@ -190,8 +191,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
       displayTime: 0,
     },
     characterLines: [
-      "僕は将来アメリカで仕事をしたいと思っているんですけど英語が全然話せなくて・・・、",
-      "なので、英語が話せるようになる方法があったら教えて欲しいです。",
+      "僕は将来アメリカで仕事をしたいと思っているんですけど英語が全然話せなくて困ってるんです。",
+      "どうしたら英語が話せるようになりますか？何か良い方法があったら教えて欲しいです。",
     ],
     characterImage: { src: "customer/dansei_05_b.png", role: "customer" },
     data: [],

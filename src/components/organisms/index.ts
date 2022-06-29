@@ -5,7 +5,6 @@ export { default as MuiDrawer } from "./MuiDrawer";
 export { default as MuiModalConfirmation } from "./MuiModalConfirmation";
 export { default as AvatarAndUploadButton } from "./AvatarAndUploadButton";
 export { default as DashBoard } from "./DashBoard";
-export { default as CourseCardList } from "./CourseCardList";
 export { default as LearningCalendar } from "./LearningCalendar";
 export { default as LearningProgress } from "./LearningProgress";
 export { default as ContactBoard } from "./ContactBoard";

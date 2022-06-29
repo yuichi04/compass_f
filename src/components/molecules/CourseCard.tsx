@@ -1,59 +1,55 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { LinkTo, MuiChip } from "../atoms";
-import { Grid } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 
 type Props = {
   image?: string;
-  course: string;
   grade: string;
   title?: string;
+  titleUnderLineColor: string;
   link: string;
   text?: React.ReactNode;
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
 };
 
 const CourseCard: React.FC<Props> = React.memo((props) => {
-  const { image, course, title, grade, link, text, color } = props;
+  const { image, title, grade, link, text, color, titleUnderLineColor } = props;
   return (
     <LinkTo to={link}>
-      <Card
+      <Paper
+        elevation={8}
         sx={{
           bgcolor: "#fff",
           height: "100%",
-          transition: "all 0.3s",
           p: "16px",
-          pb: "0",
+          transition: "all 0.3s",
           "&:hover": {
             transform: "scale(1.01)",
-            boxShadow: "2px 6px 12px #ccc",
+            boxShadow: "2px 6px 12px #666",
           },
         }}
-        elevation={3}
       >
-        <Grid container spacing={1}>
-          <Grid item>
-            <MuiChip label={course} color={color} size="small" />
-          </Grid>
-          <Grid item>
-            <MuiChip label={grade} color="info" size="small" />
-          </Grid>
-        </Grid>
-        <CardContent>
-          <Typography textAlign="center" color="text.secondary" variant="h5" fontWeight={600}>
-            {title}
-          </Typography>
-        </CardContent>
-        <CardMedia component="img" height="168" image={image} alt="info" sx={{ m: "0 auto 16px auto" }} />
-        <CardContent>
-          <Typography textAlign="center" variant="body2" color="text.secondary">
-            {text}
-          </Typography>
-        </CardContent>
-      </Card>
+        <Box mb="16px">
+          <MuiChip label={grade} color={color} size="small" />
+        </Box>
+        <Typography
+          textAlign="center"
+          color="text.secondary"
+          variant="h5"
+          fontWeight={600}
+          mb="24px"
+          sx={{ textDecoration: `underline double ${titleUnderLineColor}` }}
+        >
+          {title}
+        </Typography>
+        <Box height="168px" mb="24px">
+          <Box component="img" src={image} height="100%" width="100%" />
+        </Box>
+        <Typography textAlign="center" variant="body2" color="text.secondary" p="16px 32px">
+          {text}
+        </Typography>
+      </Paper>
     </LinkTo>
   );
 });

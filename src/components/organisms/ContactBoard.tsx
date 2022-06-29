@@ -39,7 +39,7 @@ const ContactBoard: React.FC = React.memo(() => {
             <Grid item xs={6}>
               <Typography>
                 COMPASSをご利用頂きありがとうございます。 <br />
-                ご不明点やご意見・ご要望などがございましたら、フォームよりご連絡ください。
+                ご不明点やご意見・ご要望などがございましたらフォームよりご連絡ください。
                 <br />
                 <br />
                 また、

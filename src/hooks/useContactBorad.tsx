@@ -42,7 +42,7 @@ export const useContactBorad = () => {
       try {
         const res = await sendContactEmail(values);
         if (res.status === 200) {
-          toast.success("送信されました。");
+          toast.success("お問い合わせいただきありがとうございます。");
           // フォームの入力内容をクリア
           setValues({
             ...values,
