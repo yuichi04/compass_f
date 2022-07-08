@@ -6,17 +6,18 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const SArrowRight = styled.div`
   position: relative;
   width: 50px;
-  height: 4px;
+  height: 3px;
   background: #999;
+  transform: translateX(-10px);
   &::before,
   &::after {
     content: "";
     position: absolute;
-    right: 0;
+    right: -1px;
     top: 0;
     background: #999;
-    width: 16px;
-    height: 4px;
+    width: 24px;
+    height: 3px;
     transform-origin: right;
   }
   &::before {
@@ -28,16 +29,16 @@ const SArrowRight = styled.div`
 `;
 const SVerticalLine = styled.div`
   position: relative;
-  width: 4px;
+  width: 3px;
   height: 128px;
   background: #999;
   &::before {
     content: "";
     position: absolute;
-    top: 62px;
+    top: 62.5px;
     left: 0;
     width: 155px;
-    height: 4px;
+    height: 3px;
     background: #999;
   }
 `;

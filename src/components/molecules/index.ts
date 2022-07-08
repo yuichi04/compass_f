@@ -1,7 +1,9 @@
 export { default as ChipWithText } from "./ChipWithText";
 export { default as IconWithPageTitle } from "./IconWithPageTitle";
 export { default as IconWithSectionTitle } from "./IconWithSectionTitle";
+export { default as IconWithText } from "./IconWithText";
 export { default as AvatarWithName } from "./AvatarWithName";
+export { default as MuiTextFieldWithAdornment } from "./MuiTextFieldWithAdornment";
 export { default as CourseCard } from "./CourseCard";
 export { default as SelectBox } from "./SelectBox";
 export { default as InductiveExplainChart } from "./InductiveExplainChart";
@@ -10,3 +12,4 @@ export { default as DeductiveExampleChart } from "./DeductiveExampleChart";
 export { default as InductiveExampleChart } from "./InductiveExampleChart";
 export { default as SlideSection } from "./SlideSection";
 export { default as SlidePointCard } from "./SlidePointCard";
+export { default as SlideSectionContent } from "./SlideSectionContent";

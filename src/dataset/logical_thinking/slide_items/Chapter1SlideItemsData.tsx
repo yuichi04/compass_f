@@ -13,26 +13,32 @@ import Filter4Icon from "@mui/icons-material/Filter4";
 import Filter5Icon from "@mui/icons-material/Filter5";
 import Filter6Icon from "@mui/icons-material/Filter6";
 import Filter7Icon from "@mui/icons-material/Filter7";
-import PlayLessonIcon from "@mui/icons-material/PlayLesson";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import CancelIcon from "@mui/icons-material/Cancel";
+import InfoIcon from "@mui/icons-material/Info";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
-import WarningIcon from "@mui/icons-material/Warning";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import { Grid, Paper } from "@mui/material";
+import WarningIcon from "@mui/icons-material/Warning";
+import FlagCircleIcon from "@mui/icons-material/FlagCircle";
+import StarsIcon from "@mui/icons-material/Stars";
+import { Divider, Grid, Paper } from "@mui/material";
 import InThought from "../../../assets/images/illustrations/inthought.svg";
 import Merit from "../../../assets/images/illustrations/merit.svg";
 import Warning from "../../../assets/images/illustrations/warning.svg";
 import Double from "../../../assets/images/illustrations/double.svg";
 import Analytics from "../../../assets/images/illustrations/analytics.svg";
 import IndexGuide from "../../../assets/images/illustrations/readingbook.svg";
+import ThoughtProcess from "../../../assets/images/illustrations/thought.svg";
 import {
   InductiveExplainChart,
   InductiveExampleChart,
   DeductiveExplainChart,
   SlideSection,
+  SlideSectionContent,
   SlidePointCard,
+  IconWithText,
 } from "../../../components/molecules";
 
 const Chapter1SlideItemsData = () => {
@@ -141,18 +147,68 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "ロジカルシンキングとは？",
       sentence: (
         <>
-          <Box textAlign="center">
-            ロジカルシンキングとは知識や前提条件をもとに「
+          <Typography variant="h5" component="div" display="flex" alignItems="center" justifyContent="center">
+            <CheckCircleIcon sx={{ color: "primary.main", fontSize: "32px", mr: "4px" }} />
+            ロジカルシンキングとは「
             <Typography
-              variant="h6"
+              variant="h5"
               component="span"
-              color="primary.main"
               fontWeight={600}
-              sx={{ textDecoration: "underline double #faa50a" }}
+              sx={{ textDecoration: "underline double #00aa99" }}
             >
-              話を筋道立てて考える思考法
+              話を筋道立てて考えること
             </Typography>
-            」のことを言います。
+            」
+          </Typography>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <ArrowDropDownIcon sx={{ fontSize: "64px", color: "#666" }} />
+          </Box>
+          <SlideSection
+            title="もっと詳しく"
+            titleIcon={<InfoIcon sx={{ color: "#fff", fontSize: "32px" }} />}
+            color="primary.main"
+          >
+            <Grid container spacing={3}>
+              <Grid item xs={8}>
+                ロジカルシンキングは知識や前提条件から「
+                <Typography variant="h6" component="span" fontWeight={600}>
+                  話を筋道立てて考えること
+                </Typography>
+                」です。
+                <br />
+                身につけることで無駄なく効率的に考えをまとめることができるようになります。
+                <br />
+                そのため、ビジネスの現場において非常に重宝されており、ビジネスマンとして価値を上げるなら身につけるべきスキルであることは間違いありません。
+                <SlideSectionContent title="メリットと注意点" color="primary.light">
+                  ロジカルシンキングを身につけることには
+                  <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
+                    「説明が上手になる・問題解決力がつく」
+                  </Typography>
+                  という大きなメリットがあります。
+                  <br />
+                  どの仕事でも「何かを伝える・問題を解決する」ことは避けて通れないと思いますが、ロジカルシンキングを身につけていると、これらの問題に上手く対処できます。
+                  <br />
+                  <br />
+                  しかし、注意しなくてはならないこともあります。それは、知識に誤りがあったり前提に不足があると
+                  <Typography variant="h6" component="span" fontWeight={600} color="#b33e5c">
+                    間違った結論を導いてしまう
+                  </Typography>
+                  ということです。
+                  <br />
+                  知識の誤りや前提に漏れやダブりがないように意識しましょう。
+                </SlideSectionContent>
+              </Grid>
+              <Grid item xs={4}>
+                <Box component="img" src={ThoughtProcess} alt="image" height="100%" width="100%" />
+              </Grid>
+            </Grid>
+          </SlideSection>
+          {/* <Box textAlign="center">
+            ロジカルシンキングとは知識や前提条件をもとに「
+            <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
+              話を筋道立てて考えること
+            </Typography>
+            」を言います。
             <br />
             つまり、ロジカルシンキングを身につけるということは「
             <Typography variant="h6" component="span" fontWeight={600}>
@@ -204,7 +260,7 @@ const Chapter1SlideItemsData = () => {
             ということです。
             <br />
             ロジカルシンキングを使うときにはそれらの間違いや不足がないかチェックする必要があるということを忘れないようにしましょう。
-          </SlideSection>
+          </SlideSection> */}
         </>
       ),
     },
@@ -227,7 +283,7 @@ const Chapter1SlideItemsData = () => {
             帰納法
           </Typography>
           <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
-            （きのう法）
+            （きのうほう）
           </Typography>
           」と「
           <Typography
@@ -239,13 +295,13 @@ const Chapter1SlideItemsData = () => {
             演繹法
           </Typography>
           <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
-            （えんえき法）
+            （えんえきほう）
           </Typography>
           」です。
           <br />
           どちらもロジカルシンキングを身につける上で欠かすことのできない思考法です。
           <br />
-          あとで詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
+          後ほど詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
           <Typography variant="body2">
             ※演繹法についてはロジカルシンキング基本編「演繹法」にて学ぶことができます。
           </Typography>
@@ -349,329 +405,61 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "帰納法とは",
       sentence: (
         <>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <CheckCircleIcon sx={{ color: "#83c3f7", fontSize: "32px" }} />
-            <Typography variant="h5" component="div">
-              帰納法とは、
-              <Typography
-                variant="h5"
-                component="span"
-                fontWeight={600}
-                sx={{ textDecoration: "underline double #83c3f7" }}
-              >
-                複数の情報から共通点を見つけて結論を導く思考法
-              </Typography>
+          <Typography variant="h5" component="div" display="flex" alignItems="center" justifyContent="center">
+            <CheckCircleIcon sx={{ color: "#83c3f7", fontSize: "32px", mr: "4px" }} />
+            帰納法とは「
+            <Typography
+              variant="h5"
+              component="span"
+              fontWeight={600}
+              sx={{ textDecoration: "underline double #83c3f7" }}
+            >
+              複数の情報から共通点を見つけて結論を導く思考法
             </Typography>
-          </Box>
+            」のこと
+          </Typography>
           <Box display="flex" alignItems="center" justifyContent="center">
             <ArrowDropDownIcon sx={{ fontSize: "64px", color: "#666" }} />
           </Box>
-          <SlideSection title="もっと詳しく" color="#83c3f7">
+          <SlideSection
+            title="もっと詳しく"
+            titleIcon={<InfoIcon sx={{ color: "#fff", fontSize: "32px" }} />}
+            color="#83c3f7"
+          >
             <Grid container spacing={4}>
               <Grid item xs={4}>
                 <Box component="img" src={Analytics} alt="image" height="100%" width="100%" />
               </Grid>
               <Grid item xs={8}>
-                帰納法は統計学の基本の考えとなっており、まだ知らないことに対して「
-                <Typography
-                  variant="h6"
-                  component="span"
-                  fontWeight={600}
-                  sx={{ textDecoration: "underline wavy #666" }}
-                >
-                  これはこういうことだろう
+                帰納法はまだ知らないことについて「これはこういうことだろう
+                」と確実性の高い予測を立てたり、自分の考えをまとめ誰かに何かを伝える場面で役立つ思考法です。
+                <br />
+                <br />
+                ビジネスにおいて何か商品を開発する場合に、ヒット商品の法則性がわからなければ効果的な戦略を立てることは難しいでしょう。しかし、帰納法を用いることで、その法則性を見つけ成果の上がりやすい戦略を立てることが可能になります。
+                <br />
+                <br />
+                また、他にも、誰かに何かを説明したり意見を述べる場面でも役に立ちます。
+                <br />
+                たとえば、根拠が乏しい説明や筋の通っていない意見では相手に納得してもらうことは難しいでしょう。しかし、複数の情報から結論を導く帰納法は、言い換えれば、複数の根拠から考えを固める思考法とも言えるため、これを用いることで、相手に納得してもらいやすい説明や意見を組み立てることできます。
+                <br />
+                <br />
+                このように、「
+                <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
+                  答えを出す・何かを伝える
                 </Typography>
-                」と確実性の高い予測をすることができる思考法です。
-                <br />
-                <br />
-                たとえば、ビジネスにおいて何か商品を開発する場合に、ヒット商品の法則性がわからなければ効果的な戦略を立てることは難しいでしょう。
-                <br />
-                しかし、帰納法を用いれば、その法則性を見つけ、成果の上がりやすい戦略を立てることが可能となります。
-                <br />
-                <br />
-                なお、帰納法を用いて導き出す結論がどれだけ正確かは
+                」という場面で役立つ思考法が帰納法です。
+                {/* また、帰納法を用いて導き出す結論がどれだけ正確かは
                 <Typography variant="h6" component="span" fontWeight={600}>
                   集めた情報の量と質
                 </Typography>
-                に左右されます。
-                <br />
-                ロジカルシンキングの時にも説明しましたが、帰納法においても、情報の不足や間違いには注意が必要です。
-                <br />
-                確実性の高い結論を導くためには「
+                に左右されます。確実性の高い結論を導くためには「
                 <Typography variant="h6" component="span" fontWeight={600}>
                   もれなく、ダブりなく
                 </Typography>
-                」情報を集めることを意識しましょう。次は具体例を交えて解説していきます。
+                」情報を集めることを意識しましょう。 */}
               </Grid>
             </Grid>
           </SlideSection>
-          {/* <Paper
-            elevation={8}
-            sx={{
-              position: "relative",
-              bgcolor: "#fff",
-              border: "2px solid #83c3f7",
-              p: "40px 32px 16px",
-            }}
-          >
-            <Paper
-              elevation={8}
-              sx={{
-                position: "absolute",
-                top: "-24px",
-                left: "-12px",
-                bgcolor: "#83c3f7",
-                p: "8px 16px",
-                borderRadius: "4px",
-                display: "inline-block",
-              }}
-            >
-              <Typography variant="h5" color="#fff" fontWeight={600} mr="4px">
-                帰納法とは？
-              </Typography>
-            </Paper>
-            帰納法とは「これはこういうことだろう」というような「
-            <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
-              物事の一般的な法則性
-            </Typography>
-            」を見つけ出すために有効な思考法です。
-            <br />
-            たとえば、ビジネスにおいて何か新たな商品を開発する場合に、ヒット商品の法則性がわからなければ効果的な戦略を立てることは難しいでしょう。
-            <br />
-            しかし、もしその法則性を見つけることができれば、成果の上がりやすい戦略を立てることができます。そのような場面で活用できるのが帰納法です。
-            以下の例をご覧ください。
-          </Paper>
-
-          <Box display="flex" alignItems="center" justifyContent="center" mb="20px">
-            <ArrowDropDownIcon sx={{ fontSize: "80px", color: "#666" }} />
-          </Box>
-
-          <Grid container spacing={4}>
-            <Grid item xs={4}>
-              <Paper
-                elevation={8}
-                sx={{
-                  position: "relative",
-                  bgcolor: "#fff",
-                  p: "40px 16px 16px",
-                  height: "100%",
-                }}
-              >
-                <Paper
-                  elevation={8}
-                  sx={{
-                    position: "absolute",
-                    top: "-24px",
-                    left: "-12px",
-                    bgcolor: "#666",
-                    color: "#fff",
-                    p: "8px 16px",
-                    borderRadius: "4px",
-                    display: "inline-block",
-                  }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <LooksOneIcon sx={{ fontSize: "32px", mr: "4px" }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      情報を揃える
-                    </Typography>
-                  </Box>
-                </Paper>
-                <Typography
-                  variant="body1"
-                  component="ul"
-                  fontWeight={600}
-                  sx={{ listStyleType: "revert", listStylePosition: "inside" }}
-                >
-                  <Box component="li" mb="16px">
-                    スーパーやコンビニでの飲料水の売り上げが毎年少しずつ増えている
-                  </Box>
-                  <Box component="li" mb="16px">
-                    飲料水に関するアンケートを取った結果、水道水を飲むことに抵抗がある人の割合が4割を超えた
-                  </Box>
-                  <Box component="li" mb="16px">
-                    ウォーターサーバーの契約数が毎年少しずつ増えている
-                  </Box>
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                elevation={8}
-                sx={{
-                  position: "relative",
-                  bgcolor: "#fff",
-                  p: "40px 16px 16px",
-                  height: "100%",
-                }}
-              >
-                <Paper
-                  elevation={8}
-                  sx={{
-                    position: "absolute",
-                    top: "-24px",
-                    left: "-12px",
-                    bgcolor: "primary.light",
-                    color: "#fff",
-                    p: "8px 16px",
-                    borderRadius: "4px",
-                    display: "inline-block",
-                  }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <LooksTwoIcon sx={{ fontSize: "32px", mr: "4px" }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      共通点を探し出す
-                    </Typography>
-                  </Box>
-                </Paper>
-                消費者は水道水よりも高品質の水を求めている
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                elevation={8}
-                sx={{
-                  position: "relative",
-                  bgcolor: "#fff",
-                  p: "40px 16px 16px",
-                  height: "100%",
-                }}
-              >
-                <Paper
-                  elevation={8}
-                  sx={{
-                    position: "absolute",
-                    top: "-24px",
-                    left: "-12px",
-                    bgcolor: "primary.dark",
-                    color: "#fff",
-                    p: "8px 16px",
-                    borderRadius: "4px",
-                    display: "inline-block",
-                  }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <Looks3Icon sx={{ fontSize: "32px", mr: "4px" }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      結論を導き出す
-                    </Typography>
-                  </Box>
-                </Paper>
-                飲料水の需要は今後も伸び続けるだろう
-              </Paper>
-            </Grid>
-          </Grid> */}
-          {/* <Grid container spacing={4}>
-            <Grid item xs={6}>
-              <Paper
-                elevation={8}
-                sx={{ position: "relative", bgcolor: "#fff", p: "24px", border: "2px solid #83c3f7", height: "100%" }}
-              >
-                <Box component="dl" mb="8px">
-                  <Paper elevation={4} component="dt" sx={{ bgcolor: "#666", color: "#fff", p: "4px 12px", mb: "8px" }}>
-                    <Typography variant="body1" fontWeight={600}>
-                      集めた情報
-                    </Typography>
-                  </Paper>
-                  <dd>
-                    <Box component="ul" p="0 12px">
-                      <Typography variant="body1" component="li">
-                        ・有料音楽配信サービスの利用者が毎年少しずつ増えている
-                      </Typography>
-                      <Typography variant="body1" component="li">
-                        ・スマートフォンで音楽を聴く人が
-                      </Typography>
-                      <Typography variant="body1" component="li">
-                        ・配信サービスでリリースするアーティストの数が増えた
-                      </Typography>
-                    </Box>
-                  </dd>
-                </Box>
-                <Box component="dl" mb="8px">
-                  <Paper
-                    elevation={4}
-                    component="dt"
-                    sx={{ bgcolor: "primary.main", color: "#fff", p: "4px 12px", mb: "8px" }}
-                  >
-                    <Typography variant="body1" fontWeight={600}>
-                      共通点
-                    </Typography>
-                  </Paper>
-                  <Typography variant="body1" component="dd" p="0 12px">
-                    サブスクリプション形式のサービスである
-                  </Typography>
-                </Box>
-                <Box component="dl">
-                  <Paper
-                    elevation={4}
-                    component="dt"
-                    sx={{ bgcolor: "primary.dark", color: "#fff", p: "4px 12px", mb: "8px" }}
-                  >
-                    <Typography variant="body1" fontWeight={600}>
-                      結論
-                    </Typography>
-                  </Paper>
-                  <Typography variant="body1" component="dd" p="0 12px"></Typography>
-                </Box>
-              </Paper>
-            </Grid>
-            <Grid item xs={6}>
-              <Paper
-                elevation={8}
-                sx={{ position: "relative", bgcolor: "#fff", p: "24px", border: "2px solid #83c3f7", height: "100%" }}
-              >
-                <Box component="dl" mb="8px">
-                  <Paper elevation={4} component="dt" sx={{ bgcolor: "#666", color: "#fff", p: "4px 12px", mb: "8px" }}>
-                    <Typography variant="body1" fontWeight={600}>
-                      集めた情報
-                    </Typography>
-                  </Paper>
-                  <dd>
-                    <Box component="ul" p="0 12px">
-                      <Typography variant="body1" component="li">
-                        ・スーパーやコンビニでの飲料水の売り上げが毎年少しずつ増えている
-                      </Typography>
-                      <Typography variant="body1" component="li">
-                        ・飲料水に関するアンケートを取った結果、水道水を飲むことに抵抗がある人の割合が4割を超えた
-                      </Typography>
-                      <Typography variant="body1" component="li">
-                        ・ウォーターサーバーの契約数が毎年少しずつ増えている
-                      </Typography>
-                    </Box>
-                  </dd>
-                </Box>
-                <Box component="dl" mb="8px">
-                  <Paper
-                    elevation={4}
-                    component="dt"
-                    sx={{ bgcolor: "primary.main", color: "#fff", p: "4px 12px", mb: "8px" }}
-                  >
-                    <Typography variant="body1" fontWeight={600}>
-                      共通点
-                    </Typography>
-                  </Paper>
-                  <Typography variant="body1" component="dd" p="0 12px">
-                    消費者は水の品質を気にするようになってきている
-                  </Typography>
-                </Box>
-                <Box component="dl">
-                  <Paper
-                    elevation={4}
-                    component="dt"
-                    sx={{ bgcolor: "primary.dark", color: "#fff", p: "4px 12px", mb: "8px" }}
-                  >
-                    <Typography variant="body1" fontWeight={600}>
-                      結論
-                    </Typography>
-                  </Paper>
-                  <Typography variant="body1" component="dd" p="0 12px">
-                    飲料水の需要は今後も伸び続けるだろう
-                  </Typography>
-                </Box>
-              </Paper>
-            </Grid>
-          </Grid> */}
         </>
       ),
     },
@@ -682,63 +470,70 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "帰納法の使い方",
       sentence: (
         <>
-          {/* <Paper
-            elevation={8}
-            sx={{ position: "relative", bgcolor: "#fff", border: "2px solid #b2dfdb", p: "40px 32px 16px" }}
-          >
-            <Paper
-              elevation={8}
-              sx={{
-                position: "absolute",
-                top: "-24px",
-                left: "-12px",
-                display: "inline-block",
-                bgcolor: "#3f51b5",
-                borderRadius: "4px",
-                p: "8px 16px",
-              }}
-            >
-              <Box display="flex" alignItems="center">
-                <Typography variant="h5" component="span" color="#fff" fontWeight={600} mr="8px">
-                  メリット
-                </Typography>
-                <VolunteerActivismIcon sx={{ color: "#fff", fontSize: "24px" }} />
-              </Box>
-            </Paper>
-            物事の一般的な法則性を理解できるのは、帰納法の大きなメリットです。この点はビジネスシーンでも活用されています。たとえば、マーケティングの世界では集客やヒット商品の法則が分からなければ、効果的な戦略を立てられません。
-            そうなれば、無駄な戦略に時間とお金をかけてしまうでしょう。それでも、帰納法によってマーケティングの法則が分かっていれば、成果を上げやすい戦略を実施しやすくなるのです。
-            また、結論に根拠があるのも帰納法の特徴です。帰納法では複数の事象から共通点を探します。膨大な事例に共通している法則があるなら、その普遍性はかなり高いといえるでしょう。自信を持ってその法則をビジネスに応用できます。その場合、事例と同じ成果を得られる可能性は大きいのです。
-          </Paper>
-          <Box display="flex" alignContent="center" justifyContent="center" m="8px 0">
-            <HeightIcon sx={{ color: "#666", fontSize: "64px" }} />
+          <Box textAlign="center" mb="64px">
+            ここからは帰納法を用いる際の流れについて説明していきます。
+            <br />
+            帰納法は「1. 情報を揃える」「2. 共通点を見つける」「3. 結論を導き出す」という順で考えていきます。
           </Box>
-          <Paper
-            elevation={8}
-            sx={{ position: "relative", bgcolor: "#fff", border: "2px solid #b2dfdb", p: "40px 32px 16px" }}
-          >
-            <Paper
-              elevation={8}
-              sx={{
-                position: "absolute",
-                top: "-24px",
-                left: "-12px",
-                bgcolor: "#b33e5c",
-                p: "8px 16px",
-                borderRadius: "4px",
-                display: "inline-block",
-              }}
-            >
-              <Box display="flex" alignItems="center">
-                <Typography variant="h5" component="span" color="#fff" fontWeight={600} mr="8px">
-                  デメリット
-                </Typography>
-                <WarningIcon sx={{ color: "#fff", fontSize: "24px" }} />
-              </Box>
-            </Paper>
-            大前提として、帰納法は「正しい現象と計測」を踏まえなくてはなりません。現象そのものが事例として不適格だったり、計測が間違っていたりしたら帰納法は成り立たないのです。また、たまたま複数の現象で共通していただけの要素を普遍的だと思い込み、結論にしてしまう危険もあります。
-            事例を挙げるなら、「顧客Aはお菓子を買った」「顧客Bもお菓子を買った」という現象があったからといって、「誰もがお菓子好きでお金を使ってくれる」という結論にはなりません。AとBが特殊な顧客だった可能性もあるからです。
-            帰納法を正しく用いるには、データの質と量が問われます。十分なデータ収集を怠った状態で帰納法を用いても、整合性のある結論を導けないでしょう。帰納法で結論を導く前には、手元にあるデータが信用できる内容なのかを見直すことが大切です。
-          </Paper> */}
+          <Grid container>
+            <Grid item xs={3.6}>
+              <SlideSection title="1. 情報を揃える" color="primary.main">
+                <Box>
+                  <IconWithText icon={<StarsIcon sx={{ color: "#faa50a", mr: "4px" }} />} text="ポイント" />
+                  <Typography variant="body1" component="div">
+                    漏れやダブりがないように情報を揃えます。
+                  </Typography>
+                  <Divider sx={{ m: "16px 0" }} />
+                  <IconWithText icon={<FlagCircleIcon sx={{ color: "primary.main", mr: "4px" }} />} text="具体例" />
+                  <Typography
+                    variant="body1"
+                    component="ul"
+                    sx={{ listStyleType: "revert", listStylePosition: "inside" }}
+                  >
+                    <Box component="li" mb="16px">
+                      スーパーやコンビニでの飲料水の売り上げが毎年少しずつ増えている
+                    </Box>
+                    <Box component="li" mb="16px">
+                      飲料水に関するアンケートを取った結果、水道水を飲むことに抵抗がある人の割合が4割を超えた
+                    </Box>
+                    <Box component="li" mb="16px">
+                      ウォーターサーバーの契約数が毎年少しずつ増えている
+                    </Box>
+                  </Typography>
+                </Box>
+              </SlideSection>
+            </Grid>
+            <Grid item xs={0.6} display="flex" alignItems="center" justifyContent="center">
+              <ArrowRightIcon sx={{ color: "#666", fontSize: "100px" }} />
+            </Grid>
+            <Grid item xs={3.6}>
+              <SlideSection title="2. 共通点を見つける" color="primary.dark">
+                <Box>
+                  <IconWithText icon={<StarsIcon sx={{ color: "#faa50a", mr: "4px" }} />} text="ポイント" />
+                  <Typography variant="body1" component="div" fontWeight={600}></Typography>
+                  <Divider sx={{ m: "16px 0" }} />
+                  <IconWithText icon={<FlagCircleIcon sx={{ color: "primary.main", mr: "4px" }} />} text="具体例" />
+                  <Box>消費者は水道水よりも高品質の水を求めている</Box>
+                </Box>
+              </SlideSection>
+            </Grid>
+            <Grid item xs={0.6} display="flex" alignItems="center" justifyContent="center">
+              <ArrowRightIcon sx={{ color: "#666", fontSize: "100px" }} />
+            </Grid>
+            <Grid item xs={3.6}>
+              <SlideSection title="3. 結論を導き出す" color="#004d40">
+                <Box>
+                  <IconWithText icon={<StarsIcon sx={{ color: "#faa50a", mr: "4px" }} />} text="ポイント" />
+                  <Typography variant="body1" component="div">
+                    このステップでは共通点から無理なく一般論と言えそうなことを導きます。
+                  </Typography>
+                  <Divider sx={{ m: "16px 0" }} />
+                  <IconWithText icon={<FlagCircleIcon sx={{ color: "primary.main", mr: "4px" }} />} text="具体例" />
+                  <Box>飲料水の需要は今後も伸び続けるだろう</Box>
+                </Box>
+              </SlideSection>
+            </Grid>
+          </Grid>
         </>
       ),
     },

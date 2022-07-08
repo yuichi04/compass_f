@@ -40,7 +40,7 @@ const SlidePointCard: React.FC<Props> = React.memo((props) => {
           </Box>
         ))}
       </Box>
-      <Box height="240px">
+      <Box height="280px">
         <Box component="img" src={image} alt="image" width="100%" height="100%" />
       </Box>
     </Paper>

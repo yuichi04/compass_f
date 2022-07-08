@@ -3,8 +3,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { LinkTo, MuiButton, MuiTextFieldWithAdornment } from "../atoms";
-import { IconWithPageTitle } from "../molecules";
+import { LinkTo, MuiButton } from "../atoms";
+import { IconWithPageTitle, MuiTextFieldWithAdornment } from "../molecules";
 import { usePasswordReset } from "../../hooks/usePasswordReset";
 
 const PasswordReset: React.FC = React.memo(() => {

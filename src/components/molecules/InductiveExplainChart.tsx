@@ -5,7 +5,7 @@ import { Paper, Box, Typography } from "@mui/material";
 
 const SArrowDown = styled.div`
   position: relative;
-  width: 4px;
+  width: 3px;
   height: 40px;
   background: #999;
   &::before,
@@ -14,7 +14,7 @@ const SArrowDown = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 4px;
+    width: 3px;
     height: 16px;
     background: #999;
     transform-origin: bottom;
@@ -61,11 +61,11 @@ const InductiveExplainChart: React.FC = () => {
           <Box display="flex" flexDirection="column" alignItems="center">
             <Paper
               elevation={8}
-              sx={{ p: "8px 16px", bgcolor: "#666", color: "#fff", width: "100px", textAlign: "center" }}
+              sx={{ p: "8px 16px", bgcolor: "primary.main", color: "#fff", width: "100px", textAlign: "center" }}
             >
               情報A
             </Paper>
-            <Box width="4px" height="32px" bgcolor="#999" />
+            <Box width="3px" height="32px" bgcolor="#999" />
           </Box>
           <Box display="flex" flexDirection="column" alignItems="center">
             <Paper
@@ -73,7 +73,7 @@ const InductiveExplainChart: React.FC = () => {
               sx={{
                 m: "0 32px",
                 p: "8px 16px",
-                bgcolor: "#666",
+                bgcolor: "primary.main",
                 color: "#fff",
                 width: "100px",
                 textAlign: "center",
@@ -81,30 +81,30 @@ const InductiveExplainChart: React.FC = () => {
             >
               情報B
             </Paper>
-            <Box width="4px" height="32px" bgcolor="#999" />
+            <Box width="3px" height="32px" bgcolor="#999" />
           </Box>
           <Box display="flex" flexDirection="column" alignItems="center">
             <Paper
               elevation={8}
-              sx={{ p: "8px 16px", bgcolor: "#666", color: "#fff", width: "100px", textAlign: "center" }}
+              sx={{ p: "8px 16px", bgcolor: "primary.main", color: "#fff", width: "100px", textAlign: "center" }}
             >
               情報C
             </Paper>
-            <Box width="4px" height="32px" bgcolor="#999" />
+            <Box width="3px" height="32px" bgcolor="#999" />
           </Box>
         </Box>
-        <Box width="268px" height="4px" bgcolor="#999" />
+        <Box width="268px" height="3px" bgcolor="#999" />
         <SArrowDown />
         <Paper
           elevation={8}
-          sx={{ p: "8px 0", bgcolor: "primary.light", color: "#fff", width: "100px", textAlign: "center" }}
+          sx={{ p: "8px 0", bgcolor: "primary.dark", color: "#fff", width: "100px", textAlign: "center" }}
         >
           共通点
         </Paper>
         <SArrowDown />
         <Paper
           elevation={8}
-          sx={{ p: "8px 16px", bgcolor: "primary.dark", color: "#fff", width: "100px", textAlign: "center" }}
+          sx={{ p: "8px 16px", bgcolor: "#004d40", color: "#fff", width: "100px", textAlign: "center" }}
         >
           結論
         </Paper>

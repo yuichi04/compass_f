@@ -12,7 +12,7 @@ type Props = {
 const SlideSection: React.FC<Props> = React.memo(({ children, ...props }) => {
   const { color, title, mb, titleIcon } = props;
   return (
-    <Paper elevation={8} sx={{ position: "relative", bgcolor: "#fff", p: "40px 32px 16px", mb: mb }}>
+    <Paper elevation={8} sx={{ height: "100%", position: "relative", bgcolor: "#fff", p: "40px 32px 16px", mb: mb }}>
       <Paper
         elevation={8}
         sx={{

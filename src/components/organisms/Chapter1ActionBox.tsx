@@ -10,7 +10,8 @@ import {
 } from "../../lib/redux/features/chapter1Slice";
 // import { showLoadingAction, hideLoadingAction } from "../../lib/redux/features/lodingSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { MuiTextFieldWithAdornment, MuiButton } from "../atoms";
+import { MuiButton } from "../atoms";
+import { MuiTextFieldWithAdornment } from "../molecules";
 
 const Chapter1UserOperationBox: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();

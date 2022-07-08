@@ -11,8 +11,8 @@ import { useAppSelector } from "../../lib/redux/hooks";
 import { userSelector } from "../../lib/redux/features/userSlice";
 import MuiContaier from "../layouts/MuiContainer";
 import { AvatarAndUploadButton } from "../organisms";
-import { MuiTextFieldWithAdornment, MuiButton, LinkTo, MuiTextField } from "../atoms";
-import { IconWithPageTitle } from "../molecules";
+import { MuiButton, LinkTo, MuiTextField } from "../atoms";
+import { MuiTextFieldWithAdornment, IconWithPageTitle } from "../molecules";
 
 // テスト用アイコンのインポート
 import { usePasswordUpdate } from "../../hooks/usePasswordUpdate";
@@ -85,7 +85,9 @@ const Profile: React.FC = React.memo(() => {
                   size="small"
                   placeholder="ご希望のメールアドレスを入力してください"
                 />
-                <Typography variant="subtitle2">※メールアドレスの変更は認証後に完了します。</Typography>
+                <Typography variant="subtitle2">
+                  ※メールアドレス変更には新しいメールアドレスを認証する必要があります。
+                </Typography>
                 <Box display="flex" alignItems="cneter" justifyContent="right" mt="8px">
                   <MuiButton type="submit" variant="contained" disabled={!valid.email}>
                     認証メールを送信
