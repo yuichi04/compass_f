@@ -27,7 +27,7 @@ const SlidePointCard: React.FC<Props> = React.memo((props) => {
       <Box position="absolute" top="-24px" left="-24px">
         {numberIcon}
       </Box>
-      <Typography variant="h6" fontWeight={600} mb="16px" sx={{ textDecoration: `underline double ${color}` }}>
+      <Typography variant="h6" fontWeight={600} mb="24px" sx={{ textDecoration: `underline double ${color}` }}>
         {title}
       </Typography>
       <Box component="ul" mb="32px">
@@ -40,7 +40,7 @@ const SlidePointCard: React.FC<Props> = React.memo((props) => {
           </Box>
         ))}
       </Box>
-      <Box height="280px">
+      <Box height="240px">
         <Box component="img" src={image} alt="image" width="100%" height="100%" />
       </Box>
     </Paper>

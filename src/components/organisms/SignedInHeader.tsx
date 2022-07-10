@@ -9,6 +9,7 @@ import { LinkTo } from "../atoms";
 import { AvatarWithName } from "../molecules";
 import { MuiDrawer } from ".";
 import { Grid } from "@mui/material";
+import Logo from "../../assets/images/logo.svg";
 
 const date = new Date();
 const hours = date.getHours();
@@ -35,7 +36,11 @@ const SignedInHeader: React.FC = React.memo(() => {
                 component="div"
                 sx={{ color: "#00aa99", fontWeight: "600", marginRight: "64px" }}
               >
-                <LinkTo to="/">COMPASS</LinkTo>
+                <LinkTo to="/">
+                  <Box display="flex" alignItems="center">
+                    <Box component="img" alt="logo" src={Logo} />
+                  </Box>
+                </LinkTo>
               </Typography>
               <ul className="hover_text_underline">
                 <Typography component="li" sx={{ marginRight: "32px" }}>

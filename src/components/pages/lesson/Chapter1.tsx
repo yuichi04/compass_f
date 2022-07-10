@@ -1,61 +1,52 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Box, Typography } from "@mui/material";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { BackgroundImage } from "../../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { userSelector } from "../../../lib/redux/features/userSlice";
 import {
   setSceneAction,
   chapter1Selector,
   initializeSceneAction,
-  setBalloonAction,
   setResultAction,
   setActionBoxAction,
   setCharacterImageAction,
 } from "../../../lib/redux/features/chapter1Slice";
-import { Balloon, FadeInTypography } from "../../atoms";
-import { TooltipBar, SlideList, Chapter1ActionBox, Chapter1Result, Chapter1Document } from "../../organisms";
+import {
+  TooltipBar,
+  SlideList,
+  Chapter1ActionBox,
+  Chapter1Result,
+  Chapter1Document,
+  CharacterBalloon,
+  Chapter1CharacterImage,
+} from "../../organisms";
 
 const Scene: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(userSelector);
   const chapter1 = useAppSelector(chapter1Selector);
+  const delay = chapter1.lineDelayTime;
+  const progress = chapter1.allowProgress;
   const sceneId = chapter1.id;
   const isStart = chapter1.isStart;
   const characterImage = chapter1.characterImage;
-  const characterLines = chapter1.characterLines;
-  const auto = chapter1.auto;
-  const isOpenBalloon = chapter1.isOpenBalloon;
-  const isShowCharacter = chapter1.isShowCharacter;
-  const allowProgress = chapter1.allowProgress;
-  const characterLinesCount = chapter1.characterLines.length;
+  const linesLength = chapter1.characterLines.join("").length;
   const isLastScene = chapter1.isLastScene;
 
-  // シーンの切り替わりを検知
+  // シーンの切り替え処理
   useEffect(() => {
-    // 吹き出しを表示する
-    dispatch(setBalloonAction(true));
-    // 操作パネルを表示する
+    // ボタンや入力欄を表示する
     dispatch(setActionBoxAction(true));
     // キャラクターを表示する
     dispatch(setCharacterImageAction(true));
 
-    // 自動進行シーンの切り替え処理
-    if (auto) {
-      // 切り替わったシーンが自動進行のシーンだった場合は、一定時間表示した後にシーンを切り替える
-      if (auto.progress) {
-        const display = setTimeout(() => dispatch(setSceneAction(sceneId)), auto.displayTime * 1000);
-
-        // 最後のシーンだった場合は、一定時間後にResultを表示する
-        if (isLastScene) {
-          const timer = setTimeout(() => dispatch(setResultAction(true)), auto.displayTime * 1000);
-          return () => clearTimeout(timer);
-        }
-        // タイマーをリセット
-        return () => clearTimeout(display);
-      }
+    // 最後のシーンだった場合は、一定時間経過後にResultを表示する
+    if (isLastScene) {
+      const timer = setTimeout(() => dispatch(setResultAction(true)), linesLength * delay * 2000);
+      return () => clearTimeout(timer);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [characterLines]);
+  }, [linesLength]);
 
   // シーンの初期値をセット
   useEffect(() => {
@@ -65,84 +56,25 @@ const Scene: React.FC = React.memo(() => {
   return (
     <>
       <SChapter1 className={isStart ? "expand_center" : ""}>
+        {/* ツールバー */}
         <STooltipBar>
           <TooltipBar />
         </STooltipBar>
+        {/* ボタン・入力欄 */}
         <SActionBox>
           <Chapter1ActionBox />
         </SActionBox>
-        <Box
-          width="100%"
-          height="100%"
-          sx={{ cursor: "pointer" }}
-          onClick={() => allowProgress && dispatch(setSceneAction(sceneId))}
-        >
+        {/* キャラクター表示関連 */}
+        <SContainer onClick={() => progress && dispatch(setSceneAction(sceneId))}>
           <SCharacter>
-            <SCharacterImage>
-              {isShowCharacter &&
-                (characterImage.role === "user" ? (
-                  <Box className="fade_in" width="700px" textAlign="center" pt="30%" sx={{ opacity: 0 }}>
-                    <img
-                      className="scale_up-down"
-                      style={{
-                        width: "240px",
-                        background: "#fff",
-                        borderRadius: "100%",
-                        padding: "32px",
-                      }}
-                      src={require(`../../../assets/images/characters/${characterImage.src}`)}
-                      alt="user"
-                    />
-                  </Box>
-                ) : characterImage.role === "guide" ? (
-                  <img
-                    className="fade_in"
-                    style={{ minHeight: "200%", opacity: 0 }}
-                    src={require(`../../../assets/images/characters/${characterImage.src}`)}
-                    alt="guide"
-                  />
-                ) : characterImage.role === "customer" ? (
-                  <img
-                    className="fade_in"
-                    style={{ minHeight: "200%", opacity: 0 }}
-                    src={require(`../../../assets/images/characters/${characterImage.src}`)}
-                    alt="customer"
-                  />
-                ) : (
-                  <img
-                    className="fade_in"
-                    style={{ minHeight: "200%", opacity: 0 }}
-                    src={require("../../../assets/images/characters/empty.png")}
-                    alt="none"
-                  />
-                ))}
-              {isOpenBalloon && (
-                <SBalloon>
-                  <Balloon>
-                    {characterLines.map((line, index) => (
-                      <FadeInTypography delay={index} key={index}>
-                        {line}
-                      </FadeInTypography>
-                    ))}
-                    {allowProgress && (
-                      <FadeInTypography delay={characterLinesCount / 2 + characterLinesCount - 1}>
-                        <Box className="up_down" display="flex" alignItems="center" justifyContent="flex-end">
-                          <Typography className="fade_in" variant="body2" fontWeight={600} color="primary.light">
-                            次へ
-                          </Typography>
-                          <ArrowRightIcon color="primary" />
-                        </Box>
-                      </FadeInTypography>
-                    )}
-                  </Balloon>
-                </SBalloon>
-              )}
-            </SCharacterImage>
+            <Chapter1CharacterImage />
           </SCharacter>
-        </Box>
-        <Chapter1Document />
-        <Chapter1Result />
+          <Chapter1Document />
+          <Chapter1Result />
+          <CharacterBalloon role={characterImage.role} username={user.name} />
+        </SContainer>
       </SChapter1>
+      {/* スライド */}
       <SlideList />
     </>
   );
@@ -166,25 +98,18 @@ const SActionBox = styled.div`
   z-index: 999;
   position: absolute;
   left: 50%;
-  bottom: 15%;
+  bottom: 240px;
   transform: translateX(-50%);
-  min-width: 600px;
 `;
 const SCharacter = styled.div`
   position: absolute;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   height: 100%;
-  display: flex;
 `;
-const SCharacterImage = styled.div`
-  position: relative;
+const SContainer = styled.div`
+  width: 100%;
   height: 100%;
-`;
-const SBalloon = styled.div`
-  position: absolute;
-  right: 25%;
-  top: 3%;
-  transform: translateX(100%);
-  max-width: 400px;
+  cursor: pointer;
 `;

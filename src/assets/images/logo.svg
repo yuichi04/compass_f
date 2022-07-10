@@ -1,0 +1,16 @@
+<svg id="コンポーネント_17_1" data-name="コンポーネント 17 – 1" xmlns="http://www.w3.org/2000/svg" width="193.246" height="43.866" viewBox="0 0 193.246 43.866">
+  <text id="Compass" transform="translate(0 31.933)" fill="#0a9" font-size="30" font-family="HiraginoSans-W8, Hiragino Sans"><tspan x="0" y="0">Compass</tspan></text>
+  <g id="コンポーネント_16_1" data-name="コンポーネント 16 – 1" transform="translate(163)">
+    <g id="楕円形_2" data-name="楕円形 2" transform="translate(5 11)" fill="none" stroke="#0a9" stroke-width="2">
+      <circle cx="10.5" cy="10.5" r="10.5" stroke="none"/>
+      <circle cx="10.5" cy="10.5" r="9.5" fill="none"/>
+    </g>
+    <g id="グループ_5" data-name="グループ 5" transform="translate(-8.042 27.34) rotate(-68)">
+      <path id="パス_2" data-name="パス 2" d="M0,0,20,3.732,0,8Z" transform="translate(14.523 15.54) rotate(12)" fill="#0a9"/>
+      <g id="パス_4" data-name="パス 4" transform="translate(-5.04 11.382) rotate(12)" fill="none">
+        <path d="M20.08,0,0,3.732,20.08,8Z" stroke="none"/>
+        <path d="M 19.07984161376953 1.202972888946533 L 5.119009017944336 3.797643184661865 L 19.07984161376953 6.765101432800293 L 19.07984161376953 1.202972888946533 M 20.07984161376953 0 L 20.07984161376953 8 L 0 3.731910228729248 L 20.07984161376953 0 Z" stroke="none" fill="#0a9"/>
+      </g>
+    </g>
+  </g>
+</svg>

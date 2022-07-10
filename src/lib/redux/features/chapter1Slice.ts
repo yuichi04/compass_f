@@ -1,33 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Chapter1QuestionItemType, Chapter1QuestionType } from "../../../types/chapterTypes";
-import { chapter1QuestionItems } from "../../../dataset/logical_thinking/question_items/chapter1QuestionItems";
+import { Chapter1ExerciseDataType, Chapter1ExerciseType } from "../../../types/chapterTypes";
+import { chapter1QuestionItems } from "../../../dataset/logical_thinking/exercise_items/chapter1ExerciseItems";
 import { RootState } from "../store";
 
-type InitialState = Chapter1QuestionType & Chapter1QuestionItemType;
+type InitialState = Chapter1ExerciseType & Chapter1ExerciseDataType;
 
 const initialState: InitialState = {
   id: 0,
   section: 1,
-  auto: {
-    progress: false,
-    displayTime: 0,
-  },
+  // シーンの進行フラグ
+  allowProgress: false,
   action: "",
   actionValue: "",
   answer: "",
   characterLines: [],
+  lineDelayTime: 0.03,
   characterImage: {
     src: "",
     role: "",
   },
   commonFactor: "",
-  allowProgress: false,
   isFullCommonFactor: false,
   isOpenActionBox: false,
-  isOpenBalloon: false,
   isOpenDocument: false,
   isOpenResult: false,
   isOpenSlideList: true,
+  // シーンの進行を止める
   isProgressScene: true,
   isShowCharacter: false,
   isStart: false,
@@ -57,8 +55,8 @@ export const chapter1Slice = createSlice({
     // シーンの切り替え処理
     setSceneAction: (state, action) => {
       state.isStart = true;
+      state.allowProgress = false;
       state.isOpenActionBox = false;
-      state.isOpenBalloon = false;
       state.isOpenResult = false;
       state.isLastScene = false;
 
@@ -75,15 +73,14 @@ export const chapter1Slice = createSlice({
           state.characterLines = newScene.characterLines;
           state.action = newScene.action;
           state.actionValue = newScene.actionValue;
-          state.auto = newScene.auto;
           state.sampleCommonFactor = newScene.sampleCommonFactor;
           state.sampleAnswer = newScene.sampleAnswer;
-          state.allowProgress = newScene.allowProgress;
 
           // キャラクターの役割に変更がある場合は、フェードインアニメーションを適用するためにキャラクターを非表示にする
           if (state.characterImage.role !== newScene.characterImage.role) {
             state.isShowCharacter = false;
           }
+
           // キャラクターの画像情報を更新する
           state.characterImage = newScene.characterImage;
 
@@ -102,7 +99,6 @@ export const chapter1Slice = createSlice({
 
     // ユーザーのアクションに対するレスポンスを生成する処理
     setCharacterLinesAction: (state, action) => {
-      state.isOpenBalloon = false;
       state.isOpenActionBox = false;
 
       // 結論が入力済みの場合
@@ -137,18 +133,16 @@ export const chapter1Slice = createSlice({
             state.isProgressScene = true;
             state.isOpenDocument = false;
           }
-        } else {
-          console.log("サンプルデータが存在しません。");
         }
-        // 共通するパターンが入力済みの場合
       } else if (state.commonFactor) {
+        // 共通するパターンが入力済みの場合
         state.answer = action.payload;
         state.characterLines = ["なるほど、良い考えですね。", "それでは、その解決方法をお客様にご案内してみましょう。"];
         state.action = "button";
         state.actionValue = "解決方法を案内する";
         state.isProgressScene = false;
-        // まだ何も入力されていない場合
       } else {
+        // まだ何も入力されていない場合
         // ユーザーが入力した共通するパターンをstateに保存
         state.commonFactor = action.payload;
         state.characterLines = [
@@ -181,9 +175,12 @@ export const chapter1Slice = createSlice({
       state.isShowCharacter = action.payload;
     },
 
-    // 吹き出しの表示・非表示を管理
-    setBalloonAction: (state, action) => {
-      state.isOpenBalloon = action.payload;
+    // 次のシーンへの進行を管理
+    setAllowProgress: (state, action) => {
+      // アクションが設定されていないシーンなら許可
+      if (state.action === "") state.allowProgress = action.payload;
+      // 最後のシーンなら許可しない
+      if (state.isLastScene) state.allowProgress = false;
     },
 
     // 資料の表示・非表示を管理
@@ -200,12 +197,12 @@ export const chapter1Slice = createSlice({
 
 // actions
 export const {
+  setAllowProgress,
   setSceneAction,
   setCharacterLinesAction,
   initializeSceneAction,
   setSlideListAction,
   setActionBoxAction,
-  setBalloonAction,
   setResultAction,
   setDocumentAction,
   setCharacterImageAction,

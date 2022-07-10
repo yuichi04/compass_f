@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -7,13 +6,7 @@ type Props = {
 };
 
 const Balloon: React.FC<Props> = React.memo(({ children }) => {
-  return (
-    <SBalloon>
-      <Typography fontWeight={600} component="div" color="text.secondary">
-        {children}
-      </Typography>
-    </SBalloon>
-  );
+  return <SBalloon>{children}</SBalloon>;
 });
 
 export default Balloon;
@@ -21,7 +14,7 @@ export default Balloon;
 const fadeInAnime = keyframes`
   from {
     opacity: 0;
-    transform : translateX(-10px);
+    transform : translateY(10px);
   }
   to {
     opacity: 1;
@@ -31,16 +24,15 @@ const fadeInAnime = keyframes`
 
 const SBalloon = styled.div`
   position: relative;
-  background: #fff;
-  box-shadow: 0 0 24px #bbb;
-  border-radius: 24px;
-  padding: 16px;
+  border: 1px solid #999;
+  background: #f3ecda;
+  border-radius: 8px;
+  padding: 8px 12px;
   text-align: left;
   animation-name: ${fadeInAnime};
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
-  opacity: 0;
-  margin-bottom: 4px;
+  opacity: 1;
   word-break: break-all;
 
   &:before {
@@ -50,7 +42,8 @@ const SBalloon = styled.div`
     width: 13px;
     height: 12px;
     bottom: -12px;
-    background: #fff;
+    background: #f9fbe7;
+    border: 1px solid #999;
     box-shadow: 0 0 24px #bbb;
     border-radius: 50%;
   }
@@ -61,7 +54,8 @@ const SBalloon = styled.div`
     left: -24px;
     width: 20px;
     height: 18px;
-    background: #fff;
+    background: #f9fbe7;
+    border: 1px solid #999;
     box-shadow: 0 0 24px #bbb;
     bottom: -6px;
     border-radius: 50%;

@@ -13,10 +13,10 @@ import { SelectBox } from "../molecules";
 import useContactBorad from "../../hooks/useContactBorad";
 
 const options = [
-  { value: "lesson", label: "レッスン内容について" },
-  { value: "opinion", label: "ご意見・ご要望" },
-  { value: "error", label: "エラー・バグ報告" },
-  { value: "other", label: "その他" },
+  { value: "レッスン内容について", label: "レッスン内容について" },
+  { value: "ご意見・ご要望", label: "ご意見・ご要望" },
+  { value: "エラー・バグ報告", label: "エラー・バグ報告" },
+  { value: "その他", label: "その他" },
 ];
 
 const ContactBoard: React.FC = React.memo(() => {

@@ -1,7 +1,7 @@
-import { Chapter1QuestionItemType } from "../../../types/chapterTypes";
+import { Chapter1ExerciseDataType } from "../../../types/chapterTypes";
 
 // シーンごとの要素を持った配列
-export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
+export const chapter1QuestionItems: Chapter1ExerciseDataType[] = [
   /**
    * シーン1
    */
@@ -9,16 +9,12 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
-      "ようこそ、なんでも相談サポートセンターへ！",
-      "私はこのセンターで管理者をしているカメイと申します。",
+      "ようこそ！なんでも相談サポートセンターへ！",
+      "私はこのセンターで管理者をしている亀井と申します。",
+      "さっそくですが、あなたにはこのセンターのオペレーターとしてお問い合わせ対応をしてもらいます。",
     ],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
-    allowProgress: true,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -28,34 +24,11 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
-    characterLines: [
-      "さっそくですが、これからあなたにはこのサポートセンターのオペレーターとして、お問い合わせ対応をしてもらいます。",
-    ],
-    characterImage: { src: "guide/guide_normal_a.png", role: "guide" },
-    allowProgress: true,
-    data: [],
-    response: { role: "", lines: [], image: "" },
-    sampleAnswer: "",
-    sampleCommonFactor: "",
-  },
-  {
-    section: 1,
-    action: "",
-    actionValue: "",
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
       "このセンターはその名の通りジャンル問わず様々なお問い合わせをいただきますが、",
       "スライドで学んだことを生かして対応してもらえれば大丈夫です。",
     ],
     characterImage: { src: "guide/guide_normal_a.png", role: "guide" },
-    allowProgress: true,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -65,10 +38,6 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "button",
     actionValue: "大丈夫です",
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
       "案内に絶対の正解はありませんので、あなたが良いと思う案内をしていきましょう。",
       "今回はわたしもサポートするので安心してくださいね。",
@@ -76,7 +45,6 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
       `（※案内終了後に「あなたの回答」と「回答例」が表示されます。比較してみてください。）`,
     ],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
-    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -86,13 +54,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: true,
-      displayTime: 3,
-    },
     characterLines: ["それでは、よろしくお願いします。"],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
-    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -102,13 +65,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: true,
-      displayTime: 4,
-    },
     characterLines: ["Prrrrr....", "Prrrrr...."],
     characterImage: { src: "customer/dansei_05.png", role: "customer" },
-    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -118,13 +76,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: true,
-      displayTime: 4,
-    },
     characterLines: ["あっ、さっそくお問い合わせが来たみたいですね。", "電話を取ってみましょう。"],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
-    allowProgress: true,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -134,13 +87,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "button",
     actionValue: "電話を取る",
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: ["Prrrrr....", "Prrrrr...."],
     characterImage: { src: "customer/dansei_05.png", role: "customer" },
-    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -150,16 +98,11 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: true,
-      displayTime: 6,
-    },
-    characterLines: ["ピッ", "お問い合わせありがとうございます。", "なんでも相談サポートセンターです。"],
+    characterLines: ["お問い合わせありがとうございます。", "なんでも相談サポートセンターです。"],
     characterImage: {
       src: "phone.png",
       role: "user",
     },
-    allowProgress: false,
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -169,13 +112,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    auto: {
-      progress: true,
-      displayTime: 4,
-    },
-    characterLines: ["あ、もしもし。", "あのー、相談なんですが、"],
-    characterImage: { src: "customer/dansei_05_b.png", role: "customer" },
-    allowProgress: false,
+    characterLines: ["あ、もしもし。", "すみません。あのー、相談なんですが、"],
+    characterImage: { src: "customer/dansei_05_b.png", role: "boy" },
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -185,16 +123,11 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    allowProgress: true,
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
       "僕は将来アメリカで仕事をしたいと思っているんですけど英語が全然話せなくて困ってるんです。",
       "どうしたら英語が話せるようになりますか？何か良い方法があったら教えて欲しいです。",
     ],
-    characterImage: { src: "customer/dansei_05_b.png", role: "customer" },
+    characterImage: { src: "customer/dansei_05_b.png", role: "boy" },
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -204,11 +137,6 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    allowProgress: true,
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
       "このお客様は英語が話せるようになりたいみたいですね。",
       "ちょうど使えそうな資料があるので、確認してみましょう。",
@@ -223,11 +151,6 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    allowProgress: true,
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
       "この資料にはアンケート結果が記載されているみたいですね。",
       "ふむふむ・・・",
@@ -244,13 +167,8 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "",
     actionValue: "",
-    allowProgress: true,
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: [
-      "帰納法を使うときのポイントとして、まず最初に複数の情報から共通することは何かを考えるんでしたね。",
+      "帰納法を使うときのポイントとして、まず最初に複数の情報から共通することは何かを考える。",
       "ということで、まずは、資料を見て共通することを導き出していきましょう。",
     ],
     characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
@@ -264,11 +182,6 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
     section: 1,
     action: "textField",
     actionValue: "ここに共通することを入力してください",
-    allowProgress: false,
-    auto: {
-      progress: false,
-      displayTime: 0,
-    },
     characterLines: ["ポイントとしては、", "1、", "2、", "3、", "ですね。"],
     characterImage: { src: "guide/guide_normal_a.png", role: "guide" },
     data: [
@@ -291,12 +204,7 @@ export const chapter1QuestionItems: Chapter1QuestionItemType[] = [
   },
   {
     section: 1,
-    auto: {
-      progress: true,
-      displayTime: 5,
-    },
     action: "",
-    allowProgress: false,
     actionValue: "",
     characterLines: ["お疲れさまでした。", "それでは今の対応について、あなたの回答と回答例を確認してみましょう。"],
     characterImage: { src: "guide/guide_smile_a.png", role: "guide" },

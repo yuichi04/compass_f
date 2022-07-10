@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, IconButton, Paper } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
+import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
 import {
   chapter1Selector,
   setSceneAction,
-  setBalloonAction,
   setCharacterLinesAction,
   setActionBoxAction,
 } from "../../lib/redux/features/chapter1Slice";
@@ -19,9 +19,10 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
   const sceneId = chapter1.id;
   const action = chapter1.action;
   const actionValue = chapter1.actionValue;
+  const delay = chapter1.lineDelayTime;
   const isOpenActionBox = chapter1.isOpenActionBox;
+  const linesLength = chapter1.characterLines.join("").length;
   const isProgressScene = chapter1.isProgressScene;
-  const characterLinesCount = chapter1.characterLines.length;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -41,7 +42,6 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
      * ユーザーの回答をサーバーに送信する
      * サーバーからレスポンスが返ってくるまでローディングを表示する
      * */
-    dispatch(setBalloonAction(false));
     dispatch(setActionBoxAction(false));
     dispatch(setCharacterLinesAction(answer));
   };
@@ -56,43 +56,53 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                padding: "16px 32px",
-                bgcolor: "rgba(255,255,255,0.8)",
-                backdropFilter: "blur(10px)",
-                borderRadius: "8px",
-                animationDelay: `${characterLinesCount / 2 + characterLinesCount + 1}s`, // キャラクターがセリフを言い終わってから1秒遅延させる
+                animationDelay: `${linesLength * delay + 0.2}s`, // セリフが全部表示されてから表示する
                 opacity: 0,
               }}
             >
               {action === "button" ? (
-                <MuiButton
-                  variant="contained"
-                  color="primary"
-                  onClick={() =>
-                    isProgressScene ? dispatch(setSceneAction(sceneId)) : dispatch(setCharacterLinesAction(""))
-                  }
-                >
-                  {actionValue}
-                </MuiButton>
+                <Box minWidth="240px" p="16px 24px" bgcolor="rgba(255,255,255,0.9)">
+                  <MuiButton
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    onClick={() =>
+                      isProgressScene ? dispatch(setSceneAction(sceneId)) : dispatch(setCharacterLinesAction(""))
+                    }
+                  >
+                    {actionValue}
+                  </MuiButton>
+                </Box>
               ) : (
                 action === "textField" && (
-                  <form onSubmit={handleSubmit} className="fade_in">
+                  <Box
+                    component="form"
+                    className="fade_in"
+                    width="480px"
+                    p="8px 16px"
+                    bgcolor="rgba(255,255,255,0.9)"
+                    borderRadius="8px"
+                    onSubmit={handleSubmit}
+                    display="flex"
+                    alignItems="center"
+                  >
                     <MuiTextFieldWithAdornment
                       icon={<CreateIcon />}
                       onChange={handleChange}
                       value={answer}
                       fullWidth
                       autoComplete="off"
-                      margin="none"
+                      margin="dense"
                       label={actionValue}
                       variant="standard"
                       autoFocus
                     />
-                    <div className="module-spacer-sm" />
-                    <MuiButton variant="contained" color="primary" fullWidth type="submit">
-                      決定
-                    </MuiButton>
-                  </form>
+                    <Paper elevation={4} sx={{ borderRadius: "100%", bgcolor: "primary.main" }}>
+                      <IconButton type="submit">
+                        <ArrowForwardSharpIcon sx={{ color: "#fff" }} />
+                      </IconButton>
+                    </Paper>
+                  </Box>
                 )
               )}
             </Box>

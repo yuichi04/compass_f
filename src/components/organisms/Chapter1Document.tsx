@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Box, Divider, IconButton, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Paper, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { chapter1Selector, setDocumentAction } from "../../lib/redux/features/chapter1Slice";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
@@ -14,7 +14,22 @@ const Chapter1Document: React.FC = React.memo(() => {
     <>
       {isOpenDocument &&
         (section === 1 ? (
-          <SDocument className="slide-up">
+          <Paper
+            elevation={8}
+            className="slide-up"
+            sx={{
+              position: "absolute",
+              top: "32px",
+              left: "8px",
+              width: "400px",
+              height: "533px",
+              background: "#f9fbe7",
+              border: "1px solid #bbb",
+              borderRadius: "8px",
+              padding: "8px",
+              opacity: 0,
+            }}
+          >
             <Box textAlign="right">
               <IconButton onClick={() => dispatch(setDocumentAction(false))}>
                 <CancelIcon />
@@ -43,9 +58,24 @@ const Chapter1Document: React.FC = React.memo(() => {
                 </Typography>
               </SContentItems>
             </SContentBox>
-          </SDocument>
+          </Paper>
         ) : (
-          <SDocument className="slide-up">
+          <Paper
+            elevation={8}
+            className="slide-up"
+            sx={{
+              position: "absolute",
+              top: "32px",
+              left: "8px",
+              width: "400px",
+              height: "533px",
+              background: "#f9fbe7",
+              border: "1px solid #bbb",
+              borderRadius: "8px",
+              padding: "8px",
+              opacity: 0,
+            }}
+          >
             <Box textAlign="right">
               <IconButton onClick={() => dispatch(setDocumentAction(false))}>
                 <CancelIcon />
@@ -91,7 +121,7 @@ const Chapter1Document: React.FC = React.memo(() => {
                 </SContentTipsItems>
               </SContentTips>
             </SContentBox>
-          </SDocument>
+          </Paper>
         ))}
     </>
   );
@@ -99,18 +129,6 @@ const Chapter1Document: React.FC = React.memo(() => {
 
 export default Chapter1Document;
 
-const SDocument = styled.div`
-  position: absolute;
-  top: 32px;
-  left: 8px;
-  width: 400px;
-  height: 533px;
-  background: #f9fbe7;
-  box-shadow: 0 0 32px #999;
-  border-radius: 16px;
-  padding: 8px;
-  opacity: 0;
-`;
 const SContentBox = styled.div`
   padding: 16px;
   height: calc(100% - 80px);

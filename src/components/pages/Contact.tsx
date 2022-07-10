@@ -7,9 +7,9 @@ import useContactBorad from "../../hooks/useContactBorad";
 import { Typography } from "@mui/material";
 
 const options = [
-  { value: "lesson", label: "レッスン内容について" },
-  { value: "opinion", label: "ご意見・ご要望" },
-  { value: "other", label: "その他" },
+  { value: "レッスン内容について", label: "レッスン内容について" },
+  { value: "ご意見・ご要望", label: "ご意見・ご要望" },
+  { value: "その他", label: "その他" },
 ];
 
 const Contact = () => {

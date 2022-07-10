@@ -34,12 +34,18 @@ const Home: React.FC = React.memo(() => {
           </Grid>
           <Grid item xs={3.5}>
             <CourseCard
-              link="/lesson/index"
+              link="/"
               image={Deductive}
               grade="基本編"
               title="演繹法"
               titleUnderLineColor="#c2647c"
-              text={<>一般論など既に知っている情報に自分の考えを関連付けて結論を導き出します</>}
+              text={
+                <>
+                  ※実装予定
+                  <br />
+                  既に知っている情報と自分の考えを組み合わせて結論を導き出します
+                </>
+              }
               color="primary"
             />
           </Grid>

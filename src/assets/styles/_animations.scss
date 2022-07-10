@@ -1,7 +1,7 @@
 // 画面中央から円が広がってフェードインするアニメーション
 .expand_center {
   animation-name: img-wrap;
-  animation-duration: 1s;
+  animation-duration: 0.75s;
   animation-timing-function: ease-in-out;
 }
 @keyframes img-wrap {
@@ -52,20 +52,39 @@
   }
 }
 // up,down
-.up_down {
+.up-down_align-center {
   animation-name: upDownAnime;
-  animation-duration: 1s;
+  animation-duration: 1.25s;
   animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 @keyframes upDownAnime {
   0% {
-    transform: translateY(-1px);
+    transform: translate(-50%, -5px);
   }
   50% {
-    transform: translateY(2px);
+    transform: translate(-50%, 5px);
   }
   100% {
-    transform: translateY(-1px);
+    transform: translate(-50%, -5px);
+  }
+}
+
+.up-down {
+  animation-name: upDownAnime;
+  animation-duration: 1.25s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes upDownAnime {
+  0% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-3px);
   }
 }
 // fade-in,out

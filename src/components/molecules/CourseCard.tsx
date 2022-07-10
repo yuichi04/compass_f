@@ -8,7 +8,7 @@ type Props = {
   grade: string;
   title?: string;
   titleUnderLineColor: string;
-  link: string;
+  link?: string;
   text?: React.ReactNode;
   color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
 };
@@ -16,7 +16,7 @@ type Props = {
 const CourseCard: React.FC<Props> = React.memo((props) => {
   const { image, title, grade, link, text, color, titleUnderLineColor } = props;
   return (
-    <LinkTo to={link}>
+    <LinkTo to={link ? link : ""}>
       <Paper
         elevation={8}
         sx={{

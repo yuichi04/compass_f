@@ -203,64 +203,6 @@ const Chapter1SlideItemsData = () => {
               </Grid>
             </Grid>
           </SlideSection>
-          {/* <Box textAlign="center">
-            ロジカルシンキングとは知識や前提条件をもとに「
-            <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
-              話を筋道立てて考えること
-            </Typography>
-            」を言います。
-            <br />
-            つまり、ロジカルシンキングを身につけるということは「
-            <Typography variant="h6" component="span" fontWeight={600}>
-              話を筋道立てて考えられるようになる
-            </Typography>
-            」ということです。
-            <br />
-            では、身につけることでどんなメリットがあるのでしょうか？
-          </Box>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <ArrowDropDownIcon sx={{ fontSize: "64px", color: "#666" }} />
-          </Box>
-          <SlideSection
-            title="メリット"
-            titleIcon={<VolunteerActivismIcon sx={{ color: "#fff", fontSize: "24px" }} />}
-            color="primary.main"
-            mb="64px"
-          >
-            ロジカルシンキングを学び、身につけることには
-            <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
-              「説明が上手になる・問題解決力がつく」
-            </Typography>
-            という大きなメリットがあります。
-            <br />
-            どの仕事でも
-            <Typography variant="h6" component="span" fontWeight={600}>
-              誰かに何かを伝えること
-            </Typography>
-            や
-            <Typography variant="h6" component="span" fontWeight={600}>
-              何か課題や問題を解決すること
-            </Typography>
-            は避けて通れないと思いますが、ロジカルシンキングを身につけていると、これらの問題に効率良く対処することができます。
-            <br />
-            そのため、ロジカルシンキングができる人材はビジネスの現場において非常に重宝されており、ビジネスマンとしての価値を上げるなら身につけるべきスキルであることは間違いありません。
-          </SlideSection>
-          <SlideSection
-            title="注意点"
-            titleIcon={<WarningIcon sx={{ color: "#fff", fontSize: "24px" }} />}
-            color="#faa50a"
-          >
-            ロジカルシンキングには注意しなくてはならないことがあります。それは、
-            <Typography variant="h6" component="span" fontWeight={600}>
-              知識や前提に間違いや不足があると
-            </Typography>
-            <Typography variant="h6" component="span" fontWeight={600} color="#b33e5c">
-              誤った結論を導いてしまう
-            </Typography>
-            ということです。
-            <br />
-            ロジカルシンキングを使うときにはそれらの間違いや不足がないかチェックする必要があるということを忘れないようにしましょう。
-          </SlideSection> */}
         </>
       ),
     },
@@ -270,41 +212,43 @@ const Chapter1SlideItemsData = () => {
       title,
       sectionTitle: "ロジカルシンキングの2つの柱",
       sentence: (
-        <Typography variant="h6" component="div" position="relative" textAlign="center">
-          ロジカルシンキングには基本となる2つの思考法があります。
-          <br />
-          それは「
-          <Typography
-            variant="h5"
-            component="span"
-            fontWeight={600}
-            sx={{ textDecoration: "underline double #83c3f7" }}
-          >
-            帰納法
-          </Typography>
-          <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
-            （きのうほう）
-          </Typography>
-          」と「
-          <Typography
-            variant="h5"
-            component="span"
-            fontWeight={600}
-            sx={{ textDecoration: "underline double #c2647c" }}
-          >
-            演繹法
-          </Typography>
-          <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
-            （えんえきほう）
-          </Typography>
-          」です。
-          <br />
-          どちらもロジカルシンキングを身につける上で欠かすことのできない思考法です。
-          <br />
-          後ほど詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
-          <Typography variant="body2">
-            ※演繹法についてはロジカルシンキング基本編「演繹法」にて学ぶことができます。
-          </Typography>
+        <>
+          <Box component="div" textAlign="center">
+            ロジカルシンキングには基本となる2つの思考法があります。
+            <br />
+            それは「
+            <Typography
+              variant="h6"
+              component="span"
+              fontWeight={600}
+              sx={{ textDecoration: "underline double #83c3f7" }}
+            >
+              帰納法
+            </Typography>
+            <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
+              （きのうほう）
+            </Typography>
+            」と「
+            <Typography
+              variant="h6"
+              component="span"
+              fontWeight={600}
+              sx={{ textDecoration: "underline double #c2647c" }}
+            >
+              演繹法
+            </Typography>
+            <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
+              （えんえきほう）
+            </Typography>
+            」です。
+            <br />
+            どちらもロジカルシンキングを身につける上で欠かすことのできない思考法です。
+            <br />
+            後ほど詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
+            <Typography variant="body2">
+              ※演繹法についてはロジカルシンキング基本編「演繹法」にて学ぶことができます。
+            </Typography>
+          </Box>
           <Grid container spacing={4} mt="16px" mb="32px">
             <Grid item xs={6}>
               <InductiveExplainChart />
@@ -313,7 +257,7 @@ const Chapter1SlideItemsData = () => {
               <DeductiveExplainChart />
             </Grid>
           </Grid>
-        </Typography>
+        </>
       ),
     },
     {
