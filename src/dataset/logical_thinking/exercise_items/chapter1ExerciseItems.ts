@@ -14,7 +14,7 @@ export const chapter1QuestionItems: Chapter1ExerciseDataType[] = [
       "私はこのセンターで管理者をしている亀井と申します。",
       "さっそくですが、あなたにはこのセンターのオペレーターとしてお問い合わせ対応をしてもらいます。",
     ],
-    characterImage: { src: "guide/guide_smile_a.png", role: "guide" },
+    characterImage: { src: "guide/guide_normal_b.png", role: "guide" },
     data: [],
     response: { role: "", lines: [], image: "" },
     sampleAnswer: "",
@@ -192,7 +192,7 @@ export const chapter1QuestionItems: Chapter1ExerciseDataType[] = [
       "・洋画や海外ドラマなどで実践的な英語に触れる機会を増やしている",
     ],
     response: {
-      role: "customer",
+      role: "boy",
       lines: [
         "それじゃあ、その方法で勉強してみようと思います。",
         "また何かあったら相談させてください。ありがとうございました。",

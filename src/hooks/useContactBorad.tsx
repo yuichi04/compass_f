@@ -45,7 +45,7 @@ export const useContactBorad = () => {
           toast.success("お問い合わせが送信されました。");
           // フォームの入力内容をクリア
           setValues({
-            ...values,
+            email: "",
             category: "",
             content: "",
           });

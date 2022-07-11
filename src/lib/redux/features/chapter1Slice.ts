@@ -14,7 +14,7 @@ const initialState: InitialState = {
   actionValue: "",
   answer: "",
   characterLines: [],
-  lineDelayTime: 0.03,
+  lineDelayTime: 0.02,
   characterImage: {
     src: "",
     role: "",

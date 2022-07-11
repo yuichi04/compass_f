@@ -2,3 +2,38 @@
 .text-decoration_underline-yellow {
   background: linear-gradient(transparent 80%, #f0bc68 80%);
 }
+
+.balloon {
+  position: relative;
+  margin: 2em 0 2em 40px;
+  padding: 15px;
+  background: #fff0c6;
+  border-radius: 30px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -38px;
+    width: 13px;
+    height: 12px;
+    bottom: 0;
+    background: #fff0c6;
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: -24px;
+    width: 20px;
+    height: 18px;
+    bottom: 3px;
+    background: #fff0c6;
+    border-radius: 50%;
+  }
+}
+
+.balloon4 p {
+  margin: 0;
+  padding: 0;
+}

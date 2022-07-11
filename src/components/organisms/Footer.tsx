@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Grid from "@mui/material/Grid";
+import { Grid, Box } from "@mui/material";
 import { LinkTo } from "../atoms";
+import Logo from "../../assets/images/logo.svg";
 
 const Footer: React.FC = () => {
   return (
@@ -9,7 +10,9 @@ const Footer: React.FC = () => {
       <Grid container>
         <Grid item xs={6}>
           <LinkTo to="/">
-            <h2>COMPASS</h2>
+            <Box display="flex" alignItems="center">
+              <Box component="img" alt="logo" src={Logo} />
+            </Box>
           </LinkTo>
           <small>&copy;COMPASSS-2022</small>
         </Grid>
@@ -34,8 +37,8 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const SFooter = styled.footer`
-  background: #202429;
-  color: #fff;
+  background: #eaedef;
+  color: #333;
   width: 100vw;
   padding: 32px;
 `;

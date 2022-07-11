@@ -43,7 +43,7 @@ const CharacterBalloon: React.FC<Props> = (props) => {
           position="absolute"
           top="-48px"
           left="0"
-          bgcolor="rgba(66,66,66,0.8)"
+          bgcolor="rgba(33,33,33,0.8)"
           border="double 4px rgba(255,255,255,0.2)"
           borderRadius="8px"
           minWidth="160px"

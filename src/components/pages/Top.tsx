@@ -1,8 +1,13 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+import LanguageIcon from "@mui/icons-material/Language";
+import LooksOneIcon from "@mui/icons-material/LooksOne";
+import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { LinkTo, MuiButton } from "../atoms";
 import { CourseCard, IconWithPageTitle } from "../molecules";
@@ -11,17 +16,18 @@ import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 import Inductive from "../../assets/images/illustrations/inductive.svg";
 import Deductive from "../../assets/images/illustrations/deductive.svg";
 import SlideCapture from "../../assets/images/background/slide_capture.png";
+import ExerciseCapture from "../../assets/images/background/exercise_capture.png";
 
 const Top: React.FC = () => {
   return (
     <>
-      <Box bgcolor="#e0f2f1">
+      <Box bgcolor="primary.dark">
         <Box
           component="div"
           position="relative"
           sx={{
-            bgcolor: "#fff",
-            clipPath: "polygon(0 0, 50% 0%, 100% 20%, 100% 100%, 50% 100%, 0% 80%)",
+            background: "radial-gradient(rgba(255, 255, 255, 1) 50%, rgba(224, 242, 241, 1))",
+            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
           }}
         >
           <Box width="1200px" height="calc(100vh - 64px)" m="0 auto" display="flex" alignItems="center">
@@ -76,95 +82,169 @@ const Top: React.FC = () => {
               </Grid>
             </Grid>
           </Box>
-          <Box
-            className="up-down_align-center"
-            position="absolute"
-            bottom="0"
-            left="50%"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            sx={{ transform: "translateX(-50%)" }}
-          >
-            <KeyboardDoubleArrowDownIcon sx={{ fontSize: "80px" }} />
+          <Box position="absolute" bottom="0" left="50%" sx={{ transform: "translateX(-50%)" }}>
+            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ fontSize: "80px" }} />
           </Box>
         </Box>
       </Box>
-      <Box component="div" bgcolor="primary.dark" color="#fff" textAlign="center" p="64px 0" mb="64px">
+      <Box
+        component="div"
+        color="#fff"
+        textAlign="center"
+        p="64px 0"
+        sx={{
+          background: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))",
+        }}
+      >
         <Typography variant="h5" fontWeight={600} letterSpacing={1.5}>
           COMPASSでロジカルシンキングを身につけよう
         </Typography>
       </Box>
-      <Box component="section" p="64px 0" mb="64px">
-        <Box width="1200px" m="0 auto">
-          <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="primary" />
-          <Grid container>
-            <Grid item xs={3.5}>
-              <CourseCard
-                grade="基本編"
-                color="primary"
-                title="帰納法"
-                text={<>複数の情報から共通点を探し出し結論を導き出します</>}
-                image={Inductive}
-                titleUnderLineColor="#83c3f7"
-              />
+
+      <Box bgcolor="primary.dark">
+        <Box
+          position="relative"
+          p="128px 0"
+          sx={{
+            background: "radial-gradient(rgba(255, 255, 255, 1) 50%, rgba(224, 242, 241, 1))",
+            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
+          }}
+        >
+          <Box width="1200px" bgcolor="#eee" m="0 auto" p="64px 32px">
+            <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="success" />
+            <Grid container mt="64px">
+              <Grid item xs={3.5}>
+                <CourseCard
+                  grade="基本編"
+                  color="primary"
+                  title="帰納法"
+                  text={<>複数の情報から共通点を探し出し結論を導き出します</>}
+                  image={Inductive}
+                  titleUnderLineColor="#83c3f7"
+                />
+              </Grid>
+              <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
+                <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
+              </Grid>
+              <Grid item xs={3.5}>
+                <CourseCard
+                  image={Deductive}
+                  grade="基本編"
+                  title="演繹法"
+                  titleUnderLineColor="#c2647c"
+                  text={
+                    <>
+                      ※実装予定
+                      <br />
+                      既に知っている情報と自分の考えを組み合わせて結論を導き出します
+                    </>
+                  }
+                  color="primary"
+                />
+              </Grid>
+              <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
+                <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
+              </Grid>
+              <Grid item xs={3.5}>
+                <CourseCard
+                  grade="応用編"
+                  color="info"
+                  title="伝わる話の組み立て方"
+                  titleUnderLineColor="#fbd081"
+                  text={
+                    <>
+                      ※実装予定
+                      <br />
+                      相手に納得してもらえるわかりやすい説明ができるようになります
+                    </>
+                  }
+                  image={Comunicate}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
-              <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
-            </Grid>
-            <Grid item xs={3.5}>
-              <CourseCard
-                image={Deductive}
-                grade="基本編"
-                title="演繹法"
-                titleUnderLineColor="#c2647c"
-                text={
-                  <>
-                    ※実装予定
-                    <br />
-                    既に知っている情報と自分の考えを組み合わせて結論を導き出します
-                  </>
-                }
-                color="primary"
-              />
-            </Grid>
-            <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
-              <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
-            </Grid>
-            <Grid item xs={3.5}>
-              <CourseCard
-                grade="応用編"
-                color="info"
-                title="伝わる話の組み立て方"
-                titleUnderLineColor="#fbd081"
-                text={
-                  <>
-                    ※実装予定
-                    <br />
-                    相手に納得してもらえるわかりやすい説明ができるようになります
-                  </>
-                }
-                image={Comunicate}
-              />
-            </Grid>
-          </Grid>
+          </Box>
+          <Box position="absolute" bottom="0" left="50%" sx={{ transform: "translateX(-50%)" }}>
+            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ fontSize: "80px" }} />
+          </Box>
         </Box>
       </Box>
-      <Box component="section" p="64px 0">
-        <IconWithPageTitle title="スライドで学び、演習で試す" icon={MenuBookIcon} iconColor="primary" />
-        <Box width="1200px" m="0 auto">
-          <Box component="img" alt="slide-capture" src={SlideCapture} width="100%" />
-          {/* <Grid container>
-            <Grid item xs={6} bgcolor="lightgreen"></Grid>
-            <Grid item xs={6} bgcolor="pink" display="flex" alignItems="center" justifyContent="center">
-              スライドで知識をインプット
-            </Grid>
-            <Grid item xs={6} display="flex" alignItems="center" justifyContent="center" bgcolor="skyblue">
-              インプットした知識をシミュレーションで試す
-            </Grid>
-            <Grid item xs={6} bgcolor="tomato"></Grid>
-          </Grid> */}
+      <Box
+        component="div"
+        color="#fff"
+        textAlign="center"
+        p="64px 0"
+        sx={{
+          background: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))",
+        }}
+      >
+        <Typography variant="h5" fontWeight={600} letterSpacing={1.5}>
+          まだエンジンのかかっていない脳に活を入れよう
+        </Typography>
+      </Box>
+
+      <Box bgcolor="primary.dark">
+        <Box
+          p="128px 0"
+          sx={{
+            background: "radial-gradient(rgba(255, 255, 255, 1) 50%, rgba(224, 242, 241, 1))",
+            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
+          }}
+        >
+          <Box width="1200px" bgcolor="#eee" m="0 auto" p="64px">
+            <IconWithPageTitle title="スライドで学び、演習で身につける" icon={TipsAndUpdatesIcon} iconColor="primary" />
+            <Paper elevation={16} sx={{ bgcolor: "#333" }}>
+              <Box sx={{ p: "8px 0", color: "#fff" }}>
+                <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
+                  <LooksOneIcon sx={{ fontSize: "40px", mr: "4px" }} />
+                  知識をコンパクトにまとめたスライドで無駄なく学べる！
+                </Typography>
+              </Box>
+              <Box
+                component="img"
+                alt="slide-capture"
+                src={SlideCapture}
+                width="100%"
+                sx={{ verticalAlign: "bottom" }}
+              />
+            </Paper>
+            <Box textAlign="center">
+              <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#333" }} />
+            </Box>
+            <Paper elevation={16} sx={{ bgcolor: "#333" }}>
+              <Box sx={{ p: "8px 0", color: "#fff" }}>
+                <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
+                  <LooksTwoIcon sx={{ fontSize: "40px", mr: "4px" }} />
+                  シミュレーションゲーム感覚で学んだ知識を試せる
+                </Typography>
+              </Box>
+              <Box
+                component="img"
+                alt="exercise-capture"
+                src={ExerciseCapture}
+                width="100%"
+                sx={{ verticalAlign: "bottom" }}
+              />
+            </Paper>
+          </Box>
         </Box>
+      </Box>
+
+      <Box
+        component="div"
+        color="#fff"
+        textAlign="center"
+        p="96px 0"
+        sx={{ background: "radial-gradient(rgba(33,33,33, 1) 50%, rgba(22,22,22, 1))" }}
+      >
+        <Typography variant="h4" fontWeight={600} letterSpacing={1.5} mb="16px">
+          ロジカルシンキングを身につけて世界を広げよう
+        </Typography>
+        <MuiButton variant="contained">
+          <Typography variant="h6" display="flex" alignItems="center">
+            無料でユーザー登録
+            <LanguageIcon sx={{ fontSize: "22px", ml: "4px" }} />
+          </Typography>
+        </MuiButton>
       </Box>
     </>
   );

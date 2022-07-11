@@ -51,25 +51,8 @@
     border: 4px solid #00aa99;
   }
 }
-// up,down
-.up-down_align-center {
-  animation-name: upDownAnime;
-  animation-duration: 1.25s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-@keyframes upDownAnime {
-  0% {
-    transform: translate(-50%, -5px);
-  }
-  50% {
-    transform: translate(-50%, 5px);
-  }
-  100% {
-    transform: translate(-50%, -5px);
-  }
-}
 
+// up,down
 .up-down {
   animation-name: upDownAnime;
   animation-duration: 1.25s;

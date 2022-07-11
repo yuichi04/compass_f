@@ -43,7 +43,7 @@ export type Chapter1ExerciseDataType = {
   sampleAnswer: SampleAnswer;
   data: string[];
   response: {
-    role: "user" | "guide" | "customer" | "";
+    role: "user" | "guide" | "customer" | "boy" | "";
     lines: string[];
     image: string;
   };
