@@ -8,8 +8,6 @@ export { default as CourseCard } from "./CourseCard";
 export { default as SelectBox } from "./SelectBox";
 export { default as InductiveExplainChart } from "./InductiveExplainChart";
 export { default as DeductiveExplainChart } from "./DeductiveExplainChart";
-export { default as DeductiveExampleChart } from "./DeductiveExampleChart";
-export { default as InductiveExampleChart } from "./InductiveExampleChart";
 export { default as SlideSection } from "./SlideSection";
 export { default as SlidePointCard } from "./SlidePointCard";
 export { default as SlideSectionContent } from "./SlideSectionContent";

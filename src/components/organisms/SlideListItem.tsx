@@ -68,7 +68,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
               elevation={12}
               sx={{
                 transition: "0.3s",
-                bgcolor: "#666",
+                bgcolor: "primary.dark",
                 borderRadius: "100%",
                 display: "flex",
                 alignItems: "center",
@@ -92,7 +92,7 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
               elevation={12}
               sx={{
                 transition: "0.3s",
-                bgcolor: "#666",
+                bgcolor: "primary.dark",
                 borderRadius: "100%",
                 display: "flex",
                 alignItems: "center",
