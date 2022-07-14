@@ -14,3 +14,4 @@ export { default as SlideList } from "./SlideList";
 export { default as SlideListItem } from "./SlideListItem";
 export { default as TooltipBar } from "./TooltipBar";
 export { default as TextAnimation } from "./TextAnimation";
+export { default as MuiVerticalTabs } from "./MuiVerticalTabs";

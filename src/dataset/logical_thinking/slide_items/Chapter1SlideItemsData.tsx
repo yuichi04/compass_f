@@ -21,10 +21,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ListIcon from "@mui/icons-material/List";
-import StarsIcon from "@mui/icons-material/Stars";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import ClearIcon from "@mui/icons-material/Clear";
-import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
 import { Divider, Grid, Paper } from "@mui/material";
 import InThought from "../../../assets/images/illustrations/inthought.svg";
 import Merit from "../../../assets/images/illustrations/merit.svg";
@@ -41,6 +38,8 @@ import {
   SlidePointCard,
   IconWithText,
 } from "../../../components/molecules";
+import { BalloonLeft } from "../../../components/atoms";
+import { MuiVerticalTabs } from "../../../components/organisms";
 
 const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング基本編「帰納法」";
@@ -394,108 +393,41 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "帰納法の使い方",
       sentence: (
         <>
-          <Typography variant="h6" textAlign="center" fontWeight={600} mb="16px">
-            それでは帰納法の詳しい使い方について確認していきましょう。
+          <Typography variant="h6" fontWeight={600} textAlign="center" mb="16px">
+            それでは帰納法の使い方について確認していきましょう。
           </Typography>
           <SlideSection
             title="使い方"
             titleIcon={<SwipeLeftIcon sx={{ fontSize: "32px", color: "#fff", ml: "4px" }} />}
             color="primary.main"
           >
-            <Grid container height="100%">
-              <Grid item xs={5}>
-                <Typography variant="h6" fontWeight={600} mb="8px" display="flex" alignItems="center">
-                  <AutorenewIcon sx={{ mr: "4px" }} />
-                  帰納法の考える順番
+            <Typography
+              variant="h6"
+              component="div"
+              color="text.secondary"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              帰納法は
+              <Box component="div" display="flex" alignItems="center" justifyContent="center" m="0 16px">
+                <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
+                  1.情報を揃える
                 </Typography>
-                <Box p="16px 32px" bgcolor="#eee">
-                  <Paper elevation={8} sx={{ bgcolor: "primary.main", color: "#fff", p: "4px 12px" }}>
-                    1.情報を揃える
-                  </Paper>
-                  <Box display="flex" alignItems="center" justifyContent="center">
-                    <ArrowDropDownIcon fontSize="large" />
-                  </Box>
-                  <Paper elevation={8} sx={{ bgcolor: "primary.dark", color: "#fff", p: "4px 12px" }}>
-                    2.共通点を見つける
-                  </Paper>
-                  <Box display="flex" alignItems="center" justifyContent="center">
-                    <ArrowDropDownIcon fontSize="large" />
-                  </Box>
-                  <Paper elevation={8} sx={{ bgcolor: "#004d40", color: "#fff", p: "4px 12px" }}>
-                    3.結論を導く
-                  </Paper>
-                </Box>
-              </Grid>
-              <Grid item xs={7} pl="32px">
-                <Typography variant="h6" component="div" display="flex" alignItems="center" fontWeight={600} mb="8px">
-                  <StarsIcon sx={{ color: "#fbc562", fontSize: "24px" }} />
-                  ポイント
+                <ArrowRightIcon sx={{ fontSize: "48px" }} />
+                <Typography variant="h5" component="span" color="primary.dark" fontWeight={600}>
+                  2.共通点を見つける
                 </Typography>
-                <Paper elevation={8} sx={{ bgcolor: "#f9fbe7", p: "16px 24px" }}>
-                  <Typography variant="h6" mb="16px" display="flex" alignItems="center">
-                    <CheckIcon sx={{ fontSize: "30px", color: "primary.main", mr: "8px" }} />
-                    揃える情報は漏れや重複がないようにする
-                  </Typography>
-                  <Typography variant="h6" mb="16px" display="flex" alignItems="center">
-                    <CheckIcon sx={{ fontSize: "30px", color: "primary.main", mr: "8px" }} />
-                    共通点は揃えた情報全てに同じことが言えるか確認する
-                  </Typography>
-                  <Typography component="div" variant="h6">
-                    <Box display="flex" alignItems="center">
-                      <CheckIcon sx={{ fontSize: "30px", color: "primary.main", mr: "8px" }} />
-                      <Box display="flex" alignItems="center">
-                        「なぜならば」を使って、考える順番と逆の順番で文を繋げていき、意味が通じるか確認する
-                      </Box>
-                    </Box>
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
+                <ArrowRightIcon sx={{ fontSize: "48px" }} />
+                <Typography variant="h5" component="span" color="#004d40" fontWeight={600}>
+                  3.結論を導き出す
+                </Typography>
+                という順番で考えていきます。
+              </Box>
+            </Typography>
+            <Divider sx={{ mb: "8px" }} />
+            <MuiVerticalTabs />
           </SlideSection>
-          <Box mt="32px">
-            <Typography variant="subtitle1" fontWeight={600} display="flex" alignItems="center">
-              良い例
-              <CircleOutlinedIcon color="info" sx={{ fontSize: "28px" }} />
-            </Typography>
-            <Grid container>
-              <Grid item xs={3.5}>
-                <ul>
-                  <li>・みかんにはビタミンCが含まれている</li>
-                  <li>・いちごにはビタミンCが含まれている</li>
-                  <li>・りんごにはビタミンCが含まれている</li>
-                </ul>
-              </Grid>
-              <Grid item xs={0.75} display="flex" alignItems="center">
-                <ArrowRightIcon sx={{ fontSize: "64px" }} />
-              </Grid>
-              <Grid item xs={3.5}>
-                <ul>
-                  <li>・みかんにはビタミンCが含まれている</li>
-                  <li>・いちごにはビタミンCが含まれている</li>
-                  <li>・りんごにはビタミンCが含まれている</li>
-                </ul>
-              </Grid>
-              <Grid item xs={0.75} display="flex" alignItems="center">
-                <ArrowRightIcon sx={{ fontSize: "64px" }} />
-              </Grid>
-              <Grid item xs={3.5}>
-                <ul>
-                  <li>・みかんにはビタミンCが含まれている</li>
-                  <li>・いちごにはビタミンCが含まれている</li>
-                  <li>・りんごにはビタミンCが含まれている</li>
-                </ul>
-              </Grid>
-            </Grid>
-            <Typography variant="subtitle1" fontWeight={600} display="flex" alignItems="center">
-              悪い例
-              <ClearIcon color="error" sx={{ fontSize: "32px" }} />
-            </Typography>
-            <Grid container>
-              <Grid item xs={4}></Grid>
-              <Grid item xs={4}></Grid>
-              <Grid item xs={4}></Grid>
-            </Grid>
-          </Box>
         </>
       ),
     },

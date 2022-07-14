@@ -192,21 +192,6 @@ const Top: React.FC = () => {
         >
           <Box width="900px" m="0 auto">
             <IconWithPageTitle title="スライドで学び、演習で身につける" icon={TipsAndUpdatesIcon} iconColor="primary" />
-            {/* <Paper elevation={16} sx={{ bgcolor: "#333" }}>
-              <Box sx={{ p: "8px 0", color: "#fff" }}>
-                <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-                  <LooksOneIcon sx={{ fontSize: "40px", mr: "4px" }} />
-                  知識をコンパクトにまとめたスライドで無駄なく学べる！
-                </Typography>
-              </Box>
-              <Box
-                component="img"
-                alt="slide-capture"
-                src={SlideCapture}
-                width="100%"
-                sx={{ verticalAlign: "bottom" }}
-              />
-            </Paper> */}
             <Box sx={{ p: "8px 0" }}>
               <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
                 <LooksOneIcon sx={{ fontSize: "48px", mr: "4px" }} />
@@ -217,20 +202,12 @@ const Top: React.FC = () => {
             <Box textAlign="center">
               <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#333" }} />
             </Box>
-            {/* <Paper elevation={16} sx={{ bgcolor: "#333" }}> */}
-            {/* <Box sx={{ p: "8px 0", color: "#fff" }}>
-                <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-                  <LooksTwoIcon sx={{ fontSize: "40px", mr: "4px" }} />
-                  シミュレーションゲーム感覚で学んだ知識を試せる
-                </Typography>
-              </Box> */}
             <Box sx={{ p: "8px 0" }}>
               <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
                 <LooksTwoIcon sx={{ fontSize: "48px", mr: "4px" }} />
                 シミュレーションゲーム感覚で学んだ知識を試すことができる
               </Typography>
             </Box>
-            {/* </Paper> */}
             <Box
               component="img"
               alt="exercise-capture"
