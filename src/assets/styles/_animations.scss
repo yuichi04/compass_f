@@ -1,7 +1,7 @@
 // 画面中央から円が広がってフェードインするアニメーション
 .expand_center {
   animation-name: img-wrap;
-  animation-duration: 0.75s;
+  animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
 }
 @keyframes img-wrap {

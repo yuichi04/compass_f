@@ -29,7 +29,7 @@ const SArrowDown = styled.div`
 
 const InductiveExplainChart: React.FC = () => {
   return (
-    <Paper elevation={8} sx={{ position: "relative", p: "40px 0 24px", m: "0 auto", border: "1px solid #83c3f7" }}>
+    <Paper elevation={8} sx={{ position: "relative", p: "40px 0 24px", m: "0 auto" }}>
       <Paper
         elevation={8}
         sx={{

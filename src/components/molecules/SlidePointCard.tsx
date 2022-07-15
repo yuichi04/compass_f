@@ -22,6 +22,7 @@ const SlidePointCard: React.FC<Props> = React.memo((props) => {
         alignItems: "center",
         p: "32px 16px",
         bgcolor: "#fff",
+        height: "100%",
       }}
     >
       <Box position="absolute" top="-24px" left="-24px">
@@ -32,9 +33,9 @@ const SlidePointCard: React.FC<Props> = React.memo((props) => {
       </Typography>
       <Box component="ul" mb="32px">
         {points.map((point, index) => (
-          <Box component="li" key={index} display="flex" alignItems="center">
+          <Box component="li" key={index} display="flex" alignItems="center" mb="4px">
             <ArrowCircleRightSharpIcon sx={{ mr: "8px" }} />
-            <Typography variant="body1" component="div" textAlign="center">
+            <Typography variant="body1" component="div">
               {point}
             </Typography>
           </Box>

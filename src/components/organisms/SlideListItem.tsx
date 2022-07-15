@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { Typography, Paper } from "@mui/material";
+import { Typography, Paper, Tooltip } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowRight";
@@ -36,12 +36,14 @@ const SlideListItem: React.FC<Props> = React.memo(({ children, ...props }) => {
   return (
     <SContainer className={className}>
       <SInner>
-        <IconButton
-          sx={{ position: "absolute", right: "8px", top: "8px", zIndex: "999" }}
-          onClick={() => (isStart ? dispatch(setSlideListAction(false)) : handleClickStartExercise())}
-        >
-          <CancelIcon fontSize="large" />
-        </IconButton>
+        <Tooltip placement="left" title="演習に進む" arrow>
+          <IconButton
+            sx={{ position: "absolute", right: "8px", top: "8px", zIndex: "999" }}
+            onClick={() => (isStart ? dispatch(setSlideListAction(false)) : handleClickStartExercise())}
+          >
+            <CancelIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
         <Box
           bgcolor="primary.dark"
           boxShadow="0 4px 12px #666"

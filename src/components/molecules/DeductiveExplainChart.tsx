@@ -45,7 +45,7 @@ const SVerticalLine = styled.div`
 
 const DeductiveExplainChart: React.FC = () => {
   return (
-    <Paper elevation={8} sx={{ height: "100%", position: "relative", p: "48px 0 24px", border: "1px solid #c2647c" }}>
+    <Paper elevation={8} sx={{ height: "100%", position: "relative", p: "48px 0 24px" }}>
       <Paper
         elevation={8}
         sx={{

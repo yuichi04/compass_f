@@ -13,6 +13,7 @@ import Filter4Icon from "@mui/icons-material/Filter4";
 import Filter5Icon from "@mui/icons-material/Filter5";
 import Filter6Icon from "@mui/icons-material/Filter6";
 import Filter7Icon from "@mui/icons-material/Filter7";
+import CrisisAlertIcon from "@mui/icons-material/CrisisAlert";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import SwipeLeftIcon from "@mui/icons-material/SwipeLeft";
@@ -29,6 +30,10 @@ import Double from "../../../assets/images/illustrations/double.svg";
 import Analytics from "../../../assets/images/illustrations/analytics.svg";
 import IndexGuide from "../../../assets/images/illustrations/readingbook.svg";
 import ThoughtProcess from "../../../assets/images/illustrations/thought.svg";
+import Inductive from "../../../assets/images/illustrations/inductive.svg";
+import KeyPoints from "../../../assets/images/illustrations/key_points.svg";
+import Celebration from "../../../assets/images/illustrations/celebration.svg";
+import Step from "../../../assets/images/illustrations/step.svg";
 import {
   InductiveExplainChart,
   DeductiveExplainChart,
@@ -39,6 +44,7 @@ import {
 } from "../../../components/molecules";
 import { BalloonLeft } from "../../../components/atoms";
 import { MuiVerticalTabs } from "../../../components/organisms";
+import { MuiContainer } from "../../../components/layouts";
 
 const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング基本編「帰納法」";
@@ -64,14 +70,14 @@ const Chapter1SlideItemsData = () => {
               をクリックすると演習がスタートします。
             </Typography>
           </Box>
-          <Box width="1080px" m="0 auto">
+          <Box width="1000px" m="0 auto">
             <SlideSection
               title="目次"
               color="primary.main"
               titleIcon={<ListIcon sx={{ color: "#fff", fontSize: "32px" }} />}
               mb="48px"
             >
-              <Grid container spacing={2}>
+              <Grid container>
                 <Grid item xs={4} component="ol" mt="32px">
                   <Box component="li" display="flex" alignItems="center" mb="16px">
                     <Filter1Icon sx={{ fontSize: "24px", mr: "8px" }} />
@@ -91,14 +97,14 @@ const Chapter1SlideItemsData = () => {
                       ロジカルシンキングまとめ
                     </Typography>
                   </Box>
+                </Grid>
+                <Grid item xs={4} component="ol" mt="32px" pl="64px">
                   <Box component="li" display="flex" alignItems="center" mb="16px">
                     <Filter4Icon sx={{ fontSize: "24px", mr: "8px" }} />
                     <Typography variant="h6" color="primary.main" fontWeight={600}>
                       帰納法とは？
                     </Typography>
                   </Box>
-                </Grid>
-                <Grid item xs={4} component="ol" mt="32px">
                   <Box component="li" display="flex" alignItems="center" mb="16px">
                     <Filter5Icon sx={{ fontSize: "24px", mr: "8px" }} />
                     <Typography variant="h6" color="primary.main" fontWeight={600}>
@@ -107,12 +113,6 @@ const Chapter1SlideItemsData = () => {
                   </Box>
                   <Box component="li" display="flex" alignItems="center" mb="16px">
                     <Filter6Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
-                      帰納法のメリットとデメリット
-                    </Typography>
-                  </Box>
-                  <Box component="li" display="flex" alignItems="center">
-                    <Filter7Icon sx={{ fontSize: "24px", mr: "8px" }} />
                     <Typography variant="h6" color="primary.main" fontWeight={600}>
                       帰納法まとめ
                     </Typography>
@@ -133,7 +133,7 @@ const Chapter1SlideItemsData = () => {
             <Box display="flex" alignItems="center" justifyContent="center">
               画面右の
               <PlayCircleFilledIcon sx={{ color: "primary.dark" }} />
-              ボタンを押して次のスライドへ
+              を押して次のスライドへ
             </Box>
           </Box>
         </>
@@ -147,7 +147,7 @@ const Chapter1SlideItemsData = () => {
       sentence: (
         <>
           <Box display="flex" alignItems="center" justifyContent="center">
-            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "48px", mr: "4px" }} />
+            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "32px", mr: "4px" }} />
             <Typography variant="h5" component="div" fontWeight={600} textAlign="center">
               ロジカルシンキングとは
               <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
@@ -235,7 +235,7 @@ const Chapter1SlideItemsData = () => {
             どちらもロジカルシンキングを身につける上で欠かすことのできない思考法です。
             <br />
             後ほど詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" mt="16px">
               ※演繹法についてはロジカルシンキング基本編「演繹法」にて学ぶことができます。
             </Typography>
           </Box>
@@ -340,7 +340,7 @@ const Chapter1SlideItemsData = () => {
       sentence: (
         <>
           <Box display="flex" alignItems="center" justifyContent="center">
-            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "48px", mr: "4px" }} />
+            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "32px", mr: "4px" }} />
             <Typography variant="h5" component="div" fontWeight={600}>
               帰納法とは
               <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
@@ -380,7 +380,7 @@ const Chapter1SlideItemsData = () => {
                   </Typography>
                   」
                 </Typography>
-                という3つのステップになっていて、例えば「よく売れる新しいパンを作りたい」というケースでは以下のように用いることができます。
+                という3つのステップになっています。例えば「よく売れそうな新しいパンを作りたい」というケースでは以下のように用いることができます。
                 <Typography component="ul" bgcolor="#e0f2f1" p="16px" m="16px 0" textAlign="center" fontWeight={600}>
                   <dl>
                     <Typography component="dt" color="primary.main" fontWeight={600}>
@@ -420,35 +420,10 @@ const Chapter1SlideItemsData = () => {
       sentence: (
         <>
           <SlideSection
-            title="使い方"
-            titleIcon={<SwipeLeftIcon sx={{ fontSize: "32px", color: "#fff", ml: "4px" }} />}
+            title="各ステップのポイント"
+            titleIcon={<CrisisAlertIcon sx={{ fontSize: "24px", color: "#fff", ml: "4px" }} />}
             color="primary.main"
           >
-            {/* <Typography
-              variant="h6"
-              component="div"
-              color="text.secondary"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              帰納法は
-              <Box component="div" display="flex" alignItems="center" justifyContent="center" m="0 16px">
-                <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
-                  1.複数の情報を揃える
-                </Typography>
-                <ArrowRightIcon sx={{ fontSize: "48px" }} />
-                <Typography variant="h6" component="span" color="primary.dark" fontWeight={600}>
-                  2.共通点を見つける
-                </Typography>
-                <ArrowRightIcon sx={{ fontSize: "48px" }} />
-                <Typography variant="h6" component="span" color="#004d40" fontWeight={600}>
-                  3.結論を導き出す
-                </Typography>
-                という順番で考えます。
-              </Box>
-            </Typography>
-            <Divider sx={{ mb: "8px" }} /> */}
             <MuiVerticalTabs />
           </SlideSection>
         </>
@@ -458,15 +433,108 @@ const Chapter1SlideItemsData = () => {
       order: 6,
       title,
       className: "",
-      sectionTitle: "メリットとデメリット",
-      section: <></>,
+      sectionTitle: "帰納法まとめ",
+      sentence: (
+        <Grid container spacing={8}>
+          <Grid item xs={4}>
+            <SlidePointCard
+              numberIcon={<LooksOneIcon sx={{ fontSize: "64px" }} />}
+              title="用途"
+              color="#83c3f7"
+              points={[
+                <Typography variant="body1" fontWeight={600}>
+                  ビジネスシーンで何かしら戦略を
+                  <br />
+                  立てるときに役立つ思考法
+                </Typography>,
+              ]}
+              image={Inductive}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <SlidePointCard
+              numberIcon={<LooksTwoIcon sx={{ fontSize: "64px" }} />}
+              title="ステップ"
+              color="#004d40"
+              points={[
+                <Typography variant="body1" fontWeight={600}>
+                  複数の情報を揃える
+                </Typography>,
+                <Typography variant="body1" fontWeight={600}>
+                  共通点を見つける
+                </Typography>,
+                <Typography variant="body1" fontWeight={600}>
+                  結論を導き出す
+                </Typography>,
+              ]}
+              image={Step}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <SlidePointCard
+              numberIcon={<Looks3Icon sx={{ fontSize: "64px" }} />}
+              title="ポイント"
+              color="#b33e5c"
+              points={[
+                <Typography variant="body1" fontWeight={600}>
+                  漏れなく・偏りなく情報を揃える
+                </Typography>,
+                <Typography variant="body1" fontWeight={600}>
+                  共通点の抽象度を高くしすぎない
+                </Typography>,
+                <Typography variant="body1" fontWeight={600}>
+                  「なぜならば」で論理の飛躍を確認
+                </Typography>,
+              ]}
+              image={KeyPoints}
+            />
+          </Grid>
+        </Grid>
+      ),
     },
     {
       order: 7,
       title,
       className: "",
-      sectionTitle: "まとめ",
-      section: <></>,
+      sectionTitle: "スライドはここまで",
+      sentence: (
+        <Box position="relative" width="900px" m="0 auto">
+          <Box position="absolute" top="-24px" left="52%" sx={{ transform: "translateX(-50%)" }}>
+            <Box component="img" alt="celebration img" src={Celebration} />
+          </Box>
+          <Typography
+            position="relative"
+            component="div"
+            variant="h5"
+            color="#333"
+            fontWeight={600}
+            textAlign="center"
+            bgcolor="rgba(255,255,255,0.2)"
+            borderRadius="64px"
+            p="32px"
+          >
+            ここまでスライド学習お疲れ様でした。
+            <br />
+            いかがだったでしょうか。帰納法についてなんとなくわかりましたか？
+            <br />
+            次はいよいよ演習です。頑張ってください。
+            <br />
+            <br />
+            <Typography
+              variant="h5"
+              color="#333"
+              fontWeight={600}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              右上の
+              <CancelIcon fontSize="large" />
+              でスライドを閉じて演習に進んでください。
+            </Typography>
+          </Typography>
+        </Box>
+      ),
     },
   ]);
   return { slideItems, setSlideItems };
