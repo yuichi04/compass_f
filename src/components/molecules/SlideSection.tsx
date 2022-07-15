@@ -21,17 +21,17 @@ const SlideSection: React.FC<Props> = React.memo(({ children, ...props }) => {
           left: "-12px",
           bgcolor: color,
           borderRadius: "4px",
-          p: "8px 16px",
+          p: "6px 12px",
           display: "flex",
           alignItems: "center",
         }}
       >
-        <Typography variant="h5" color="#fff" fontWeight={600}>
+        <Typography variant="h6" color="#fff" fontWeight={600}>
           {title}
         </Typography>
         {titleIcon}
       </Paper>
-      <Typography variant="h6" component="div">
+      <Typography component="div" variant="subtitle1">
         {children}
       </Typography>
     </Paper>

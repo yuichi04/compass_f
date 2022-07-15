@@ -13,13 +13,12 @@ import Filter4Icon from "@mui/icons-material/Filter4";
 import Filter5Icon from "@mui/icons-material/Filter5";
 import Filter6Icon from "@mui/icons-material/Filter6";
 import Filter7Icon from "@mui/icons-material/Filter7";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import CheckIcon from "@mui/icons-material/Check";
 import SwipeLeftIcon from "@mui/icons-material/SwipeLeft";
 import CancelIcon from "@mui/icons-material/Cancel";
 import InfoIcon from "@mui/icons-material/Info";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import AutorenewIcon from "@mui/icons-material/Autorenew";
 import ListIcon from "@mui/icons-material/List";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import { Divider, Grid, Paper } from "@mui/material";
@@ -147,12 +146,15 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "ロジカルシンキングとは？",
       sentence: (
         <>
-          <Typography variant="h5" component="div" fontWeight={600} textAlign="center">
-            ロジカルシンキングとは
-            <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
-              「話を筋道立てて考えること」
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "48px", mr: "4px" }} />
+            <Typography variant="h5" component="div" fontWeight={600} textAlign="center">
+              ロジカルシンキングとは
+              <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
+                「話を筋道立てて考えること」
+              </Typography>
             </Typography>
-          </Typography>
+          </Box>
           <Box display="flex" alignItems="center" justifyContent="center">
             <ArrowDropDownIcon sx={{ fontSize: "64px", color: "#666" }} />
           </Box>
@@ -211,33 +213,33 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "ロジカルシンキングの2つの柱",
       sentence: (
         <>
-          <Box component="div" textAlign="center">
-            ロジカルシンキングには基本となる2つの思考法があります。
-            <br />
-            それは、
+          <Box component="div" textAlign="center" mb="64px">
+            ロジカルシンキングには2つの柱と言われる
             <Typography variant="h5" color="primary.main" component="span" fontWeight={600}>
               「帰納法
-            </Typography>
-            <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
-              （きのうほう）」
+              <Typography variant="body2" component="span" fontWeight={600}>
+                （きのうほう）
+              </Typography>
+              」
             </Typography>
             と
             <Typography variant="h5" color="primary.main" component="span" fontWeight={600}>
               「演繹法
+              <Typography variant="body2" component="span" fontWeight={600}>
+                （えんえきほう）
+              </Typography>
+              」
             </Typography>
-            <Typography variant="body2" component="span" color="text.secondary" fontWeight={600}>
-              （えんえきほう）」
-            </Typography>
-            です。
+            という思考法があります。
             <br />
             どちらもロジカルシンキングを身につける上で欠かすことのできない思考法です。
             <br />
             後ほど詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
-            <Typography variant="body2">
+            <Typography variant="subtitle2">
               ※演繹法についてはロジカルシンキング基本編「演繹法」にて学ぶことができます。
             </Typography>
           </Box>
-          <Grid container spacing={4} mt="16px" mb="32px">
+          <Grid container spacing={4}>
             <Grid item xs={6}>
               <InductiveExplainChart />
             </Grid>
@@ -337,13 +339,16 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "帰納法とは",
       sentence: (
         <>
-          <Typography variant="h5" component="div" fontWeight={600} textAlign="center">
-            帰納法とは
-            <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
-              「複数の情報から共通点を見つけて結論を導く思考法」
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "48px", mr: "4px" }} />
+            <Typography variant="h5" component="div" fontWeight={600}>
+              帰納法とは
+              <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
+                「複数の情報から共通点を見つけて結論を導く思考法」
+              </Typography>
+              のこと
             </Typography>
-            のこと
-          </Typography>
+          </Box>
           <Box display="flex" alignItems="center" justifyContent="center">
             <ArrowDropDownIcon sx={{ fontSize: "64px", color: "#666" }} />
           </Box>
@@ -352,34 +357,55 @@ const Chapter1SlideItemsData = () => {
             titleIcon={<InfoIcon sx={{ color: "#fff", fontSize: "32px" }} />}
             color="primary.main"
           >
-            <Grid container spacing={4}>
-              <Grid item xs={4}>
+            <Grid container>
+              <Grid item xs={4} pr="32px">
                 <Box component="img" src={Analytics} alt="image" height="100%" width="100%" />
               </Grid>
               <Grid item xs={8}>
-                帰納法はまだ知らないことについて
-                <Typography variant="h6" component="span" fontWeight={600}>
-                  「これはこういうことだろう」
+                帰納法は「複数の情報から共通点を見つけて結論を導く思考法」で、ビジネスにおいて何かしら戦略を立てるような場面で役立つ思考法です。
+                <br />
+                考え方としては
+                <Typography component="span" display="inline-flex" fontWeight={600}>
+                  「
+                  <Typography color="primary.main" fontWeight={600}>
+                    1.複数の情報を揃える
+                  </Typography>
+                  <ArrowRightIcon />
+                  <Typography color="primary.dark" fontWeight={600}>
+                    2.共通点を見つける
+                  </Typography>
+                  <ArrowRightIcon />
+                  <Typography color="#004d40" fontWeight={600}>
+                    3.結論を導き出す
+                  </Typography>
+                  」
                 </Typography>
-                と確実性の高い予測を立てたり、自分の考えをまとめ誰かに何かを伝える場面で役立つ思考法です。
-                <br />
-                <br />
-                ビジネスにおいて何か商品を開発する場合に、ヒット商品の法則性がわからなければ効果的な戦略を立てることは難しいでしょう。しかし、帰納法を用いることで、その法則性を見つけ成果の上がりやすい戦略を立てることが可能になります。
-                <br />
-                また、他にも、誰かに何かを説明したり意見を述べる場面でも役に立ちます。
-                <br />
-                たとえば、根拠が乏しい説明や筋の通っていない意見では相手に納得してもらうことは難しいでしょう。しかし、複数の情報から結論を導く帰納法は、言い換えれば、
-                <Typography variant="h6" component="span" fontWeight={600}>
-                  複数の根拠から考えを固める思考法
+                という3つのステップになっていて、例えば「よく売れる新しいパンを作りたい」というケースでは以下のように用いることができます。
+                <Typography component="ul" bgcolor="#e0f2f1" p="16px" m="16px 0" textAlign="center" fontWeight={600}>
+                  <dl>
+                    <Typography component="dt" color="primary.main" fontWeight={600}>
+                      1.複数の情報を揃える
+                    </Typography>
+                    <dd>
+                      世間では「オートミールクロワッサン・大豆メロンパン・無糖ヨーグルトドーナッツ」がトレンドである
+                    </dd>
+                  </dl>
+                  <ArrowDropDownIcon />
+                  <dl>
+                    <Typography component="dt" color="primary.dark" fontWeight={600}>
+                      2.共通点を見つける
+                    </Typography>
+                    <dd>ヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」がトレンド</dd>
+                  </dl>
+                  <ArrowDropDownIcon />
+                  <dl>
+                    <Typography component="dt" color="#004d40" fontWeight={600}>
+                      3.結論を導き出す
+                    </Typography>
+                    <dd>トマトやニンジンを使った無糖デニッシュを作ったらヒットするかもしれない</dd>
+                  </dl>
                 </Typography>
-                とも言えるため、これを用いることで、相手に納得してもらいやすい説明や意見を組み立てることできます。
-                <br />
-                <br />
-                このように、
-                <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
-                  「答えを出す・何かを伝える」
-                </Typography>
-                という場面で役立つ思考法が帰納法です。
+                それではステップ1〜3について詳しく見ていきましょう。
               </Grid>
             </Grid>
           </SlideSection>
@@ -393,15 +419,12 @@ const Chapter1SlideItemsData = () => {
       sectionTitle: "帰納法の使い方",
       sentence: (
         <>
-          <Typography variant="h6" fontWeight={600} textAlign="center" mb="16px">
-            それでは帰納法の使い方について確認していきましょう。
-          </Typography>
           <SlideSection
             title="使い方"
             titleIcon={<SwipeLeftIcon sx={{ fontSize: "32px", color: "#fff", ml: "4px" }} />}
             color="primary.main"
           >
-            <Typography
+            {/* <Typography
               variant="h6"
               component="div"
               color="text.secondary"
@@ -411,21 +434,21 @@ const Chapter1SlideItemsData = () => {
             >
               帰納法は
               <Box component="div" display="flex" alignItems="center" justifyContent="center" m="0 16px">
-                <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
-                  1.情報を揃える
+                <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
+                  1.複数の情報を揃える
                 </Typography>
                 <ArrowRightIcon sx={{ fontSize: "48px" }} />
-                <Typography variant="h5" component="span" color="primary.dark" fontWeight={600}>
+                <Typography variant="h6" component="span" color="primary.dark" fontWeight={600}>
                   2.共通点を見つける
                 </Typography>
                 <ArrowRightIcon sx={{ fontSize: "48px" }} />
-                <Typography variant="h5" component="span" color="#004d40" fontWeight={600}>
+                <Typography variant="h6" component="span" color="#004d40" fontWeight={600}>
                   3.結論を導き出す
                 </Typography>
-                という順番で考えていきます。
+                という順番で考えます。
               </Box>
             </Typography>
-            <Divider sx={{ mb: "8px" }} />
+            <Divider sx={{ mb: "8px" }} /> */}
             <MuiVerticalTabs />
           </SlideSection>
         </>
