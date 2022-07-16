@@ -16,6 +16,7 @@ import Filter7Icon from "@mui/icons-material/Filter7";
 import CrisisAlertIcon from "@mui/icons-material/CrisisAlert";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import WarningIcon from "@mui/icons-material/Warning";
 import SwipeLeftIcon from "@mui/icons-material/SwipeLeft";
 import CancelIcon from "@mui/icons-material/Cancel";
 import InfoIcon from "@mui/icons-material/Info";
@@ -166,36 +167,37 @@ const Chapter1SlideItemsData = () => {
             <Grid container spacing={3}>
               <Grid item xs={8}>
                 ロジカルシンキングは知識や前提条件から
-                <Typography variant="h6" component="span" fontWeight={600}>
+                <Typography component="span" fontWeight={600}>
                   「話を筋道立てて考えること」
                 </Typography>
                 です。
                 <br />
-                身につけることで問題や課題に対して、無駄なく確実性の高い結論を導くことができるようになります。
+                身につけることで、問題や課題に対して確実性の高い予測や仮説を立てることができるようになります。
                 <br />
-                そのため、ビジネスの現場においてとても重宝されており、ビジネスマンとして価値を上げるなら身につけるべきスキルであるということは間違いありません。
+                そのため、ビジネスの現場でとても重宝されており、ビジネスマンとしての価値を上げるなら身につけるべきスキルであるということは間違いありません。
                 <SlideSectionContent
                   title="身につけるメリット"
                   icon={<VolunteerActivismIcon sx={{ ml: "4px" }} />}
                   color="primary.dark"
                 >
                   ロジカルシンキングを身につけることには
-                  <Typography variant="h6" component="span" color="primary.main" fontWeight={600}>
+                  <Typography component="span" color="primary.main" fontWeight={600}>
                     「説明が上手になる・問題解決力がつく」
                   </Typography>
                   という大きなメリットがあります。
                   <br />
                   どの仕事でも
-                  <Typography variant="h6" component="span" fontWeight={600}>
+                  <Typography component="span" fontWeight={600}>
                     「何かを伝える・問題を解決する」
                   </Typography>
-                  ということは避けて通れないと思いますが、ロジカルシンキングを身につけているとこれらの問題に上手に対処できます。
-                  <br />
-                  ただし、知識や前提に基づいて話を組み立てるため、それらに誤りがあると
-                  <Typography variant="h6" component="span" fontWeight={600} color="#b33e5c">
+                  ということは避けて通れないと思いますが、ロジカルシンキングを身につけているとこれらの問題に上手に対処することができるようになります。
+                </SlideSectionContent>
+                <SlideSectionContent title="注意点" icon={<WarningIcon sx={{ ml: "4px" }} />} color="#faa50a">
+                  ロジカルシンキングには1つ注意することがあります。それは知識や前提に誤りがあると
+                  <Typography component="span" fontWeight={600} color="#b33e5c">
                     間違った結論を導いてしまう
                   </Typography>
-                  という点には注意しましょう。
+                  ということです。知識・前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときには、それらの確認が必要だということを忘れないようにしましょう。
                 </SlideSectionContent>
               </Grid>
               <Grid item xs={4}>

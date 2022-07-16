@@ -11,7 +11,7 @@ type Props = {
 const SlideSectionContent: React.FC<Props> = ({ children, ...props }) => {
   const { title, icon, color } = props;
   return (
-    <Box component="section" mt="24px">
+    <Box component="section" mt="16px">
       <Box component="div">
         <Paper
           elevation={8}
@@ -25,7 +25,9 @@ const SlideSectionContent: React.FC<Props> = ({ children, ...props }) => {
           }}
         >
           <Box display="flex" alignItems="center">
-            <Typography variant="h6">{title}</Typography>
+            <Typography variant="subtitle1" fontWeight={600}>
+              {title}
+            </Typography>
             {icon}
           </Box>
         </Paper>
