@@ -15,7 +15,7 @@ import LogicalThinking from "../../assets/images/illustrations/logicalthinking.s
 import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 import Inductive from "../../assets/images/illustrations/inductive.svg";
 import Deductive from "../../assets/images/illustrations/deductive.svg";
-import SlideCapture from "../../assets/images/background/slide_capture.png";
+import SlideIndexImage from "../../assets/images/background/slide_index.png";
 import ExerciseCapture from "../../assets/images/background/exercise_capture.png";
 
 const Top: React.FC = () => {
@@ -26,7 +26,7 @@ const Top: React.FC = () => {
           component="div"
           position="relative"
           sx={{
-            background: "radial-gradient(rgba(255, 255, 255, 1) 50%, rgba(224, 242, 241, 1))",
+            background: "#fff",
             clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
           }}
         >
@@ -106,8 +106,7 @@ const Top: React.FC = () => {
           position="relative"
           p="160px 0 196px"
           sx={{
-            background: "radial-gradient(rgba(255, 255, 255, 1) 50%, rgba(224, 242, 241, 1))",
-            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
+            background: "#e8f5e9",
           }}
         >
           <Box width="1200px" m="0 auto">
@@ -186,36 +185,41 @@ const Top: React.FC = () => {
         <Box
           p="160px 0"
           sx={{
-            background: "radial-gradient(rgba(255, 255, 255, 1) 50%, rgba(224, 242, 241, 1))",
-            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
+            background: "#fff",
           }}
         >
           <Box width="900px" m="0 auto">
             <IconWithPageTitle title="スライドで学び、演習で身につける" icon={TipsAndUpdatesIcon} iconColor="primary" />
-            <Box sx={{ p: "8px 0" }}>
-              <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-                <LooksOneIcon sx={{ fontSize: "48px", mr: "4px" }} />
-                知識をコンパクトにまとめたスライドで無駄なく学べる！
-              </Typography>
-            </Box>
-            <Box component="img" alt="slide-capture" src={SlideCapture} width="100%" sx={{ verticalAlign: "bottom" }} />
+            <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
+              <LooksOneIcon sx={{ fontSize: "48px", mr: "4px" }} />
+              知識をコンパクトにまとめたスライドで無駄なく学べる！
+            </Typography>
+            <Paper elevation={8}>
+              <Box
+                component="img"
+                alt="slide-capture"
+                src={SlideIndexImage}
+                width="100%"
+                sx={{ verticalAlign: "bottom" }}
+              />
+            </Paper>
             <Box textAlign="center">
               <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#333" }} />
             </Box>
-            <Box sx={{ p: "8px 0" }}>
-              <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-                <LooksTwoIcon sx={{ fontSize: "48px", mr: "4px" }} />
-                シミュレーションゲーム感覚で学んだ知識を試すことができる
-              </Typography>
-            </Box>
-            <Box
-              component="img"
-              alt="exercise-capture"
-              src={ExerciseCapture}
-              width="100%"
-              border="1px solid #ccc"
-              sx={{ verticalAlign: "bottom" }}
-            />
+            <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
+              <LooksTwoIcon sx={{ fontSize: "48px", mr: "4px" }} />
+              シミュレーションゲーム感覚で学んだ知識を試すことができる
+            </Typography>
+            <Paper elevation={8}>
+              <Box
+                component="img"
+                alt="exercise-capture"
+                src={ExerciseCapture}
+                width="100%"
+                border="1px solid #ccc"
+                sx={{ verticalAlign: "bottom" }}
+              />
+            </Paper>
           </Box>
         </Box>
       </Box>
@@ -225,7 +229,7 @@ const Top: React.FC = () => {
         color="#fff"
         textAlign="center"
         p="96px 0"
-        sx={{ background: "radial-gradient(rgba(33,33,33, 1) 50%, rgba(22,22,22, 1))" }}
+        sx={{ background: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))" }}
       >
         <Typography variant="h4" fontWeight={600} letterSpacing={1.5} mb="16px">
           ロジカルシンキングを身につけて世界を広げよう
