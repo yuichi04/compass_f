@@ -382,15 +382,15 @@ const Chapter1SlideItemsData = () => {
                   </Typography>
                   」
                 </Typography>
-                という3つのステップになっています。例えば「よく売れそうな新しいパンを作りたい」というケースでは以下のように用いることができます。
+                という3つのステップになっています。
+                <br />
+                例えば「よく売れる新しいパンを作りたい」というケースでは以下のように用いることができます。
                 <Typography component="ul" bgcolor="#e0f2f1" p="16px" m="16px 0" textAlign="center" fontWeight={600}>
                   <dl>
                     <Typography component="dt" color="primary.main" fontWeight={600}>
                       1.複数の情報を揃える
                     </Typography>
-                    <dd>
-                      世間では「オートミールクロワッサン・大豆メロンパン・無糖ヨーグルトドーナッツ」がトレンドである
-                    </dd>
+                    <dd>世間では「オートミールクロワッサン・大豆メロンパン・無糖ヨーグルトドーナッツ」が人気である</dd>
                   </dl>
                   <ArrowDropDownIcon />
                   <dl>
@@ -445,7 +445,7 @@ const Chapter1SlideItemsData = () => {
               color="#83c3f7"
               points={[
                 <Typography variant="body1" fontWeight={600}>
-                  ビジネスシーンで何かしら戦略を
+                  ビジネスシーンなどで戦略を
                   <br />
                   立てるときに役立つ思考法
                 </Typography>,
@@ -508,23 +508,28 @@ const Chapter1SlideItemsData = () => {
             position="relative"
             component="div"
             variant="h5"
-            color="#333"
+            color="#fff"
             fontWeight={600}
             textAlign="center"
-            bgcolor="rgba(255,255,255,0.2)"
+            bgcolor="rgba(0,0,0,0.4)"
             borderRadius="64px"
             p="32px"
+            sx={{ textShadow: "1px 1px 1px #555" }}
           >
-            ここまでスライド学習お疲れ様でした。
+            スライド学習お疲れ様でした。
             <br />
-            いかがだったでしょうか。帰納法についてなんとなくわかりましたか？
             <br />
-            次はいよいよ演習です。頑張ってください。
+            ここまでロジカルシンキングの概要と帰納法について学習しましたが、
+            <br />
+            理解できましたでしょうか？
+            <br />
+            <br />
+            次はいよいよ演習です。
             <br />
             <br />
             <Typography
               variant="h5"
-              color="#333"
+              color="#fff"
               fontWeight={600}
               display="flex"
               alignItems="center"

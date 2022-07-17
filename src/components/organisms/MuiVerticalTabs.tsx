@@ -5,12 +5,14 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Container, Grid, Paper } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
 import TouchAppIcon from "@mui/icons-material/TouchApp";
 import ClearIcon from "@mui/icons-material/Clear";
 import CircleOutlinedIcon from "@mui/icons-material/CircleOutlined";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -124,48 +126,100 @@ export default function VerticalTabs() {
               <ClearIcon sx={{ mr: "4px" }} />
               情報に偏りがある例
             </Typography>
-            <Typography component="div" p="8px" mb="8px" bgcolor="#ffebee">
-              <Typography component="span" color="primary.main" fontWeight={600}>
-                ・情報
-              </Typography>
-              　：「友人Aは最近ウォーターサーバーを契約した」「友人Bはよくミネラルウォーターを購入している」「友人Cは水道水は飲めないと言っていた」
-              <br />
-              <Typography component="span" color="primary.dark" fontWeight={600}>
-                ・共通点
-              </Typography>
-              ：「消費者は品質の良い水を求めるようになってきている」
-              <br />
-              <Typography component="span" color="#004d40" fontWeight={600}>
-                ・結論
-              </Typography>
-              　：「飲料水の需要は今後も伸び続けるだろう」
+            <Typography
+              component="ol"
+              p="8px"
+              mb="8px"
+              bgcolor="#ffebee"
+              sx={{ listStyleType: "revert", listStylePosition: "inside" }}
+            >
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.main"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  情報
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", ml: "8px" }} />
+                </Typography>
+                「友人Aは最近ウォーターサーバーを契約した」「友人Bはよくミネラルウォーターを購入している」「友人Cは水道水は飲めないと言っていた」
+              </li>
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.dark"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  共通点
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「消費者は品質の良い水を求めるようになってきている」
+              </li>
+              <li>
+                <Typography component="span" color="#004d40" fontWeight={600} display="inline-flex" alignItems="center">
+                  結論
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「飲料水の需要は今後も伸び続けるだろう」
+              </li>
             </Typography>
             この例では、身の回りの偏った狭い範囲の情報だけで結論を導いてしまっています。これでは根拠が弱く、確実性の高い結論とは言えません。
             <Typography variant="subtitle1" sx={{ color: "#1665c0" }} display="flex" alignItems="center" mt="4px">
               <CircleOutlinedIcon sx={{ mr: "4px" }} />
               情報の偏りが少ない例
             </Typography>
-            <Typography component="div" p="8px" mb="8px" bgcolor="#e3f2fd">
-              <Typography component="span" color="primary.main" fontWeight={600}>
-                ・情報
-              </Typography>
-              　：「テレビでウォーターサーバーが人気だと紹介されていた」「同僚でミネラルウォーターを購入している人が増えた」「あるネットアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」
-              <br />
-              <Typography component="span" color="primary.dark" fontWeight={600}>
-                ・共通点
-              </Typography>
-              ：「消費者は品質の良い水を求めるようになってきている」
-              <br />
-              <Typography component="span" color="#004d40" fontWeight={600}>
-                ・結論
-              </Typography>
-              　：「飲料水の需要は今後も伸び続けるだろう」
+            <Typography
+              component="ol"
+              p="8px"
+              mb="8px"
+              bgcolor="#e3f2fd"
+              sx={{ listStyleType: "revert", listStylePosition: "inside" }}
+            >
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.main"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  情報
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", ml: "8px" }} />
+                </Typography>
+                「テレビでウォーターサーバーが人気だと紹介されていた」「同僚でミネラルウォーターを購入している人が増えた」「あるネットアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」
+              </li>
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.dark"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  共通点
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「消費者は品質の良い水を求めるようになってきている」
+              </li>
+              <li>
+                <Typography component="span" color="#004d40" fontWeight={600} display="inline-flex" alignItems="center">
+                  結論
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「飲料水の需要は今後も伸び続けるだろう」
+              </li>
             </Typography>
-            この例では、テレビ・身の回り・インターネットと情報源に偏りが少なく、広い範囲の情報を揃えていることで、確実性の高い結論を導くことができています。
+            この例では、テレビ・身の回り・インターネットと情報源に偏りが少なく、広い範囲の情報を揃えているため、確実性の高い結論を導くことができています。
             <br />
+            情報は
             <Typography component="span" sx={{ textDecoration: "underline solid #555" }}>
-              情報は「漏れなく・偏りなく」揃えるようにしましょう。
+              漏れなく・偏りなく
             </Typography>
+            揃えるようにしましょう。
           </Typography>
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -181,57 +235,117 @@ export default function VerticalTabs() {
             共通点を見つける
           </Typography>
           <Typography className="fade_in" variant="subtitle1" component="div">
-            このステップでは全ての情報に共通することを見つけます。各情報ごとに特徴や性質などを抜き出し、全ての情報において共通することを見つけましょう。ただし、情報に対して
-            <Typography component="span" color="#c62828">
-              抽象度が高すぎること
+            このステップでは、全ての情報に共通する特徴や性質などを見つけます。このとき、
+            <Typography component="span" color="primary.main">
+              できるだけ抽象度が高いこと
             </Typography>
-            を共通点にしてしまうと、誤った結論を導きやすいため注意しましょう。
+            を共通点にするようにしましょう。抽象度が高くなればなるほど多くの物事に対して言える結論に、具体的になればなるほど少ない物事に対してしか言えない結論になります。ただし、あまりに抽象度が高いことを共通点にしてしまうと、誤った結論を導いてしまうため注意が必要です。
             <Typography variant="subtitle1" sx={{ color: "#c62828" }} display="flex" alignItems="center" mt="4px">
               <ClearIcon sx={{ mr: "4px" }} />
               抽象度が高すぎる例
             </Typography>
-            <Typography component="div" p="8px" mb="8px" bgcolor="#ffebee">
-              <Typography component="span" color="primary.main" fontWeight={600}>
-                ・情報
-              </Typography>
-              　：「レモンはビタミンCが豊富」「みかんはビタミンCが豊富」「グレープフルーツはビタミンCが豊富」
-              <br />
-              <Typography component="span" color="primary.dark" fontWeight={600}>
-                ・共通点
-              </Typography>
-              ：「フルーツにはビタミンCが豊富に含まれている」
-              <br />
-              <Typography component="span" color="#004d40" fontWeight={600}>
-                ・結論
-              </Typography>
-              　：「フルーツはすっぱい」
+            <Typography
+              component="ol"
+              p="8px"
+              mb="8px"
+              bgcolor="#ffebee"
+              sx={{ listStyleType: "revert", listStylePosition: "inside" }}
+            >
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.main"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  情報
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", ml: "8px" }} />
+                </Typography>
+                「レモンはクエン酸が豊富」「みかんはクエン酸が豊富」「グレープフルーツはクエン酸が豊富」
+              </li>
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.dark"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  共通点
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「
+                <Typography component="span" fontWeight={600}>
+                  フルーツ
+                </Typography>
+                はクエン酸が豊富」
+              </li>
+              <li>
+                <Typography component="span" color="#004d40" fontWeight={600} display="inline-flex" alignItems="center">
+                  結論
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「フルーツはすっぱい」
+              </li>
             </Typography>
-            この例では抽象度の高い（＝分類が遠い）「フルーツ」を共通点にしているため、「フルーツはすっぱい」といった論理が飛躍している間違った結論を導いてしまっています。
+            この例では、各情報に対して抽象度が高い（＝分類が遠い）「フルーツ」を共通点にしてしまっているため、「フルーツはすっぱい」という間違った結論が導かれてしまっています。
             <Typography variant="subtitle1" sx={{ color: "#1665c0" }} display="flex" alignItems="center" mt="4px">
               <CircleOutlinedIcon sx={{ mr: "4px" }} />
               抽象度が適切な例
             </Typography>
-            <Typography component="div" p="8px" mb="8px" bgcolor="#e3f2fd">
-              <Typography component="span" color="primary.main" fontWeight={600}>
-                ・情報
-              </Typography>
-              　：「レモンはビタミンCが豊富」「みかんはビタミンCが豊富」「グレープフルーツはビタミンCが豊富」
-              <br />
-              <Typography component="span" color="primary.dark" fontWeight={600}>
-                ・共通点
-              </Typography>
-              ：「柑橘類にはビタミンCが豊富に含まれている」
-              <br />
-              <Typography component="span" color="#004d40" fontWeight={600}>
-                ・結論
-              </Typography>
-              　：「柑橘類はすっぱい」
+            <Typography
+              component="ol"
+              p="8px"
+              mb="8px"
+              bgcolor="#e3f2fd"
+              sx={{ listStyleType: "revert", listStylePosition: "inside" }}
+            >
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.main"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  情報
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", ml: "8px" }} />
+                </Typography>
+                「レモンはクエン酸が豊富」「みかんはクエン酸が豊富」「グレープフルーツはクエン酸が豊富」
+              </li>
+              <li>
+                <Typography
+                  component="span"
+                  color="primary.dark"
+                  fontWeight={600}
+                  display="inline-flex"
+                  alignItems="center"
+                >
+                  共通点
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「
+                <Typography component="span" fontWeight={600}>
+                  柑橘類
+                </Typography>
+                はクエン酸が豊富」
+              </li>
+              <li>
+                <Typography component="span" color="#004d40" fontWeight={600} display="inline-flex" alignItems="center">
+                  結論
+                  <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", m: "0 4px" }} />
+                </Typography>
+                「柑橘類はすっぱい」
+              </li>
             </Typography>
-            この例では各情報に対して抽象度が近い、言い換えれば、分類が近い柑橘類を共通点にしています。そのため、情報と共通点のつながりが強く、確実性が高い結論を導くことができています。
+            この例では、各情報に対して抽象度が適切な（＝分類が近い）「柑橘類」を共通点にしているため、情報と共通点のつながりが強く、確実性の高い結論を導くことができています。
             <br />
+            確実性高く、広い範囲で言える結論を導くために、共通点は
             <Typography component="span" sx={{ textDecoration: "underline solid #555" }}>
-              共通点は情報に対して抽象度が高くなりすぎないように注意しましょう。
+              抽象度が高くなりすぎないように
             </Typography>
+            注意しましょう。
           </Typography>
         </TabPanel>
         <TabPanel value={value} index={2}>
@@ -251,7 +365,7 @@ export default function VerticalTabs() {
             <br />
             結論は共通点から無理なく言えることであれば複数になっても構いません。
             <br />
-            論理の飛躍は
+            また、論理の飛躍は
             <Typography component="span" display="inline-flex" fontWeight={600}>
               「
               <Typography color="#004d40" fontWeight={600}>
@@ -272,6 +386,29 @@ export default function VerticalTabs() {
               「なぜならば」
             </Typography>
             で文をつなぐことで確認できます。
+            <Box p="8px" m="16px 0" bgcolor="#fff3e0" textAlign="center">
+              <Typography color="#004d40" fontWeight={600}>
+                結論
+              </Typography>
+              トマトやニンジンを使った無糖デニッシュを作ったらヒットするかもしれない
+              <Typography variant="h6" fontWeight={600} m="16px 0">
+                なぜならば
+              </Typography>
+              <ArrowDropDown />
+              <Typography color="primary.dark" fontWeight={600}>
+                共通点
+              </Typography>
+              ヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」がトレンド
+              <Typography variant="h6" fontWeight={600} m="16px 0">
+                なぜならば
+              </Typography>
+              <ArrowDropDown />
+              <Typography color="primary.main" fontWeight={600}>
+                情報
+              </Typography>
+              世間では「オートミールクロワッサン・大豆メロンパン・無糖ヨーグルトドーナッツ」が人気である
+            </Box>
+            このように、文章を繋げていき、論理に飛躍がなければ確実性の高い結論を導けたと言っても良いでしょう。
           </Typography>
         </TabPanel>
       </Grid>
