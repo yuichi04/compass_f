@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Chapter1ExerciseDataType, Chapter1ExerciseType } from "../../../types/chapterTypes";
+import { Chapter1ExerciseDataType, Chapter1ExerciseType } from "../../../types/lessonType";
 import { chapter1QuestionItems } from "../../../dataset/logical_thinking/exercise_items/chapter1ExerciseItems";
 import { RootState } from "../store";
 
@@ -139,7 +139,7 @@ export const chapter1Slice = createSlice({
         state.answer = action.payload;
         state.characterLines = ["なるほど、良い考えですね。", "それでは、その解決方法をお客様にご案内してみましょう。"];
         state.action = "button";
-        state.actionValue = "解決方法を案内する";
+        state.actionValue = "解決方法を案内する。";
         state.isProgressScene = false;
       } else {
         // まだ何も入力されていない場合

@@ -97,9 +97,8 @@ const STooltipBar = styled.div`
 const SActionBox = styled.div`
   z-index: 999;
   position: absolute;
-  left: 50%;
-  bottom: 240px;
-  transform: translateX(-50%);
+  right: 0;
+  bottom: 232px;
 `;
 const SCharacter = styled.div`
   position: absolute;
@@ -111,5 +110,4 @@ const SCharacter = styled.div`
 const SContainer = styled.div`
   width: 100%;
   height: 100%;
-  cursor: pointer;
 `;

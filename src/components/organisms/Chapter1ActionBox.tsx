@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Box, IconButton, Paper } from "@mui/material";
+import styled, { keyframes } from "styled-components";
+import { Box, IconButton, Paper, Typography } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import ArrowForwardSharpIcon from "@mui/icons-material/ArrowForwardSharp";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import {
   chapter1Selector,
   setSceneAction,
@@ -10,7 +12,6 @@ import {
 } from "../../lib/redux/features/chapter1Slice";
 // import { showLoadingAction, hideLoadingAction } from "../../lib/redux/features/lodingSlice";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { MuiButton } from "../atoms";
 import { MuiTextFieldWithAdornment } from "../molecules";
 
 const Chapter1UserOperationBox: React.FC = React.memo(() => {
@@ -58,51 +59,55 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
                 flexDirection: "column",
                 animationDelay: `${linesLength * delay + 0.2}s`, // セリフが全部表示されてから表示する
                 opacity: 0,
+                minWidth: "240px",
               }}
             >
               {action === "button" ? (
-                <Box minWidth="240px" p="16px 24px" bgcolor="rgba(255,255,255,0.9)">
-                  <MuiButton
-                    variant="contained"
-                    color="primary"
-                    fullWidth
+                <SOptionBox>
+                  <SOptionInner
                     onClick={() =>
                       isProgressScene ? dispatch(setSceneAction(sceneId)) : dispatch(setCharacterLinesAction(""))
                     }
                   >
-                    {actionValue}
-                  </MuiButton>
-                </Box>
+                    <MoreHorizIcon
+                      fontSize="large"
+                      sx={{ bgcolor: "#ececec", borderRadius: "100%", color: "#555", p: "4px", mr: "8px" }}
+                    />
+                    <Typography
+                      variant="h6"
+                      color="#ececec"
+                      fontWeight={600}
+                      fontFamily={"'Noto Sans JP', sans-serif"}
+                      letterSpacing={1.5}
+                      p="4px 16px 8px 0"
+                      sx={{ textShadow: "0 0 4px #333" }}
+                    >
+                      {actionValue}
+                    </Typography>
+                  </SOptionInner>
+                </SOptionBox>
               ) : (
                 action === "textField" && (
-                  <Box
-                    component="form"
-                    className="fade_in"
-                    width="480px"
-                    p="8px 16px"
-                    bgcolor="rgba(255,255,255,0.9)"
-                    borderRadius="8px"
-                    onSubmit={handleSubmit}
-                    display="flex"
-                    alignItems="center"
-                  >
+                  <SInputBox onSubmit={handleSubmit}>
                     <MuiTextFieldWithAdornment
                       icon={<CreateIcon />}
                       onChange={handleChange}
                       value={answer}
                       fullWidth
                       autoComplete="off"
-                      margin="dense"
                       label={actionValue}
                       variant="standard"
+                      size="small"
                       autoFocus
+                      multiline
+                      rows={2}
                     />
-                    <Paper elevation={4} sx={{ borderRadius: "100%", bgcolor: "primary.main" }}>
+                    <Paper elevation={4} sx={{ borderRadius: "100%", bgcolor: "primary.main", ml: "8px" }}>
                       <IconButton type="submit">
                         <ArrowForwardSharpIcon sx={{ color: "#fff" }} />
                       </IconButton>
                     </Paper>
-                  </Box>
+                  </SInputBox>
                 )
               )}
             </Box>
@@ -112,3 +117,79 @@ const Chapter1UserOperationBox: React.FC = React.memo(() => {
 });
 
 export default Chapter1UserOperationBox;
+
+const moveLeftAndRight = keyframes`
+0% {
+  transform: translate(0, -50%);
+}
+50% {
+  transform: translate(-8px, -50%);
+}
+100% {
+  transform: translate(0, -50%);
+}
+`;
+
+const SOptionBox = styled.div`
+  position: relative;
+  background: linear-gradient(90deg, rgba(38, 50, 56, 0.8), rgba(38, 50, 56, 0.6) 75%, rgba(38, 50, 56, 0.4));
+  box-shadow: 0 0 4px 2px #ccc;
+  border-top-left-radius: 64px;
+  border-bottom-left-radius: 64px;
+  padding: 2px;
+  padding-left: 8px;
+  transform: translateX(10px);
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0 0 4px 2px #fff;
+    cursor: pointer;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 16px solid #fff;
+    animation-name: ${moveLeftAndRight};
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+`;
+
+const SOptionInner = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SInputBox = styled.form`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 480px;
+  background: rgba(255, 255, 255, 0.9);
+  border: double 3px rgba(55, 55, 55, 0.4);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 16px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 16px solid #fff;
+    animation-name: ${moveLeftAndRight};
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+`;

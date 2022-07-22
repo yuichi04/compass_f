@@ -12,18 +12,16 @@ import Filter3Icon from "@mui/icons-material/Filter3";
 import Filter4Icon from "@mui/icons-material/Filter4";
 import Filter5Icon from "@mui/icons-material/Filter5";
 import Filter6Icon from "@mui/icons-material/Filter6";
-import Filter7Icon from "@mui/icons-material/Filter7";
 import CrisisAlertIcon from "@mui/icons-material/CrisisAlert";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import WarningIcon from "@mui/icons-material/Warning";
-import SwipeLeftIcon from "@mui/icons-material/SwipeLeft";
 import CancelIcon from "@mui/icons-material/Cancel";
 import InfoIcon from "@mui/icons-material/Info";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import { Divider, Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import InThought from "../../../assets/images/illustrations/inthought.svg";
 import Merit from "../../../assets/images/illustrations/merit.svg";
 import Warning from "../../../assets/images/illustrations/warning.svg";
@@ -41,11 +39,8 @@ import {
   SlideSection,
   SlideSectionContent,
   SlidePointCard,
-  IconWithText,
 } from "../../../components/molecules";
-import { BalloonLeft } from "../../../components/atoms";
 import { MuiVerticalTabs } from "../../../components/organisms";
-import { MuiContainer } from "../../../components/layouts";
 
 const Chapter1SlideItemsData = () => {
   const title = "ロジカルシンキング基本編「帰納法」";
@@ -512,6 +507,7 @@ const Chapter1SlideItemsData = () => {
             fontWeight={600}
             textAlign="center"
             bgcolor="rgba(0,0,0,0.4)"
+            border="double 5px rgba(255,255,255,0.4)"
             borderRadius="64px"
             p="32px"
             sx={{ textShadow: "1px 1px 1px #555" }}
@@ -521,7 +517,7 @@ const Chapter1SlideItemsData = () => {
             <br />
             ここまでロジカルシンキングの概要と帰納法について学習しましたが、
             <br />
-            理解できましたでしょうか？
+            理解はできましたでしょうか？
             <br />
             <br />
             次はいよいよ演習です。

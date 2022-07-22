@@ -14,22 +14,7 @@ const Chapter1Document: React.FC = React.memo(() => {
     <>
       {isOpenDocument &&
         (section === 1 ? (
-          <Paper
-            elevation={8}
-            className="slide-up"
-            sx={{
-              position: "absolute",
-              top: "32px",
-              left: "8px",
-              width: "400px",
-              height: "533px",
-              background: "#f9fbe7",
-              border: "1px solid #bbb",
-              borderRadius: "8px",
-              padding: "8px",
-              opacity: 0,
-            }}
-          >
+          <Paper elevation={8} className="slide-up" sx={styles.paper}>
             <Box textAlign="right">
               <IconButton onClick={() => dispatch(setDocumentAction(false))}>
                 <CancelIcon />
@@ -60,22 +45,7 @@ const Chapter1Document: React.FC = React.memo(() => {
             </SContentBox>
           </Paper>
         ) : (
-          <Paper
-            elevation={8}
-            className="slide-up"
-            sx={{
-              position: "absolute",
-              top: "32px",
-              left: "8px",
-              width: "400px",
-              height: "533px",
-              background: "#f9fbe7",
-              border: "1px solid #bbb",
-              borderRadius: "8px",
-              padding: "8px",
-              opacity: 0,
-            }}
-          >
+          <Paper elevation={8} className="slide-up" sx={styles.paper}>
             <Box textAlign="right">
               <IconButton onClick={() => dispatch(setDocumentAction(false))}>
                 <CancelIcon />
@@ -129,6 +99,23 @@ const Chapter1Document: React.FC = React.memo(() => {
 
 export default Chapter1Document;
 
+// Material UI
+const styles = {
+  paper: {
+    position: "absolute",
+    top: "32px",
+    left: "8px",
+    width: "400px",
+    height: "533px",
+    background: "#fff8e1",
+    border: "1px solid #bbb",
+    borderRadius: "8px",
+    padding: "8px",
+    opacity: 0,
+  },
+};
+
+// Styled components
 const SContentBox = styled.div`
   padding: 16px;
   height: calc(100% - 80px);

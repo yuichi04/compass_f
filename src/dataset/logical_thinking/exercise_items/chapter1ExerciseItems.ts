@@ -1,4 +1,4 @@
-import { Chapter1ExerciseDataType } from "../../../types/chapterTypes";
+import { Chapter1ExerciseDataType } from "../../../types/lessonType";
 
 // シーンごとの要素を持った配列
 export const chapter1QuestionItems: Chapter1ExerciseDataType[] = [
@@ -37,7 +37,7 @@ export const chapter1QuestionItems: Chapter1ExerciseDataType[] = [
   {
     section: 1,
     action: "button",
-    actionValue: "大丈夫です",
+    actionValue: "大丈夫です。",
     characterLines: [
       "案内に絶対の正解はありませんので、あなたが良いと思う案内をしていきましょう。",
       "今回はわたしもサポートするので安心してくださいね。",
@@ -86,7 +86,7 @@ export const chapter1QuestionItems: Chapter1ExerciseDataType[] = [
   {
     section: 1,
     action: "button",
-    actionValue: "電話を取る",
+    actionValue: "電話を取る。",
     characterLines: ["Prrrrr....", "Prrrrr...."],
     characterImage: { src: "customer/dansei_05.png", role: "customer" },
     data: [],

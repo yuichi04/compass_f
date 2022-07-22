@@ -34,7 +34,8 @@ const CharacterBalloon: React.FC<Props> = (props) => {
       borderTop="double 5px rgba(255,255,255,0.2)"
       sx={{
         backgroundImage:
-          "radial-gradient(circle, rgba(33, 33, 33, 0.8) 75%, rgba(159, 159, 159, 0.45) 90%, rgba(255, 255, 255, 0.3))",
+          "radial-gradient(circle, rgba(55, 55, 55, 0.8) 75%, rgba(159, 159, 159, 0.45) 90%, rgba(255, 255, 255, 0.3))",
+        cursor: "default",
       }}
     >
       <Box position="relative" width="900px" height="100%" m="0 auto" color="#fff" display="flex" alignItems="center">
@@ -43,7 +44,7 @@ const CharacterBalloon: React.FC<Props> = (props) => {
           position="absolute"
           top="-48px"
           left="0"
-          bgcolor="rgba(33,33,33,0.8)"
+          bgcolor="rgba(55,55,55,0.8)"
           border="double 4px rgba(255,255,255,0.2)"
           borderRadius="8px"
           minWidth="160px"
@@ -67,7 +68,14 @@ const CharacterBalloon: React.FC<Props> = (props) => {
         {/* セリフ表示 */}
         <Grid container height="100%" p="16px 0" overflow="scroll">
           <Grid item xs={11}>
-            <Typography variant="h6" component="div" letterSpacing={1.5} fontFamily={"'Noto Sans JP', sans-serif"}>
+            <Typography
+              variant="h6"
+              component="div"
+              color="#ececec"
+              letterSpacing={1.5}
+              fontFamily={"'Noto Sans JP', sans-serif"}
+              sx={{ textShadow: "0 0 4px #333" }}
+            >
               {lines.map((line, index) => (
                 <Box component="div" key={index} id={"theme" + index}>
                   <TextAnimation

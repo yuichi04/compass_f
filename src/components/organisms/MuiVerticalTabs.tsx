@@ -122,6 +122,8 @@ export default function VerticalTabs() {
               情報の揃え方
             </Typography>
             によって左右されます。漏れや偏りがある分だけ正解から離れた結論になってしまうので注意が必要です。
+            <br />
+            以下は帰納法を用いて「今後の飲料水の需要について」結論を導き出した例です。
             <Typography variant="subtitle1" sx={{ color: "#c62828" }} display="flex" alignItems="center" mt="4px">
               <ClearIcon sx={{ mr: "4px" }} />
               情報に偏りがある例
@@ -167,7 +169,11 @@ export default function VerticalTabs() {
                 「飲料水の需要は今後も伸び続けるだろう」
               </li>
             </Typography>
-            この例では、身の回りの偏った狭い範囲の情報だけで結論を導いてしまっています。これでは根拠が弱く、確実性の高い結論とは言えません。
+            この例では、身の回りの
+            <Typography component="span" sx={{ textDecoration: "underline 1px #555" }}>
+              偏った情報
+            </Typography>
+            だけで結論を導いてしまっています。これでは根拠が弱く、確実性の高い結論とは言えません。
             <Typography variant="subtitle1" sx={{ color: "#1665c0" }} display="flex" alignItems="center" mt="4px">
               <CircleOutlinedIcon sx={{ mr: "4px" }} />
               情報の偏りが少ない例
@@ -213,13 +219,13 @@ export default function VerticalTabs() {
                 「飲料水の需要は今後も伸び続けるだろう」
               </li>
             </Typography>
-            この例では、テレビ・身の回り・インターネットと情報源に偏りが少なく、広い範囲の情報を揃えているため、確実性の高い結論を導くことができています。
-            <br />
-            情報は
-            <Typography component="span" sx={{ textDecoration: "underline solid #555" }}>
-              漏れなく・偏りなく
+            この例では、テレビ・身の回り・インターネットと
+            <Typography component="span" sx={{ textDecoration: "underline 1px #555" }}>
+              広い範囲の情報
             </Typography>
-            揃えるようにしましょう。
+            で結論を導いています。そのため、確実性の高い結論を導くことができています。
+            <br />
+            情報はできるだけ広い範囲で、漏れなく・偏りなく揃えるようにしましょう。
           </Typography>
         </TabPanel>
         <TabPanel value={value} index={1}>
@@ -386,21 +392,24 @@ export default function VerticalTabs() {
               「なぜならば」
             </Typography>
             で文をつなぐことで確認できます。
-            <Box p="8px" m="16px 0" bgcolor="#fff3e0" textAlign="center">
+            <Typography variant="subtitle1" fontWeight={600}>
+              （例）
+            </Typography>
+            <Box p="8px" mb="16px" bgcolor="#fff8e1" textAlign="center">
               <Typography color="#004d40" fontWeight={600}>
                 結論
               </Typography>
               トマトやニンジンを使った無糖デニッシュを作ったらヒットするかもしれない
-              <Typography variant="h6" fontWeight={600} m="16px 0">
-                なぜならば
+              <Typography variant="h6" fontWeight={600} mt="16px">
+                なぜならば、
               </Typography>
               <ArrowDropDown />
               <Typography color="primary.dark" fontWeight={600}>
                 共通点
               </Typography>
               ヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」がトレンド
-              <Typography variant="h6" fontWeight={600} m="16px 0">
-                なぜならば
+              <Typography variant="h6" fontWeight={600} mt="16px">
+                なぜならば、
               </Typography>
               <ArrowDropDown />
               <Typography color="primary.main" fontWeight={600}>

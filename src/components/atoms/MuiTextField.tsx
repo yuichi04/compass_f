@@ -19,13 +19,16 @@ type Props = {
   type?: React.HTMLInputTypeAttribute;
   variant?: "filled" | "outlined" | "standard";
   autoComplete?: string;
+  autoFocus?: boolean;
   select?: boolean;
   defaultValue?: string;
   placeholder?: string;
+  bgcolor?: string;
 };
 
 const MuiTextField: React.FC<Props> = React.memo(({ ...props }) => {
-  return <TextField {...props} />;
+  const { bgcolor } = props;
+  return <TextField {...props} sx={{ bgcolor: bgcolor }} />;
 });
 
 export default MuiTextField;
