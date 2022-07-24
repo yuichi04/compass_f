@@ -1,7 +1,8 @@
 export { default as AvatarAndUploadButton } from "./AvatarAndUploadButton";
-export { default as CharacterBalloon } from "./CharacterBalloon";
-export { default as Chapter1ActionBox } from "./Chapter1ActionBox";
-export { default as Chapter1CharacterImage } from "./Chapter1CharacterImage";
+export { default as InductionCharacterBalloon } from "./InductionCharacterBalloon";
+export { default as InductionActionBox } from "./InductionActionBox";
+export { default as InductionCharacterImage } from "./InductionCharacterImage";
+export { default as InductionUserAnswers } from "./InductionUserAnswers";
 export { default as Chapter1Document } from "./Chapter1Document";
 export { default as Chapter1Result } from "./Chapter1Result";
 export { default as ContactBoard } from "./ContactBoard";

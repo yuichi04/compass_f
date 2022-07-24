@@ -21,7 +21,7 @@ const Home: React.FC = React.memo(() => {
           <Grid item xs={3.5}>
             <CourseCard
               grade="基本編"
-              link="lesson/logicalthinking/chapter1"
+              link="lesson/induction"
               color="primary"
               title="帰納法"
               text={<>複数の情報から共通点を探し出し結論を導き出します</>}

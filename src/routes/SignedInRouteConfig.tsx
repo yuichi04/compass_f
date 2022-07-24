@@ -3,15 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ContactBoard, SignedInHeader } from "../components/organisms";
 import {
   Home,
+  LessonList,
+  Lesson,
   NotFound404,
   PrivacyPolicy,
   Profile,
-  Lesson,
   Terms,
   Unsubscribe,
-  Lessons,
-  LogicalThinking,
-  Chapter1,
+  Induction,
 } from "../components/pages";
 import UpdateEmail from "../components/pages/UpdateEmail";
 import BackToMain from "../components/utils/BackToTop";
@@ -29,11 +28,9 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/signup" element={<BackToMain />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
+        <Route path="/lessonlist" element={<LessonList />} />
         <Route path="/lesson" element={<Lesson />}>
-          <Route path="lessons" element={<Lessons />} />
-          <Route path="logicalthinking" element={<LogicalThinking />}>
-            <Route path="chapter1" element={<Chapter1 />} />
-          </Route>
+          <Route path="induction" element={<Induction />} />
         </Route>
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />

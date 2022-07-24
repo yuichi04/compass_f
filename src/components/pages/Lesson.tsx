@@ -1,7 +1,7 @@
-import React from "react";
+import { FC, memo } from "react";
 import { Outlet } from "react-router-dom";
 
-const Lesson: React.FC = React.memo(() => {
+const Lesson: FC = memo(() => {
   return <Outlet />;
 });
 

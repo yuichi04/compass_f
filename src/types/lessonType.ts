@@ -51,81 +51,45 @@ export type SampleAnswer = string;
 //   isLastScene?: boolean;
 // };
 
-// 2つのシーンがある
-// あらかじめ用意したデータを表示するシーン
-// ユーザーの回答を処理するシーン
-//
-// ■シーンの移行
-//・画面をクリック・ボタンをクリック・回答を入力のいずれかの処理が実行されると次のシーンに移行される
-//・ボタンの仕様
-// 選択肢を複数表示可能
-// 選択肢によってシーンを分岐させる
-//
-// ■実装方法
-//・表示データを格納する変数を作成
-//・条件分岐を使って、あらかじめ用意したデータを表示するのか、ユーザーが回答したデータを表示するのかを処理する
-//・ユーザーの回答がある場合は管理フラグをtrueに変更
-//・trueならユーザーの回答を使ったデータを作成
-//　作成したデータを表示する
-//・falseならあらかじめ用意したデータを表示する
-
-/**
- * 必要な型定義
- * 親
- * Chapter1ExerciseType
- * id
- * 演習を開始して良いか管理
- * ユーザーの全ての回答を格納（結果表示のため）
- * セリフ1文字あたりの表示速度
- * 結果表示の管理
- * スライド表示の管理
- * シーンデータを格納する箱
- *
- * 子
- * Chapter1ExerciseSceneDataType
- */
-
 // レッスン全体の型定義
 export type LessonType = {
-  id: number;
-  sectionId: number;
-  allowStartingExercise: boolean;
-  displaySpeedOfLines: number;
-  isOpenDocuments: boolean;
-  isOpenSlide: boolean;
-  isOpenResults: boolean;
-  scene: StaticSceneDataType | DynamicSceneDataType; // 演習における静的シーン、動的シーンの分岐を管理
+  // section > scene
+  sectionId: number; // 現在のセクションを判別
+  sceneId: number; // 現在のシーンを判別
+  allowStartingExercise: boolean; // 演習の開始を許可するか
+  allowProgressScene: boolean; // シーンの進行を許可するか
+  characterInfo: CharacterImageType; // キャラクター情報の変更を管理
+  displaySpeedOfLines: number; // セリフ1文字あたりの表示速度
+  isLastScene: boolean; // 最後のシーンかどうか
+  isOpenSlide: boolean; // スライドの表示・非表示
+  isOpenResults: boolean; // 演習結果の表示・非表示
+  scene: StaticSceneDataType; // 表示するシーン本体
+  // 結果表示用にユーザーの回答を格納
   userAnswers: {
-    info?: string[];
-    common?: string;
-    conclusion?: string;
+    info: string[];
+    common: string;
+    conclusion: string;
   };
 };
 
-// 静的シーンの型定義
+// シーンの型定義
 export type StaticSceneDataType = {
-  id?: number;
   action?: UserActionType;
-  image?: CharacterImageType;
-  lines?: string[];
-};
-
-// 動的シーンの型定義
-export type DynamicSceneDataType = {
-  id: string; // 1-a, 3-cのような静的シーンidの枝番にするため、string型で定義
-  action?: UserActionType;
-  image: CharacterImageType;
+  character?: CharacterImageType;
   lines: string[];
+  phase?: "common" | "conclusion" | "";
+  isOpenDocuments?: boolean; // 資料の表示・非表示
+  isOpenAnswers?: boolean; // 回答の表示・非表示
 };
 
 // ユーザーアクションの型定義
 export type UserActionType = {
-  action: "button" | "textField"; // 選択式と入力式
+  type: "button" | "textField" | ""; // 選択式と入力式
   label: string;
 };
 
 // キャラクターイメージの型定義
 export type CharacterImageType = {
-  role: "user" | "guide" | "customer";
+  role: "user" | "guide" | "customer" | "boy" | "call" | "";
   src: string;
 };

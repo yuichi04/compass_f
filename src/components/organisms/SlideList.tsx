@@ -1,14 +1,14 @@
-import React, { useCallback } from "react";
+import { FC, memo, useCallback } from "react";
 import Box from "@mui/material/Box";
 import { SlideListItem } from ".";
-import Chapter1SlideItemsData from "../../dataset/logical_thinking/slide_items/Chapter1SlideItemsData";
+import { SlideListData } from "../../dataset/induction";
 import { useAppSelector } from "../../lib/redux/hooks";
-import { chapter1Selector } from "../../lib/redux/features/chapter1Slice";
+import { inductionSelector } from "../../lib/redux/features/inductionSlice";
 
-const SlideList: React.FC = React.memo(() => {
-  const selector = useAppSelector(chapter1Selector);
-  const open = selector.isOpenSlideList;
-  const { slideItems, setSlideItems } = Chapter1SlideItemsData();
+const SlideList: FC = memo(() => {
+  const induction = useAppSelector(inductionSelector);
+  const isOpenSlide = induction.isOpenSlide;
+  const { slideItems, setSlideItems } = SlideListData();
   const lastSlideNum = slideItems.slice(-1)[0].order;
 
   // 次のスライドへ
@@ -65,7 +65,7 @@ const SlideList: React.FC = React.memo(() => {
 
   return (
     <>
-      {open && (
+      {isOpenSlide && (
         <Box
           className="expand_center"
           sx={{

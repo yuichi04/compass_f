@@ -3,14 +3,14 @@ import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Grid } from "@mui/material";
-import { MuiContainer } from "../../layouts";
-import { IconWithPageTitle, IconWithSectionTitle, CourseCard } from "../../molecules";
+import { MuiContainer } from "../layouts";
+import { IconWithPageTitle, IconWithSectionTitle, CourseCard } from "../molecules";
 
-import Inductive from "../../../assets/images/illustrations/inductive.svg";
-import Deductive from "../../../assets/images/illustrations/deductive.svg";
-import Comunicate from "../../../assets/images/illustrations/comunicate.svg";
+import Inductive from "../../assets/images/illustrations/inductive.svg";
+import Deductive from "../../assets/images/illustrations/deductive.svg";
+import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 
-const Lessons: React.FC = React.memo(() => {
+const LessonList: React.FC = React.memo(() => {
   return (
     <MuiContainer maxWidth="lg">
       <IconWithPageTitle title="レッスン一覧" icon={LocalLibraryIcon} iconColor="primary" />
@@ -20,7 +20,7 @@ const Lessons: React.FC = React.memo(() => {
           <Grid container spacing={6} height="100%">
             <Grid item xs={4}>
               <CourseCard
-                link="/lesson/logicalthinking/chapter1"
+                link="/lesson/induction"
                 image={Inductive}
                 grade="基本編"
                 title="帰納法"
@@ -31,7 +31,7 @@ const Lessons: React.FC = React.memo(() => {
             </Grid>
             <Grid item xs={4}>
               <CourseCard
-                link="/lesson/index"
+                link="/lessonlist"
                 image={Deductive}
                 grade="基本編"
                 title="演繹法"
@@ -48,7 +48,7 @@ const Lessons: React.FC = React.memo(() => {
             <Grid item xs={4}>
               <CourseCard
                 grade="応用編"
-                link="/lesson/index"
+                link="/lessonlist"
                 color="info"
                 title="伝わる話の組み立て方"
                 text="※実装予定"
@@ -63,4 +63,4 @@ const Lessons: React.FC = React.memo(() => {
   );
 });
 
-export default Lessons;
+export default LessonList;

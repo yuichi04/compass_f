@@ -22,27 +22,27 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import { Grid } from "@mui/material";
-import InThought from "../../../assets/images/illustrations/inthought.svg";
-import Merit from "../../../assets/images/illustrations/merit.svg";
-import Warning from "../../../assets/images/illustrations/warning.svg";
-import Double from "../../../assets/images/illustrations/double.svg";
-import Analytics from "../../../assets/images/illustrations/analytics.svg";
-import IndexGuide from "../../../assets/images/illustrations/readingbook.svg";
-import ThoughtProcess from "../../../assets/images/illustrations/thought.svg";
-import Inductive from "../../../assets/images/illustrations/inductive.svg";
-import KeyPoints from "../../../assets/images/illustrations/key_points.svg";
-import Celebration from "../../../assets/images/illustrations/celebration.svg";
-import Step from "../../../assets/images/illustrations/step.svg";
+import InThought from "../../assets/images/illustrations/inthought.svg";
+import Merit from "../../assets/images/illustrations/merit.svg";
+import Warning from "../../assets/images/illustrations/warning.svg";
+import Double from "../../assets/images/illustrations/double.svg";
+import Analytics from "../../assets/images/illustrations/analytics.svg";
+import IndexGuide from "../../assets/images/illustrations/readingbook.svg";
+import ThoughtProcess from "../../assets/images/illustrations/thought.svg";
+import Inductive from "../../assets/images/illustrations/inductive.svg";
+import KeyPoints from "../../assets/images/illustrations/key_points.svg";
+import Celebration from "../../assets/images/illustrations/celebration.svg";
+import Step from "../../assets/images/illustrations/step.svg";
 import {
   InductiveExplainChart,
   DeductiveExplainChart,
   SlideSection,
   SlideSectionContent,
   SlidePointCard,
-} from "../../../components/molecules";
-import { MuiVerticalTabs } from "../../../components/organisms";
+} from "../../components/molecules";
+import { MuiVerticalTabs } from "../../components/organisms";
 
-const Chapter1SlideItemsData = () => {
+const SlideListData = () => {
   const title = "ロジカルシンキング基本編「帰納法」";
   const [slideItems, setSlideItems] = useState([
     {
@@ -543,4 +543,4 @@ const Chapter1SlideItemsData = () => {
   return { slideItems, setSlideItems };
 };
 
-export default Chapter1SlideItemsData;
+export default SlideListData;

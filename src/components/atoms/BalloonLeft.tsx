@@ -46,13 +46,12 @@ const SBalloon = styled.div<StyleProps>`
   background: #e0edff;
   border-radius: 15px;
   word-break: break-all;
-  
+
   &:before {
     content: "";
     position: absolute;
     left: -16px;
     ${(props) => props.direction === "top" && top}
     ${(props) => props.direction === "center" && center}
-    ${(props) => props.direction === "top" && top}
-  
+  }
 `;
