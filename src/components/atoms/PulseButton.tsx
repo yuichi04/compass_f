@@ -1,11 +1,17 @@
 import { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
-import SendIcon from "@mui/icons-material/Send";
 
-const PulseButton: FC = memo(() => {
+type Props = {
+  size: string;
+  color: string;
+  children: React.ReactNode;
+};
+
+const PulseButton: FC<Props> = memo(({ children, ...props }) => {
+  const { size, color } = props;
   return (
-    <SPulseButton>
-      <SendIcon sx={{ color: "#fff", fontSize: "20px" }} />
+    <SPulseButton size={size} color={color}>
+      {children}
     </SPulseButton>
   );
 });
@@ -23,16 +29,16 @@ const pulsate = keyframes`
   }
 `;
 
-const SPulseButton = styled.button`
+const SPulseButton = styled.button<Props>`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
   border-radius: 50%;
-  background-color: #00aa99;
-  box-shadow: 0 0 20px #00aa99;
+  background: ${(props) => props.color};
+  box-shadow: 0 0 20px ${(props) => props.color};
   cursor: pointer;
   transition: all 0.2s;
 
@@ -48,7 +54,7 @@ const SPulseButton = styled.button`
     margin: auto;
     width: 100%;
     height: 100%;
-    border: 1px solid #00aa99;
+    border: 1px solid ${(props) => props.color};
     border-radius: 50%;
     box-sizing: border-box;
     pointer-events: none;

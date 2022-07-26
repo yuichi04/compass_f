@@ -116,7 +116,7 @@ export default function VerticalTabs() {
             <LooksOneIcon sx={{ color: "primary.main", fontSize: "32px", mr: "4px" }} />
             複数の情報を揃える
           </Typography>
-          <Typography className="fade_in" component="div" variant="subtitle1">
+          <Typography className="fade-in" component="div" variant="subtitle1">
             最初のステップでは漏れや偏りなく情報を揃えます。帰納法で導く結論がどれだけ正しいかは
             <Typography component="span" color="primary.main">
               情報の揃え方
@@ -240,7 +240,7 @@ export default function VerticalTabs() {
             <LooksTwoIcon sx={{ color: "primary.dark", fontSize: "32px", mr: "4px" }} />
             共通点を見つける
           </Typography>
-          <Typography className="fade_in" variant="subtitle1" component="div">
+          <Typography className="fade-in" variant="subtitle1" component="div">
             このステップでは、全ての情報に共通する特徴や性質などを見つけます。このとき、
             <Typography component="span" color="primary.main">
               できるだけ抽象度が高いこと
@@ -366,7 +366,7 @@ export default function VerticalTabs() {
             <Looks3Icon sx={{ color: "#004d40", fontSize: "32px", mr: "4px" }} />
             結論を導き出す
           </Typography>
-          <Typography className="fade_in" variant="subtitle1" component="div">
+          <Typography className="fade-in" variant="subtitle1" component="div">
             最後のステップでは、共通点から結論を導き出して論理が飛躍していないか確認します。
             <br />
             結論は共通点から無理なく言えることであれば複数になっても構いません。

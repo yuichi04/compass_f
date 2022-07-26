@@ -1,5 +1,5 @@
 // 画面中央から円が広がってフェードインするアニメーション
-.expand_center {
+.expand-center {
   animation-name: img-wrap;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
@@ -15,39 +15,39 @@
   }
 }
 
+// スライドイン
 .slide-out-top {
   animation-name: slideOutTop;
-  animation-duration: 0.5s;
+  animation-duration: 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes slideOutTop {
   0% {
     opacity: 1;
+    top: 0;
   }
   100% {
     opacity: 0;
-    transform: translateY(-150px);
+    top: -100%;
   }
 }
-
 .slide-in-top {
   animation-name: slideInTop;
-  animation-duration: 0.5s;
+  animation-duration: 0.75s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes slideInTop {
   0% {
     opacity: 0;
-    transform: translateY(-150px);
+    top: -100%;
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    top: 0;
   }
 }
-
 .slide-in-left {
   animation-name: slideUpAnime;
   animation-duration: 0.5s;
@@ -65,23 +65,20 @@
 }
 
 // scale up,down
-.scale_up-down {
-  animation-name: upDownScale;
+.scale-up-down {
+  animation-name: scaleUpDown;
   animation-duration: 1s;
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-@keyframes upDownScale {
+@keyframes scaleUpDown {
   0% {
-    transform: scale(0.99);
-    border: 4px solid #00aa99;
+    transform: scale(1);
   }
   50% {
-    transform: scale(1);
-    border: 0px solid #00aa99;
   }
   100% {
-    transform: scale(0.99);
-    border: 4px solid #00aa99;
+    transform: scale(1.1) rotate(6deg);
   }
 }
 
@@ -104,7 +101,7 @@
   }
 }
 // fade-in,out
-.fade_in {
+.fade-in {
   animation-name: fadeInAnime;
   animation-duration: 0.75s;
   animation-timing-function: ease-out;
@@ -131,21 +128,6 @@
   }
   100% {
     opacity: 0;
-  }
-}
-
-.slide_in {
-  animation-name: slideInAnime;
-  animation-duration: 1s;
-}
-@keyframes slideInAnime {
-  0% {
-    opacity: 0;
-    transform: translateX(-5%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
 
@@ -240,10 +222,6 @@
     transform: scale(1);
   }
 }
-
-// 喜び
-// 怒り
-// 悲しみ
 
 /* ホバー時にアンダーラインを引く */
 .hover_text_underline {

@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LessonType } from "../../../types/lessonType";
+import { LessonType, UtilsKeyType } from "../../../types/lessonType";
 import { staticSceneData } from "../../../dataset/induction";
 import { RootState } from "../store";
+import optionsData from "../../../dataset/induction/optionsData";
 
 const initialState: LessonType = {
-  // section > scene
   sectionId: 0, // 現在のセクションを判別
   sceneId: 0, // 現在のシーンを判別
   allowStartingExercise: false, // 演習の開始を許可するか
@@ -14,8 +14,10 @@ const initialState: LessonType = {
   isLastScene: false, // 最後のシーンかどうか
   isOpenSlide: true, // スライドの表示・非表示
   isOpenResults: false, // 演習結果の表示・非表示
+  options: [], // 現在のセクションの選択可能な情報
   // シーン本体
   scene: {
+    section: 0,
     action: { type: "", label: "" },
     character: { src: "", role: "" },
     isOpenAnswers: false,
@@ -50,6 +52,8 @@ const inductionSlice = createSlice({
       const newSceneData = staticSceneData.find((item, index) => index + 1 === state.sceneId);
 
       if (newSceneData) {
+        // セクションIDを更新
+        state.sectionId = newSceneData.section;
         // 取得したデータでシーンを更新
         state.scene = newSceneData;
         // キャラクター情報を持っている場合は更新
@@ -80,24 +84,27 @@ const inductionSlice = createSlice({
       }
     },
 
-    // スライドの表示・非表示
-    showSlideAction: (state, action: { payload: boolean }) => {
-      state.isOpenSlide = action.payload;
-    },
+    // 各UIの表示・非表示を処理
+    showUtilsAction: (state, action: { payload: { key: UtilsKeyType; value: boolean } }) => {
+      const { key, value } = action.payload;
+      state.isOpenSlide = false;
+      state.scene.isOpenAnswers = false;
+      state.scene.isOpenDocuments = false;
 
-    // 回答の表示・非表示
-    showUserAnswersAction: (state, action: { payload: boolean }) => {
-      state.scene.isOpenAnswers = action.payload;
-    },
-
-    // 資料の表示・非表示
-    showDocumentsAction: (state, action: { payload: boolean }) => {
-      state.scene.isOpenDocuments = action.payload;
-    },
-
-    // リザルト画面の表示・非表示
-    showResultsAction: (state, action: { payload: boolean }) => {
-      state.isOpenResults = action.payload;
+      switch (key) {
+        case "answers": // ユーザーの回答
+          state.scene.isOpenAnswers = value;
+          break;
+        case "documents": // 資料
+          state.scene.isOpenDocuments = value;
+          break;
+        case "results": // リザルト画面
+          state.isOpenResults = value;
+          break;
+        case "slide": // スライド
+          state.isOpenSlide = value;
+          break;
+      }
     },
 
     // 次のシーンへの進行を許可するか
@@ -106,6 +113,14 @@ const inductionSlice = createSlice({
       if (!state.scene.action?.type) state.allowProgressScene = true;
       // 最後のシーンは不許可
       if (state.isLastScene) state.allowProgressScene = false;
+    },
+
+    // フェーズがinfoなら、セクションに応じた情報を取得
+    getInfoPhaseOptions: (state) => {
+      if (state.scene.phase === "info") {
+        const newOptions = optionsData.filter((option) => option.section === state.sectionId);
+        state.options = newOptions;
+      }
     },
 
     // 初期化
@@ -122,217 +137,16 @@ export const {
   setNextStaticSceneAction,
   setNextDynamicSceneAction,
   setAllowProgressScene,
-  showSlideAction,
-  showUserAnswersAction,
-  showDocumentsAction,
+  getInfoPhaseOptions,
+  showUtilsAction,
   initializeSceneAction,
 } = inductionSlice.actions;
 
-// type InitialState = Chapter1ExerciseType & Chapter1ExerciseDataType;
-
-// const initialState: InitialState = {
-//   id: 0,
-//   section: 1,
-//   // シーンの進行フラグ
-//   allowProgress: false,
-//   action: "",
-//   actionValue: "",
-//   answer: "",
-//   characterLines: [],
-//   lineDelayTime: 0.02,
-//   characterImage: {
-//     src: "",
-//     role: "",
-//   },
-//   commonFactor: "",
-//   isFullCommonFactor: false,
-//   isOpenActionBox: false,
-//   isOpenDocument: false,
-//   isOpenResult: false,
-//   isOpenSlideList: true,
-//   // シーンの進行を止める
-//   isProgressScene: true,
-//   isShowCharacter: false,
-//   isStart: false,
-//   isLastScene: false,
-//   data: [],
-//   response: {
-//     role: "",
-//     lines: [],
-//     image: "",
-//   },
-//   sampleAnswer: "",
-//   sampleCommonFactor: "",
-//   resultData: {
-//     id: 0,
-//     data: [],
-//     answer: "",
-//     commonFactor: "",
-//     sampleCommonFactor: "",
-//     sampleAnswer: "",
-//   },
-// };
-
-// export const chapter1Slice = createSlice({
-//   name: "chapter1",
-//   initialState,
-//   reducers: {
-//     // シーンの切り替え処理
-//     setSceneAction: (state, action) => {
-//       state.isStart = true;
-//       state.allowProgress = false;
-//       state.isOpenActionBox = false;
-//       state.isOpenResult = false;
-//       state.isLastScene = false;
-
-//       // シーンを進める場合の処理
-//       if (state.isProgressScene) {
-//         // 次のシーンidに更新する
-//         state.id = action.payload + 1;
-
-//         // 次のシーンのデータを取得する
-//         const newScene = chapter1QuestionItems.find((item, index) => index + 1 === state.id);
-
-//         // 取得したデータから必要なデータをstateに保存する
-//         if (newScene) {
-//           state.characterLines = newScene.characterLines;
-//           state.action = newScene.action;
-//           state.actionValue = newScene.actionValue;
-//           state.sampleCommonFactor = newScene.sampleCommonFactor;
-//           state.sampleAnswer = newScene.sampleAnswer;
-
-//           // キャラクターの役割に変更がある場合は、フェードインアニメーションを適用するためにキャラクターを非表示にする
-//           if (state.characterImage.role !== newScene.characterImage.role) {
-//             state.isShowCharacter = false;
-//           }
-
-//           // キャラクターの画像情報を更新する
-//           state.characterImage = newScene.characterImage;
-
-//           // 資料の表示設定がある場合はstateを更新する
-//           if (newScene.isOpenDocument) {
-//             state.isOpenDocument = newScene.isOpenDocument;
-//           }
-
-//           // 最後のシーンが設定されている場合
-//           if (newScene.isLastScene) {
-//             state.isLastScene = true;
-//           }
-//         }
-//       }
-//     },
-
-//     // ユーザーのアクションに対するレスポンスを生成する処理
-//     setCharacterLinesAction: (state, action) => {
-//       state.isOpenActionBox = false;
-
-//       // 結論が入力済みの場合
-//       if (state.answer) {
-//         const scene = chapter1QuestionItems.find((item, index) => index + 1 === state.id);
-//         // 相手キャラクターの締めセリフを生成
-//         if (scene) {
-//           // 入力内容を含むセリフを生成して格納
-//           state.characterLines = [`なるほど、「${state.commonFactor}」だから、「${state.answer}」ですね。`];
-//           // データからセリフを取得して格納
-//           scene.response.lines.forEach((line) => {
-//             state.characterLines = [...state.characterLines, line];
-//           });
-//           state.action = "button";
-//           state.actionValue = "電話を切る";
-//           state.characterImage.src = scene.response.image;
-//           state.characterImage.role = scene.response.role;
-
-//           // データが設定されている場合の処理
-//           if (scene.data) {
-//             // ユーザーの回答を格納
-//             // 現在のシーンIDと一致するデータを取得
-//             const newResultData = {
-//               id: state.id,
-//               data: scene.data,
-//               commonFactor: state.commonFactor,
-//               answer: state.answer,
-//               sampleCommonFactor: state.sampleCommonFactor,
-//               sampleAnswer: state.sampleAnswer,
-//             };
-//             state.resultData = newResultData;
-//             state.isProgressScene = true;
-//             state.isOpenDocument = false;
-//           }
-//         }
-//       } else if (state.commonFactor) {
-//         // 共通するパターンが入力済みの場合
-//         state.answer = action.payload;
-//         state.characterLines = ["なるほど、良い考えですね。", "それでは、その解決方法をお客様にご案内してみましょう。"];
-//         state.action = "button";
-//         state.actionValue = "解決方法を案内する。";
-//         state.isProgressScene = false;
-//       } else {
-//         // まだ何も入力されていない場合
-//         // ユーザーが入力した共通するパターンをstateに保存
-//         state.commonFactor = action.payload;
-//         state.characterLines = [
-//           `「${state.commonFactor}」ですね。`,
-//           "それでは、この共通するパターンから解決方法を考えましょう。",
-//           "解決方法といっても絶対的な正解はないので、あなたが良いと思うことで大丈夫ですよ。",
-//         ];
-//         state.action = "textField";
-//         state.actionValue = "ここにあなたの解決方法を入力してください";
-//       }
-//     },
-
-//     // リザルト画面の表示・非表示を管理
-//     setResultAction: (state, action) => {
-//       state.isOpenResult = action.payload;
-//     },
-
-//     // スライドの表示・非表示を管理
-//     setSlideListAction: (state, action) => {
-//       state.isOpenSlideList = action.payload;
-//     },
-
-//     // ユーザーのアクションボックスの表示・非表示を管理
-//     setActionBoxAction: (state, action) => {
-//       state.isOpenActionBox = action.payload;
-//     },
-
-//     // キャラクターの表示・非表示を管理
-//     setCharacterImageAction: (state, action) => {
-//       state.isShowCharacter = action.payload;
-//     },
-
-//     // 次のシーンへの進行を管理
-//     setAllowProgress: (state, action) => {
-//       // アクションが設定されていないシーンなら許可
-//       if (state.action === "") state.allowProgress = action.payload;
-//       // 最後のシーンなら許可しない
-//       if (state.isLastScene) state.allowProgress = false;
-//     },
-
-//     // 資料の表示・非表示を管理
-//     setDocumentAction: (state, action) => {
-//       state.isOpenDocument = action.payload;
-//     },
-
-//     // 初期化
-//     initializeSceneAction: () => {
-//       return { ...initialState };
-//     },
-//   },
-// });
-
-// // actions
-// export const {
-//   setAllowProgress,
-//   setSceneAction,
-//   setCharacterLinesAction,
-//   initializeSceneAction,
-//   setSlideListAction,
-//   setActionBoxAction,
-//   setResultAction,
-//   setDocumentAction,
-//   setCharacterImageAction,
-// } = chapter1Slice.actions;
-// // selector
-// export const chapter1Selector = (state: RootState) => state.chapter1;
-// // reducer
-// export default chapter1Slice.reducer;
+/**
+ * 0.選択肢を作る（id, category, text)
+ * 1.3つ以上選択しているかチェック
+ * 2.3つ以上選択していたらボタンのクリックを許可する
+ * 3-a.情報に偏りがある場合はエラーを表示して、再度選んでもらう
+ * 3-b.問題なければ選択した情報をstoreに保存する
+ * 4.共通点を見つけるステップで表示
+ */

@@ -4,53 +4,6 @@ export type Answer = string;
 export type SampleCommonFactor = string;
 export type SampleAnswer = string;
 
-// export type Chapter1ExerciseType = {
-//   id: number;
-//   allowProgress: boolean;
-//   answer: Answer;
-//   commonFactor: CommonFactor;
-//   lineDelayTime: number;
-//   section: number;
-//   resultData: {
-//     id: SceneId;
-//     data: string[];
-//     answer: Answer;
-//     commonFactor: CommonFactor;
-//     sampleCommonFactor: SampleCommonFactor;
-//     sampleAnswer: SampleAnswer;
-//   };
-//   isFullCommonFactor: boolean;
-//   isOpenActionBox: boolean;
-//   isOpenBalloon?: boolean;
-//   isOpenDocument: boolean;
-//   isOpenResult: boolean;
-//   isOpenSlideList: boolean;
-//   isShowCharacter: boolean;
-//   isStart: boolean;
-//   isProgressScene: boolean;
-// };
-
-// export type Chapter1ExerciseDataType = {
-//   section: number;
-//   action: "button" | "textField" | "";
-//   actionValue: string;
-//   characterLines: string[];
-//   characterImage: {
-//     src: string;
-//     role: "user" | "guide" | "customer" | "boy" | "";
-//   };
-//   sampleCommonFactor: SampleCommonFactor;
-//   sampleAnswer: SampleAnswer;
-//   data: string[];
-//   response: {
-//     role: "user" | "guide" | "customer" | "boy" | "";
-//     lines: string[];
-//     image: string;
-//   };
-//   isOpenDocument?: boolean;
-//   isLastScene?: boolean;
-// };
-
 // レッスン全体の型定義
 export type LessonType = {
   // section > scene
@@ -63,10 +16,11 @@ export type LessonType = {
   isLastScene: boolean; // 最後のシーンかどうか
   isOpenSlide: boolean; // スライドの表示・非表示
   isOpenResults: boolean; // 演習結果の表示・非表示
+  options: OptionType[]; // 現在のセクションの選択可能な情報を格納
   scene: StaticSceneDataType; // 表示するシーン本体
   // 結果表示用にユーザーの回答を格納
   userAnswers: {
-    info: string[];
+    info: OptionType[];
     common: string;
     conclusion: string;
   };
@@ -74,10 +28,11 @@ export type LessonType = {
 
 // シーンの型定義
 export type StaticSceneDataType = {
+  section: number;
   action?: UserActionType;
   character?: CharacterImageType;
   lines: string[];
-  phase?: "common" | "conclusion" | "";
+  phase?: "info" | "common" | "conclusion" | "";
   isOpenDocuments?: boolean; // 資料の表示・非表示
   isOpenAnswers?: boolean; // 回答の表示・非表示
 };
@@ -92,4 +47,14 @@ export type UserActionType = {
 export type CharacterImageType = {
   role: "user" | "guide" | "customer" | "boy" | "call" | "";
   src: string;
+};
+
+// 各情報の型定義
+export type UtilsKeyType = "answers" | "documents" | "results" | "slide";
+
+// 選択肢（情報）の型定義
+export type OptionType = {
+  id: number;
+  text: string;
+  section: number;
 };

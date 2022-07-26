@@ -11,7 +11,7 @@ import {
   allowStartingExerciseAction,
   inductionSelector,
   setNextStaticSceneAction,
-  showSlideAction,
+  showUtilsAction,
 } from "../../lib/redux/features/inductionSlice";
 
 type Props = {
@@ -39,7 +39,7 @@ const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
     // 演習開始フラグをtrueに
     dispatch(allowStartingExerciseAction(true));
     // スライドを閉じる
-    dispatch(showSlideAction(false));
+    dispatch(showUtilsAction({ key: "slide", value: false }));
   };
 
   return (
@@ -50,7 +50,11 @@ const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
           <IconButton
             sx={{ position: "absolute", right: "8px", top: "8px", zIndex: "999" }}
             // 既に演習開始している場合はスライドを閉じる処理のみ実行する
-            onClick={() => (allowStartingExercise ? dispatch(showSlideAction(false)) : handleClickStartExercise())}
+            onClick={() =>
+              allowStartingExercise
+                ? dispatch(showUtilsAction({ key: "slide", value: false }))
+                : handleClickStartExercise()
+            }
           >
             <CancelIcon fontSize="large" />
           </IconButton>

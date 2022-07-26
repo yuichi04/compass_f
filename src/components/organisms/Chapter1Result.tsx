@@ -18,7 +18,7 @@
 //     <>
 //       {isOpenResult && (
 //         <SResult>
-//           <SInner className="expand_center">
+//           <SInner className="expand-center">
 //             <Box textAlign="right" mb="16px">
 //               <MuiButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
 //                 次に進む

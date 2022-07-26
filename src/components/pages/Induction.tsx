@@ -9,12 +9,13 @@ import {
   inductionSelector,
 } from "../../lib/redux/features/inductionSlice";
 import {
-  TooltipBar,
+  InductionTooltipBar,
   SlideList,
   InductionActionBox,
   InductionCharacterBalloon,
   InductionCharacterImage,
   InductionUserAnswers,
+  InductionSelectOptions,
 } from "../organisms";
 
 const Scene: React.FC = React.memo(() => {
@@ -22,6 +23,7 @@ const Scene: React.FC = React.memo(() => {
   const induction = useAppSelector(inductionSelector);
   const id = induction.sceneId;
   const isOpenSlide = induction.isOpenSlide;
+  const isOpenUserAnswers = induction.scene.isOpenAnswers;
   const allowStartingExercise = induction.allowStartingExercise;
   const allowProgressScene = induction.allowProgressScene;
 
@@ -46,20 +48,25 @@ const Scene: React.FC = React.memo(() => {
       {!allowStartingExercise ? (
         <Box zIndex={999} position="absolute" top="0" left="0" width="100vw" height="100vh" bgcolor="#2a2f36" />
       ) : null}
+
+      {/* 情報選択画面 */}
+      <InductionSelectOptions />
+
       <Box bgcolor="#2a2f36">
         {/* スライド */}
         <SlideList />
         {/* 演習画面 */}
-        <SChapter1 className={!isOpenSlide ? "expand_center" : ""}>
+        <SChapter1 className={!isOpenSlide ? "expand-center" : ""}>
           {/* ツールバー */}
           <STooltipBar>
-            <TooltipBar />
+            <InductionTooltipBar />
           </STooltipBar>
           {/* ボタン・入力欄 */}
           <InductionActionBox />
           {/* 回答 */}
-          <InductionUserAnswers />
-
+          <SUserAnswers className={isOpenUserAnswers ? "slide-in-top" : "slide-out-top"}>
+            <InductionUserAnswers />
+          </SUserAnswers>
           {/* ボタンやツールバーを除く操作画面 */}
           <SContainer onClick={() => allowProgressScene && dispatch(setNextStaticSceneAction(id))}>
             {/* キャラクター表示関連 */}
@@ -91,6 +98,12 @@ const STooltipBar = styled.div`
   position: absolute;
   top: 16px;
   left: 16px;
+`;
+const SUserAnswers = styled.div`
+  z-index: 998;
+  position: relative;
+  width: 900px;
+  margin: 0 auto;
 `;
 const SCharacter = styled.div`
   position: absolute;

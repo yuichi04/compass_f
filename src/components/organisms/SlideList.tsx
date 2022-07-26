@@ -67,7 +67,7 @@ const SlideList: FC = memo(() => {
     <>
       {isOpenSlide && (
         <Box
-          className="expand_center"
+          className="expand-center"
           sx={{
             zIndex: "999",
             display: "flex",

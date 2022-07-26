@@ -3,14 +3,16 @@ import styled, { keyframes } from "styled-components";
 import { Box, Typography } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SendIcon from "@mui/icons-material/Send";
+
 import {
   inductionSelector,
   setNextDynamicSceneAction,
   setNextStaticSceneAction,
-} from "../../lib/redux/features/inductionSlice";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { MuiTextFieldWithAdornment } from "../molecules";
-import { PulseButton } from "../atoms";
+} from "../../../lib/redux/features/inductionSlice";
+import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { MuiTextFieldWithAdornment } from "../../molecules";
+import { PulseButton } from "../../atoms";
 
 const InductionActionBox: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -40,9 +42,10 @@ const InductionActionBox: FC = memo(() => {
 
   return (
     <>
+      {/* 選択肢の表示 */}
       {action?.type === "button" && (
         <Box
-          className="fade_in"
+          className="fade-in"
           position="absolute"
           right="0"
           bottom="232px"
@@ -75,12 +78,15 @@ const InductionActionBox: FC = memo(() => {
           </SOptionBox>
         </Box>
       )}
+
+      {/* 入力欄の表示 */}
       {action?.type === "textField" && (
         <Box
           position="absolute"
           left="50%"
           bottom="280px"
-          className="fade_in"
+          boxShadow="0 0 70px rgba(255,255,255,0.9)"
+          className="fade-in"
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -102,7 +108,9 @@ const InductionActionBox: FC = memo(() => {
               multiline
               rows={2}
             />
-            <PulseButton />
+            <PulseButton size="50px" color="#00aa99">
+              <SendIcon sx={{ color: "#fff", fontSize: "20px" }} />
+            </PulseButton>
           </SInputBox>
         </Box>
       )}
@@ -169,7 +177,7 @@ const SInputBox = styled.form`
   width: 520px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 120px #fff;
-  border: double 3px rgba(55, 55, 55, 0.4);
+  border: double 3px #ccc;
   border-top-left-radius: 24px;
   border-bottom-left-radius: 12px;
   border-top-right-radius: 12px;

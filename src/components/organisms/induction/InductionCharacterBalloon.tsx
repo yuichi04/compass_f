@@ -1,10 +1,10 @@
 import { FC, memo, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { TextAnimation } from ".";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { inductionSelector, setAllowProgressScene } from "../../lib/redux/features/inductionSlice";
-import { userSelector } from "../../lib/redux/features/userSlice";
+import { TextAnimation } from "..";
+import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { inductionSelector, setAllowProgressScene } from "../../../lib/redux/features/inductionSlice";
+import { userSelector } from "../../../lib/redux/features/userSlice";
 
 const InductionCharacterBalloon: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ const InductionCharacterBalloon: FC = memo(() => {
       height="200px"
       borderTop="double 5px rgba(255,255,255,0.2)"
       sx={{
-        backgroundImage:
+        background:
           "radial-gradient(circle, rgba(55, 55, 55, 0.8) 75%, rgba(159, 159, 159, 0.45) 90%, rgba(255, 255, 255, 0.3))",
         cursor: "default",
       }}
@@ -102,7 +102,7 @@ const InductionCharacterBalloon: FC = memo(() => {
           </Typography>
           {allowProgress && (
             <Box className="up-down" display="flex" alignItems="flex-end" justifyContent="flex-end">
-              <Typography className="fade_in" variant="h6" color="#ffe0b2" fontFamily={"'Noto Sans JP', sans-serif"}>
+              <Typography className="fade-in" variant="h6" color="#f9fbe7" fontFamily={"'Noto Sans JP', sans-serif"}>
                 次へ
               </Typography>
               <ArrowRightIcon sx={{ color: "#ffe0b2" }} />

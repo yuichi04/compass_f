@@ -5,7 +5,7 @@ import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 const CallEffect: FC = memo(() => {
   return (
     <SCallEffect>
-      <PhoneInTalkIcon sx={{ width: "100%", height: "100%", color: "#fff" }} />
+      <PhoneInTalkIcon className="scale-up-down" sx={{ width: "100%", height: "100%", color: "#fff" }} />
     </SCallEffect>
   );
 });
@@ -28,13 +28,12 @@ const SCallEffect = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 240px;
-  height: 240px;
+  width: 160px;
+  height: 160px;
   padding: 32px;
   border-radius: 50%;
   background-color: #42a5f5;
-  box-shadow: 0 0 120px #42a5f5;
-  cursor: pointer;
+  box-shadow: 0 0 80px #42a5f5;
 
   &::before,
   &::after {
