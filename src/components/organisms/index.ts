@@ -1,7 +1,10 @@
 export { default as AvatarAndUploadButton } from "./AvatarAndUploadButton";
 export { default as InductionCharacterBalloon } from "./induction/InductionCharacterBalloon";
 export { default as InductionActionBox } from "./induction/InductionActionBox";
+export { default as InductionAnswerCommon } from "./induction/InductionAnswerCommon";
+export { default as InductionAnswerConclusion } from "./induction/InductionAnswerConclusion";
 export { default as InductionCharacterImage } from "./induction/InductionCharacterImage";
+export { default as InductionAnswerCheck } from "./induction/InductionAnswerCheck";
 export { default as InductionUserAnswers } from "./induction/InductionUserAnswers";
 export { default as InductionSelectOptions } from "./induction/InductionSelectOptions";
 export { default as InductionTooltipBar } from "./induction/InductionTooltipBar";

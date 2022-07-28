@@ -23,12 +23,10 @@ type Props = {
   select?: boolean;
   defaultValue?: string;
   placeholder?: string;
-  bgcolor?: string;
 };
 
 const MuiTextField: React.FC<Props> = React.memo(({ ...props }) => {
-  const { bgcolor } = props;
-  return <TextField {...props} sx={{ bgcolor: bgcolor }} />;
+  return <TextField {...props} />;
 });
 
 export default MuiTextField;

@@ -3,14 +3,17 @@ import styled, { keyframes } from "styled-components";
 
 type Props = {
   size: string;
-  color: string;
+  bgcolor: string;
+  color?: string;
   children: React.ReactNode;
+  disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const PulseButton: FC<Props> = memo(({ children, ...props }) => {
-  const { size, color } = props;
+  const { size, bgcolor, color, onClick, disabled } = props;
   return (
-    <SPulseButton size={size} color={color}>
+    <SPulseButton size={size} bgcolor={bgcolor} color={color} onClick={onClick} disabled={disabled}>
       {children}
     </SPulseButton>
   );
@@ -37,15 +40,17 @@ const SPulseButton = styled.button<Props>`
   width: ${(props) => props.size};
   height: ${(props) => props.size};
   border-radius: 50%;
-  background: ${(props) => props.color};
-  box-shadow: 0 0 20px ${(props) => props.color};
-  cursor: pointer;
+  background: ${(props) => props.bgcolor};
+  box-shadow: 0 0 20px ${(props) => props.bgcolor};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
+  color: ${(props) => props.color};
   transition: all 0.2s;
+  ${(props) => props.disabled && "opacity: 0.2"};
 
   &::before,
   &::after {
     content: "";
-    display: block;
+    display: ${(props) => (props.disabled ? "none" : "block")};
     position: absolute;
     top: 0;
     bottom: 0;
@@ -54,7 +59,7 @@ const SPulseButton = styled.button<Props>`
     margin: auto;
     width: 100%;
     height: 100%;
-    border: 1px solid ${(props) => props.color};
+    border: 1px solid ${(props) => props.bgcolor};
     border-radius: 50%;
     box-sizing: border-box;
     pointer-events: none;
@@ -65,7 +70,7 @@ const SPulseButton = styled.button<Props>`
     animation-delay: 1s;
   }
 
-  &:hover {
-    opacity: 0.8;
-  }
+  // &:hover {
+  //   opacity: 0.8;
+  // }
 `;

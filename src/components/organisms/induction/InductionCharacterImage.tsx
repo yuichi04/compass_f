@@ -38,7 +38,13 @@ const InductionCharacterImage: React.FC = React.memo(() => {
         />
       )}
       {character?.role === "call" && (
-        <Box position="absolute" bottom="50%" left="50%" sx={{ transform: "translate(-50%, -50%)" }}>
+        <Box
+          className="fade-in"
+          position="absolute"
+          bottom="50%"
+          left="50%"
+          sx={{ transform: "translate(-50%, -50%)" }}
+        >
           <CallEffect />
         </Box>
       )}

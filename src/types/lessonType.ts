@@ -13,9 +13,12 @@ export type LessonType = {
   allowProgressScene: boolean; // シーンの進行を許可するか
   characterInfo: CharacterImageType; // キャラクター情報の変更を管理
   displaySpeedOfLines: number; // セリフ1文字あたりの表示速度
+  isOpenAnswers?: boolean; // 回答の表示・非表示
+  isOpenDocuments?: boolean; // 資料の表示・非表示
+  isOpenResults: boolean; // 演習結果の表示・非表示
+  isOpenScreenForAnswers: boolean; // ユーザー用の回答画面の表示・非表示
   isLastScene: boolean; // 最後のシーンかどうか
   isOpenSlide: boolean; // スライドの表示・非表示
-  isOpenResults: boolean; // 演習結果の表示・非表示
   options: OptionType[]; // 現在のセクションの選択可能な情報を格納
   scene: StaticSceneDataType; // 表示するシーン本体
   // 結果表示用にユーザーの回答を格納
@@ -23,6 +26,7 @@ export type LessonType = {
     info: OptionType[];
     common: string;
     conclusion: string;
+    check: boolean;
   };
 };
 
@@ -32,10 +36,11 @@ export type StaticSceneDataType = {
   action?: UserActionType;
   character?: CharacterImageType;
   lines: string[];
-  phase?: "info" | "common" | "conclusion" | "";
-  isOpenDocuments?: boolean; // 資料の表示・非表示
-  isOpenAnswers?: boolean; // 回答の表示・非表示
+  phase?: PhaseType;
 };
+
+// フェーズの型定義
+export type PhaseType = "info" | "common" | "conclusion" | "check" | "";
 
 // ユーザーアクションの型定義
 export type UserActionType = {
@@ -50,7 +55,7 @@ export type CharacterImageType = {
 };
 
 // 各情報の型定義
-export type UtilsKeyType = "answers" | "documents" | "results" | "slide";
+export type UtilsKeyType = "answers" | "documents" | "results" | "slide" | "screenForAnswers";
 
 // 選択肢（情報）の型定義
 export type OptionType = {

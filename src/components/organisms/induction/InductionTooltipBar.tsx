@@ -22,8 +22,8 @@ const styles = {
 const InductionTooltipBar: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
-  const isOpenUserAnswers = induction.scene.isOpenAnswers;
-  const isOpenDocuments = induction.scene.isOpenDocuments;
+  const isOpenUserAnswers = induction.isOpenAnswers;
+  const isOpenDocuments = induction.isOpenDocuments;
   const isOpenSlide = induction.isOpenSlide;
   return (
     <>

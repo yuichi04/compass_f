@@ -16,6 +16,11 @@ const optionsData: OptionType[] = [
     text: "発音練習に力を入れている",
     section: 1,
   },
+  {
+    id: 4,
+    text: "全体の8割を音読をすることに割いている",
+    section: 1,
+  },
 ];
 
 export default optionsData;

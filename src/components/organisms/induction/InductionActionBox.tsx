@@ -1,18 +1,14 @@
-import { FC, memo, useState } from "react";
+import { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
 import { Box, Typography } from "@mui/material";
-import CreateIcon from "@mui/icons-material/Create";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import SendIcon from "@mui/icons-material/Send";
 
 import {
   inductionSelector,
-  setNextDynamicSceneAction,
   setNextStaticSceneAction,
+  showUtilsAction,
 } from "../../../lib/redux/features/inductionSlice";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
-import { MuiTextFieldWithAdornment } from "../../molecules";
-import { PulseButton } from "../../atoms";
 
 const InductionActionBox: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -22,23 +18,7 @@ const InductionActionBox: FC = memo(() => {
   const linesLength = lines.join("").length;
   const action = induction.scene.action;
   const displaySpeed = induction.displaySpeedOfLines;
-
-  // ユーザーの回答を管理
-  const [answer, setAnswer] = useState("");
-
-  // 回答を入力
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAnswer(e.target.value);
-  };
-
-  // ユーザーの回答をstoreに保存
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (answer === "") return false;
-    setAnswer("");
-    // セリフを生成し、表示する処理。表示を0.2秒遅延させる。
-    setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100);
-  };
+  const phase = induction.scene.phase;
 
   return (
     <>
@@ -52,10 +32,16 @@ const InductionActionBox: FC = memo(() => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            animationDelay: `${linesLength * displaySpeed + 0.2}s`, // セリフが全部表示されてから0.2秒後に表示する
+            // セリフが全部表示されてから0.2秒後に表示する
+            animationDelay: `${linesLength * displaySpeed + 0.2}s`,
             opacity: 0,
           }}
-          onClick={() => dispatch(setNextStaticSceneAction(id))}
+          // 静的シーンと動的シーンの分岐
+          onClick={() =>
+            phase === "info" || phase === "common" || phase === "conclusion" || phase === "check"
+              ? dispatch(showUtilsAction({ key: "screenForAnswers", value: true }))
+              : dispatch(setNextStaticSceneAction(id))
+          }
         >
           <SOptionBox>
             <SOptionInner>
@@ -80,7 +66,7 @@ const InductionActionBox: FC = memo(() => {
       )}
 
       {/* 入力欄の表示 */}
-      {action?.type === "textField" && (
+      {/* {action?.type === "textField" && (
         <Box
           position="absolute"
           left="50%"
@@ -108,12 +94,12 @@ const InductionActionBox: FC = memo(() => {
               multiline
               rows={2}
             />
-            <PulseButton size="50px" color="#00aa99">
+            <PulseButton size="50px" bgcolor="#00aa99">
               <SendIcon sx={{ color: "#fff", fontSize: "20px" }} />
             </PulseButton>
           </SInputBox>
         </Box>
-      )}
+      )} */}
     </>
   );
 });
@@ -168,19 +154,4 @@ const SOptionBox = styled.div`
 const SOptionInner = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const SInputBox = styled.form`
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 520px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 120px #fff;
-  border: double 3px #ccc;
-  border-top-left-radius: 24px;
-  border-bottom-left-radius: 12px;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 24px;
-  padding: 24px;
 `;

@@ -49,6 +49,23 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
+    character: { src: "", role: "user" },
+    lines: ["お電話ありがとうございます。", "なんでも相談サポートセンターです。"],
+  },
+  {
+    section: 1,
+    character: { src: "boy/dansei_05_h.png", role: "boy" },
+    lines: ["あ、もしもし。", "すみません。相談なんですが、英語を話せるようになるにはどうしたら良いでしょうか。"],
+  },
+  {
+    section: 1,
+    lines: [
+      "将来英語を使った仕事がしたいと思っているので、頑張って勉強しているんですけど、なかなか話せるようにならなくて・・・",
+      "何か良い勉強方法があれば教えて欲しいです。",
+    ],
+  },
+  {
+    section: 1,
     action: {
       type: "button",
       label: "情報を確認する",
@@ -58,28 +75,23 @@ const staticSceneData: StaticSceneDataType[] = [
       "英語が話せるようになる勉強方法ですね・・・",
       "使えそうな情報がありますので、その中からいくつかピックアップして、それらをもとに解決案を考えていきましょう。",
     ],
-  },
-  {
-    section: 1,
-    character: { src: "", role: "" },
-    lines: [],
     phase: "info",
   },
   {
     section: 1,
     action: {
-      type: "textField",
-      label: "ここに共通点を入力してください",
+      type: "button",
+      label: "共通点を入力する",
     },
-
-    lines: ["（帰納法の2つ目のステップは、「共通点を見つける」だったかな。", "共通することは何だろう・・・）"],
+    character: { src: "", role: "user" },
+    lines: ["（次のステップは、「共通点を見つける」だったかな。", "共通することは何だろう・・・）"],
     phase: "common",
   },
   {
     section: 1,
     action: {
-      type: "textField",
-      label: "ここに結論を入力してください",
+      type: "button",
+      label: "結論を導く",
     },
     lines: [
       "（帰納法の最後のステップは確か、",
@@ -92,13 +104,13 @@ const staticSceneData: StaticSceneDataType[] = [
     section: 1,
     action: {
       type: "button",
-      label: "論理に飛躍はない。",
+      label: "論理に飛躍がないか確認する",
     },
     lines: [
       "（最後に論理に飛躍がないか確認しよう。",
       "「結論→共通点→情報」の順に「なぜならば」で文章を繋げると・・・）",
     ],
-    isOpenAnswers: true,
+    phase: "check",
   },
 ];
 

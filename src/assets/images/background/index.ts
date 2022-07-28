@@ -1,3 +1,5 @@
 export const BackgroundImage = {
-  dayoffice: require("./dayoffice.jpg"),
+  officeDay: require("./office_day.jpg"),
+  officeEvening: require("./office_evening.jpg"),
+  officeNight: require("./office_night.jpg"),
 };

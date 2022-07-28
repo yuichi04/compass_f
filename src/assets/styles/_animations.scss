@@ -103,23 +103,22 @@
 // fade-in,out
 .fade-in {
   animation-name: fadeInAnime;
-  animation-duration: 0.75s;
-  animation-timing-function: ease-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes fadeInAnime {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
 }
-.fade_out {
+.fade-out {
   animation-name: fadeOutAnime;
-  animation-duration: 0.75s;
-  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes fadeOutAnime {
@@ -128,6 +127,41 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+// 回答画面の表示・非表示
+.fade-in-screen {
+  animation-name: fadeInScreen;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInScreen {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-out-screen {
+  animation-name: fadeOutScreen;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeOutScreen {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
 

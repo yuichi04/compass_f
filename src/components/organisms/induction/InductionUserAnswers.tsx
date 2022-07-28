@@ -3,14 +3,12 @@ import { Paper, Box, Typography } from "@mui/material";
 import { inductionSelector, showUtilsAction } from "../../../lib/redux/features/inductionSlice";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import CloseIcon from "@mui/icons-material/Close";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { userSelector } from "../../../lib/redux/features/userSlice";
 
 const InductionUserAnswers: FC = memo(() => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(userSelector);
   const induction = useAppSelector(inductionSelector);
-  // const phase = induction.scene.phase;
   const answers = induction.userAnswers;
   return (
     <Paper
@@ -56,7 +54,6 @@ const InductionUserAnswers: FC = memo(() => {
         {user.name}さんの回答
       </Typography>
 
-      {/* フェーズによって表示を切り替える */}
       {/* 結論 */}
       <Paper elevation={8}>
         <Typography variant="subtitle2" bgcolor="rgba(0,77,64,0.8)" color="#fff">
@@ -69,14 +66,9 @@ const InductionUserAnswers: FC = memo(() => {
           mb="24px"
           sx={{ wordBreak: "break-all" }}
         >
-          {answers.conclusion ? answers.conclusion : "※まだ回答がありません"}
+          {answers.conclusion ? answers.conclusion : "※まだ回答はありません"}
         </Typography>
       </Paper>
-
-      <Typography variant="h6" fontWeight={600} mb="16px" display="flex" alignItems="center" justifyContent="center">
-        なぜならば
-        <ArrowDownwardIcon />
-      </Typography>
 
       {/* 共通点 */}
       <Paper elevation={8}>
@@ -90,23 +82,22 @@ const InductionUserAnswers: FC = memo(() => {
           mb="24px"
           sx={{ wordBreak: "break-all" }}
         >
-          {answers.common ? answers.common : "※まだ回答がありません"}
+          {answers.common ? answers.common : "※まだ回答はありません"}
         </Typography>
       </Paper>
-
-      <Typography variant="h6" fontWeight={600} mb="16px" display="flex" alignItems="center" justifyContent="center">
-        なぜならば
-        <ArrowDownwardIcon />
-      </Typography>
 
       {/* 情報 */}
       <Paper elevation={8}>
         <Typography variant="subtitle2" bgcolor="primary.main" color="#fff">
           情報
         </Typography>
-        <Typography bgcolor="rgba(249,251,231, 0.6)" borderTop="none" p="16px" sx={{ wordBreak: "break-all" }}>
-          {answers.common ? answers.common : "※まだ情報がありません"}
-        </Typography>
+        <Box component="ul" bgcolor="rgba(249,251,231, 0.6)" borderTop="none" p="16px" sx={{ wordBreak: "break-all" }}>
+          {answers.info.length !== 0 ? (
+            answers.info.map((data) => <li key={data.id}>・{data.text}</li>)
+          ) : (
+            <li>※まだ情報がありません</li>
+          )}
+        </Box>
       </Paper>
     </Paper>
   );

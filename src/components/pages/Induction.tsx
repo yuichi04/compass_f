@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import styled from "styled-components";
 import { Box } from "@mui/material";
 import { BackgroundImage } from "../../assets/images/background";
@@ -16,16 +16,26 @@ import {
   InductionCharacterImage,
   InductionUserAnswers,
   InductionSelectOptions,
+  InductionAnswerCommon,
+  InductionAnswerConclusion,
+  InductionAnswerCheck,
 } from "../organisms";
 
-const Scene: React.FC = React.memo(() => {
+type BgImageProps = {
+  bgImage: number;
+};
+
+const Scene: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
+  const sectionId = induction.sectionId;
   const id = induction.sceneId;
   const isOpenSlide = induction.isOpenSlide;
-  const isOpenUserAnswers = induction.scene.isOpenAnswers;
+  const isOpenUserAnswers = induction.isOpenAnswers;
+  const isOpenScreen = induction.isOpenScreenForAnswers;
   const allowStartingExercise = induction.allowStartingExercise;
   const allowProgressScene = induction.allowProgressScene;
+  const phase = induction.scene.phase;
 
   // シーンの切り替え処理
   //   useEffect(() => {
@@ -44,19 +54,24 @@ const Scene: React.FC = React.memo(() => {
 
   return (
     <>
-      {/* 演習が開始されていない場合は、演習画面が見えないように黒い背景を全面に出す */}
+      {/* 演習が開始されていない場合は、演習画面が見えないように黒い背景を前面に出す */}
       {!allowStartingExercise ? (
         <Box zIndex={999} position="absolute" top="0" left="0" width="100vw" height="100vh" bgcolor="#2a2f36" />
       ) : null}
 
       {/* 情報選択画面 */}
-      <InductionSelectOptions />
+      <SScreenForAnswers className={isOpenScreen ? "fade-in-screen" : "fade-out-screen"}>
+        {phase === "info" && <InductionSelectOptions />}
+        {phase === "common" && <InductionAnswerCommon />}
+        {phase === "conclusion" && <InductionAnswerConclusion />}
+        {phase === "check" && <InductionAnswerCheck />}
+      </SScreenForAnswers>
 
       <Box bgcolor="#2a2f36">
         {/* スライド */}
         <SlideList />
         {/* 演習画面 */}
-        <SChapter1 className={!isOpenSlide ? "expand-center" : ""}>
+        <SInduction className={!isOpenSlide ? "expand-center" : ""} bgImage={sectionId}>
           {/* ツールバー */}
           <STooltipBar>
             <InductionTooltipBar />
@@ -79,7 +94,7 @@ const Scene: React.FC = React.memo(() => {
             {/* 演習結果 */}
             {/* <Chapter1Result /> */}
           </SContainer>
-        </SChapter1>
+        </SInduction>
       </Box>
     </>
   );
@@ -87,11 +102,30 @@ const Scene: React.FC = React.memo(() => {
 
 export default Scene;
 
-const SChapter1 = styled.div`
+const SScreenForAnswers = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle, rgba(33, 33, 33, 0.9) 25%, rgba(55, 55, 55, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const SInduction = styled.div<BgImageProps>`
   position: relative;
   overflow: hidden;
   height: calc(100vh - 64px);
-  background: url(${BackgroundImage.dayoffice}) no-repeat center;
+  background: ${(props) =>
+      props.bgImage === 1
+        ? `url(${BackgroundImage.officeDay})`
+        : props.bgImage === 2
+        ? `url(${BackgroundImage.officeEvening})`
+        : props.bgImage === 3 && `url(${BackgroundImage.officeNight})`}
+    no-repeat center;
   background-size: cover;
 `;
 const STooltipBar = styled.div`

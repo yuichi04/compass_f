@@ -14,10 +14,12 @@ export default CallEffect;
 
 const pulsate = keyframes`
   0% {
+    border: 2px solid #42a5f5;
     transform: scale(1);
     opacity: 1;
   }
   100% {
+    border: 1px solid #42a5f5;
     transform: scale(2);
     opacity: 0;
   }
@@ -47,7 +49,7 @@ const SCallEffect = styled.div`
     margin: auto;
     width: 100%;
     height: 100%;
-    border: 1px solid #42a5f5;
+
     border-radius: 50%;
     box-sizing: border-box;
     pointer-events: none;

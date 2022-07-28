@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { TextAnimation } from "..";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
-import { inductionSelector, setAllowProgressScene } from "../../../lib/redux/features/inductionSlice";
+import { inductionSelector, setAllowProgressSceneAction } from "../../../lib/redux/features/inductionSlice";
 import { userSelector } from "../../../lib/redux/features/userSlice";
 
 const InductionCharacterBalloon: FC = memo(() => {
@@ -20,7 +20,7 @@ const InductionCharacterBalloon: FC = memo(() => {
   // 全てのセリフが表示されたら、次のシーンへの進行を許可する
   useEffect(() => {
     // シーン進行を許可する処理
-    const allowProgress = () => dispatch(setAllowProgressScene());
+    const allowProgress = () => dispatch(setAllowProgressSceneAction());
     // 全てのセリフが表示されるまでの時間を計算し、その時間+0.25秒が経過したら次のシーンに進められるようにする。
     setTimeout(allowProgress, linesLength * displaySpeed * 1000 + 250);
   }, [dispatch, linesLength, displaySpeed]);
@@ -101,11 +101,13 @@ const InductionCharacterBalloon: FC = memo(() => {
             ))}
           </Typography>
           {allowProgress && (
-            <Box className="up-down" display="flex" alignItems="flex-end" justifyContent="flex-end">
-              <Typography className="fade-in" variant="h6" color="#f9fbe7" fontFamily={"'Noto Sans JP', sans-serif"}>
-                次へ
-              </Typography>
-              <ArrowRightIcon sx={{ color: "#ffe0b2" }} />
+            <Box className="up-down">
+              <Box className="fade-in" display="flex" alignItems="flex-end" justifyContent="flex-end">
+                <Typography variant="h6" color="#f9fbe7" fontFamily={"'Noto Sans JP', sans-serif"}>
+                  次へ
+                </Typography>
+                <ArrowRightIcon sx={{ color: "#ffe0b2" }} />
+              </Box>
             </Box>
           )}
         </Box>
