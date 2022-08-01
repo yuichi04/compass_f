@@ -6,6 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { MuiTextField, PulseButton } from "../../atoms";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
+import { TitleWithTriangle } from "../../molecules";
 
 const InductionAnswerConclusion: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -34,26 +35,38 @@ const InductionAnswerConclusion: FC = memo(() => {
     <>
       {isOpenScreen && (
         <SBox>
-          <Typography variant="h5" color="primary.light" fontWeight={600} mb="32px">
-            共通点から結論を導き出しましょう
-          </Typography>
-          <Typography variant="h6" color="#fff" mb="16px">
-            共通点
-          </Typography>
+          <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="48px">
+            共通点から具体的な解決案を考えましょう
+          </TitleWithTriangle>
           <SCommon>
-            <Typography variant="h5" color="#fff" fontWeight={600}>
-              {common}
+            <Typography
+              variant="h5"
+              bgcolor="#00aa99"
+              boxShadow="0 0 8px #00aa99"
+              borderRadius="8px"
+              color="#fff"
+              fontWeight={600}
+              p="4px 0"
+            >
+              共通点：{common}
             </Typography>
           </SCommon>
 
           <Typography variant="h6" color="#fff" mb="16px">
-            ここに結論を入力して下さい
+            ここに解決案を入力して下さい
           </Typography>
-          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "primary.light", fontSize: "48px" }} />
+          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#fff", fontSize: "48px" }} />
 
           <SForm onSubmit={handleSubmit}>
             <Box mr="16px" width="100%">
-              <MuiTextField variant="standard" onChange={handleChange} value={answer} fullWidth autoComplete="off" />
+              <MuiTextField
+                variant="standard"
+                onChange={handleChange}
+                value={answer}
+                fullWidth
+                autoComplete="off"
+                autoFocus
+              />
             </Box>
             <PulseButton size="50px" bgcolor="#00aa99" color="#fff" disabled={answer === ""}>
               <SendIcon sx={{ color: "#fff" }} />
@@ -88,11 +101,11 @@ const fadeIn = keyframes`
 
 const SBox = styled.div`
   width: 900px;
-  height: 80vh;
   text-align: center;
 `;
 const SCommon = styled.div`
   animation: ${slideIn} 1s 1s ease-in-out forwards;
+  color: #fff;
   margin-bottom: 64px;
   opacity: 0;
 `;

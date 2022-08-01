@@ -1,7 +1,7 @@
 import React from "react";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
-import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 
 type Props = {
   children: string;
@@ -37,9 +37,16 @@ const TextAnimation: React.FC<Props> = React.memo(({ children, ...props }) => {
   };
 
   return (
-    <Box ref={textRef} className="animation-text" component="div" sx={{ wordWrap: "break-word" }}>
+    <Typography
+      ref={textRef}
+      className="animation-text"
+      component="div"
+      variant="h6"
+      letterSpacing={1.25}
+      sx={{ wordWrap: "break-word", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
+    >
       {children}
-    </Box>
+    </Typography>
   );
 });
 

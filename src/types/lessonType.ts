@@ -19,11 +19,12 @@ export type LessonType = {
   isOpenScreenForAnswers: boolean; // ユーザー用の回答画面の表示・非表示
   isLastScene: boolean; // 最後のシーンかどうか
   isOpenSlide: boolean; // スライドの表示・非表示
-  options: OptionType[]; // 現在のセクションの選択可能な情報を格納
+  selectableInfo: SelectableInfoType[]; // 現在のセクションの選択可能な情報を格納
   scene: StaticSceneDataType; // 表示するシーン本体
+  history: string; // 1つ前のフェーズを格納
   // 結果表示用にユーザーの回答を格納
   userAnswers: {
-    info: OptionType[];
+    info: SelectableInfoType[];
     common: string;
     conclusion: string;
     check: boolean;
@@ -33,7 +34,7 @@ export type LessonType = {
 // シーンの型定義
 export type StaticSceneDataType = {
   section: number;
-  action?: UserActionType;
+  options?: OptionType[];
   character?: CharacterImageType;
   lines: string[];
   phase?: PhaseType;
@@ -42,10 +43,10 @@ export type StaticSceneDataType = {
 // フェーズの型定義
 export type PhaseType = "info" | "common" | "conclusion" | "check" | "";
 
-// ユーザーアクションの型定義
-export type UserActionType = {
-  type: "button" | "textField" | ""; // 選択式と入力式
+// 選択肢の型定義
+export type OptionType = {
   label: string;
+  progress: boolean;
 };
 
 // キャラクターイメージの型定義
@@ -54,11 +55,11 @@ export type CharacterImageType = {
   src: string;
 };
 
-// 各情報の型定義
+// 表示・非表示系UIの型定義
 export type UtilsKeyType = "answers" | "documents" | "results" | "slide" | "screenForAnswers";
 
-// 選択肢（情報）の型定義
-export type OptionType = {
+// 選択可能な情報の型定義
+export type SelectableInfoType = {
   id: number;
   text: string;
   section: number;

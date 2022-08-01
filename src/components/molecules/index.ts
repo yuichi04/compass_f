@@ -12,3 +12,4 @@ export { default as SlideSection } from "./SlideSection";
 export { default as SlidePointCard } from "./SlidePointCard";
 export { default as SlideSectionContent } from "./SlideSectionContent";
 export { default as Tooltip } from "./Tooltip";
+export { default as TitleWithTriangle } from "./TitleWithTriangle";

@@ -6,6 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { MuiTextField, PulseButton } from "../../atoms";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
+import { TitleWithTriangle } from "../../molecules";
 
 type StyleType = {
   delay: number;
@@ -38,16 +39,16 @@ const InductionAnswerCommon: FC = memo(() => {
     <>
       {isOpenScreen && (
         <SBox>
-          <Typography variant="h5" color="primary.light" fontWeight={600} mb="32px">
-            選択した情報から共通点を見つけましょう
-          </Typography>
+          <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="32px">
+            選んだ情報から共通点を見つけましょう
+          </TitleWithTriangle>
           <Typography variant="h6" color="#fff" mb="16px">
-            選択した情報
+            選んだ情報
           </Typography>
-          <Box component="ul" mb="64px">
+          <Box component="ul" mb="32px">
             {info.map((data, index) => (
               <SInfo key={data.id} delay={index + 1}>
-                <Typography variant="subtitle1" component="span">
+                <Typography variant="subtitle1" component="span" sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
                   {data.text}
                 </Typography>
               </SInfo>
@@ -57,10 +58,17 @@ const InductionAnswerCommon: FC = memo(() => {
           <Typography variant="h6" color="#fff" mb="16px">
             ここに共通点を入力して下さい
           </Typography>
-          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "primary.light", fontSize: "48px" }} />
+          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#fff", fontSize: "48px" }} />
           <SForm onSubmit={handleSubmit} delay={info.length + 1}>
             <Box mr="16px" width="100%">
-              <MuiTextField variant="standard" onChange={handleChange} value={answer} fullWidth autoComplete="off" />
+              <MuiTextField
+                variant="standard"
+                onChange={handleChange}
+                value={answer}
+                fullWidth
+                autoComplete="off"
+                autoFocus
+              />
             </Box>
             <PulseButton size="50px" bgcolor="#00aa99" color="#fff" disabled={answer === ""}>
               <SendIcon sx={{ color: "#fff" }} />
@@ -95,14 +103,14 @@ const fadeIn = keyframes`
 
 const SBox = styled.div`
   width: 900px;
-  height: 80vh;
   text-align: center;
 `;
 const SInfo = styled.li<StyleType>`
   display: inline-block;
-  background: #f9fbe7;
+  box-shadow: 0 0 16px #33bbad;
+  background: #33bbad;
   border-radius: 8px;
-  box-shadow: 0 0 4px #f9fbe7;
+  color: #fff;
   animation: ${slideIn} 0.5s ${(props) => props.delay / 2}s ease-in-out forwards;
   padding: 8px 12px;
   margin-bottom: 16px;

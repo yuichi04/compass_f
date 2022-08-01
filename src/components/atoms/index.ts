@@ -16,3 +16,4 @@ export { default as PageTitle } from "./PageTitle";
 export { default as PulseButton } from "./PulseButton";
 export { default as SectionTitle } from "./SectionTitle";
 export { default as ToastContainer } from "./ToastContainer";
+export { default as TalkEffect } from "./TalkEffect";

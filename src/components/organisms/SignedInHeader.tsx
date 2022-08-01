@@ -46,9 +46,6 @@ const SignedInHeader: React.FC = React.memo(() => {
                 <Typography component="li" sx={{ marginRight: "32px" }}>
                   <LinkTo to="lessonlist">レッスン一覧</LinkTo>
                 </Typography>
-                <Typography component="li" sx={{ marginRight: "32px" }}>
-                  <LinkTo to="lesson/lessons">スライド一覧</LinkTo>
-                </Typography>
                 <Typography component="li">
                   <LinkTo to="lesson/lessons">ヘルプ</LinkTo>
                 </Typography>

@@ -140,5 +140,5 @@ const SContent = styled.div`
   width: 1280px;
   height: 100%;
   margin: 0 auto;
-  padding: 4% 0;
+  padding: 3% 0;
 `;

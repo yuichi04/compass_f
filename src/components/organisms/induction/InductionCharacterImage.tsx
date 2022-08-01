@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import { useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector } from "../../../lib/redux/features/inductionSlice";
-import { CallEffect } from "../../atoms";
+import { CallEffect, TalkEffect } from "../../atoms";
 
 const InductionCharacterImage: React.FC = React.memo(() => {
   const induction = useAppSelector(inductionSelector);
@@ -36,6 +36,17 @@ const InductionCharacterImage: React.FC = React.memo(() => {
           src={require(`../../../assets/images/characters/${character.src}`)}
           alt="boy"
         />
+      )}
+      {character?.role === "user" && (
+        <Box
+          className="fade-in"
+          position="absolute"
+          bottom="50%"
+          left="50%"
+          sx={{ transform: "translate(-50%, -50%)" }}
+        >
+          <TalkEffect />
+        </Box>
       )}
       {character?.role === "call" && (
         <Box

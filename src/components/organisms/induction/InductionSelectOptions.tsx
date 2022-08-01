@@ -9,6 +9,7 @@ import {
   getInfoPhaseOptionsAction,
   setNextDynamicSceneAction,
 } from "../../../lib/redux/features/inductionSlice";
+import { TitleWithTriangle } from "../../molecules";
 
 type StyleType = {
   delay: number;
@@ -17,7 +18,7 @@ type StyleType = {
 const InductionSelectOptions: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
-  const options = induction.options;
+  const options = induction.selectableInfo;
   const phase = induction.scene.phase;
   const isOpenScreen = induction.isOpenScreenForAnswers;
   // 選択された情報を管理
@@ -41,11 +42,11 @@ const InductionSelectOptions: FC = memo(() => {
   const handleSubmit = () => {
     if (values.length < 3) return;
     dispatch(setNextDynamicSceneAction(values));
+    setValues([]);
   };
 
   // 3つ以上選択されているか
   useEffect(() => {
-    console.log("valid");
     if (values.length >= 3) {
       setDisabled(false);
     } else {
@@ -63,16 +64,19 @@ const InductionSelectOptions: FC = memo(() => {
       {isOpenScreen && (
         <SBox>
           <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="32px">
-            <Typography variant="h5" color="primary.light" fontWeight={600} mb="8px">
+            <TitleWithTriangle variant="h5" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
               解決案を考えるための情報を3つ以上選択しましょう
+            </TitleWithTriangle>
+            <Typography variant="subtitle2" color="#fff" mb="8px">
+              選択数が多いと結論を導くのが難しくなりますが、その分、確実性の高い結論を導けます。
             </Typography>
-            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "primary.light", fontSize: "48px" }} />
+            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#fff", fontSize: "48px" }} />
           </Box>
           <Box component="ul" mb="64px">
             {options.map((option, index) => (
               <Box component="li" display="inline-block" key={index}>
-                <SCheckBox type="checkbox" id={index + "item"} onClick={() => handleChange(option.id)} />
-                <SLabel htmlFor={index + "item"} delay={index + 1}>
+                <SCheckBox type="checkbox" id={index + "item"} onChange={() => handleChange(option.id)} />
+                <SLabel htmlFor={index + "item"} delay={(index + 1) / 2}>
                   <Typography variant="h6" component="span">
                     {option.text}
                   </Typography>
@@ -82,7 +86,9 @@ const InductionSelectOptions: FC = memo(() => {
           </Box>
           <Box className="fade-in" display="flex" alignItems="center" justifyContent="center">
             <PulseButton size="100px" bgcolor="#33bbad" color="#fff" disabled={disabled} onClick={handleSubmit}>
-              <Typography fontWeight={600}>決定</Typography>
+              <Typography fontWeight={600} sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+                決定
+              </Typography>
             </PulseButton>
           </Box>
         </SBox>
@@ -103,26 +109,28 @@ const fadeIn = keyframes`
 `;
 
 const SBox = styled.div`
-  width: 900px;
-  height: 80vh;
+  width: 1200px;
   text-align: center;
 `;
 const SLabel = styled.label<StyleType>`
   display: block;
-  cursor: pointer;
   background: #f9fbe7;
   border-radius: 8px;
   box-shadow: 0 0 8px #f9fbe7;
-  animation: ${fadeIn} 1s ${(props) => props.delay}s ease-in-out forwards;
+  cursor: pointer;
   padding: 8px 12px;
   margin-right: 32px;
   margin-bottom: 32px;
   opacity: 0;
-  transition: box-shadow 0.3s;
+  animation: ${fadeIn} 0.5s ${(props) => props.delay}s ease-in-out forwards;
+  transition: all 0.3s;
 `;
 const SCheckBox = styled.input`
   display: none;
   &:checked + label {
-    box-shadow: 0 0 16px #33bbad;
+    background: #33bbad;
+    box-shadow: 0 2px 16px #33bbad;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   }
 `;

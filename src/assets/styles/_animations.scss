@@ -51,7 +51,7 @@
 .slide-in-left {
   animation-name: slideUpAnime;
   animation-duration: 0.5s;
-  animation-timing-function: ease-out;
+  animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
 @keyframes slideUpAnime {
@@ -63,22 +63,19 @@
     opacity: 1;
   }
 }
-
-// scale up,down
-.scale-up-down {
-  animation-name: scaleUpDown;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+.slide-in-right {
+  animation-name: slideUpAnime;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 }
-@keyframes scaleUpDown {
+@keyframes slideUpAnime {
   0% {
-    transform: scale(1);
-  }
-  50% {
+    opacity: 0;
+    transform: translateX(10%);
   }
   100% {
-    transform: scale(1.1) rotate(6deg);
+    opacity: 1;
   }
 }
 
@@ -103,7 +100,7 @@
 // fade-in,out
 .fade-in {
   animation-name: fadeInAnime;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }

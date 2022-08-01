@@ -106,7 +106,7 @@ const Top: React.FC = () => {
           position="relative"
           p="160px 0 196px"
           sx={{
-            background: "#e8f5e9",
+            background: "#fff",
           }}
         >
           <Box width="1200px" m="0 auto">

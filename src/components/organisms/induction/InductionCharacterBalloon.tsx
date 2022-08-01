@@ -13,17 +13,18 @@ const InductionCharacterBalloon: FC = memo(() => {
   const induction = useAppSelector(inductionSelector);
   const role = induction.characterInfo.role;
   const lines = induction.scene.lines;
-  const linesLength = lines.join("").length;
   const displaySpeed = induction.displaySpeedOfLines;
   const allowProgress = induction.allowProgressScene;
 
   // 全てのセリフが表示されたら、次のシーンへの進行を許可する
   useEffect(() => {
+    // セリフの文字数を取得
+    const linesLength = lines.join("").length;
     // シーン進行を許可する処理
     const allowProgress = () => dispatch(setAllowProgressSceneAction());
     // 全てのセリフが表示されるまでの時間を計算し、その時間+0.25秒が経過したら次のシーンに進められるようにする。
     setTimeout(allowProgress, linesLength * displaySpeed * 1000 + 250);
-  }, [dispatch, linesLength, displaySpeed]);
+  }, [dispatch, lines, displaySpeed]);
 
   return (
     <Box
@@ -47,10 +48,10 @@ const InductionCharacterBalloon: FC = memo(() => {
           left="0"
           bgcolor={
             role === "user"
-              ? "rgba(255,167, 38, 0.8)"
+              ? "rgba(66,165,245, 0.8)"
               : role === "guide"
               ? "rgba(0, 170,153, 0.8)"
-              : "rgba(66,165,245, 0.8)"
+              : "rgba(255,167, 38, 0.8)"
           }
           border="double 4px rgba(255,255,255,0.2)"
           minWidth="160px"
@@ -92,7 +93,7 @@ const InductionCharacterBalloon: FC = memo(() => {
                 <TextAnimation
                   section={"theme" + index}
                   duration={displaySpeed}
-                  // 1行ごとに表示されるように遅延させる
+                  // 1行表示されてから次の行が表示されるように遅延させる
                   delay={lines.slice(0, index).join("").length * displaySpeed + 0.1}
                 >
                   {line}
@@ -103,10 +104,15 @@ const InductionCharacterBalloon: FC = memo(() => {
           {allowProgress && (
             <Box className="up-down">
               <Box className="fade-in" display="flex" alignItems="flex-end" justifyContent="flex-end">
-                <Typography variant="h6" color="#f9fbe7" fontFamily={"'Noto Sans JP', sans-serif"}>
+                <Typography
+                  variant="h6"
+                  color="#fff"
+                  fontFamily={"'Noto Sans JP', sans-serif"}
+                  sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
+                >
                   次へ
                 </Typography>
-                <ArrowRightIcon sx={{ color: "#ffe0b2" }} />
+                <ArrowRightIcon sx={{ color: "primary.main", fontSize: "30px" }} />
               </Box>
             </Box>
           )}

@@ -5,6 +5,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import {
   inductionSelector,
+  returnToPreviousPhaseAction,
   setNextStaticSceneAction,
   showUtilsAction,
 } from "../../../lib/redux/features/inductionSlice";
@@ -16,31 +17,34 @@ const InductionActionBox: FC = memo(() => {
   const id = induction.sceneId;
   const lines = induction.scene.lines;
   const linesLength = lines.join("").length;
-  const action = induction.scene.action;
+  const options = induction.scene.options;
   const displaySpeed = induction.displaySpeedOfLines;
   const phase = induction.scene.phase;
 
   return (
     <>
       {/* 選択肢の表示 */}
-      {action?.type === "button" && (
+      {options?.map((option, index) => (
         <Box
-          className="fade-in"
+          key={index}
+          className="slide-in-right"
           position="absolute"
           right="0"
-          bottom="232px"
+          bottom={`${240 + (options.length - 1) * 64 - index * 64}px`}
           sx={{
             display: "flex",
             flexDirection: "column",
             // セリフが全部表示されてから0.2秒後に表示する
-            animationDelay: `${linesLength * displaySpeed + 0.2}s`,
+            animationDelay: `${linesLength * displaySpeed + 0.2 + index / 2}s`,
             opacity: 0,
           }}
-          // 静的シーンと動的シーンの分岐
+          // シーンを進行するか、回答画面を表示するかを分岐
           onClick={() =>
-            phase === "info" || phase === "common" || phase === "conclusion" || phase === "check"
-              ? dispatch(showUtilsAction({ key: "screenForAnswers", value: true }))
-              : dispatch(setNextStaticSceneAction(id))
+            option.progress
+              ? phase === "info" || phase === "common" || phase === "conclusion" || phase === "check"
+                ? dispatch(showUtilsAction({ key: "screenForAnswers", value: true }))
+                : dispatch(setNextStaticSceneAction(id))
+              : dispatch(returnToPreviousPhaseAction())
           }
         >
           <SOptionBox>
@@ -58,48 +62,12 @@ const InductionActionBox: FC = memo(() => {
                 p="4px 16px 8px 0"
                 sx={{ textShadow: "0 0 4px #333" }}
               >
-                {action.label}
+                {option.label}
               </Typography>
             </SOptionInner>
           </SOptionBox>
         </Box>
-      )}
-
-      {/* 入力欄の表示 */}
-      {/* {action?.type === "textField" && (
-        <Box
-          position="absolute"
-          left="50%"
-          bottom="280px"
-          boxShadow="0 0 70px rgba(255,255,255,0.9)"
-          className="fade-in"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            animationDelay: `${linesLength * displaySpeed + 0.2}s`, // セリフが全部表示されてから0.2秒後に表示する
-            opacity: 0,
-            transform: "translateX(-50%)",
-          }}
-        >
-          <SInputBox onSubmit={handleSubmit}>
-            <MuiTextFieldWithAdornment
-              icon={<CreateIcon />}
-              onChange={handleChange}
-              value={answer}
-              fullWidth
-              autoComplete="off"
-              label={action.label}
-              variant="standard"
-              autoFocus
-              multiline
-              rows={2}
-            />
-            <PulseButton size="50px" bgcolor="#00aa99">
-              <SendIcon sx={{ color: "#fff", fontSize: "20px" }} />
-            </PulseButton>
-          </SInputBox>
-        </Box>
-      )} */}
+      ))}
     </>
   );
 });
@@ -131,19 +99,19 @@ const SOptionBox = styled.div`
   min-width: 280px;
 
   &:hover {
-    box-shadow: 0 0 4px 2px #fff;
+    box-shadow: 0 0 12px #fff;
     cursor: pointer;
 
     &::before {
       content: "";
       position: absolute;
-      left: -20px;
+      left: -32px;
       top: 50%;
+      height: 24px;
+      width: 24px;
+      background: #fff;
+      clip-path: polygon(0 0, 0% 100%, 100% 50%);
       transform: translateY(-50%);
-      border-top: 14px solid transparent;
-      border-right: 14px solid transparent;
-      border-bottom: 14px solid transparent;
-      border-left: 14px solid #fff;
       animation-name: ${moveLeftAndRight};
       animation-duration: 1s;
       animation-iteration-count: infinite;

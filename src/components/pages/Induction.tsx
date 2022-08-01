@@ -76,7 +76,7 @@ const Scene: FC = memo(() => {
           <STooltipBar>
             <InductionTooltipBar />
           </STooltipBar>
-          {/* ボタン・入力欄 */}
+          {/* 選択肢の表示 */}
           <InductionActionBox />
           {/* 回答 */}
           <SUserAnswers className={isOpenUserAnswers ? "slide-in-top" : "slide-out-top"}>
@@ -113,12 +113,15 @@ const SScreenForAnswers = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 3s;
 `;
 
 const SInduction = styled.div<BgImageProps>`
   position: relative;
   overflow: hidden;
   height: calc(100vh - 64px);
+
+  // セクションに応じて背景を変更
   background: ${(props) =>
       props.bgImage === 1
         ? `url(${BackgroundImage.officeDay})`
@@ -126,7 +129,6 @@ const SInduction = styled.div<BgImageProps>`
         ? `url(${BackgroundImage.officeEvening})`
         : props.bgImage === 3 && `url(${BackgroundImage.officeNight})`}
     no-repeat center;
-  background-size: cover;
 `;
 const STooltipBar = styled.div`
   position: absolute;

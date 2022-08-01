@@ -45,7 +45,7 @@ const SPulseButton = styled.button<Props>`
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: ${(props) => props.color};
   transition: all 0.2s;
-  ${(props) => props.disabled && "opacity: 0.2"};
+  ${(props) => props.disabled && "opacity: 0.3"};
 
   &::before,
   &::after {
@@ -69,8 +69,4 @@ const SPulseButton = styled.button<Props>`
   &::after {
     animation-delay: 1s;
   }
-
-  // &:hover {
-  //   opacity: 0.8;
-  // }
 `;

@@ -5,7 +5,9 @@ import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 const CallEffect: FC = memo(() => {
   return (
     <SCallEffect>
-      <PhoneInTalkIcon className="scale-up-down" sx={{ width: "100%", height: "100%", color: "#fff" }} />
+      <SCallScaleUpDown>
+        <PhoneInTalkIcon sx={{ width: "100%", height: "100%", color: "#fff" }} />
+      </SCallScaleUpDown>
     </SCallEffect>
   );
 });
@@ -14,15 +16,35 @@ export default CallEffect;
 
 const pulsate = keyframes`
   0% {
-    border: 2px solid #42a5f5;
-    transform: scale(1);
-    opacity: 1;
+    border: 3px solid #ffa726;
   }
   100% {
-    border: 1px solid #42a5f5;
+    border: 1px solid #ffa726;
     transform: scale(2);
     opacity: 0;
   }
+`;
+
+const callScaleUpDown = keyframes`
+  20% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40% {
+    transform: scale(1.2) rotate(-6deg);
+  }
+  60% {
+    transform: scale(1.3) rotate(3deg);
+  }
+  80% {
+    transform: scale(1.4) rotate(-6deg);
+  }
+`;
+
+const SCallScaleUpDown = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${callScaleUpDown} 1s linear infinite;
 `;
 
 const SCallEffect = styled.div`
@@ -34,8 +56,8 @@ const SCallEffect = styled.div`
   height: 160px;
   padding: 32px;
   border-radius: 50%;
-  background-color: #42a5f5;
-  box-shadow: 0 0 80px #42a5f5;
+  background-color: #ffa726;
+  box-shadow: 0 0 80px #ffa726;
 
   &::before,
   &::after {
