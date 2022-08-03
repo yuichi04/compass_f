@@ -55,11 +55,16 @@ const InductionAnswerCommon: FC = memo(() => {
             ))}
           </Box>
 
-          <Typography variant="h6" color="#fff" mb="16px">
-            ここに共通点を入力して下さい
-          </Typography>
-          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
-          <SForm onSubmit={handleSubmit} delay={info.length + 1}>
+          <SSlideInTopBox delay={info.length + 1}>
+            <Typography variant="h6" color="#fff" mb="16px">
+              ここに共通点を入力して下さい
+            </Typography>
+          </SSlideInTopBox>
+          <SFadeInBox delay={info.length + 5}>
+            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
+          </SFadeInBox>
+
+          <SForm onSubmit={handleSubmit} delay={info.length + 3}>
             <Box mr="16px" width="100%">
               <MuiTextField
                 variant="standard"
@@ -82,7 +87,7 @@ const InductionAnswerCommon: FC = memo(() => {
 
 export default InductionAnswerCommon;
 
-const slideIn = keyframes`
+const slideInLeft = keyframes`
   0% {
     transform: translateX(-16px);
   }
@@ -90,14 +95,18 @@ const slideIn = keyframes`
     opacity: 1;
   }
 `;
-const fadeIn = keyframes`
+const slideInTop = keyframes`
   0% {
-    transform: translateY(0);
+    transform: translateY(-32px);
   }
   100% {
-    box-shadow: 0 0 12px #fff;
     opacity: 1;
-    transform: translateY(32px);
+    transform: translateY(0);
+  }
+`;
+const fadeIn = keyframes`
+  100% {
+    opacity:1
   }
 `;
 
@@ -111,10 +120,21 @@ const SInfo = styled.li<StyleType>`
   background: #33bbad;
   border-radius: 8px;
   color: #fff;
-  animation: ${slideIn} 0.5s ${(props) => props.delay / 2}s ease-in-out forwards;
+  animation: ${slideInLeft} 0.5s ${(props) => props.delay / 2}s ease-in-out forwards;
   padding: 8px 12px;
   margin-bottom: 16px;
   margin-right: 16px;
+  opacity: 0;
+`;
+
+const SSlideInTopBox = styled.div<StyleType>`
+  animation: ${slideInTop} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
+  opacity: 0;
+  margin-bottom: 24px;
+`;
+
+const SFadeInBox = styled.div<StyleType>`
+  animation: ${fadeIn} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
   opacity: 0;
 `;
 
@@ -122,8 +142,9 @@ const SForm = styled.form<StyleType>`
   display: flex;
   align-items: center;
   background: #fff;
+  box-shadow: 0 0 12px #fff;
   border-radius: 8px;
   padding: 16px 24px;
-  animation: ${fadeIn} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
+  animation: ${slideInTop} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
   opacity: 0;
 `;

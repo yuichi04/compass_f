@@ -49,10 +49,6 @@ const InductionAnswerCheck: FC = memo(() => {
     }
   };
 
-  const handleClickNextScene = () => {
-    dispatch(setNextDynamicSceneAction(true));
-  };
-
   // 選んだ情報とOKにした情報の数が一致しているか確認
   useEffect(() => {
     if (info.length === infoLength) {
@@ -78,10 +74,10 @@ const InductionAnswerCheck: FC = memo(() => {
           <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
             論理が飛躍していないか確認しましょう
           </TitleWithTriangle>
-          <Typography variant="subtitle1" color="#fff" mb="16px">
+          <Typography variant="h6" color="#fff" mb="16px">
             【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？
             <br />
-            問題がなければその項目をクリックしてください
+            問題がなければその項目をクリックしてください。
           </Typography>
           {/* 結論 */}
           <Box
@@ -93,7 +89,7 @@ const InductionAnswerCheck: FC = memo(() => {
             boxShadow={isCheckedCommon ? "0 0 4px #fff" : "0 0 20px #00aa99"}
             p="4px 32px"
           >
-            <Typography variant="h6" component="div" color={isCheckedCommon ? "#555" : "#fff"} fontWeight={600}>
+            <Typography variant="h5" component="div" color={isCheckedCommon ? "#555" : "#fff"} fontWeight={600}>
               <Typography variant="subtitle1" fontWeight={600}>
                 結論
               </Typography>
@@ -182,43 +178,49 @@ const InductionAnswerCheck: FC = memo(() => {
             </>
           )}
           {isOpen && (
-            <Box
-              position="absolute"
-              top="50%"
-              left="50%"
-              width="100vw"
-              height="100vh"
-              bgcolor="rgba(255,255,255,0.3)"
-              sx={{ transform: "translate(-50%, -50%)" }}
-            >
+            <SFadeInBox>
               <Box
                 position="absolute"
                 top="50%"
                 left="50%"
-                width="300px"
-                height="200px"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                bgcolor="#fff"
-                borderRadius="8px"
-                boxShadow="0 0 20px #fff"
                 sx={{ transform: "translate(-50%, -50%)" }}
               >
                 <Box>
-                  <Typography mb="32px">論理に飛躍はありませんか？</Typography>
-                  <Box display="flex" alignItems="center" justifyContent="center">
-                    <MuiButton color="primary" variant="contained" onClick={handleClickNextScene} fullWidth>
-                      はい
-                    </MuiButton>
-                    <Box width="64px" />
-                    <MuiButton color="secondary" variant="contained" onClick={() => setIsOpen(false)} fullWidth>
-                      やり直す
-                    </MuiButton>
+                  <Box sx={{ transform: "translateX(24px)" }}>
+                    <TitleWithTriangle variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
+                      論理に飛躍はありませんか？
+                    </TitleWithTriangle>
+                  </Box>
+                  <KeyboardDoubleArrowDownIcon
+                    className="up-down"
+                    sx={{
+                      color: !isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726",
+                      fontSize: "64px",
+                      mb: "48px",
+                    }}
+                  />
+                  <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
+                    <PulseButton
+                      bgcolor="#00aa99"
+                      size="160px"
+                      onClick={() => dispatch(setNextDynamicSceneAction(true))}
+                    >
+                      <Typography variant="h6" color="#fff" fontWeight={600}>
+                        大丈夫
+                      </Typography>
+                    </PulseButton>
+                    <PulseButton bgcolor="#ccc" size="160px" onClick={() => setIsOpen(false)}>
+                      <Typography variant="h6" color="#fff" fontWeight={600}>
+                        やり直す
+                      </Typography>
+                    </PulseButton>
                   </Box>
                 </Box>
               </Box>
-            </Box>
+            </SFadeInBox>
           )}
         </SBox>
       )}
@@ -228,12 +230,6 @@ const InductionAnswerCheck: FC = memo(() => {
 
 export default InductionAnswerCheck;
 
-const SBox = styled.div`
-  position: relative;
-  width: 900px;
-  text-align: center;
-`;
-
 const slideIn = keyframes`
   0% {
     transform: translateX(-16px);
@@ -242,16 +238,26 @@ const slideIn = keyframes`
     opacity: 1;
   }
 `;
-
 const rotate = keyframes`
-0% {
-  transform: translate(-50%, -50%) scale(1.2) rotate(-3deg);
-  opacity: 0;
-}
-100% {
-  transform: translate(-50%, -50%) scale(1) rotate(-9deg);
-  opacity: 1;
-}
+  0% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-3deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(-9deg);
+    opacity: 1;
+  }
+`;
+const fadeIn = keyframes`
+  100% {
+    opacity: 100%;
+  }
+`;
+
+const SBox = styled.div`
+  position: relative;
+  width: 900px;
+  text-align: center;
 `;
 
 const SCheckbox = styled.input<CheckboxType>`
@@ -306,4 +312,16 @@ const SLabel = styled.label<LabelType>`
   &:hover {
     box-shadow: 0 0 16px #fff;
   }
+`;
+
+const SFadeInBox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(66, 66, 66, 0.9);
+  transform: translate(-50%, -50%);
+  animation: ${fadeIn} 0.3s 0.1s ease-in-out forwards;
+  opacity: 0;
 `;

@@ -52,10 +52,14 @@ const InductionAnswerConclusion: FC = memo(() => {
             </Typography>
           </SCommon>
 
-          <Typography variant="h6" color="#fff" mb="16px">
-            ここに解決案を入力して下さい
-          </Typography>
-          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
+          <SSlideInTopBox>
+            <Typography variant="h6" color="#fff" mb="16px">
+              ここに解決案を入力して下さい
+            </Typography>
+          </SSlideInTopBox>
+          <SFadeInBox>
+            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
+          </SFadeInBox>
 
           <SForm onSubmit={handleSubmit}>
             <Box mr="16px" width="100%">
@@ -80,7 +84,7 @@ const InductionAnswerConclusion: FC = memo(() => {
 
 export default InductionAnswerConclusion;
 
-const slideIn = keyframes`
+const slideInLeft = keyframes`
   0% {
     transform: translateX(-16px);
   }
@@ -88,14 +92,18 @@ const slideIn = keyframes`
     opacity: 1;
   }
 `;
-const fadeIn = keyframes`
+const slideInTop = keyframes`
   0% {
-    transform: translateY(0);
+    transform: translateY(-32px);
   }
   100% {
-    box-shadow: 0 0 12px #fff;
-    transform: translateY(32px);
+    transform: translateY(0);
     opacity: 1;
+  }
+`;
+const fadeIn = keyframes`
+  100% {
+    opacity:1
   }
 `;
 
@@ -104,7 +112,7 @@ const SBox = styled.div`
   text-align: center;
 `;
 const SCommon = styled.div`
-  animation: ${slideIn} 1s 1s ease-in-out forwards;
+  animation: ${slideInLeft} 1s 1s ease-in-out forwards;
   color: #fff;
   margin-bottom: 64px;
   opacity: 0;
@@ -114,8 +122,20 @@ const SForm = styled.form`
   display: flex;
   align-items: center;
   background: #fff;
+  box-shadow: 0 0 12px #fff;
   border-radius: 8px;
   padding: 16px 24px;
-  animation: ${fadeIn} 1s 2s ease-in-out forwards;
+  animation: ${slideInTop} 1s 3s ease-in-out forwards;
+  opacity: 0;
+`;
+
+const SSlideInTopBox = styled.div`
+  animation: ${slideInTop} 1s 2s ease-in-out forwards;
+  opacity: 0;
+  margin-bottom: 24px;
+`;
+
+const SFadeInBox = styled.div`
+  animation: ${fadeIn} 1s 4s ease-in-out forwards;
   opacity: 0;
 `;

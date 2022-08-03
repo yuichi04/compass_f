@@ -64,13 +64,13 @@ const InductionSelectOptions: FC = memo(() => {
       {isOpenScreen && (
         <SBox>
           <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="32px">
-            <TitleWithTriangle variant="h5" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+            <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
               解決案を考えるための情報を3つ以上選択しましょう
             </TitleWithTriangle>
-            <Typography variant="subtitle2" color="#fff" mb="8px">
+            <Typography variant="h6" color="#fff" mb="8px">
               選択数が多いと結論を導くのが難しくなりますが、その分、確実性の高い結論を導けます。
             </Typography>
-            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#fff", fontSize: "48px" }} />
+            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
           </Box>
           <Box component="ul" mb="64px">
             {options.map((option, index) => (

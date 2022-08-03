@@ -60,7 +60,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "boy/dansei_05_g.png", role: "boy" },
+    character: { src: CharacterImage.boy.closeMouse, role: "boy" },
     lines: ["あ、もしもし。", "すみません。相談なんですが・・・"],
   },
   {
@@ -70,7 +70,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "boy/dansei_05_g.png", role: "boy" },
+    character: { src: CharacterImage.boy.closeMouse, role: "boy" },
     lines: ["はい。えーっと、英語を話せるようになるにはどうしたら良いでしょうか。"],
   },
   {
@@ -90,7 +90,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "boy/dansei_05_g.png", role: "boy" },
+    character: { src: CharacterImage.boy.closeMouse, role: "boy" },
     lines: ["はい。よろしくお願いします。"],
   },
   {
@@ -125,7 +125,7 @@ const staticSceneData: StaticSceneDataType[] = [
       },
     ],
     lines: [
-      "帰納法の最初のステップは「複数の情報を揃える」でしたね。",
+      "帰納法の最初のステップは「複数の情報を揃える」ことでしたね。",
       "本当ならデータを集めるところからですが、今回はこのデータからいくつかピックアップして考えていきましょう。",
     ],
     phase: "info",
@@ -172,12 +172,6 @@ const staticSceneData: StaticSceneDataType[] = [
   // ここに動的シーンが挿入されます。
   {
     section: 1,
-    options: [
-      {
-        progress: true,
-        label: "解決案を案内する",
-      },
-    ],
     character: { src: CharacterImage.guide.smile, role: "guide" },
     lines: ["わかりました。", "それではいよいよお客様に解決案をご案内しましょう。"],
   },
@@ -188,7 +182,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "boy/dansei_05_h.png", role: "boy" },
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
     lines: ["はい。"],
   },
   {
@@ -202,8 +196,25 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "boy/dansei_05_h.png", role: "boy" },
+    options: [
+      {
+        progress: true,
+        label: "解決案を案内する",
+      },
+    ],
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
     lines: ["はい。よろしくお願いします。"],
+  },
+  {
+    section: 1,
+    options: [
+      {
+        progress: true,
+        label: "解決案を案内する",
+      },
+    ],
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
+    lines: ["なるほど"],
   },
 ];
 

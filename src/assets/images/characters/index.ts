@@ -8,4 +8,8 @@ export const CharacterImage = {
     smile: require("./guide/guide_smile.png"),
     surprise: require("./guide/guide_surprise.png"),
   },
+  boy: {
+    closeMouse: require("./boy/dansei_05_g.png"),
+    openMouse: require("./boy/dansei_05_h.png"),
+  },
 };

@@ -44,29 +44,29 @@ const SPulseButton = styled.button<Props>`
   box-shadow: 0 0 20px ${(props) => props.bgcolor};
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: ${(props) => props.color};
-  transition: all 0.2s;
   ${(props) => props.disabled && "opacity: 0.3"};
 
-  &::before,
-  &::after {
-    content: "";
-    display: ${(props) => (props.disabled ? "none" : "block")};
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    border: 1px solid ${(props) => props.bgcolor};
-    border-radius: 50%;
-    box-sizing: border-box;
-    pointer-events: none;
-    animation: ${pulsate} 2s linear infinite;
-  }
+  &:hover {
+    &::before,
+    &::after {
+      content: "";
+      display: ${(props) => (props.disabled ? "none" : "block")};
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+      border: 1px solid ${(props) => props.bgcolor};
+      border-radius: 50%;
+      box-sizing: border-box;
+      animation: ${pulsate} 2s linear infinite;
+    }
 
-  &::after {
-    animation-delay: 1s;
+    &::after {
+      animation-delay: 1s;
+    }
   }
 `;
