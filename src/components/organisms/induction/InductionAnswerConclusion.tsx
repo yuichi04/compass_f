@@ -46,7 +46,7 @@ const InductionAnswerConclusion: FC = memo(() => {
               borderRadius="8px"
               color="#fff"
               fontWeight={600}
-              p="4px 0"
+              p="8px 0"
             >
               共通点：{common}
             </Typography>
@@ -55,7 +55,7 @@ const InductionAnswerConclusion: FC = memo(() => {
           <Typography variant="h6" color="#fff" mb="16px">
             ここに解決案を入力して下さい
           </Typography>
-          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#fff", fontSize: "48px" }} />
+          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
 
           <SForm onSubmit={handleSubmit}>
             <Box mr="16px" width="100%">

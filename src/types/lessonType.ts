@@ -41,7 +41,7 @@ export type StaticSceneDataType = {
 };
 
 // フェーズの型定義
-export type PhaseType = "info" | "common" | "conclusion" | "check" | "";
+export type PhaseType = "info" | "common" | "conclusion" | "check" | "guide" | "";
 
 // 選択肢の型定義
 export type OptionType = {

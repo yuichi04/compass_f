@@ -24,7 +24,7 @@ const TextAnimation: React.FC<Props> = React.memo(({ children, ...props }) => {
       text: {
         value: text,
       },
-      ease: "none",
+      ease: "linear",
     });
   };
 

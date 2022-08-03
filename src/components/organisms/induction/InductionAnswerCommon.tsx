@@ -58,7 +58,7 @@ const InductionAnswerCommon: FC = memo(() => {
           <Typography variant="h6" color="#fff" mb="16px">
             ここに共通点を入力して下さい
           </Typography>
-          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#fff", fontSize: "48px" }} />
+          <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
           <SForm onSubmit={handleSubmit} delay={info.length + 1}>
             <Box mr="16px" width="100%">
               <MuiTextField

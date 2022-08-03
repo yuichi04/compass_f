@@ -1,16 +1,17 @@
 import { StaticSceneDataType } from "../../types/lessonType";
+import { CharacterImage } from "../../assets/images/characters";
 
 const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
-    character: { src: "guide/guide_normal_a.png", role: "guide" },
+    character: { src: CharacterImage.guide.normalA, role: "guide" },
     lines: ["ようこそ、何でも相談サポートセンターへ。", "私はこのセンターで管理者をしている亀井と申します。"],
   },
   {
     section: 1,
     lines: [
-      "さっそくですが、あなたにはこれからこのセンターでオペレータをやっていただきます。",
-      "仕事内容としては、お客様のご相談に対して何かしらの解決案を案内するというものになります。",
+      "さっそくですが、あなたにはこれからこのセンターでオペレーターをやっていただきます。",
+      "仕事内容としては、お客様のご相談に対して何かしら解決案を案内するというものになります。",
     ],
   },
   {
@@ -28,7 +29,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "guide/guide_smile_a.png", role: "guide" },
+    character: { src: CharacterImage.guide.smile, role: "guide" },
     lines: ["はい。", "よろしくお願いします。"],
   },
   {
@@ -38,7 +39,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "guide/guide_normal_a.png", role: "guide" },
+    character: { src: CharacterImage.guide.normalA, role: "guide" },
     lines: ["あ、さっそく電話が鳴りましたね。", "それでは、電話を取って対応を始めましょう。"],
   },
   {
@@ -94,7 +95,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    character: { src: "guide/guide_normal_b.png", role: "guide" },
+    character: { src: CharacterImage.guide.surprise, role: "guide" },
     lines: [
       "英語が上達するための方法・・・",
       "たしか、英語を第二言語として習得した人に関するデータがあったような・・・",
@@ -102,14 +103,17 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
+    character: { src: CharacterImage.guide.normalA, role: "guide" },
     lines: ["・・・・・ありました。", "どうやら、英語の勉強方法についてのデータのようですね。"],
   },
   {
     section: 1,
+    character: { src: CharacterImage.guide.closeEyes, role: "guide" },
     lines: ["ふむふむ。", "これならスライドで学んだ帰納法を用いれば何か解決案を導けそうですね。"],
   },
   {
     section: 1,
+    character: { src: CharacterImage.guide.normalB, role: "guide" },
     lines: ["それでは、英語が上達するにはどうしたら良いか帰納法を用いて考えていきましょう。"],
   },
   {
@@ -126,36 +130,33 @@ const staticSceneData: StaticSceneDataType[] = [
     ],
     phase: "info",
   },
+  // ここに動的シーンが挿入されます。
   {
     section: 1,
     options: [
       {
         progress: true,
-        label: "共通点を入力する",
+        label: "共通点を見つける",
       },
     ],
-    lines: ["（共通することは何だろう・・・）"],
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それでは次に揃えた情報から共通点を見つけていきましょう。"],
     phase: "common",
   },
-  {
-    section: 1,
-    lines: ["（次のステップは「共通点から結論を導き出す」だから。）"],
-  },
+  // ここに動的シーンが挿入されます。
   {
     section: 1,
     options: [
       {
         progress: true,
-        label: "結論を導く",
+        label: "解決案を考える",
       },
     ],
-    lines: [
-      "（帰納法の最後のステップは確か、",
-      "「共通点から結論を導き出して、論理に飛躍がないか確認すること」だから、",
-      "まずは結論を導こう。）",
-    ],
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それでは次に共通点から解決案を考えていきましょう。"],
     phase: "conclusion",
   },
+  // ここに動的シーンが挿入されます。
   {
     section: 1,
     options: [
@@ -164,14 +165,25 @@ const staticSceneData: StaticSceneDataType[] = [
         label: "論理に飛躍がないか確認する",
       },
     ],
-    lines: [
-      "（最後に論理に飛躍がないか確認しよう。",
-      "「結論→共通点→情報」の順に「なぜならば」で文章を繋げると・・・）",
-    ],
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それでは最後に正しい解決案を導けているか、論理の飛躍を確認しましょう。"],
     phase: "check",
+  },
+  // ここに動的シーンが挿入されます。
+  {
+    section: 1,
+    options: [
+      {
+        progress: true,
+        label: "解決案を案内する",
+      },
+    ],
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それではいよいよお客様に解決案をご案内しましょう。"],
   },
   {
     section: 1,
+    character: { src: "", role: "user" },
     lines: ["お客様。"],
   },
   {
@@ -181,6 +193,7 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
+    character: { src: "", role: "user" },
     lines: ["お待ちいただきありがとうございます。"],
   },
   {

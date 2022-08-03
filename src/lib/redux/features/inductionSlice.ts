@@ -3,6 +3,7 @@ import { LessonType, SelectableInfoType, UtilsKeyType } from "../../../types/les
 import { staticSceneData } from "../../../dataset/induction";
 import { RootState } from "../store";
 import selectableInfo from "../../../dataset/induction/selectableInfo";
+import { CharacterImage } from "../../../assets/images/characters";
 
 const initialState: LessonType = {
   sectionId: 0, // 現在のセクション
@@ -74,11 +75,7 @@ const inductionSlice = createSlice({
 
     // ユーザーの回答から動的シーンを生成する処理
     setNextDynamicSceneAction: (state, action: { payload: string | number[] | boolean }) => {
-      // 生成するシーンのキャラクターをユーザーに固定
-      state.characterInfo = { src: "", role: "user" };
-
       // 現在のフェーズに応じた処理を実行する
-      // ユーザーの回答を保存 → セリフを生成 → 選択肢を生成
       switch (state.scene.phase) {
         case "info":
           if (Array.isArray(action.payload)) {
@@ -91,13 +88,10 @@ const inductionSlice = createSlice({
               }
             });
             state.userAnswers.info = newSelectedInfo;
-            // let newLines = [""];
-            // state.userAnswers.info.forEach((info) => {
-            //   newLines.push(`・${info.text}`);
-            // });
-            // state.scene.lines = [...newLines, "（情報はこれで良いかな？）"];
+            // 表示キャラクターを設定
+            state.characterInfo = { src: CharacterImage.guide.normalB, role: "guide" };
             // セリフを生成
-            state.scene.lines = ["（情報はこれで良いかな？）"];
+            state.scene.lines = ["情報は選べましたか？"];
             // 選択肢を生成
             state.scene.options = [
               {
@@ -115,17 +109,19 @@ const inductionSlice = createSlice({
           if (typeof action.payload === "string") {
             // ユーザーの回答を保存
             state.userAnswers.common = action.payload;
+            // 表示キャラクターを設定
+            state.characterInfo = { src: CharacterImage.guide.normalB, role: "guide" };
             // セリフを生成
-            state.scene.lines = [`（共通点は「${state.userAnswers.common}」で良いかな？）`];
+            state.scene.lines = [`共通点は「${state.userAnswers.common}」ですね。`, "これで大丈夫ですか？"];
             // 選択肢を生成
             state.scene.options = [
               {
                 progress: false,
-                label: "考え直す。",
+                label: "考え直します。",
               },
               {
                 progress: true,
-                label: "大丈夫。",
+                label: "大丈夫です。",
               },
             ];
           }
@@ -134,30 +130,37 @@ const inductionSlice = createSlice({
           if (typeof action.payload === "string") {
             // ユーザーの回答を保存
             state.userAnswers.conclusion = action.payload;
+            // 表示キャラクターを設定
+            state.characterInfo = { src: CharacterImage.guide.normalB, role: "guide" };
             // セリフを生成
-            state.scene.lines = [`（結論は「${state.userAnswers.conclusion}」で大丈夫かな？）`];
+            state.scene.lines = [`結論は「${state.userAnswers.conclusion}」ですね。`, "これで大丈夫ですか？"];
             // 選択肢を生成
             state.scene.options = [
               {
                 progress: false,
-                label: "考え直す。",
+                label: "考え直します。",
               },
               {
                 progress: true,
-                label: "大丈夫。",
+                label: "大丈夫です。",
               },
             ];
           }
           break;
         case "check":
           if (typeof action.payload === "boolean") {
+            state.allowProgressScene = true;
+            // ユーザーの回答を保存
             state.userAnswers.check = action.payload;
-            // セリフの生成
+            // 表示キャラクターを設定
+            state.characterInfo = { src: "", role: "user" };
+            // セリフを生成
             if (state.userAnswers.check) {
-              state.scene.lines = ["この解決案なら大丈夫そう。"];
-              state.scene.options = [{ progress: true, label: "解決案を案内する。" }];
+              state.scene.lines = ["論理の飛躍も大丈夫そうです。"];
             }
           }
+          break;
+        case "guide":
           break;
       }
 
@@ -171,10 +174,10 @@ const inductionSlice = createSlice({
       state.isOpenScreenForAnswers = false;
     },
 
-    // 回答をやり直す処理（最初と最後のステップ以外）
+    // 回答をやり直す処理
     returnToPreviousPhaseAction: (state) => {
       state.scene.options = [];
-      // phaseを1つ前に戻す
+      // 1つ前のフェーズに戻す
       switch (state.history) {
         case "info":
           state.scene.phase = "info";
@@ -190,7 +193,7 @@ const inductionSlice = createSlice({
       state.isOpenScreenForAnswers = true;
     },
 
-    // フェーズがinfoなら選択可能な情報（選択肢）を保存する
+    // phaseがinfoなら選択可能な情報をstateに保存する
     getInfoPhaseOptionsAction: (state) => {
       if (state.scene.phase === "info") {
         const newInfo = selectableInfo.filter((info) => info.section === state.sectionId);
@@ -201,6 +204,8 @@ const inductionSlice = createSlice({
     // 各UIの表示・非表示
     showUtilsAction: (state, action: { payload: { key: UtilsKeyType; value: boolean } }) => {
       const { key, value } = action.payload;
+      // 回答画面表示中はシーンの進行と各UIの表示ができないようにする
+      state.allowProgressScene = false;
       state.isOpenSlide = false;
       state.isOpenAnswers = false;
       state.isOpenDocuments = false;
@@ -230,11 +235,12 @@ const inductionSlice = createSlice({
     setAllowProgressSceneAction: (state) => {
       // 選択肢が設定されていなければ許可
       if (!state.scene.options) state.allowProgressScene = true;
-      // 最後のシーンは不許可
+
+      // 最後のシーンの場合は許可しない（次のシーンがないため）
       if (state.isLastScene) state.allowProgressScene = false;
     },
 
-    // 初期化
+    // 初期化処理
     initializeSceneAction: () => {
       return { ...initialState };
     },

@@ -11,13 +11,7 @@ const InductionCharacterImage: React.FC = React.memo(() => {
   return (
     <>
       {character?.role === "guide" && (
-        <Box
-          component="img"
-          className="fade-in"
-          sx={{ width: "50vw", opacity: 0 }}
-          src={require(`../../../assets/images/characters/${character.src}`)}
-          alt="guide"
-        />
+        <Box component="img" className="fade-in" sx={{ width: "50vw", opacity: 0 }} src={character.src} alt="guide" />
       )}
       {character?.role === "customer" && (
         <Box

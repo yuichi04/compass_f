@@ -29,12 +29,10 @@ const Scene: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
-  const id = induction.sceneId;
   const isOpenSlide = induction.isOpenSlide;
   const isOpenUserAnswers = induction.isOpenAnswers;
   const isOpenScreen = induction.isOpenScreenForAnswers;
   const allowStartingExercise = induction.allowStartingExercise;
-  const allowProgressScene = induction.allowProgressScene;
   const phase = induction.scene.phase;
 
   // シーンの切り替え処理
@@ -59,7 +57,7 @@ const Scene: FC = memo(() => {
         <Box zIndex={999} position="absolute" top="0" left="0" width="100vw" height="100vh" bgcolor="#2a2f36" />
       ) : null}
 
-      {/* 情報選択画面 */}
+      {/* 回答画面 */}
       <SScreenForAnswers className={isOpenScreen ? "fade-in-screen" : "fade-out-screen"}>
         {phase === "info" && <InductionSelectOptions />}
         {phase === "common" && <InductionAnswerCommon />}
@@ -83,7 +81,7 @@ const Scene: FC = memo(() => {
             <InductionUserAnswers />
           </SUserAnswers>
           {/* ボタンやツールバーを除く操作画面 */}
-          <SContainer onClick={() => allowProgressScene && dispatch(setNextStaticSceneAction(id))}>
+          <SContainer>
             {/* キャラクター表示関連 */}
             <SCharacter>
               <InductionCharacterImage />

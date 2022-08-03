@@ -176,7 +176,7 @@ export default function VerticalTabs() {
             だけで結論を導いてしまっています。これでは根拠が弱く、確実性の高い結論とは言えません。
             <Typography variant="subtitle1" sx={{ color: "#1665c0" }} display="flex" alignItems="center" mt="4px">
               <CircleOutlinedIcon sx={{ mr: "4px" }} />
-              情報の偏りが少ない例
+              情報に偏りが少ない例
             </Typography>
             <Typography
               component="ol"
@@ -196,7 +196,7 @@ export default function VerticalTabs() {
                   情報
                   <ArrowCircleRightIcon sx={{ color: "#555", fontSize: "16px", ml: "8px" }} />
                 </Typography>
-                「テレビでウォーターサーバーが人気だと紹介されていた」「同僚でミネラルウォーターを購入している人が増えた」「あるネットアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」
+                「テレビでウォーターサーバーが人気だと紹介されていた」「職場でミネラルウォーターを購入する人が増えた」「あるネットアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」
               </li>
               <li>
                 <Typography
@@ -245,7 +245,7 @@ export default function VerticalTabs() {
             <Typography component="span" color="primary.main">
               できるだけ抽象度が高いこと
             </Typography>
-            を共通点にするようにしましょう。抽象度が高くなればなるほど多くの物事に対して言える結論に、具体的になればなるほど少ない物事に対してしか言えない結論になります。ただし、あまりに抽象度が高いことを共通点にしてしまうと、誤った結論を導いてしまうため注意が必要です。
+            を共通点にするようにしましょう。ただし、あまりに抽象度が高いことを共通点にしてしまうと、誤った結論を導いてしまうため注意が必要です。抽象度が高くなればなるほど多くの物事に共通する結論になり、具体的になればなるほど少ない物事のみに共通する結論になります。
             <Typography variant="subtitle1" sx={{ color: "#c62828" }} display="flex" alignItems="center" mt="4px">
               <ClearIcon sx={{ mr: "4px" }} />
               抽象度が高すぎる例
@@ -395,7 +395,7 @@ export default function VerticalTabs() {
             <Typography variant="subtitle1" fontWeight={600}>
               （例）
             </Typography>
-            <Box p="8px" mb="16px" bgcolor="#fff8e1" textAlign="center">
+            <Box p="8px" mb="16px" bgcolor="#e0f2f1" textAlign="center">
               <Typography color="#004d40" fontWeight={600}>
                 結論
               </Typography>

@@ -7,10 +7,13 @@ import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux
 import { TitleWithTriangle } from "../../molecules";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 import DoneOutlineOutlinedIcon from "@mui/icons-material/DoneOutlineOutlined";
-import { PulseButton } from "../../atoms";
+import { MuiButton, PulseButton } from "../../atoms";
 
 type LabelType = {
   delay: number;
+  isCheckedCommon?: boolean;
+  isCheckedInfo?: boolean;
+  fontSize?: string;
 };
 
 type CheckboxType = {
@@ -76,9 +79,10 @@ const InductionAnswerCheck: FC = memo(() => {
             論理が飛躍していないか確認しましょう
           </TitleWithTriangle>
           <Typography variant="subtitle1" color="#fff" mb="16px">
-            【1.結論→共通点】【2.共通点→各情報】と順番に文章を繋ぐと意味が通じる文章になっていますか？
+            【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？
+            <br />
+            問題がなければその項目をクリックしてください
           </Typography>
-
           {/* 結論 */}
           <Box
             display="flex"
@@ -96,12 +100,22 @@ const InductionAnswerCheck: FC = memo(() => {
               {answers.conclusion}
             </Typography>
           </Box>
-
-          <KeyboardDoubleArrowDownIcon
-            className={isCheckedCommon ? "" : "up-down"}
-            sx={{ color: isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px", mb: "16px" }}
-          />
-
+          <Box position="relative" m="0 auto 16px" width="160px" className={isCheckedCommon ? "" : "up-down"}>
+            <KeyboardDoubleArrowDownIcon
+              sx={{ color: isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px" }}
+            />
+            <Typography
+              position="absolute"
+              right="0"
+              top="50%"
+              variant="subtitle2"
+              color="#ffa726"
+              display={isCheckedCommon ? "none" : "block"}
+              sx={{ transform: "translateY(-50%)" }}
+            >
+              クリック
+            </Typography>
+          </Box>
           {/* 共通点 */}
           <Box display="flex" alignItems="center" mb="16px">
             <SCheckbox
@@ -111,7 +125,7 @@ const InductionAnswerCheck: FC = memo(() => {
               fontSize="48px"
               onChange={() => setIsCheckedCommon(!isCheckedCommon)}
             />
-            <SLabel htmlFor="common-item" delay={1}>
+            <SLabel htmlFor="common-item" delay={1} isCheckedCommon={isCheckedCommon}>
               <Typography
                 variant="h6"
                 component="div"
@@ -127,14 +141,25 @@ const InductionAnswerCheck: FC = memo(() => {
               </Typography>
             </SLabel>
           </Box>
-
           {/* 情報 */}
           {isCheckedCommon && (
             <>
-              <KeyboardDoubleArrowDownIcon
-                className={isCheckedCommon ? "up-down" : ""}
-                sx={{ color: isCheckedCommon ? "#ffa726" : "rgba(255,255,255,0.1)", fontSize: "48px", mb: "16px" }}
-              />
+              <Box position="relative" m="0 auto 16px" width="160px" className={!isCheckedCommon ? "" : "up-down"}>
+                <KeyboardDoubleArrowDownIcon
+                  sx={{ color: !isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px" }}
+                />
+                <Typography
+                  position="absolute"
+                  right="0"
+                  top="50%"
+                  variant="subtitle2"
+                  color="#ffa726"
+                  display={!isCheckedCommon ? "none" : "block"}
+                  sx={{ transform: "translateY(-50%)" }}
+                >
+                  クリック
+                </Typography>
+              </Box>
               <Grid container display="flex" justifyContent="center">
                 {answers.info.map((data, index) => (
                   <Grid item xs={4} display="flex" key={index} p="0 8px 16px">
@@ -146,7 +171,7 @@ const InductionAnswerCheck: FC = memo(() => {
                       value={data.id}
                       onChange={(e) => handleChangeInfo(e)}
                     />
-                    <SLabel htmlFor={"info" + index} delay={index + 0.5}>
+                    <SLabel htmlFor={"info" + index} delay={index + 0.5} isCheckedInfo={isCheckedInfo} fontSize="16px">
                       <Typography variant="subtitle1" fontWeight={600}>
                         {data.text}
                       </Typography>
@@ -167,19 +192,31 @@ const InductionAnswerCheck: FC = memo(() => {
               sx={{ transform: "translate(-50%, -50%)" }}
             >
               <Box
-                width="300px"
-                height="200px"
-                bgcolor="#fff"
                 position="absolute"
                 top="50%"
                 left="50%"
+                width="300px"
+                height="200px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                bgcolor="#fff"
+                borderRadius="8px"
+                boxShadow="0 0 20px #fff"
                 sx={{ transform: "translate(-50%, -50%)" }}
               >
-                <Typography>この解決案を案内しますか？</Typography>
-                <PulseButton size="48px" bgcolor="#00aa99" color="#fff" onClick={handleClickNextScene}>
-                  はい
-                </PulseButton>
-                <button onClick={() => setIsOpen(false)}>やり直す</button>
+                <Box>
+                  <Typography mb="32px">論理に飛躍はありませんか？</Typography>
+                  <Box display="flex" alignItems="center" justifyContent="center">
+                    <MuiButton color="primary" variant="contained" onClick={handleClickNextScene} fullWidth>
+                      はい
+                    </MuiButton>
+                    <Box width="64px" />
+                    <MuiButton color="secondary" variant="contained" onClick={() => setIsOpen(false)} fullWidth>
+                      やり直す
+                    </MuiButton>
+                  </Box>
+                </Box>
               </Box>
             </Box>
           )}
@@ -256,7 +293,7 @@ const SLabel = styled.label<LabelType>`
   align-items: center;
   justify-content: center;
   background: #fff;
-  box-shadow: 0 0 4px #fff;
+  box-shadow: 0 0 8px #fff;
   border-radius: 8px;
   color: #555;
   cursor: pointer;
@@ -267,6 +304,6 @@ const SLabel = styled.label<LabelType>`
   transition: all 0.2s;
 
   &:hover {
-    box-shadow: 0 0 8px 2px #fff;
+    box-shadow: 0 0 16px #fff;
   }
 `;

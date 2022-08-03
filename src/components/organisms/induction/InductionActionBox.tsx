@@ -21,53 +21,68 @@ const InductionActionBox: FC = memo(() => {
   const displaySpeed = induction.displaySpeedOfLines;
   const phase = induction.scene.phase;
 
+  // 選択肢の属性を設定する処理
+  const handleClickNextScene = (optionProgressAttribute: boolean, id: number) => {
+    if (optionProgressAttribute) {
+      switch (phase) {
+        case "info":
+        case "common":
+        case "conclusion":
+        case "check":
+          // 回答画面を表示
+          dispatch(showUtilsAction({ key: "screenForAnswers", value: true }));
+          break;
+        default:
+          // 次のシーンに進行
+          dispatch(setNextStaticSceneAction(id));
+      }
+    } else {
+      // 1つ前のシーンに戻る
+      dispatch(returnToPreviousPhaseAction());
+    }
+  };
+
   return (
     <>
-      {/* 選択肢の表示 */}
-      {options?.map((option, index) => (
-        <Box
-          key={index}
-          className="slide-in-right"
-          position="absolute"
-          right="0"
-          bottom={`${240 + (options.length - 1) * 64 - index * 64}px`}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            // セリフが全部表示されてから0.2秒後に表示する
-            animationDelay: `${linesLength * displaySpeed + 0.2 + index / 2}s`,
-            opacity: 0,
-          }}
-          // シーンを進行するか、回答画面を表示するかを分岐
-          onClick={() =>
-            option.progress
-              ? phase === "info" || phase === "common" || phase === "conclusion" || phase === "check"
-                ? dispatch(showUtilsAction({ key: "screenForAnswers", value: true }))
-                : dispatch(setNextStaticSceneAction(id))
-              : dispatch(returnToPreviousPhaseAction())
-          }
-        >
-          <SOptionBox>
-            <SOptionInner>
-              <MoreHorizIcon
-                fontSize="large"
-                sx={{ bgcolor: "#ececec", borderRadius: "100%", color: "#555", p: "4px", mr: "8px" }}
-              />
-              <Typography
-                variant="h6"
-                color="#ececec"
-                fontWeight={600}
-                fontFamily={"'Noto Sans JP', sans-serif"}
-                letterSpacing={1.5}
-                p="4px 16px 8px 0"
-                sx={{ textShadow: "0 0 4px #333" }}
-              >
-                {option.label}
-              </Typography>
-            </SOptionInner>
-          </SOptionBox>
-        </Box>
-      ))}
+      {options &&
+        // 選択肢の表示
+        options?.map((option, index) => (
+          <Box
+            key={index}
+            className="slide-in-right"
+            position="absolute"
+            right="0"
+            bottom={`${240 + (options.length - 1) * 64 - index * 64}px`}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              animationDelay: `${linesLength * displaySpeed + 0.2 + index / 2}s`,
+              opacity: 0,
+              cursor: "pointer",
+            }}
+            onClick={() => handleClickNextScene(option.progress, id)}
+          >
+            <SOptionBox>
+              <SOptionInner>
+                <MoreHorizIcon
+                  fontSize="large"
+                  sx={{ bgcolor: "#ececec", borderRadius: "100%", color: "#555", p: "4px", mr: "8px" }}
+                />
+                <Typography
+                  variant="h6"
+                  color="#ececec"
+                  fontWeight={600}
+                  fontFamily={"'Noto Sans JP', sans-serif"}
+                  letterSpacing={1.5}
+                  p="4px 16px 8px 0"
+                  sx={{ textShadow: "0 0 4px #333" }}
+                >
+                  {option.label}
+                </Typography>
+              </SOptionInner>
+            </SOptionBox>
+          </Box>
+        ))}
     </>
   );
 });
@@ -100,7 +115,6 @@ const SOptionBox = styled.div`
 
   &:hover {
     box-shadow: 0 0 12px #fff;
-    cursor: pointer;
 
     &::before {
       content: "";

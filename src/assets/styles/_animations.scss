@@ -1,3 +1,22 @@
+.typing-animation {
+  animation-name: typingAnimation;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+@keyframes typingAnimation {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    opacity: 1;
+  }
+}
+
 // 画面中央から円が広がってフェードインするアニメーション
 .expand-center {
   animation-name: img-wrap;
@@ -49,12 +68,12 @@
   }
 }
 .slide-in-left {
-  animation-name: slideUpAnime;
+  animation-name: slideInLeftAnime;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
-@keyframes slideUpAnime {
+@keyframes slideInLeftAnime {
   0% {
     opacity: 0;
     transform: translateX(-20%);
@@ -64,15 +83,15 @@
   }
 }
 .slide-in-right {
-  animation-name: slideUpAnime;
+  animation-name: slideInRightAnime;
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
-@keyframes slideUpAnime {
+@keyframes slideInRightAnime {
   0% {
     opacity: 0;
-    transform: translateX(10%);
+    transform: translateX(20%);
   }
   100% {
     opacity: 1;

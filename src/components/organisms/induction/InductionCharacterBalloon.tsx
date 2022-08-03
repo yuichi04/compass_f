@@ -1,9 +1,13 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { TextAnimation } from "..";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
-import { inductionSelector, setAllowProgressSceneAction } from "../../../lib/redux/features/inductionSlice";
+import {
+  inductionSelector,
+  setAllowProgressSceneAction,
+  setNextStaticSceneAction,
+} from "../../../lib/redux/features/inductionSlice";
 import { userSelector } from "../../../lib/redux/features/userSlice";
 
 const InductionCharacterBalloon: FC = memo(() => {
@@ -11,19 +15,26 @@ const InductionCharacterBalloon: FC = memo(() => {
   const user = useAppSelector(userSelector);
   const username = user.name;
   const induction = useAppSelector(inductionSelector);
+  const id = induction.sceneId;
+  const options = induction.scene.options;
   const role = induction.characterInfo.role;
   const lines = induction.scene.lines;
   const displaySpeed = induction.displaySpeedOfLines;
   const allowProgress = induction.allowProgressScene;
 
+  // 次のシーンに進む処理
+  const handleClickNextScene = () => {
+    if (!allowProgress) return;
+    dispatch(setNextStaticSceneAction(id));
+  };
+
   // 全てのセリフが表示されたら、次のシーンへの進行を許可する
   useEffect(() => {
     // セリフの文字数を取得
     const linesLength = lines.join("").length;
-    // シーン進行を許可する処理
-    const allowProgress = () => dispatch(setAllowProgressSceneAction());
     // 全てのセリフが表示されるまでの時間を計算し、その時間+0.25秒が経過したら次のシーンに進められるようにする。
-    setTimeout(allowProgress, linesLength * displaySpeed * 1000 + 250);
+    const timer = setTimeout(() => dispatch(setAllowProgressSceneAction()), linesLength * displaySpeed * 1000 + 250);
+    return () => clearTimeout(timer);
   }, [dispatch, lines, displaySpeed]);
 
   return (
@@ -33,10 +44,11 @@ const InductionCharacterBalloon: FC = memo(() => {
       width="100vw"
       height="200px"
       borderTop="double 5px rgba(255,255,255,0.2)"
+      onClick={handleClickNextScene}
       sx={{
         background:
           "radial-gradient(circle, rgba(55, 55, 55, 0.8) 75%, rgba(159, 159, 159, 0.45) 90%, rgba(255, 255, 255, 0.3))",
-        cursor: "default",
+        cursor: options ? "default" : "pointer",
       }}
     >
       <Box position="relative" width="900px" height="100%" m="0 auto" color="#fff" display="flex" alignItems="center">
@@ -79,11 +91,11 @@ const InductionCharacterBalloon: FC = memo(() => {
         </Box>
 
         {/* セリフ */}
-        <Box height="100%" width="100%" p="16px">
+        <Box position="relative" height="100%" width="100%" p="24px 16px 16px">
           <Typography
             variant="h6"
             component="div"
-            color="#ececec"
+            color="#fff"
             letterSpacing={1.5}
             fontFamily={"'Noto Sans JP', sans-serif"}
             sx={{ textShadow: "0 0 4px #333" }}
@@ -102,7 +114,7 @@ const InductionCharacterBalloon: FC = memo(() => {
             ))}
           </Typography>
           {allowProgress && (
-            <Box className="up-down">
+            <Box position="absolute" bottom="16px" right="0" className="up-down">
               <Box className="fade-in" display="flex" alignItems="flex-end" justifyContent="flex-end">
                 <Typography
                   variant="h6"
