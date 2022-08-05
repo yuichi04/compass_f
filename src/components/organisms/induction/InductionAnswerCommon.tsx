@@ -1,13 +1,12 @@
 import { FC, memo, useState } from "react";
 import styled from "styled-components";
-import { Typography, Box } from "@mui/material";
+import { TextField, Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import SendIcon from "@mui/icons-material/Send";
-import { MuiTextField, PulseButton } from "../../atoms";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
-import { TitleWithTriangle } from "../../molecules";
-import { SlideInBox } from "../../molecules";
+import { PulseButton } from "../../atoms";
+import { SlideInBox, TitleWithTriangleIcon } from "../../molecules";
 
 const InductionAnswerCommon: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -34,9 +33,9 @@ const InductionAnswerCommon: FC = memo(() => {
 
   return (
     <SBox>
-      <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+      <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
         選んだ情報から共通点を見つけましょう
-      </TitleWithTriangle>
+      </TitleWithTriangleIcon>
       <Typography variant="h6" color="#fff" mb="32px">
         {sectionId === 1 && "同じ特徴や性質は何でしょうか？"}
       </Typography>
@@ -74,7 +73,7 @@ const InductionAnswerCommon: FC = memo(() => {
       <SlideInBox direction="top" distance={32} duration={1.6} delay={info.length / 2 + 1.6}>
         <SForm onSubmit={handleSubmit}>
           <Box mr="16px" width="100%">
-            <MuiTextField
+            <TextField
               variant="standard"
               onChange={handleChange}
               value={answer}

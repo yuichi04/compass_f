@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { LinkTo, MuiButton } from "../../atoms";
+import { LinkTo, PrimaryButton } from "../../atoms";
 import Logo from "../../../assets/images/logo.svg";
 
 const Header: React.FC = React.memo(() => {
@@ -17,13 +17,13 @@ const Header: React.FC = React.memo(() => {
           </LinkTo>
           <Box ml="auto" display="flex" alignItems="center">
             <LinkTo to="/signup">
-              <MuiButton variant="contained">無料でユーザー登録</MuiButton>
+              <PrimaryButton variant="contained">無料でユーザー登録</PrimaryButton>
             </LinkTo>
             <div style={{ width: "12px" }} />
             <LinkTo to="/login">
-              <MuiButton variant="contained" color="secondary">
+              <PrimaryButton variant="contained" color="secondary">
                 ログインはこちら
-              </MuiButton>
+              </PrimaryButton>
             </LinkTo>
           </Box>
         </Toolbar>

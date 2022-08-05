@@ -8,7 +8,7 @@ const Input = styled("input")({
   display: "none",
 });
 
-const MuiUploadButton: React.FC = React.memo(() => {
+const UploadButton: React.FC = React.memo(() => {
   return (
     <>
       <Input accept="image/*" id="icon-button-file" type="file" value="" onChange={() => null} />
@@ -23,4 +23,4 @@ const MuiUploadButton: React.FC = React.memo(() => {
   );
 });
 
-export default MuiUploadButton;
+export default UploadButton;

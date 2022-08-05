@@ -115,7 +115,7 @@ const InductionCharacterBalloon: FC = memo(() => {
           </Typography>
           {allowProgress && (
             <Box position="absolute" bottom="16px" right="0" className="up-down">
-              <FadeInOutBox fadeIn display="flex" align="flex-end">
+              <FadeInOutBox fadeIn display="flex" alignItems="flex-end">
                 <Typography
                   variant="h6"
                   color="#fff"

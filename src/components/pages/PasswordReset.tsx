@@ -3,8 +3,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import LockResetIcon from "@mui/icons-material/LockReset";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { LinkTo, MuiButton } from "../atoms";
-import { IconWithPageTitle, MuiTextFieldWithAdornment } from "../molecules";
+import { LinkTo, PrimaryButton } from "../atoms";
+import { IconWithPageTitle, TextFieldWithAdornment } from "../molecules";
 import { usePasswordReset } from "../../hooks/usePasswordReset";
 
 const PasswordReset: React.FC = React.memo(() => {
@@ -20,7 +20,7 @@ const PasswordReset: React.FC = React.memo(() => {
         ご登録のメールアドレスを入力してメールを送信してください。
       </SText>
       <SFormBox onSubmit={(e) => handleSubmit(e, email)}>
-        <MuiTextFieldWithAdornment
+        <TextFieldWithAdornment
           icon={<EmailIcon />}
           label="メールアドレス"
           type="email"
@@ -31,9 +31,9 @@ const PasswordReset: React.FC = React.memo(() => {
           margin="dense"
         />
         <div className="module-spacer-md" />
-        <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
+        <PrimaryButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           リセットメールを送信
-        </MuiButton>
+        </PrimaryButton>
       </SFormBox>
       <SRight>
         <LinkTo to="/login">ログインページ</LinkTo>に戻る

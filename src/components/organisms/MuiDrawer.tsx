@@ -15,7 +15,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { useLogOut } from "../../hooks/useLogOut";
-import { LinkTo, MuiAvatar } from "../atoms";
+import { LinkTo, Avatar } from "../atoms";
 
 type Props = {
   username: string;
@@ -45,7 +45,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <MuiAvatar src={src} />
+                <Avatar src={src} bgcolor="#00aa99" />
               </ListItemIcon>
               <ListItemText primary={username} secondary={email} />
             </ListItemButton>

@@ -1,21 +1,18 @@
 import React from "react";
-import { MenuItem, TextField } from "@mui/material";
+import { TextField, MenuItem } from "@mui/material";
+import { TextFieldTypes } from "../../types/formTypes";
 
 type Props = {
-  label: string;
   options: {
     value: string;
     label: string;
   }[];
-  fullWidth?: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  category: string;
-};
+} & TextFieldTypes;
 
 const SelectBox: React.FC<Props> = React.memo((props) => {
-  const { options, label, fullWidth, onChange, category } = props;
+  const { options } = props;
   return (
-    <TextField select label={label} variant="outlined" value={category} onChange={onChange} fullWidth={fullWidth}>
+    <TextField select {...props}>
       {options.map((option) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}

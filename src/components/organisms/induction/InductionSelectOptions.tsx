@@ -2,15 +2,14 @@ import { FC, memo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import { PulseButton } from "../../atoms";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
   inductionSelector,
   getInfoPhaseOptionsAction,
   setNextDynamicSceneAction,
 } from "../../../lib/redux/features/inductionSlice";
-import { FadeInOutBox, TitleWithTriangle } from "../../molecules";
-import { SlideInBox } from "../../molecules";
+import { PulseButton } from "../../atoms";
+import { FadeInOutBox, TitleWithTriangleIcon, SlideInBox } from "../../molecules";
 
 const InductionSelectOptions: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -58,9 +57,9 @@ const InductionSelectOptions: FC = memo(() => {
   return (
     <SBox>
       <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="8px">
-        <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+        <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
           解決案を考えるための情報を3つ以上選択しましょう
-        </TitleWithTriangle>
+        </TitleWithTriangleIcon>
         <Typography variant="h6" color="#fff">
           選択数が多いほど解決案を導く難易度は上がりますが、確実性は高くなります。慣れている方はより多く選択してみましょう。
         </Typography>
@@ -84,7 +83,7 @@ const InductionSelectOptions: FC = memo(() => {
         ))}
       </Box>
 
-      <FadeInOutBox fadeIn display="flex" align="center" justify="center">
+      <FadeInOutBox fadeIn display="flex" alignItems="center" justifyContent="center">
         <PulseButton size="100px" bgcolor="#33bbad" color="#fff" disabled={disabled} onClick={handleSubmit}>
           <Typography fontWeight={600} sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
             決定

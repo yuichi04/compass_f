@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { MuiUploadButton, MuiAvatar } from "../atoms";
+import { Avatar } from "../atoms";
+import { UploadButton } from ".";
 
 type Props = {
   src?: string;
@@ -11,10 +12,10 @@ const AvatarAndUploadButton: React.FC<Props> = React.memo((props) => {
   return (
     <SBox>
       <SAvatarWrap>
-        <MuiAvatar src={src} size="240px" />
+        <Avatar src={src} size="240px" bgcolor="#00aa99" />
       </SAvatarWrap>
       <SButtonWrap>
-        <MuiUploadButton />
+        <UploadButton />
       </SButtonWrap>
     </SBox>
   );

@@ -21,7 +21,7 @@ export const useContactBorad = () => {
 
   type Key = "email" | "category" | "content";
   const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: Key) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, key: Key) => {
       setValues({
         ...values,
         [key]: e.target.value,

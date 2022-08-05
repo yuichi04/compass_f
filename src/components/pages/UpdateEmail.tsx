@@ -1,5 +1,5 @@
-import { Typography } from "@mui/material";
 import React, { useEffect } from "react";
+import { Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { useUpdateProfile } from "../../hooks/useUpdateProfile";
 import { MuiContainer } from "../layouts";
@@ -19,7 +19,7 @@ const UpdateEmail: React.FC = () => {
 
   return (
     <MuiContainer maxWidth="sm">
-      <Typography variant="h3" textAlign="center">
+      <Typography variant="h3" align="center">
         メールアドレス更新中
       </Typography>
     </MuiContainer>

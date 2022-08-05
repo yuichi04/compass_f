@@ -9,8 +9,8 @@ import { LogInParams } from "../../types/userTypes";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
 import { logOutAction, userSelector } from "../../lib/redux/features/userSlice";
 import { deleteAccount, logIn } from "../../lib/api/userApi";
-import { MuiButton, LinkTo, ErrorText } from "../atoms";
-import { IconWithPageTitle, MuiTextFieldWithAdornment } from "../molecules";
+import { PrimaryButton, LinkTo, ErrorText } from "../atoms";
+import { IconWithPageTitle, TextFieldWithAdornment } from "../molecules";
 import MuiContaier from "../layouts/MuiContainer";
 import { validations } from "../../modules/validations";
 import { hideLoadingAction, showLoadingAction } from "../../lib/redux/features/lodingSlice";
@@ -95,7 +95,7 @@ const Unsubscribe: React.FC = React.memo(() => {
       {error && <ErrorText text={errorMessage} />}
       <p>パスワードを入力してください</p>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <MuiTextFieldWithAdornment
+        <TextFieldWithAdornment
           icon={<KeyIcon />}
           type="password"
           value={password}
@@ -106,9 +106,9 @@ const Unsubscribe: React.FC = React.memo(() => {
           error={!isValid}
         />
         <div className="module-spacer-md" />
-        <MuiButton color="error" variant="contained" fullWidth type="submit" disabled={!isValid}>
+        <PrimaryButton color="error" variant="contained" fullWidth type="submit" disabled={!isValid}>
           退会する
-        </MuiButton>
+        </PrimaryButton>
       </form>
     </MuiContaier>
   );

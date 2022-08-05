@@ -12,7 +12,7 @@ const SlideSectionContent: React.FC<Props> = ({ children, ...props }) => {
   const { title, icon, color } = props;
   return (
     <Box component="section" mt="16px">
-      <Box component="div">
+      <div>
         <Paper
           elevation={8}
           sx={{
@@ -31,7 +31,7 @@ const SlideSectionContent: React.FC<Props> = ({ children, ...props }) => {
             {icon}
           </Box>
         </Paper>
-      </Box>
+      </div>
       {children}
     </Box>
   );

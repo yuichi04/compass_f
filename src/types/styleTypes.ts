@@ -6,6 +6,14 @@ export type MarginTypes = {
   ml?: string;
 };
 
+export type PaddingTypes = {
+  p?: string;
+  pt?: string;
+  pr?: string;
+  pb?: string;
+  pl?: string;
+};
+
 export type PositionTypes = {
   t?: string;
   r?: string;
@@ -14,7 +22,7 @@ export type PositionTypes = {
 };
 
 export type FlexTypes = {
-  flexDirection?: "column" | "reverse";
-  justify?: "center" | "space-between" | "space-around";
-  align?: "center" | "flex-end" | "flex-start";
+  flexDirection?: "column";
+  justifyContent?: "center" | "space-between" | "space-around";
+  alignItems?: "center" | "flex-end" | "flex-start";
 };

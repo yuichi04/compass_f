@@ -7,8 +7,8 @@ import { ListItemText } from "@mui/material";
 import styled from "styled-components";
 import { useSendAuthEmail } from "../../hooks/useSendAuthEmail";
 import { useModal } from "../../hooks/useModal";
-import { MuiButton, LinkTo, MuiCheckBox, ErrorText } from "../atoms";
-import { ChipWithText, IconWithPageTitle, MuiTextFieldWithAdornment } from "../molecules";
+import { PrimaryButton, LinkTo, CheckBox, ErrorText } from "../atoms";
+import { ChipWithText, IconWithPageTitle, TextFieldWithAdornment } from "../molecules";
 import { MuiModalConfirmation } from "../organisms";
 import { MuiContainer } from "../layouts";
 
@@ -69,7 +69,7 @@ const SignUp: React.FC = React.memo(() => {
         <SFormItem key={item.text}>
           <ChipWithText text={item.text} label="必須" size="small" color="error" variant="outlined" />
           <ListItemText secondary={item.subText} />
-          <MuiTextFieldWithAdornment
+          <TextFieldWithAdornment
             icon={item.icon}
             fullWidth
             value={item.value}
@@ -94,16 +94,16 @@ const SignUp: React.FC = React.memo(() => {
         <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
           {formItems()}
           <SAgreement>
-            <MuiCheckBox onChange={() => setIsCheckedAgree(!isCheckedAgree)} checked={isCheckedAgree} />
+            <CheckBox onChange={() => setIsCheckedAgree(!isCheckedAgree)} checked={isCheckedAgree} />
             <div>
               <p onClick={() => handleOpen("terms")}>利用規約</p>と
               <p onClick={() => handleOpen("privacypolicy")}>プライバシーポリシー</p>
             </div>
             に同意する
           </SAgreement>
-          <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
+          <PrimaryButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
             認証メールを送信する
-          </MuiButton>
+          </PrimaryButton>
         </SFormBox>
         <SRight>
           既にご登録済みですか？<LinkTo to="/login">こちら</LinkTo>からログイン

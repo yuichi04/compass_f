@@ -4,7 +4,7 @@ import { Typography, Box, Grid } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
-import { TitleWithTriangle } from "../../molecules";
+import { TitleWithTriangleIcon } from "../../molecules";
 import { PulseButton } from "../../atoms";
 import { ScreenForBlackoutEvent } from "../../molecules";
 
@@ -68,9 +68,9 @@ const InductionAnswerCheck: FC = memo(() => {
   return (
     <>
       <SBox>
-        <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+        <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
           論理が飛躍していないか確認しましょう
-        </TitleWithTriangle>
+        </TitleWithTriangleIcon>
         <Typography variant="h6" color="#fff" mb="16px">
           【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？
           <br />
@@ -172,9 +172,9 @@ const InductionAnswerCheck: FC = memo(() => {
         <Box display="flex" alignItems="center" justifyContent="center">
           <Box textAlign="center">
             <Box sx={{ transform: "translateX(24px)" }}>
-              <TitleWithTriangle variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
+              <TitleWithTriangleIcon variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
                 論理に飛躍はありませんか？
-              </TitleWithTriangle>
+              </TitleWithTriangleIcon>
             </Box>
             <KeyboardDoubleArrowDownIcon
               className="up-down"

@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from "@mui/material/Checkbox";
+import { Checkbox as MuiCheckbox } from "@mui/material";
 
 type Props = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,8 +9,8 @@ type Props = {
   defaultChecked?: boolean;
 };
 
-const MuiCheckBox: React.FC<Props> = React.memo((props) => {
-  return <Checkbox {...props} />;
+const CheckBox: React.FC<Props> = React.memo((props) => {
+  return <MuiCheckbox {...props} />;
 });
 
-export default MuiCheckBox;
+export default CheckBox;

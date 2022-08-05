@@ -4,8 +4,8 @@ import KeyIcon from "@mui/icons-material/Key";
 import LoginIcon from "@mui/icons-material/Login";
 import styled from "styled-components";
 import { MuiContainer } from "../layouts";
-import { MuiButton, LinkTo, ErrorText } from "../atoms";
-import { IconWithPageTitle, MuiTextFieldWithAdornment } from "../molecules";
+import { PrimaryButton, LinkTo, ErrorText } from "../atoms";
+import { IconWithPageTitle, TextFieldWithAdornment } from "../molecules";
 import { useLogIn } from "../../hooks/useLogIn";
 
 const LogIn: React.FC = React.memo(() => {
@@ -25,7 +25,7 @@ const LogIn: React.FC = React.memo(() => {
         },
       ].map((item) => (
         <SFormItem key={item.label}>
-          <MuiTextFieldWithAdornment
+          <TextFieldWithAdornment
             icon={item.icon}
             label={item.label}
             type={item.type}
@@ -47,9 +47,9 @@ const LogIn: React.FC = React.memo(() => {
       {error && <ErrorText text="メールアドレスまたはパスワードが異なります" />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         {formItems()}
-        <MuiButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
+        <PrimaryButton variant="contained" color="primary" fullWidth disabled={!isValid} type="submit">
           ログイン
-        </MuiButton>
+        </PrimaryButton>
       </SFormBox>
       <SRight>
         <p>

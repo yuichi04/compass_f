@@ -2,14 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { UserParams } from "../../../types/userTypes";
 
-// テスト用
-import { Icons } from "../../../assets/images/icons";
-
 const initialState: UserParams = {
   name: "",
   email: "",
   createdAt: "",
-  image: Icons.user01,
+  image: "",
   isSignedIn: false,
   admin: false,
 };

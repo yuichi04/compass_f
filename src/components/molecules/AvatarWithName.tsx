@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { MuiAvatar, LinkTo } from "../atoms";
+import { Avatar, LinkTo } from "../atoms";
 
 type Props = {
   name: string;
@@ -25,7 +25,7 @@ const AvatarWithText: React.FC<Props> = React.memo((props) => {
         </Typography>
       </LinkTo>
       <LinkTo to="/profile">
-        <MuiAvatar src={src} />
+        <Avatar src={src} bgcolor="#00aa99" />
       </LinkTo>
     </SFlex>
   );

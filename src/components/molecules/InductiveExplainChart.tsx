@@ -3,30 +3,6 @@ import styled from "styled-components";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Paper, Box, Typography } from "@mui/material";
 
-const SArrowDown = styled.div`
-  position: relative;
-  width: 3px;
-  height: 40px;
-  background: #999;
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 3px;
-    height: 16px;
-    background: #999;
-    transform-origin: bottom;
-  }
-  &::before {
-    transform: rotateZ(-45deg);
-  }
-  &::after {
-    transform: rotateZ(45deg);
-  }
-`;
-
 const InductiveExplainChart: React.FC = () => {
   return (
     <Paper elevation={8} sx={{ position: "relative", p: "40px 0 24px", m: "0 auto" }}>
@@ -114,3 +90,27 @@ const InductiveExplainChart: React.FC = () => {
 };
 
 export default InductiveExplainChart;
+
+const SArrowDown = styled.div`
+  position: relative;
+  width: 3px;
+  height: 40px;
+  background: #999;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3px;
+    height: 16px;
+    background: #999;
+    transform-origin: bottom;
+  }
+  &::before {
+    transform: rotateZ(-45deg);
+  }
+  &::after {
+    transform: rotateZ(45deg);
+  }
+`;

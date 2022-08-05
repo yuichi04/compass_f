@@ -1,17 +1,20 @@
-import { FC, memo } from "react";
+import React, { FC, memo } from "react";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
+import { MarginTypes } from "../../types/styleTypes";
 
-type Props = {
-  variant?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle1" | "subtitle2";
-  color?: string;
+type TriangleIconType = {
   triangleColor: string;
-  fontWeight?: number;
-  children: React.ReactNode;
-  mb?: string;
 };
+type Props = {
+  variant?: "body2" | "body1" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle1" | "subtitle2";
+  children?: React.ReactNode;
+  color?: string;
+  fontWeight?: number;
+} & TriangleIconType &
+  MarginTypes;
 
-const TitleWithTriangle: FC<Props> = memo(({ children, ...props }) => {
+const TitleWithTriangleIcon: FC<Props> = memo(({ children, ...props }) => {
   const { variant, color, triangleColor, fontWeight, mb } = props;
   return (
     <Typography variant={variant} color={color} fontWeight={fontWeight} mb={mb}>
@@ -20,9 +23,9 @@ const TitleWithTriangle: FC<Props> = memo(({ children, ...props }) => {
   );
 });
 
-export default TitleWithTriangle;
+export default TitleWithTriangleIcon;
 
-const STitle = styled.span<Props>`
+const STitle = styled.span<TriangleIconType>`
   position: relative;
   &::before {
     content: "";

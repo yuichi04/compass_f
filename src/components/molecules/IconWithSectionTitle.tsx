@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-import { Icon } from "@mui/material";
+import { Icon, Box } from "@mui/material";
 import { SectionTitle } from "../atoms";
 
 type Props = {
@@ -12,17 +11,11 @@ type Props = {
 const IconWithSectionTitle: React.FC<Props> = React.memo((props) => {
   const { title, icon, iconColor } = props;
   return (
-    <SFlex>
+    <Box display="flex" alignItems="center" mb="16px">
       <Icon color={iconColor} fontSize="medium" component={icon} sx={{ mr: "8px" }} />
       <SectionTitle title={title} />
-    </SFlex>
+    </Box>
   );
 });
 
 export default IconWithSectionTitle;
-
-const SFlex = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-`;

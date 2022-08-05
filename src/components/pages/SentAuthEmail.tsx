@@ -3,7 +3,7 @@ import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
 import { Box } from "@mui/system";
 import { MuiContainer } from "../layouts";
 import { IconWithPageTitle } from "../molecules";
-import { MuiButton } from "../atoms";
+import { PrimaryButton } from "../atoms";
 
 const SentAuthEmail: React.FC = React.memo(() => {
   const style = {
@@ -22,9 +22,9 @@ const SentAuthEmail: React.FC = React.memo(() => {
         <br />
         <p>※コードが届かない場合は再送信をお試しください</p>
         <br />
-        <MuiButton variant="contained" color="primary" fullWidth>
+        <PrimaryButton variant="contained" color="primary" fullWidth>
           コードを再送信する
-        </MuiButton>
+        </PrimaryButton>
       </Box>
     </MuiContainer>
   );

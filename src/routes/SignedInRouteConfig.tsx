@@ -13,7 +13,7 @@ import {
   Induction,
 } from "../components/pages";
 import UpdateEmail from "../components/pages/UpdateEmail";
-import BackToMain from "../components/utils/BackToTop";
+import GoToTop from "../components/utils/GoToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
 
 const SignedInRouteConfig: React.FC = () => {
@@ -24,8 +24,8 @@ const SignedInRouteConfig: React.FC = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/updateemail/*" element={<UpdateEmail />} />
-        <Route path="/login" element={<BackToMain />} />
-        <Route path="/signup" element={<BackToMain />} />
+        <Route path="/login" element={<GoToTop />} />
+        <Route path="/signup" element={<GoToTop />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
         <Route path="/lessonlist" element={<LessonList />} />

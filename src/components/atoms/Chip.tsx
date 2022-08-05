@@ -1,5 +1,5 @@
 import React from "react";
-import Chip from "@mui/material/Chip";
+import { Chip as MuiChip } from "@mui/material";
 
 type Props = {
   label: string;
@@ -8,8 +8,8 @@ type Props = {
   variant?: "filled" | "outlined";
 };
 
-const MuiChip: React.FC<Props> = React.memo((props) => {
-  return <Chip {...props} />;
+const Chip: React.FC<Props> = React.memo((props) => {
+  return <MuiChip {...props} />;
 });
 
-export default MuiChip;
+export default Chip;

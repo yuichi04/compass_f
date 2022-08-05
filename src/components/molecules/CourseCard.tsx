@@ -1,6 +1,6 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import { LinkTo, MuiChip } from "../atoms";
+import { LinkTo, Chip } from "../atoms";
 import { Box, Paper } from "@mui/material";
 
 type Props = {
@@ -31,7 +31,7 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
         }}
       >
         <Box mb="16px">
-          <MuiChip label={grade} color={color} size="small" />
+          <Chip label={grade} color={color} size="small" />
         </Box>
         <Typography
           textAlign="center"

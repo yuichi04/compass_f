@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const BackToTop: React.FC = () => {
+const GoToTop: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,4 +15,4 @@ const BackToTop: React.FC = () => {
   return null;
 };
 
-export default BackToTop;
+export default GoToTop;

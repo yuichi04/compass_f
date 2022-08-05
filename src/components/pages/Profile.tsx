@@ -6,12 +6,12 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
 import EventIcon from "@mui/icons-material/Event";
-import { Box, Divider, Grid, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Divider, Grid, IconButton, List, ListItem, ListItemText, Typography, TextField } from "@mui/material";
 import { useAppSelector } from "../../lib/redux/hooks";
 import { userSelector } from "../../lib/redux/features/userSlice";
 import MuiContaier from "../layouts/MuiContainer";
-import { MuiButton, LinkTo, MuiTextField } from "../atoms";
-import { AvatarAndUploadButton, MuiTextFieldWithAdornment, IconWithPageTitle } from "../molecules";
+import { PrimaryButton, LinkTo } from "../atoms";
+import { AvatarAndUploadButton, TextFieldWithAdornment, IconWithPageTitle } from "../molecules";
 
 // テスト用アイコンのインポート
 import { usePasswordUpdate } from "../../hooks/usePasswordUpdate";
@@ -44,7 +44,8 @@ const Profile: React.FC = React.memo(() => {
             </Box>
             {edit.name ? (
               <form onSubmit={(e) => handleSubmitNewUserProfile(e, "name")}>
-                <MuiTextField
+                <TextField
+                  type="text"
                   value={values.name}
                   onChange={(e) => handleChangeUserProfile(e, "name")}
                   fullWidth
@@ -52,13 +53,17 @@ const Profile: React.FC = React.memo(() => {
                   placeholder="20文字以内で入力してください"
                 />
                 <Box display="flex" alignItems="cneter" justifyContent="right" mt="8px">
-                  <MuiButton type="submit" variant="contained" disabled={!valid.name}>
+                  <PrimaryButton type="submit" variant="contained" disabled={!valid.name}>
                     更新
-                  </MuiButton>
+                  </PrimaryButton>
                   <Box width="8px" />
-                  <MuiButton variant="contained" color="secondary" onClick={() => handleClickEditMode("name", false)}>
+                  <PrimaryButton
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleClickEditMode("name", false)}
+                  >
                     キャンセル
-                  </MuiButton>
+                  </PrimaryButton>
                 </Box>
               </form>
             ) : (
@@ -77,7 +82,7 @@ const Profile: React.FC = React.memo(() => {
             </Box>
             {edit.email ? (
               <form onSubmit={(e) => handleSubmitNewUserProfile(e, "email")}>
-                <MuiTextField
+                <TextField
                   value={values.email}
                   onChange={(e) => handleChangeUserProfile(e, "email")}
                   fullWidth
@@ -88,13 +93,17 @@ const Profile: React.FC = React.memo(() => {
                   ※メールアドレス変更には新しいメールアドレスを認証する必要があります。
                 </Typography>
                 <Box display="flex" alignItems="cneter" justifyContent="right" mt="8px">
-                  <MuiButton type="submit" variant="contained" disabled={!valid.email}>
+                  <PrimaryButton type="submit" variant="contained" disabled={!valid.email}>
                     認証メールを送信
-                  </MuiButton>
+                  </PrimaryButton>
                   <Box width="8px" />
-                  <MuiButton variant="contained" color="secondary" onClick={() => handleClickEditMode("email", false)}>
+                  <PrimaryButton
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => handleClickEditMode("email", false)}
+                  >
                     キャンセル
-                  </MuiButton>
+                  </PrimaryButton>
                 </Box>
               </form>
             ) : (
@@ -126,7 +135,7 @@ const Profile: React.FC = React.memo(() => {
             sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
           >
             <ListItemText primary="新しいパスワード（半角英数字8文字以上）" />
-            <MuiTextFieldWithAdornment
+            <TextFieldWithAdornment
               icon={<KeyIcon />}
               fullWidth
               value={passwords.newPassword}
@@ -142,7 +151,7 @@ const Profile: React.FC = React.memo(() => {
             sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}
           >
             <ListItemText primary="新しいパスワードの確認" />
-            <MuiTextFieldWithAdornment
+            <TextFieldWithAdornment
               icon={<KeyIcon />}
               fullWidth
               value={passwords.newPasswordConfirmation}
@@ -155,9 +164,9 @@ const Profile: React.FC = React.memo(() => {
             />
           </ListItem>
           <ListItem sx={{ marginTop: "16px" }}>
-            <MuiButton variant="outlined" type="submit" fullWidth disabled={!isValidPassword}>
+            <PrimaryButton variant="outlined" type="submit" fullWidth disabled={!isValidPassword}>
               変更する
-            </MuiButton>
+            </PrimaryButton>
           </ListItem>
         </List>
       </SPasswordForm>
@@ -169,9 +178,9 @@ const Profile: React.FC = React.memo(() => {
       <SCenterBox>
         <p style={{ marginBottom: "16px" }}>退会申請は以下のボタンから進めてください</p>
         <LinkTo to="/unsubscribe">
-          <MuiButton variant="contained" color="error">
+          <PrimaryButton variant="contained" color="error">
             退会を申請する
-          </MuiButton>
+          </PrimaryButton>
         </LinkTo>
       </SCenterBox>
       <Divider />

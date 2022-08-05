@@ -206,7 +206,6 @@ const staticSceneData: StaticSceneDataType[] = [
     character: { src: CharacterImage.guide.normalA, role: "guide" },
     lines: [
       "論理の飛躍は「結論→共通点」「共通点→各情報」がそれぞれ「主張→根拠」という構造になっているかで確認できます。",
-      "あなたが導き出した解決案に違和感はありませんか？",
     ],
     phase: "check",
   },

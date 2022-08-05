@@ -1,9 +1,9 @@
 import React from "react";
-import { Typography, Box } from "@mui/material";
+import { TextField, Typography, Box } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import MuiContaier from "../layouts/MuiContainer";
-import { ChipWithText, IconWithPageTitle, MuiTextFieldWithAdornment, SelectBox } from "../molecules";
-import { MuiButton, MuiTextField } from "../atoms";
+import { ChipWithText, IconWithPageTitle, TextFieldWithAdornment, SelectBox } from "../molecules";
+import { PrimaryButton } from "../atoms";
 import useContactBorad from "../../hooks/useContactBorad";
 
 const options = [
@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
             <ChipWithText text="メールアドレス" label="任意" size="small" color="info" variant="outlined" />
           </Box>
           <Box mb="16px">
-            <MuiTextFieldWithAdornment
+            <TextFieldWithAdornment
               onChange={(e) => handleChange(e, "email")}
               value={values.email}
               fullWidth
@@ -40,7 +40,7 @@ const Contact: React.FC = () => {
           <Box mb="16px">
             <SelectBox
               label="- 選択してください -"
-              category={values.category}
+              value={values.category}
               options={options}
               onChange={(e) => handleChange(e, "category")}
               fullWidth
@@ -50,7 +50,8 @@ const Contact: React.FC = () => {
             <ChipWithText text="お問い合わせ内容" label="必須" size="small" color="error" variant="outlined" />
           </Box>
           <Box mb="16px">
-            <MuiTextField
+            <TextField
+              type="text"
               onChange={(e) => handleChange(e, "content")}
               value={values.content}
               multiline
@@ -58,9 +59,9 @@ const Contact: React.FC = () => {
               fullWidth
             />
           </Box>
-          <MuiButton type="submit" variant="contained" disabled={!isValid} fullWidth>
+          <PrimaryButton type="submit" variant="contained" disabled={!isValid} fullWidth>
             送信する
-          </MuiButton>
+          </PrimaryButton>
         </form>
       </MuiContaier>
     </>

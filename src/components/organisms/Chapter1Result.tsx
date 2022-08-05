@@ -1,7 +1,7 @@
 // import React from "react";
 // import styled, { css } from "styled-components";
 // import { Box, Divider, Grid, Typography } from "@mui/material";
-// import { MuiButton } from "../atoms";
+// import { PrimaryButton } from "../atoms";
 // import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
 // import { chapter1Selector, setSceneAction } from "../../lib/redux/features/chapter1Slice";
 // import { userSelector } from "../../lib/redux/features/userSlice";
@@ -20,9 +20,9 @@
 //         <SResult>
 //           <SInner className="expand-center">
 //             <Box textAlign="right" mb="16px">
-//               <MuiButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
+//               <PrimaryButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
 //                 次に進む
-//               </MuiButton>
+//               </PrimaryButton>
 //             </Box>
 //             <Grid container mb="32px" bgcolor="#fff8e1" p="16px" borderRadius="8px">
 //               <Grid item xs={5.8} textAlign="center">
@@ -113,9 +113,9 @@
 //               </Grid>
 //             </Grid>
 //             <Box textAlign="right">
-//               <MuiButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
+//               <PrimaryButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
 //                 次に進む
-//               </MuiButton>
+//               </PrimaryButton>
 //             </Box>
 //           </SInner>
 //         </SResult>

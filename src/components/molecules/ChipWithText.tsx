@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MuiChip } from "../atoms";
+import { Chip } from "../atoms";
 
 type Props = {
   label: string;
@@ -13,7 +13,7 @@ type Props = {
 const ChipWithText: React.FC<Props> = React.memo(({ text, ...props }) => {
   return (
     <SFlex>
-      <MuiChip {...props} />
+      <Chip {...props} />
       <SText>{text}</SText>
     </SFlex>
   );

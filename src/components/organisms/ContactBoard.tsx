@@ -6,9 +6,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Grid } from "@mui/material";
+import { TextField, Grid } from "@mui/material";
 import { theme } from "../../assets/theme";
-import { LinkTo, MuiButton, MuiTextField } from "../atoms";
+import { LinkTo, PrimaryButton } from "../atoms";
 import { SelectBox } from "../molecules";
 import useContactBorad from "../../hooks/useContactBorad";
 
@@ -24,10 +24,10 @@ const ContactBoard: React.FC = React.memo(() => {
   return (
     <SBoard>
       <SContactButton>
-        <MuiButton color="secondary" onClick={() => setIsOpen(true)}>
+        <PrimaryButton color="secondary" onClick={() => setIsOpen(true)}>
           <HelpOutlineIcon fontSize="small" sx={{ mr: "4px" }} />
           お問い合わせ
-        </MuiButton>
+        </PrimaryButton>
       </SContactButton>
 
       <Modal open={isOpen} onClose={() => setIsOpen(false)} sx={{ zIndex: 998 }}>
@@ -56,13 +56,13 @@ const ContactBoard: React.FC = React.memo(() => {
                 <SelectBox
                   label="- 選択してください -"
                   options={options}
-                  category={values.category}
+                  value={values.category}
                   onChange={(e) => handleChange(e, "category")}
                   fullWidth
                 />
                 <br />
                 <br />
-                <MuiTextField
+                <TextField
                   type="text"
                   multiline
                   rows={10}
@@ -73,9 +73,9 @@ const ContactBoard: React.FC = React.memo(() => {
                 />
                 <br />
                 <br />
-                <MuiButton type="submit" variant="contained" fullWidth disabled={!isValid}>
+                <PrimaryButton type="submit" variant="contained" fullWidth disabled={!isValid}>
                   送信する
-                </MuiButton>
+                </PrimaryButton>
               </form>
             </Grid>
           </Grid>

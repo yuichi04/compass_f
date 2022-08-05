@@ -4,13 +4,13 @@ import { MarginTypes, PositionTypes } from "../../types/styleTypes";
 
 type Props = {
   children: React.ReactNode;
-  position?: "relative" | "absolute";
+  delay?: number;
   direction: "top" | "right" | "bottom" | "left";
+  display?: "block" | "inline-block";
   distance: number;
   duration?: number;
-  delay?: number;
   key?: number;
-  display?: "block" | "inline-block";
+  position?: "relative" | "absolute";
 } & MarginTypes &
   PositionTypes;
 

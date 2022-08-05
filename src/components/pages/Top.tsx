@@ -9,7 +9,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { LinkTo, MuiButton } from "../atoms";
+import { LinkTo, PrimaryButton } from "../atoms";
 import { CourseCard, IconWithPageTitle } from "../molecules";
 import LogicalThinking from "../../assets/images/illustrations/logicalthinking.svg";
 import Comunicate from "../../assets/images/illustrations/comunicate.svg";
@@ -65,14 +65,14 @@ const Top: React.FC = () => {
                   </Typography>
                   <Box textAlign="center">
                     <LinkTo to="/signup">
-                      <MuiButton variant="contained">
+                      <PrimaryButton variant="contained">
                         <Box display="flex" alignItems="center">
                           <Typography variant="h6" component="span">
                             さっそく始める
                           </Typography>
                           <ArrowCircleRightIcon sx={{ fontSize: "24px", ml: "4px" }} />
                         </Box>
-                      </MuiButton>
+                      </PrimaryButton>
                     </LinkTo>
                   </Box>
                 </div>
@@ -235,12 +235,12 @@ const Top: React.FC = () => {
           ロジカルシンキングを身につけて世界を広げよう
         </Typography>
         <LinkTo to="/signup">
-          <MuiButton variant="contained">
+          <PrimaryButton variant="contained">
             <Typography variant="h6" display="flex" alignItems="center">
               無料でユーザー登録
               <LanguageIcon sx={{ fontSize: "22px", ml: "4px" }} />
             </Typography>
-          </MuiButton>
+          </PrimaryButton>
         </LinkTo>
       </Box>
     </>

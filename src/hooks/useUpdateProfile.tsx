@@ -30,7 +30,7 @@ export const useUpdateProfile = () => {
 
   // ユーザーの入力値をステートに保管
   const handleChangeUserProfile = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, key: Key) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, key: Key) => {
       setValues({
         ...values,
         [key]: e.target.value,
