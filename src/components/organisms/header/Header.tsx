@@ -2,8 +2,8 @@ import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { LinkTo, MuiButton } from "../atoms";
-import Logo from "../../assets/images/logo.svg";
+import { LinkTo, MuiButton } from "../../atoms";
+import Logo from "../../../assets/images/logo.svg";
 
 const Header: React.FC = React.memo(() => {
   return (

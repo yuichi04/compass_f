@@ -241,12 +241,8 @@ export default function VerticalTabs() {
             共通点を見つける
           </Typography>
           <Typography className="fade-in" variant="subtitle1" component="div">
-            このステップでは、全ての情報に共通する特徴や性質などを見つけます。このとき、
-            <Typography component="span" color="primary.main">
-              できるだけ抽象度が高いこと
-            </Typography>
-            を共通点にするようにしましょう。ただし、あまりに抽象度が高いことを共通点にしてしまうと、誤った結論を導いてしまうため注意が必要です。抽象度が高くなればなるほど多くの物事に共通する結論になり、具体的になればなるほど少ない物事のみに共通する結論になります。
-            <Typography variant="subtitle1" sx={{ color: "#c62828" }} display="flex" alignItems="center" mt="4px">
+            このステップでは、揃えた情報から共通する特徴や性質を見つけ出します。共通点があれば、それが法則になります。そしてこの法則を見つけることを「抽象化」と言います。
+            {/* <Typography variant="subtitle1" sx={{ color: "#c62828" }} display="flex" alignItems="center" mt="4px">
               <ClearIcon sx={{ mr: "4px" }} />
               抽象度が高すぎる例
             </Typography>
@@ -295,10 +291,10 @@ export default function VerticalTabs() {
                 「フルーツはすっぱい」
               </li>
             </Typography>
-            この例では、各情報に対して抽象度が高い（＝分類が遠い）「フルーツ」を共通点にしてしまっているため、「フルーツはすっぱい」という間違った結論が導かれてしまっています。
+            この例では、各情報に対して抽象度が高い（＝分類が遠い）「フルーツ」を共通点にしてしまっているため、「フルーツはすっぱい」という間違った結論が導かれてしまっています。 */}
             <Typography variant="subtitle1" sx={{ color: "#1665c0" }} display="flex" alignItems="center" mt="4px">
               <CircleOutlinedIcon sx={{ mr: "4px" }} />
-              抽象度が適切な例
+              抽象化の例
             </Typography>
             <Typography
               component="ol"

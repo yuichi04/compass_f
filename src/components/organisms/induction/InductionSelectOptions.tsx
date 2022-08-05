@@ -1,5 +1,5 @@
 import { FC, memo, useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { PulseButton } from "../../atoms";
@@ -9,18 +9,14 @@ import {
   getInfoPhaseOptionsAction,
   setNextDynamicSceneAction,
 } from "../../../lib/redux/features/inductionSlice";
-import { TitleWithTriangle } from "../../molecules";
-
-type StyleType = {
-  delay: number;
-};
+import { FadeInOutBox, TitleWithTriangle } from "../../molecules";
+import { SlideInBox } from "../../molecules";
 
 const InductionSelectOptions: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
   const options = induction.selectableInfo;
   const phase = induction.scene.phase;
-  const isOpenScreen = induction.isOpenScreenForAnswers;
   // 選択された情報を管理
   const [values, setValues] = useState<number[]>([]);
   const [disabled, setDisabled] = useState(true);
@@ -60,74 +56,68 @@ const InductionSelectOptions: FC = memo(() => {
   }, [phase, dispatch]);
 
   return (
-    <>
-      {isOpenScreen && (
-        <SBox>
-          <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="32px">
-            <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
-              解決案を考えるための情報を3つ以上選択しましょう
-            </TitleWithTriangle>
-            <Typography variant="h6" color="#fff" mb="8px">
-              選択数が多いと結論を導くのが難しくなりますが、その分、確実性の高い結論を導けます。
-            </Typography>
-            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
+    <SBox>
+      <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="8px">
+        <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+          解決案を考えるための情報を3つ以上選択しましょう
+        </TitleWithTriangle>
+        <Typography variant="h6" color="#fff">
+          選択数が多いほど解決案を導く難易度は上がりますが、確実性は高くなります。慣れている方はより多く選択してみましょう。
+        </Typography>
+      </Box>
+
+      <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
+
+      {/* 選択肢一覧 */}
+      <Box component="ul" mb="64px">
+        {options.map((option, index) => (
+          <Box component="li" display="inline-block" key={index}>
+            <SCheckBox type="checkbox" id={index + "item"} onChange={() => handleChange(option.id)} />
+            <SlideInBox direction="left" distance={16} duration={0.5} delay={(index + 1) / 2} m="16px">
+              <SLabel htmlFor={index + "item"}>
+                <Typography variant="h6" component="span">
+                  {option.text}
+                </Typography>
+              </SLabel>
+            </SlideInBox>
           </Box>
-          <Box component="ul" mb="64px">
-            {options.map((option, index) => (
-              <Box component="li" display="inline-block" key={index}>
-                <SCheckBox type="checkbox" id={index + "item"} onChange={() => handleChange(option.id)} />
-                <SLabel htmlFor={index + "item"} delay={(index + 1) / 2}>
-                  <Typography variant="h6" component="span">
-                    {option.text}
-                  </Typography>
-                </SLabel>
-              </Box>
-            ))}
-          </Box>
-          <Box className="fade-in" display="flex" alignItems="center" justifyContent="center">
-            <PulseButton size="100px" bgcolor="#33bbad" color="#fff" disabled={disabled} onClick={handleSubmit}>
-              <Typography fontWeight={600} sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
-                決定
-              </Typography>
-            </PulseButton>
-          </Box>
-        </SBox>
-      )}
-    </>
+        ))}
+      </Box>
+
+      <FadeInOutBox fadeIn display="flex" align="center" justify="center">
+        <PulseButton size="100px" bgcolor="#33bbad" color="#fff" disabled={disabled} onClick={handleSubmit}>
+          <Typography fontWeight={600} sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+            決定
+          </Typography>
+        </PulseButton>
+      </FadeInOutBox>
+    </SBox>
   );
 });
 
 export default InductionSelectOptions;
 
-const fadeIn = keyframes`
-  0% {
-      transform: translateX(-16px);
-  }
-  100% {
-      opacity: 1;
-  }
-`;
-
 const SBox = styled.div`
   width: 1200px;
   text-align: center;
 `;
-const SLabel = styled.label<StyleType>`
+const SLabel = styled.label`
   display: block;
-  background: #f9fbe7;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 8px #f9fbe7;
+  box-shadow: 0 0 8px #fff;
   cursor: pointer;
   padding: 8px 12px;
-  margin-right: 32px;
-  margin-bottom: 32px;
-  opacity: 0;
-  animation: ${fadeIn} 0.5s ${(props) => props.delay}s ease-in-out forwards;
   transition: all 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 8px 3px #fff;
+  }
 `;
 const SCheckBox = styled.input`
   display: none;
-  &:checked + label {
+
+  &:checked ~ div > label {
     background: #33bbad;
     box-shadow: 0 2px 16px #33bbad;
     color: #fff;

@@ -10,9 +10,8 @@ import { Box, Divider, Grid, IconButton, List, ListItem, ListItemText, Typograph
 import { useAppSelector } from "../../lib/redux/hooks";
 import { userSelector } from "../../lib/redux/features/userSlice";
 import MuiContaier from "../layouts/MuiContainer";
-import { AvatarAndUploadButton } from "../organisms";
 import { MuiButton, LinkTo, MuiTextField } from "../atoms";
-import { MuiTextFieldWithAdornment, IconWithPageTitle } from "../molecules";
+import { AvatarAndUploadButton, MuiTextFieldWithAdornment, IconWithPageTitle } from "../molecules";
 
 // テスト用アイコンのインポート
 import { usePasswordUpdate } from "../../hooks/usePasswordUpdate";

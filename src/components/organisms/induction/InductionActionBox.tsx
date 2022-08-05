@@ -10,6 +10,7 @@ import {
   showUtilsAction,
 } from "../../../lib/redux/features/inductionSlice";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { SlideInBox } from "../../molecules";
 
 const InductionActionBox: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -44,20 +45,22 @@ const InductionActionBox: FC = memo(() => {
 
   return (
     <>
-      {options &&
-        // 選択肢の表示
-        options?.map((option, index) => (
+      {/* 選択肢の表示 */}
+      {options?.map((option, index) => (
+        <SlideInBox
+          key={index}
+          position="absolute"
+          direction="right"
+          duration={0.3}
+          distance={64}
+          delay={linesLength * displaySpeed + 0.2 + index / 2}
+          b={`${240 + (options.length - 1) * 64 - index * 64}px`}
+          r="0"
+        >
           <Box
-            key={index}
-            className="slide-in-right"
-            position="absolute"
-            right="0"
-            bottom={`${240 + (options.length - 1) * 64 - index * 64}px`}
+            display="flex"
+            flexDirection="column"
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              animationDelay: `${linesLength * displaySpeed + 0.2 + index / 2}s`,
-              opacity: 0,
               cursor: "pointer",
             }}
             onClick={() => handleClickNextScene(option.progress, id)}
@@ -82,7 +85,8 @@ const InductionActionBox: FC = memo(() => {
               </SOptionInner>
             </SOptionBox>
           </Box>
-        ))}
+        </SlideInBox>
+      ))}
     </>
   );
 });

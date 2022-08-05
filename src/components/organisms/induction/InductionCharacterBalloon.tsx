@@ -1,7 +1,7 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { TextAnimation } from "..";
+import { FadeInOutBox, TextAnimation } from "../../molecules";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import {
   inductionSelector,
@@ -115,7 +115,7 @@ const InductionCharacterBalloon: FC = memo(() => {
           </Typography>
           {allowProgress && (
             <Box position="absolute" bottom="16px" right="0" className="up-down">
-              <Box className="fade-in" display="flex" alignItems="flex-end" justifyContent="flex-end">
+              <FadeInOutBox fadeIn display="flex" align="flex-end">
                 <Typography
                   variant="h6"
                   color="#fff"
@@ -125,7 +125,7 @@ const InductionCharacterBalloon: FC = memo(() => {
                   次へ
                 </Typography>
                 <ArrowRightIcon sx={{ color: "primary.main", fontSize: "30px" }} />
-              </Box>
+              </FadeInOutBox>
             </Box>
           )}
         </Box>

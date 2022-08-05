@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector } from "../../../lib/redux/features/inductionSlice";
 import { CallEffect, TalkEffect } from "../../atoms";
+import { FadeInOutBox } from "../../molecules";
 
 const InductionCharacterImage: React.FC = React.memo(() => {
   const induction = useAppSelector(inductionSelector);
@@ -11,41 +12,24 @@ const InductionCharacterImage: React.FC = React.memo(() => {
   return (
     <>
       {character?.role === "guide" && (
-        <Box component="img" className="fade-in" sx={{ width: "50vw", opacity: 0 }} src={character.src} alt="guide" />
-      )}
-      {character?.role === "customer" && (
-        <Box
-          component="img"
-          className="fade-in"
-          sx={{ minHeight: "200%", opacity: 0 }}
-          src={require(`../../../assets/images/characters/${character.src}`)}
-          alt="customer"
-        />
+        <FadeInOutBox fadeIn>
+          <Box component="img" sx={{ width: "50vw" }} src={character.src} alt="guide" />
+        </FadeInOutBox>
       )}
       {character?.role === "boy" && (
-        <Box component="img" className="fade-in" sx={{ width: "35vw", opacity: 0 }} src={character.src} alt="boy" />
+        <FadeInOutBox fadeIn>
+          <Box component="img" sx={{ width: "35vw" }} src={character.src} alt="boy" />
+        </FadeInOutBox>
       )}
       {character?.role === "user" && (
-        <Box
-          className="fade-in"
-          position="absolute"
-          bottom="50%"
-          left="50%"
-          sx={{ transform: "translate(-50%, -50%)" }}
-        >
+        <FadeInOutBox fadeIn position="absolute" b="50%" l="50%" center>
           <TalkEffect />
-        </Box>
+        </FadeInOutBox>
       )}
       {character?.role === "call" && (
-        <Box
-          className="fade-in"
-          position="absolute"
-          bottom="50%"
-          left="50%"
-          sx={{ transform: "translate(-50%, -50%)" }}
-        >
+        <FadeInOutBox fadeIn position="absolute" b="50%" l="50%" center>
           <CallEffect />
-        </Box>
+        </FadeInOutBox>
       )}
     </>
   );

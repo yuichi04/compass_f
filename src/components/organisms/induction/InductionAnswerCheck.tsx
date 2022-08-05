@@ -5,9 +5,8 @@ import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrow
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
 import { TitleWithTriangle } from "../../molecules";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
-import DoneOutlineOutlinedIcon from "@mui/icons-material/DoneOutlineOutlined";
-import { MuiButton, PulseButton } from "../../atoms";
+import { PulseButton } from "../../atoms";
+import { ScreenForBlackoutEvent } from "../../molecules";
 
 type LabelType = {
   delay: number;
@@ -26,7 +25,6 @@ const InductionAnswerCheck: FC = memo(() => {
   const induction = useAppSelector(inductionSelector);
   const answers = induction.userAnswers;
   const infoLength = answers.info.length;
-  const isOpenScreen = induction.isOpenScreenForAnswers;
 
   // 共通点がOKかどうか
   const [isCheckedCommon, setIsCheckedCommon] = useState(false);
@@ -69,161 +67,138 @@ const InductionAnswerCheck: FC = memo(() => {
 
   return (
     <>
-      {isOpenScreen && (
-        <SBox>
-          <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
-            論理が飛躍していないか確認しましょう
-          </TitleWithTriangle>
-          <Typography variant="h6" color="#fff" mb="16px">
-            【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？
-            <br />
-            問題がなければその項目をクリックしてください。
+      <SBox>
+        <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+          論理が飛躍していないか確認しましょう
+        </TitleWithTriangle>
+        <Typography variant="h6" color="#fff" mb="16px">
+          【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？
+          <br />
+          問題がなければその項目をクリックしてください。
+        </Typography>
+        {/* 結論 */}
+        <Box
+          display="flex"
+          justifyContent="center"
+          mb="16px"
+          bgcolor={isCheckedCommon ? "#d8dadf" : "primary.main"}
+          borderRadius="8px"
+          boxShadow={isCheckedCommon ? "0 0 4px #fff" : "0 0 20px #00aa99"}
+          p="4px 32px"
+        >
+          <Typography variant="h5" component="div" color={isCheckedCommon ? "#555" : "#fff"} fontWeight={600}>
+            <Typography variant="subtitle1" fontWeight={600}>
+              結論
+            </Typography>
+            {answers.conclusion}
           </Typography>
-          {/* 結論 */}
-          <Box
-            display="flex"
-            justifyContent="center"
-            mb="16px"
-            bgcolor={isCheckedCommon ? "#d8dadf" : "primary.main"}
-            borderRadius="8px"
-            boxShadow={isCheckedCommon ? "0 0 4px #fff" : "0 0 20px #00aa99"}
-            p="4px 32px"
+        </Box>
+        <Box position="relative" m="0 auto 16px" width="160px" className={isCheckedCommon ? "" : "up-down"}>
+          <KeyboardDoubleArrowDownIcon
+            sx={{ color: isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px" }}
+          />
+          <Typography
+            position="absolute"
+            right="0"
+            top="50%"
+            variant="subtitle2"
+            color="#ffa726"
+            display={isCheckedCommon ? "none" : "block"}
+            sx={{ transform: "translateY(-50%)" }}
           >
-            <Typography variant="h5" component="div" color={isCheckedCommon ? "#555" : "#fff"} fontWeight={600}>
+            クリック
+          </Typography>
+        </Box>
+        {/* 共通点 */}
+        <Box display="flex" alignItems="center" mb="16px">
+          <SCheckbox
+            type="checkbox"
+            id="common-item"
+            position="32px"
+            fontSize="48px"
+            onChange={() => setIsCheckedCommon(!isCheckedCommon)}
+          />
+          <SLabel htmlFor="common-item" delay={1} isCheckedCommon={isCheckedCommon}>
+            <Typography variant="h6" component="div" fontWeight={600} width="calc(100% - 104px)" m="0 auto" p="0 48px">
               <Typography variant="subtitle1" fontWeight={600}>
-                結論
+                共通点
               </Typography>
-              {answers.conclusion}
+              {answers.common}
             </Typography>
-          </Box>
-          <Box position="relative" m="0 auto 16px" width="160px" className={isCheckedCommon ? "" : "up-down"}>
-            <KeyboardDoubleArrowDownIcon
-              sx={{ color: isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px" }}
-            />
-            <Typography
-              position="absolute"
-              right="0"
-              top="50%"
-              variant="subtitle2"
-              color="#ffa726"
-              display={isCheckedCommon ? "none" : "block"}
-              sx={{ transform: "translateY(-50%)" }}
-            >
-              クリック
-            </Typography>
-          </Box>
-          {/* 共通点 */}
-          <Box display="flex" alignItems="center" mb="16px">
-            <SCheckbox
-              type="checkbox"
-              id="common-item"
-              position="32px"
-              fontSize="48px"
-              onChange={() => setIsCheckedCommon(!isCheckedCommon)}
-            />
-            <SLabel htmlFor="common-item" delay={1} isCheckedCommon={isCheckedCommon}>
+          </SLabel>
+        </Box>
+        {/* 情報 */}
+        {isCheckedCommon && (
+          <>
+            <Box position="relative" m="0 auto 16px" width="160px" className={!isCheckedCommon ? "" : "up-down"}>
+              <KeyboardDoubleArrowDownIcon
+                sx={{ color: !isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px" }}
+              />
               <Typography
-                variant="h6"
-                component="div"
-                fontWeight={600}
-                width="calc(100% - 104px)"
-                m="0 auto"
-                p="0 48px"
-              >
-                <Typography variant="subtitle1" fontWeight={600}>
-                  共通点
-                </Typography>
-                {answers.common}
-              </Typography>
-            </SLabel>
-          </Box>
-          {/* 情報 */}
-          {isCheckedCommon && (
-            <>
-              <Box position="relative" m="0 auto 16px" width="160px" className={!isCheckedCommon ? "" : "up-down"}>
-                <KeyboardDoubleArrowDownIcon
-                  sx={{ color: !isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726", fontSize: "48px" }}
-                />
-                <Typography
-                  position="absolute"
-                  right="0"
-                  top="50%"
-                  variant="subtitle2"
-                  color="#ffa726"
-                  display={!isCheckedCommon ? "none" : "block"}
-                  sx={{ transform: "translateY(-50%)" }}
-                >
-                  クリック
-                </Typography>
-              </Box>
-              <Grid container display="flex" justifyContent="center">
-                {answers.info.map((data, index) => (
-                  <Grid item xs={4} display="flex" key={index} p="0 8px 16px">
-                    <SCheckbox
-                      type="checkbox"
-                      id={"info" + index}
-                      fontSize="40px"
-                      position="50%"
-                      value={data.id}
-                      onChange={(e) => handleChangeInfo(e)}
-                    />
-                    <SLabel htmlFor={"info" + index} delay={index + 0.5} isCheckedInfo={isCheckedInfo} fontSize="16px">
-                      <Typography variant="subtitle1" fontWeight={600}>
-                        {data.text}
-                      </Typography>
-                    </SLabel>
-                  </Grid>
-                ))}
-              </Grid>
-            </>
-          )}
-          {isOpen && (
-            <SFadeInBox>
-              <Box
                 position="absolute"
+                right="0"
                 top="50%"
-                left="50%"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                sx={{ transform: "translate(-50%, -50%)" }}
+                variant="subtitle2"
+                color="#ffa726"
+                display={!isCheckedCommon ? "none" : "block"}
+                sx={{ transform: "translateY(-50%)" }}
               >
-                <Box>
-                  <Box sx={{ transform: "translateX(24px)" }}>
-                    <TitleWithTriangle variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
-                      論理に飛躍はありませんか？
-                    </TitleWithTriangle>
-                  </Box>
-                  <KeyboardDoubleArrowDownIcon
-                    className="up-down"
-                    sx={{
-                      color: !isCheckedCommon ? "rgba(255,255,255,0.1)" : "#ffa726",
-                      fontSize: "64px",
-                      mb: "48px",
-                    }}
+                クリック
+              </Typography>
+            </Box>
+            <Grid container display="flex" justifyContent="center">
+              {answers.info.map((data, index) => (
+                <Grid item xs={4} display="flex" key={index} p="0 8px 16px">
+                  <SCheckbox
+                    type="checkbox"
+                    id={"info" + index}
+                    fontSize="40px"
+                    position="50%"
+                    value={data.id}
+                    onChange={(e) => handleChangeInfo(e)}
                   />
-                  <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
-                    <PulseButton
-                      bgcolor="#00aa99"
-                      size="160px"
-                      onClick={() => dispatch(setNextDynamicSceneAction(true))}
-                    >
-                      <Typography variant="h6" color="#fff" fontWeight={600}>
-                        大丈夫
-                      </Typography>
-                    </PulseButton>
-                    <PulseButton bgcolor="#ccc" size="160px" onClick={() => setIsOpen(false)}>
-                      <Typography variant="h6" color="#fff" fontWeight={600}>
-                        やり直す
-                      </Typography>
-                    </PulseButton>
-                  </Box>
-                </Box>
-              </Box>
-            </SFadeInBox>
-          )}
-        </SBox>
-      )}
+                  <SLabel htmlFor={"info" + index} delay={index + 0.5} isCheckedInfo={isCheckedInfo} fontSize="16px">
+                    <Typography variant="subtitle1" fontWeight={600}>
+                      {data.text}
+                    </Typography>
+                  </SLabel>
+                </Grid>
+              ))}
+            </Grid>
+          </>
+        )}
+      </SBox>
+      <ScreenForBlackoutEvent open={isOpen} duration={0.5} delay={0.1}>
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Box textAlign="center">
+            <Box sx={{ transform: "translateX(24px)" }}>
+              <TitleWithTriangle variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
+                論理に飛躍はありませんか？
+              </TitleWithTriangle>
+            </Box>
+            <KeyboardDoubleArrowDownIcon
+              className="up-down"
+              sx={{
+                color: "#ffa726",
+                fontSize: "64px",
+                mb: "48px",
+              }}
+            />
+            <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
+              <PulseButton bgcolor="#00aa99" size="160px" onClick={() => dispatch(setNextDynamicSceneAction(true))}>
+                <Typography variant="h6" color="#fff" fontWeight={600}>
+                  大丈夫
+                </Typography>
+              </PulseButton>
+              <PulseButton bgcolor="#ccc" size="160px" onClick={() => setIsOpen(false)}>
+                <Typography variant="h6" color="#fff" fontWeight={600}>
+                  やり直す
+                </Typography>
+              </PulseButton>
+            </Box>
+          </Box>
+        </Box>
+      </ScreenForBlackoutEvent>
     </>
   );
 });
@@ -320,8 +295,6 @@ const SFadeInBox = styled.div`
   left: 50%;
   width: 100vw;
   height: 100vh;
-  background: rgba(66, 66, 66, 0.9);
+  background: rgba(33, 33, 33, 0.9);
   transform: translate(-50%, -50%);
-  animation: ${fadeIn} 0.3s 0.1s ease-in-out forwards;
-  opacity: 0;
 `;

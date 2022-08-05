@@ -1,5 +1,5 @@
 import { FC, memo, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import SendIcon from "@mui/icons-material/Send";
@@ -7,16 +7,13 @@ import { MuiTextField, PulseButton } from "../../atoms";
 import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
 import { TitleWithTriangle } from "../../molecules";
-
-type StyleType = {
-  delay: number;
-};
+import { SlideInBox } from "../../molecules";
 
 const InductionAnswerCommon: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
+  const sectionId = induction.sectionId;
   const info = induction.userAnswers.info;
-  const isOpenScreen = induction.isOpenScreenForAnswers;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -36,115 +33,84 @@ const InductionAnswerCommon: FC = memo(() => {
   };
 
   return (
-    <>
-      {isOpenScreen && (
-        <SBox>
-          <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="32px">
-            選んだ情報から共通点を見つけましょう
-          </TitleWithTriangle>
-          <Typography variant="h6" color="#fff" mb="16px">
-            選んだ情報
-          </Typography>
-          <Box component="ul" mb="32px">
-            {info.map((data, index) => (
-              <SInfo key={data.id} delay={index + 1}>
-                <Typography variant="subtitle1" component="span" sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
-                  {data.text}
-                </Typography>
-              </SInfo>
-            ))}
+    <SBox>
+      <TitleWithTriangle variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+        選んだ情報から共通点を見つけましょう
+      </TitleWithTriangle>
+      <Typography variant="h6" color="#fff" mb="32px">
+        {sectionId === 1 && "同じ特徴や性質は何でしょうか？"}
+      </Typography>
+      <Typography variant="h6" color="#fff" mb="16px">
+        選んだ情報
+      </Typography>
+      <Box mb="32px">
+        {info.map((data, index) => (
+          <SlideInBox
+            key={index}
+            display="inline-block"
+            direction="left"
+            distance={32}
+            duration={1}
+            delay={index / 2 + 0.8}
+            mb="16px"
+            mr="16px"
+          >
+            <SInfo>
+              <Typography variant="subtitle1" component="span" sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+                {data.text}
+              </Typography>
+            </SInfo>
+          </SlideInBox>
+        ))}
+      </Box>
+
+      <SlideInBox direction="top" distance={32} duration={1.6} delay={info.length / 2 + 0.8}>
+        <Typography variant="h6" color="#fff" mb="16px">
+          ここに共通点を入力して下さい
+        </Typography>
+        <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
+      </SlideInBox>
+
+      <SlideInBox direction="top" distance={32} duration={1.6} delay={info.length / 2 + 1.6}>
+        <SForm onSubmit={handleSubmit}>
+          <Box mr="16px" width="100%">
+            <MuiTextField
+              variant="standard"
+              onChange={handleChange}
+              value={answer}
+              fullWidth
+              autoComplete="off"
+              autoFocus
+            />
           </Box>
-
-          <SSlideInTopBox delay={info.length + 1}>
-            <Typography variant="h6" color="#fff" mb="16px">
-              ここに共通点を入力して下さい
-            </Typography>
-          </SSlideInTopBox>
-          <SFadeInBox delay={info.length + 5}>
-            <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
-          </SFadeInBox>
-
-          <SForm onSubmit={handleSubmit} delay={info.length + 3}>
-            <Box mr="16px" width="100%">
-              <MuiTextField
-                variant="standard"
-                onChange={handleChange}
-                value={answer}
-                fullWidth
-                autoComplete="off"
-                autoFocus
-              />
-            </Box>
-            <PulseButton size="50px" bgcolor="#00aa99" color="#fff" disabled={answer === ""}>
-              <SendIcon sx={{ color: "#fff" }} />
-            </PulseButton>
-          </SForm>
-        </SBox>
-      )}
-    </>
+          <PulseButton size="50px" bgcolor="#00aa99" color="#fff" disabled={answer === ""}>
+            <SendIcon sx={{ color: "#fff" }} />
+          </PulseButton>
+        </SForm>
+      </SlideInBox>
+    </SBox>
   );
 });
 
 export default InductionAnswerCommon;
 
-const slideInLeft = keyframes`
-  0% {
-    transform: translateX(-16px);
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-const slideInTop = keyframes`
-  0% {
-    transform: translateY(-32px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-const fadeIn = keyframes`
-  100% {
-    opacity:1
-  }
-`;
-
 const SBox = styled.div`
   width: 900px;
   text-align: center;
 `;
-const SInfo = styled.li<StyleType>`
-  display: inline-block;
+const SInfo = styled.div`
   box-shadow: 0 0 16px #33bbad;
   background: #33bbad;
   border-radius: 8px;
   color: #fff;
-  animation: ${slideInLeft} 0.5s ${(props) => props.delay / 2}s ease-in-out forwards;
   padding: 8px 12px;
-  margin-bottom: 16px;
-  margin-right: 16px;
-  opacity: 0;
 `;
 
-const SSlideInTopBox = styled.div<StyleType>`
-  animation: ${slideInTop} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
-  opacity: 0;
-  margin-bottom: 24px;
-`;
-
-const SFadeInBox = styled.div<StyleType>`
-  animation: ${fadeIn} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
-  opacity: 0;
-`;
-
-const SForm = styled.form<StyleType>`
+const SForm = styled.form`
   display: flex;
   align-items: center;
   background: #fff;
   box-shadow: 0 0 12px #fff;
   border-radius: 8px;
   padding: 16px 24px;
-  animation: ${slideInTop} 1s ${(props) => props.delay / 2}s ease-in-out forwards;
-  opacity: 0;
 `;

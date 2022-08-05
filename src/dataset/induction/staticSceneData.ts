@@ -9,10 +9,11 @@ const staticSceneData: StaticSceneDataType[] = [
   },
   {
     section: 1,
-    lines: [
-      "さっそくですが、あなたにはこれからこのセンターでオペレーターをやっていただきます。",
-      "仕事内容としては、お客様のご相談に対して何かしら解決案を案内するというものになります。",
-    ],
+    lines: ["さっそくですが、あなたにはこれからこのセンターでオペレーターをやっていただきます。"],
+  },
+  {
+    section: 1,
+    lines: ["仕事内容としては、お客様のご相談に対して何かしら解決案を案内するというものになります。"],
   },
   {
     section: 1,
@@ -40,7 +41,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.guide.normalA, role: "guide" },
-    lines: ["あ、さっそく電話が鳴りましたね。", "それでは、電話を取って対応を始めましょう。"],
+    lines: ["あ、さっそくお問い合わせが来たみたいですね。", "それでは、電話を取って対応を始めましょう。"],
   },
   {
     section: 1,
@@ -71,35 +72,53 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.boy.closeMouse, role: "boy" },
-    lines: ["はい。えーっと、英語を話せるようになるにはどうしたら良いでしょうか。"],
+    lines: ["はい。あの、英語ができるようになるにはどうしたら良いでしょうか。"],
   },
   {
     section: 1,
     lines: [
-      "将来アメリカで働いてみたいと思っていて、英語の勉強に力を入れているんですけど、全然話せるようにならなくて・・・。",
-      "何か英語が上達する方法があれば教えて欲しいです。",
+      "将来アメリカで働いてみたいと思っているんですけど、あまり英語が得意ではなくて・・・。",
+      "何か良い勉強方法とかあれば教えて欲しいです。",
     ],
   },
   {
     section: 1,
     character: { src: "", role: "user" },
-    lines: [
-      "かしこまりました。英語が上達する方法についてのご相談ですね。",
-      "それでは何か良い方法がないか確認いたします。少々お待ちください。",
-    ],
+    lines: ["かしこまりました。英語を上達させるための方法についてのご相談ですね。"],
   },
   {
     section: 1,
     character: { src: CharacterImage.boy.closeMouse, role: "boy" },
+    lines: ["はい。そうです。"],
+  },
+  {
+    section: 1,
+    character: { src: "", role: "user" },
+    lines: ["1点確認させていただきたいのですが、普段英語学習はどのくらいされていますか？"],
+  },
+  {
+    section: 1,
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
+    lines: [
+      "そうですね・・・",
+      "学校の授業と宿題を合わせて、1日に1、2時間くらいだと思います。",
+      "あと、休みの日には単語の暗記をやったりもしてます。",
+    ],
+  },
+  {
+    section: 1,
+    character: { src: "", role: "user" },
+    lines: ["かしこまりました。", "それでは、何か良い方法がないか確認させていただきますので、少々お待ちください。"],
+  },
+  {
+    section: 1,
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
     lines: ["はい。よろしくお願いします。"],
   },
   {
     section: 1,
     character: { src: CharacterImage.guide.surprise, role: "guide" },
-    lines: [
-      "英語が上達するための方法・・・",
-      "たしか、英語を第二言語として習得した人に関するデータがあったような・・・",
-    ],
+    lines: ["英語が上達する方法・・・", "たしか、英語を第二言語として習得した人に関するデータがあったような・・・"],
   },
   {
     section: 1,
@@ -109,7 +128,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.guide.closeEyes, role: "guide" },
-    lines: ["ふむふむ。", "これならスライドで学んだ帰納法を用いれば何か解決案を導けそうですね。"],
+    lines: ["ふむふむ。", "これならスライドで学んだ帰納法を用いて何か解決案を導けそうですね。"],
   },
   {
     section: 1,
@@ -133,17 +152,27 @@ const staticSceneData: StaticSceneDataType[] = [
   // ここに動的シーンが挿入されます。
   {
     section: 1,
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それでは次のステップですね。"],
+  },
+  {
+    section: 1,
     options: [
       {
         progress: true,
         label: "共通点を見つける",
       },
     ],
-    character: { src: CharacterImage.guide.smile, role: "guide" },
-    lines: ["わかりました。", "それでは次に揃えた情報から共通点を見つけていきましょう。"],
+    character: { src: CharacterImage.guide.normalA, role: "guide" },
+    lines: ["次のステップは「共通点を見つける」です。", "揃えた情報から同じ特徴や性質は何かを考えましょう。"],
     phase: "common",
   },
   // ここに動的シーンが挿入されます。
+  {
+    section: 1,
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それでは次のステップにいきましょう。"],
+  },
   {
     section: 1,
     options: [
@@ -152,11 +181,20 @@ const staticSceneData: StaticSceneDataType[] = [
         label: "解決案を考える",
       },
     ],
-    character: { src: CharacterImage.guide.smile, role: "guide" },
-    lines: ["わかりました。", "それでは次に共通点から解決案を考えていきましょう。"],
+    character: { src: CharacterImage.guide.normalA, role: "guide" },
+    lines: [
+      "次のステップは「結論を導く」です。",
+      "共通点から具体的な解決案となる結論を導き出しましょう。",
+      "お客様の英語が上達するにはどうしたら良いでしょうか？",
+    ],
     phase: "conclusion",
   },
   // ここに動的シーンが挿入されます。
+  {
+    section: 1,
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["わかりました。", "それでは最後に論理に飛躍がないか確認しましょう。"],
+  },
   {
     section: 1,
     options: [
@@ -165,8 +203,11 @@ const staticSceneData: StaticSceneDataType[] = [
         label: "論理に飛躍がないか確認する",
       },
     ],
-    character: { src: CharacterImage.guide.smile, role: "guide" },
-    lines: ["わかりました。", "それでは最後に正しい解決案を導けているか、論理の飛躍を確認しましょう。"],
+    character: { src: CharacterImage.guide.normalA, role: "guide" },
+    lines: [
+      "論理の飛躍は「結論→共通点」「共通点→各情報」がそれぞれ「主張→根拠」という構造になっているかで確認できます。",
+      "あなたが導き出した解決案に違和感はありませんか？",
+    ],
     phase: "check",
   },
   // ここに動的シーンが挿入されます。

@@ -1,4 +1,3 @@
-export { default as AvatarAndUploadButton } from "./AvatarAndUploadButton";
 export { default as InductionCharacterBalloon } from "./induction/InductionCharacterBalloon";
 export { default as InductionActionBox } from "./induction/InductionActionBox";
 export { default as InductionAnswerCommon } from "./induction/InductionAnswerCommon";
@@ -12,11 +11,10 @@ export { default as Chapter1Document } from "./Chapter1Document";
 export { default as Chapter1Result } from "./Chapter1Result";
 export { default as ContactBoard } from "./ContactBoard";
 export { default as Footer } from "./Footer";
-export { default as Header } from "./Header";
+export { default as Header } from "./header/Header";
 export { default as MuiDrawer } from "./MuiDrawer";
 export { default as MuiModalConfirmation } from "./MuiModalConfirmation";
-export { default as SignedInHeader } from "./SignedInHeader";
+export { default as SignedInHeader } from "./header/SignedInHeader";
 export { default as SlideList } from "./SlideList";
 export { default as SlideListItem } from "./SlideListItem";
-export { default as TextAnimation } from "./TextAnimation";
 export { default as MuiVerticalTabs } from "./MuiVerticalTabs";

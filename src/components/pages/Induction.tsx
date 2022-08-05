@@ -3,11 +3,7 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 import { BackgroundImage } from "../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import {
-  setNextStaticSceneAction,
-  initializeSceneAction,
-  inductionSelector,
-} from "../../lib/redux/features/inductionSlice";
+import { initializeSceneAction, inductionSelector } from "../../lib/redux/features/inductionSlice";
 import {
   InductionTooltipBar,
   SlideList,
@@ -20,9 +16,10 @@ import {
   InductionAnswerConclusion,
   InductionAnswerCheck,
 } from "../organisms";
+import { ScreenForBlackoutEvent } from "../molecules";
 
-type BgImageProps = {
-  bgImage: number;
+type BgImgProps = {
+  bgImg: number;
 };
 
 const Scene: FC = memo(() => {
@@ -58,18 +55,22 @@ const Scene: FC = memo(() => {
       ) : null}
 
       {/* 回答画面 */}
-      <SScreenForAnswers className={isOpenScreen ? "fade-in-screen" : "fade-out-screen"}>
-        {phase === "info" && <InductionSelectOptions />}
-        {phase === "common" && <InductionAnswerCommon />}
-        {phase === "conclusion" && <InductionAnswerConclusion />}
-        {phase === "check" && <InductionAnswerCheck />}
-      </SScreenForAnswers>
+      <ScreenForBlackoutEvent open={isOpenScreen}>
+        {isOpenScreen && (
+          <>
+            {phase === "info" && <InductionSelectOptions />}
+            {phase === "common" && <InductionAnswerCommon />}
+            {phase === "conclusion" && <InductionAnswerConclusion />}
+            {phase === "check" && <InductionAnswerCheck />}
+          </>
+        )}
+      </ScreenForBlackoutEvent>
 
       <Box bgcolor="#2a2f36">
         {/* スライド */}
         <SlideList />
         {/* 演習画面 */}
-        <SInduction className={!isOpenSlide ? "expand-center" : ""} bgImage={sectionId}>
+        <SInduction className={!isOpenSlide ? "expand-center" : ""} bgImg={sectionId}>
           {/* ツールバー */}
           <STooltipBar>
             <InductionTooltipBar />
@@ -100,32 +101,18 @@ const Scene: FC = memo(() => {
 
 export default Scene;
 
-const SScreenForAnswers = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle, rgba(33, 33, 33, 0.9) 25%, rgba(55, 55, 55, 0.9));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 3s;
-`;
-
-const SInduction = styled.div<BgImageProps>`
+const SInduction = styled.div<BgImgProps>`
   position: relative;
   overflow: hidden;
   height: calc(100vh - 64px);
 
   // セクションに応じて背景を変更
   background: ${(props) =>
-      props.bgImage === 1
+      props.bgImg === 1
         ? `url(${BackgroundImage.officeDay})`
-        : props.bgImage === 2
+        : props.bgImg === 2
         ? `url(${BackgroundImage.officeEvening})`
-        : props.bgImage === 3 && `url(${BackgroundImage.officeNight})`}
+        : props.bgImg === 3 && `url(${BackgroundImage.officeNight})`}
     no-repeat center;
 `;
 const STooltipBar = styled.div`
