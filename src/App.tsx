@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useListenAuthState } from "./hooks/useListenAuthState";
-import { useAppSelector } from "./lib/redux/hooks";
-import { userSelector } from "./lib/redux/features/userSlice";
+import { useAppSelector } from "./redux/hooks";
+import { userSelector } from "./redux/features/userSlice";
 import RouteConfig from "./routes/RouteConfig";
 import SignedInRouteConfig from "./routes/SignedInRouteConfig";
 import { Box } from "@mui/material";

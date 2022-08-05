@@ -1,9 +1,9 @@
 import { FC, memo } from "react";
 import { Paper, Box, Typography } from "@mui/material";
-import { inductionSelector, showUtilsAction } from "../../../lib/redux/features/inductionSlice";
-import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { inductionSelector, showUtilsAction } from "../../../redux/features/inductionSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import CloseIcon from "@mui/icons-material/Close";
-import { userSelector } from "../../../lib/redux/features/userSlice";
+import { userSelector } from "../../../redux/features/userSlice";
 
 const InductionUserAnswers: FC = memo(() => {
   const dispatch = useAppDispatch();

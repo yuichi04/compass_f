@@ -2,12 +2,12 @@ import { FC, memo, useCallback } from "react";
 import Box from "@mui/material/Box";
 import { SlideListItem } from ".";
 import { SlideListData } from "../../dataset/induction";
-import { useAppSelector } from "../../lib/redux/hooks";
-import { inductionSelector } from "../../lib/redux/features/inductionSlice";
+import { useAppSelector } from "../../redux/hooks";
+import { inductionSelector } from "../../redux/features/inductionSlice";
 
 const SlideList: FC = memo(() => {
   const induction = useAppSelector(inductionSelector);
-  const isOpenSlide = induction.isOpenSlide;
+  const isOpenSlide = induction.isOpen.slide;
   const { slideItems, setSlideItems } = SlideListData();
   const lastSlideNum = slideItems.slice(-1)[0].order;
 

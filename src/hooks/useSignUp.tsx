@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { signUp } from "../lib/api/userApi";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
-import { logInAction } from "../lib/redux/features/userSlice";
+import { signUp } from "../api/userApi";
+import { useAppDispatch } from "../redux/hooks";
+import { hideLoadingAction, showLoadingAction } from "../redux/features/lodingSlice";
+import { logInAction } from "../redux/features/userSlice";
 import { UserParams } from "../types/userTypes";
 
 export const useSignUp = () => {

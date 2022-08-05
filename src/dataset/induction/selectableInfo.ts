@@ -1,4 +1,4 @@
-import { SelectableInfoType } from "../../types/lessonType";
+import { SelectableInfoType } from "../../types/lesson/inductionTypes";
 
 const selectableInfo: SelectableInfoType[] = [
   {

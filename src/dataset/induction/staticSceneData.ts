@@ -1,4 +1,4 @@
-import { StaticSceneDataType } from "../../types/lessonType";
+import { StaticSceneDataType } from "../../types/lesson/inductionTypes";
 import { CharacterImage } from "../../assets/images/characters";
 
 const staticSceneData: StaticSceneDataType[] = [

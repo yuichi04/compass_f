@@ -6,13 +6,13 @@ import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   allowStartingExerciseAction,
   inductionSelector,
   setNextStaticSceneAction,
   showUtilsAction,
-} from "../../lib/redux/features/inductionSlice";
+} from "../../redux/features/inductionSlice";
 
 type Props = {
   children: React.ReactNode;

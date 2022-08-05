@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { store } from "./lib/redux/store";
+import { store } from "./redux/store";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./assets/theme";
 import App from "./App";

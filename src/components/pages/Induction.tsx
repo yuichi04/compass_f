@@ -2,8 +2,8 @@ import { FC, memo, useEffect } from "react";
 import styled from "styled-components";
 import { Box } from "@mui/material";
 import { BackgroundImage } from "../../assets/images/background";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { initializeSceneAction, inductionSelector } from "../../lib/redux/features/inductionSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { initializeSceneAction, inductionSelector } from "../../redux/features/inductionSlice";
 import {
   InductionTooltipBar,
   SlideList,
@@ -26,9 +26,9 @@ const Scene: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
-  const isOpenSlide = induction.isOpenSlide;
-  const isOpenUserAnswers = induction.isOpenAnswers;
-  const isOpenScreen = induction.isOpenScreenForAnswers;
+  const isOpenSlide = induction.isOpen.slide;
+  const isOpenUserAnswers = induction.isOpen.answers;
+  const isOpenScreen = induction.isOpen.screenForAnswers;
   const allowStartingExercise = induction.allowStartingExercise;
   const phase = induction.scene.phase;
 

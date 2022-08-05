@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { sendContactEmail } from "../lib/api/userApi";
-import { showLoadingAction, hideLoadingAction } from "../lib/redux/features/lodingSlice";
-import { userSelector } from "../lib/redux/features/userSlice";
-import { useAppDispatch, useAppSelector } from "../lib/redux/hooks";
+import { sendContactEmail } from "../api/userApi";
+import { showLoadingAction, hideLoadingAction } from "../redux/features/lodingSlice";
+import { userSelector } from "../redux/features/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { validations } from "../modules/validations";
 import { ContactBoardType } from "../types/userTypes";
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
-import { updatePassword } from "../lib/api/userApi";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
+import { updatePassword } from "../api/userApi";
+import { useAppDispatch } from "../redux/hooks";
+import { hideLoadingAction, showLoadingAction } from "../redux/features/lodingSlice";
 import { validations } from "../modules/validations";
 
 const { validateMoreThan8Characters } = validations();

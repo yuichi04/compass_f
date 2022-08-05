@@ -2,12 +2,12 @@ import { FC, memo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   inductionSelector,
   getInfoPhaseOptionsAction,
   setNextDynamicSceneAction,
-} from "../../../lib/redux/features/inductionSlice";
+} from "../../../redux/features/inductionSlice";
 import { PulseButton } from "../../atoms";
 import { FadeInOutBox, TitleWithTriangleIcon, SlideInBox } from "../../molecules";
 

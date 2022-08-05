@@ -6,14 +6,14 @@ import { Divider } from "@mui/material";
 import KeyIcon from "@mui/icons-material/Key";
 import { toast } from "react-toastify";
 import { LogInParams } from "../../types/userTypes";
-import { useAppDispatch, useAppSelector } from "../../lib/redux/hooks";
-import { logOutAction, userSelector } from "../../lib/redux/features/userSlice";
-import { deleteAccount, logIn } from "../../lib/api/userApi";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logOutAction, userSelector } from "../../redux/features/userSlice";
+import { deleteAccount, logIn } from "../../api/userApi";
 import { PrimaryButton, LinkTo, ErrorText } from "../atoms";
 import { IconWithPageTitle, TextFieldWithAdornment } from "../molecules";
 import MuiContaier from "../layouts/MuiContainer";
 import { validations } from "../../modules/validations";
-import { hideLoadingAction, showLoadingAction } from "../../lib/redux/features/lodingSlice";
+import { hideLoadingAction, showLoadingAction } from "../../redux/features/lodingSlice";
 
 const { validateMoreThan8Characters } = validations();
 

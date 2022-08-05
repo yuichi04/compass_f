@@ -2,13 +2,13 @@ import { FC, memo, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { FadeInOutBox, TextAnimation } from "../../molecules";
-import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   inductionSelector,
   setAllowProgressSceneAction,
   setNextStaticSceneAction,
-} from "../../../lib/redux/features/inductionSlice";
-import { userSelector } from "../../../lib/redux/features/userSlice";
+} from "../../../redux/features/inductionSlice";
+import { userSelector } from "../../../redux/features/userSlice";
 
 const InductionCharacterBalloon: FC = memo(() => {
   const dispatch = useAppDispatch();

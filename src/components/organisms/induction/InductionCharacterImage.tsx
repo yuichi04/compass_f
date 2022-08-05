@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { useAppSelector } from "../../../lib/redux/hooks";
-import { inductionSelector } from "../../../lib/redux/features/inductionSlice";
+import { useAppSelector } from "../../../redux/hooks";
+import { inductionSelector } from "../../../redux/features/inductionSlice";
 import { CallEffect, TalkEffect } from "../../atoms";
 import { FadeInOutBox } from "../../molecules";
 

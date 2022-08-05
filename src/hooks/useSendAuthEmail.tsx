@@ -1,10 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { sendAuthEmail } from "../lib/api/userApi";
+import { useAppDispatch } from "../redux/hooks";
+import { sendAuthEmail } from "../api/userApi";
 import { SignUpParams } from "../types/userTypes";
 import { validations } from "../modules/validations";
-import { showLoadingAction, hideLoadingAction } from "../lib/redux/features/lodingSlice";
+import { showLoadingAction, hideLoadingAction } from "../redux/features/lodingSlice";
 import { toast } from "react-toastify";
 
 // validations

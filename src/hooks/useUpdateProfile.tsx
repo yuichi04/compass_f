@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { toast } from "react-toastify";
-import { hideLoadingAction, showLoadingAction } from "../lib/redux/features/lodingSlice";
+import { hideLoadingAction, showLoadingAction } from "../redux/features/lodingSlice";
 import { validations } from "../modules/validations";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { sendAuthEmailForUpdate, updateEmail, updateUserName } from "../lib/api/userApi";
+import { useAppDispatch } from "../redux/hooks";
+import { sendAuthEmailForUpdate, updateEmail, updateUserName } from "../api/userApi";
 import { useListenAuthState } from "./useListenAuthState";
 import { useNavigate } from "react-router-dom";
 

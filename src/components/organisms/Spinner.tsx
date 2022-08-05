@@ -1,6 +1,6 @@
 import React from "react";
-import { useAppSelector } from "../../lib/redux/hooks";
-import { loadingSelector } from "../../lib/redux/features/lodingSlice";
+import { useAppSelector } from "../../redux/hooks";
+import { loadingSelector } from "../../redux/features/lodingSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 import styled from "styled-components";
 

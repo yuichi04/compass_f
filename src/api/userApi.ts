@@ -1,4 +1,4 @@
-import { ContactBoardType, LogInParams, SignUpParams, UpdateUserInfo } from "../../types/userTypes";
+import { ContactBoardType, LogInParams, SignUpParams, UpdateUserInfo } from "../types/userTypes";
 import client from "./client";
 
 // メールアドレスの認証メールを送信する

@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import ArticleIcon from "@mui/icons-material/Article";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
-import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
-import { inductionSelector, showUtilsAction } from "../../../lib/redux/features/inductionSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { inductionSelector, showUtilsAction } from "../../../redux/features/inductionSlice";
 import { Tooltip } from "../../molecules";
 
 const styles = {
@@ -22,9 +22,9 @@ const styles = {
 const InductionTooltipBar: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
-  const isOpenUserAnswers = induction.isOpenAnswers;
-  const isOpenDocuments = induction.isOpenDocuments;
-  const isOpenSlide = induction.isOpenSlide;
+  const isOpenUserAnswers = induction.isOpen.answers;
+  const isOpenDocuments = induction.isOpen.documents;
+  const isOpenSlide = induction.isOpen.slide;
   return (
     <>
       <Box sx={styles.utilButtonBox}>

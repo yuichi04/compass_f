@@ -8,8 +8,8 @@ import {
   returnToPreviousPhaseAction,
   setNextStaticSceneAction,
   showUtilsAction,
-} from "../../../lib/redux/features/inductionSlice";
-import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
+} from "../../../redux/features/inductionSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { SlideInBox } from "../../molecules";
 
 const InductionActionBox: FC = memo(() => {

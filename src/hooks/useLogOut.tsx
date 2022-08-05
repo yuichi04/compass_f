@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { logOut } from "../lib/api/userApi";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { logOutAction } from "../lib/redux/features/userSlice";
-import { showLoadingAction, hideLoadingAction } from "../lib/redux/features/lodingSlice";
+import { logOut } from "../api/userApi";
+import { useAppDispatch } from "../redux/hooks";
+import { logOutAction } from "../redux/features/userSlice";
+import { showLoadingAction, hideLoadingAction } from "../redux/features/lodingSlice";
 
 export const useLogOut = () => {
   const dispatch = useAppDispatch();

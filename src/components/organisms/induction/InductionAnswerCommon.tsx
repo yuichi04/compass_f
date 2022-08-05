@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { TextField, Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import SendIcon from "@mui/icons-material/Send";
-import { useAppDispatch, useAppSelector } from "../../../lib/redux/hooks";
-import { inductionSelector, setNextDynamicSceneAction } from "../../../lib/redux/features/inductionSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { inductionSelector, setNextDynamicSceneAction } from "../../../redux/features/inductionSlice";
 import { PulseButton } from "../../atoms";
 import { SlideInBox, TitleWithTriangleIcon } from "../../molecules";
 

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LessonType, SelectableInfoType, UtilsKeyType } from "../../../types/lessonType";
-import { staticSceneData } from "../../../dataset/induction";
+import { LessonType, SelectableInfoType, UtilsKeyType } from "../../types/lesson/inductionTypes";
+import { staticSceneData } from "../../dataset/induction";
 import { RootState } from "../store";
-import selectableInfo from "../../../dataset/induction/selectableInfo";
-import { CharacterImage } from "../../../assets/images/characters";
+import selectableInfo from "../../dataset/induction/selectableInfo";
+import { CharacterImage } from "../../assets/images/characters";
 
 const initialState: LessonType = {
   sectionId: 0, // 現在のセクション
@@ -12,12 +12,14 @@ const initialState: LessonType = {
   allowProgressScene: false, // シーンの進行を許可するか
   characterInfo: { src: "", role: "" }, // キャラクター情報の変更を管理
   displaySpeedOfLines: 0.02, // セリフ1文字あたりの表示速度
-  isOpenScreenForAnswers: false, // フェーズ別回答画面の表示・非表示
   isLastScene: false, // 最後のシーンかどうか
-  isOpenSlide: true, // スライドの表示・非表示
-  isOpenResults: false, // 演習結果の表示・非表示
-  isOpenAnswers: false, // ユーザーの回答の表示・非表示
-  isOpenDocuments: false, // 資料の表示・非表示
+  isOpen: {
+    answers: false, // ユーザーの回答の表示・非表示
+    documents: false, // 資料の表示・非表示
+    results: false, // 演習結果の表示・非表示
+    screenForAnswers: false, // フェーズ別回答画面の表示・非表示
+    slide: true, // スライドの表示・非表示
+  },
   selectableInfo: [], // 現在のセクションの選択可能な情報
   history: "", // 1つ前のフェーズを格納
   // シーン本体
@@ -51,7 +53,7 @@ const inductionSlice = createSlice({
     setNextStaticSceneAction: (state, action: { payload: number }) => {
       // 初期化
       state.allowProgressScene = false;
-      state.isOpenScreenForAnswers = false;
+      state.isOpen.screenForAnswers = false;
 
       // シーンIDを次のシーンIDに更新
       state.sceneId = action.payload + 1;
@@ -171,7 +173,7 @@ const inductionSlice = createSlice({
       state.scene.phase = "";
 
       // 回答画面を閉じる
-      state.isOpenScreenForAnswers = false;
+      state.isOpen.screenForAnswers = false;
     },
 
     // 回答をやり直す処理
@@ -190,7 +192,7 @@ const inductionSlice = createSlice({
           break;
       }
       // 回答画面を表示
-      state.isOpenScreenForAnswers = true;
+      state.isOpen.screenForAnswers = true;
     },
 
     // phaseがinfoなら選択可能な情報をstateに保存する
@@ -204,27 +206,28 @@ const inductionSlice = createSlice({
     // 各UIの表示・非表示
     showUtilsAction: (state, action: { payload: { key: UtilsKeyType; value: boolean } }) => {
       const { key, value } = action.payload;
-      // 回答画面表示中はシーンの進行と各UIの表示ができないようにする
-      state.allowProgressScene = false;
-      state.isOpenSlide = false;
-      state.isOpenAnswers = false;
-      state.isOpenDocuments = false;
+      // 各UIを同時に表示させないために、一旦全てを非表示にする
+      state.isOpen.slide = false;
+      state.isOpen.answers = false;
+      state.isOpen.documents = false;
 
       switch (key) {
         case "answers": // ユーザーの回答
-          state.isOpenAnswers = value;
+          state.isOpen.answers = value;
           break;
         case "documents": // 資料
-          state.isOpenDocuments = value;
+          state.isOpen.documents = value;
           break;
         case "results": // リザルト画面
-          state.isOpenResults = value;
+          state.isOpen.results = value;
           break;
         case "slide": // スライド
-          state.isOpenSlide = value;
+          state.isOpen.slide = value;
           break;
         case "screenForAnswers": // 回答用画面
-          state.isOpenScreenForAnswers = value;
+          state.isOpen.screenForAnswers = value;
+          // 回答画面表示中はシーンの進行ができないようにする
+          state.allowProgressScene = false;
           // 選択肢を再描写させるために、選択肢を非表示にする
           state.scene.options = [];
           break;

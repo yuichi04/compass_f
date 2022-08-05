@@ -1,7 +1,7 @@
 import { useCallback } from "react";
-import { listenAuthState } from "../lib/api/userApi";
-import { useAppDispatch } from "../lib/redux/hooks";
-import { logInAction } from "../lib/redux/features/userSlice";
+import { listenAuthState } from "../api/userApi";
+import { useAppDispatch } from "../redux/hooks";
+import { logInAction } from "../redux/features/userSlice";
 import { UserParams } from "../types/userTypes";
 
 export const useListenAuthState = () => {
