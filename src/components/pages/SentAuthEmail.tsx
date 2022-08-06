@@ -16,7 +16,7 @@ const SentAuthEmail: React.FC = React.memo(() => {
 
   return (
     <MuiContainer maxWidth="sm">
-      <IconWithPageTitle icon={MarkEmailReadIcon} title="認証メールを送信しました" />
+      <IconWithPageTitle icon={MarkEmailReadIcon} title="認証メールを送信しました" iconColor="primary" />
       <Box sx={style}>
         <p style={{ fontWeight: 600 }}>メールの内容をご確認いただき、認証を進めてください</p>
         <br />

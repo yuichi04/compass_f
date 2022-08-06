@@ -17,14 +17,14 @@ const Contact: React.FC = () => {
   return (
     <>
       <MuiContaier maxWidth="md">
-        <IconWithPageTitle title="お問い合わせフォーム" icon={EmailIcon} />
+        <IconWithPageTitle title="お問い合わせフォーム" icon={EmailIcon} iconColor="primary" />
         <Typography textAlign="center">
           何かご不明なことや、ご意見・ご要望などございましたら、以下のフォームよりご連絡ください。
         </Typography>
         <br />
         <form onSubmit={handleSubmit}>
           <Box mb="8px">
-            <ChipWithText text="メールアドレス" label="任意" size="small" color="info" variant="outlined" />
+            <ChipWithText text="メールアドレス" label="任意" size="small" color="primary" variant="outlined" />
           </Box>
           <Box mb="16px">
             <TextFieldWithAdornment

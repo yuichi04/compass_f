@@ -16,17 +16,17 @@ const Footer: React.FC = () => {
           </LinkTo>
           <small>&copy;COMPASSS-2022</small>
         </Grid>
-        <Grid item xs={6} sx={{ display: "flex", justifyContent: "flex-end", fontSize: "14px" }}>
+        <Grid item xs={6} sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "14px" }}>
           <ul>
-            <li>
+            <Box component="li" mb="8px">
               <LinkTo to="/privacypolicy">プライバシーポリシー</LinkTo>
-            </li>
-            <li>
+            </Box>
+            <Box component="li" mb="8px">
               <LinkTo to="/terms">利用規約</LinkTo>
-            </li>
-            <li>
+            </Box>
+            <Box component="li">
               <LinkTo to="/contact">お問い合わせ</LinkTo>
-            </li>
+            </Box>
           </ul>
         </Grid>
       </Grid>
@@ -37,8 +37,8 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const SFooter = styled.footer`
-  background: ${(props) => props.theme.palette.background.default};
-  color: ${(props) => props.theme.palette.typography.black};
+  background: ${(props) => props.theme.palette.primary.dark};
+  color: ${(props) => props.theme.palette.typography.white};
   width: 100vw;
-  padding: 32px;
+  padding: 48px 32px;
 `;

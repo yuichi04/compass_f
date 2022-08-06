@@ -88,7 +88,7 @@ const SignUp: React.FC = React.memo(() => {
   return (
     <>
       <MuiContainer maxWidth="sm">
-        <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} />
+        <IconWithPageTitle title="新規ユーザー登録" icon={AppRegistrationIcon} iconColor="primary" />
         {nameError && <ErrorText text="ユーザー名は20文字以内で入力してください" />}
         {emailError && <ErrorText text="メールアドレスは255文字以下のものをご利用ください" />}
         <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
@@ -135,9 +135,8 @@ const SAgreement = styled.div`
 
     p {
       cursor: pointer;
-      color: #00aa99;
+      color: ${(props) => props.theme.palette.info.dark};
       text-decoration: underline;
-      font-weight: 600;
     }
   }
 `;
@@ -145,7 +144,7 @@ const SAgreement = styled.div`
 const SRight = styled.div`
   text-align: right;
   a {
-    color: #00aa99;
+    color: ${(props) => props.theme.palette.info.dark};
     text-decoration: underline;
   }
 `;

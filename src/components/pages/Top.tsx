@@ -16,8 +16,7 @@ import LogicalThinking from "../../assets/images/illustrations/logicalthinking.s
 import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 import Inductive from "../../assets/images/illustrations/inductive.svg";
 import Deductive from "../../assets/images/illustrations/deductive.svg";
-import SlideIndexImage from "../../assets/images/background/slide_index.png";
-import ExerciseCapture from "../../assets/images/background/exercise_capture.png";
+import { BackgroundImage } from "../../assets/images/background";
 
 const Top: React.FC = () => {
   return (
@@ -97,8 +96,8 @@ const Top: React.FC = () => {
           }}
         >
           <Box width="1200px" m="0 auto">
-            <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="primary" />
-            <Grid container mt="64px">
+            <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="primary" mb="64" />
+            <Grid container>
               <Grid item xs={3.5}>
                 <CourseCard
                   grade="基本編"
@@ -171,38 +170,78 @@ const Top: React.FC = () => {
             clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
           }}
         >
-          <Box width="900px" m="0 auto">
-            <IconWithPageTitle title="スライドで学び、演習で身につける" icon={TipsAndUpdatesIcon} iconColor="primary" />
-            <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-              <LooksOneIcon sx={{ fontSize: "48px", mr: "4px", color: "warning.main" }} />
+          <Box width="1280px" m="0 auto">
+            <IconWithPageTitle
+              title="スライドで学び、演習で身につける"
+              icon={TipsAndUpdatesIcon}
+              iconColor="primary"
+              mb="64"
+            />
+            <Typography
+              variant="h4"
+              fontWeight={600}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              mb="16px"
+            >
+              <LooksOneIcon sx={{ fontSize: "64px", mr: "4px", color: "warning.main" }} />
               知識をコンパクトにまとめたスライドで無駄なく学べる！
             </Typography>
-            <Paper elevation={8}>
-              <Box
-                component="img"
-                alt="slide-capture"
-                src={SlideIndexImage}
-                width="100%"
-                sx={{ verticalAlign: "bottom" }}
-              />
-            </Paper>
-            <Box textAlign="center">
-              <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#333" }} />
+            <Box display="flex" justifyContent="space-between">
+              <Paper elevation={8} sx={{ width: "608px", border: "2px solid", borderColor: "info.dark" }}>
+                <Box
+                  component="img"
+                  alt="slide-capture"
+                  src={BackgroundImage.topSlide1}
+                  width="100%"
+                  sx={{ verticalAlign: "bottom" }}
+                />
+              </Paper>
+              <Paper elevation={8} sx={{ width: "608px", border: "2px solid", borderColor: "info.dark" }}>
+                <Box
+                  component="img"
+                  alt="slide-capture"
+                  src={BackgroundImage.topSlide2}
+                  width="100%"
+                  sx={{ verticalAlign: "bottom" }}
+                />
+              </Paper>
             </Box>
-            <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-              <LooksTwoIcon sx={{ fontSize: "48px", mr: "4px", color: "warning.main" }} />
+            <Box textAlign="center" m="32px 0">
+              <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#555" }} />
+            </Box>
+            <Typography
+              variant="h4"
+              fontWeight={600}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              mb="16px"
+            >
+              <LooksTwoIcon sx={{ fontSize: "64px", mr: "4px", color: "warning.main" }} />
               シミュレーションゲーム感覚で学んだ知識を試すことができる
             </Typography>
-            <Paper elevation={8}>
-              <Box
-                component="img"
-                alt="exercise-capture"
-                src={ExerciseCapture}
-                width="100%"
-                border="1px solid #ccc"
-                sx={{ verticalAlign: "bottom" }}
-              />
-            </Paper>
+            <Box display="flex" justifyContent="space-between">
+              <Paper elevation={8} sx={{ width: "608px", border: "2px solid", borderColor: "primary.dark" }}>
+                <Box
+                  component="img"
+                  alt="slide-capture"
+                  src={BackgroundImage.topExercise1}
+                  width="100%"
+                  sx={{ verticalAlign: "bottom" }}
+                />
+              </Paper>
+              <Paper elevation={8} sx={{ width: "608px", border: "2px solid", borderColor: "primary.dark" }}>
+                <Box
+                  component="img"
+                  alt="slide-capture"
+                  src={BackgroundImage.topExercise2}
+                  width="100%"
+                  sx={{ verticalAlign: "bottom" }}
+                />
+              </Paper>
+            </Box>
           </Box>
         </Box>
       </Box>

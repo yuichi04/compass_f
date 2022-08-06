@@ -43,7 +43,7 @@ const LogIn: React.FC = React.memo(() => {
 
   return (
     <MuiContainer maxWidth="sm">
-      <IconWithPageTitle title="ログイン" icon={LoginIcon} />
+      <IconWithPageTitle title="ログイン" icon={LoginIcon} iconColor="primary" />
       {error && <ErrorText text="メールアドレスまたはパスワードが異なります" />}
       <SFormBox onSubmit={(e) => handleSubmit(e, values)}>
         {formItems()}
@@ -76,7 +76,7 @@ const SFormItem = styled.div`
 const SRight = styled.div`
   text-align: right;
   a {
-    color: #00aa99;
+    color: ${(props) => props.theme.palette.info.dark};
     text-decoration: underline;
   }
 `;

@@ -12,7 +12,7 @@ const PasswordReset: React.FC = React.memo(() => {
 
   return (
     <MuiContainer maxWidth="sm">
-      <IconWithPageTitle title="パスワードの再設定" icon={LockResetIcon} />
+      <IconWithPageTitle title="パスワードの再設定" icon={LockResetIcon} iconColor="primary" />
       <div className="module-spacer-md" />
       <SText>
         パスワード再設定のメールを送信します。
@@ -56,6 +56,6 @@ const SRight = styled.div`
   text-align: right;
   a {
     text-decoration: underline;
-    color: #00aa99;
+    color: ${(props) => props.theme.palette.info.dark};
   }
 `;
