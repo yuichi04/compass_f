@@ -13,8 +13,8 @@ const InductiveExplainChart: React.FC = () => {
           top: "-24px",
           left: "-12px",
           p: "8px 16px",
-          bgcolor: "#83c3f7",
-          color: "#fff",
+          bgcolor: "success.main",
+          color: "typography.white",
         }}
       >
         <Typography variant="h5" fontWeight={600}>
@@ -22,13 +22,8 @@ const InductiveExplainChart: React.FC = () => {
         </Typography>
       </Paper>
       <Box display="flex" alignItems="center" mb="32px" justifyContent="center" textAlign="center">
-        <CheckCircleIcon sx={{ fontSize: "24px", mr: "4px", color: "#83c3f7" }} />
-        <Typography
-          variant="h6"
-          color="text.secondary"
-          fontWeight={600}
-          sx={{ textDecoration: "underline double #83c3f7" }}
-        >
+        <CheckCircleIcon sx={{ fontSize: "24px", mr: "4px", color: "success.main" }} />
+        <Typography variant="h6" color="typography.black" fontWeight={600}>
           複数の情報から共通点を見つけて結論を導く思考法
         </Typography>
       </Box>
@@ -37,7 +32,13 @@ const InductiveExplainChart: React.FC = () => {
           <Box display="flex" flexDirection="column" alignItems="center">
             <Paper
               elevation={8}
-              sx={{ p: "8px 16px", bgcolor: "primary.main", color: "#fff", width: "100px", textAlign: "center" }}
+              sx={{
+                p: "8px 16px",
+                bgcolor: "success.light",
+                color: "typography.white",
+                width: "100px",
+                textAlign: "center",
+              }}
             >
               情報A
             </Paper>
@@ -49,8 +50,8 @@ const InductiveExplainChart: React.FC = () => {
               sx={{
                 m: "0 32px",
                 p: "8px 16px",
-                bgcolor: "primary.main",
-                color: "#fff",
+                bgcolor: "success.light",
+                color: "typography.white",
                 width: "100px",
                 textAlign: "center",
               }}
@@ -62,7 +63,13 @@ const InductiveExplainChart: React.FC = () => {
           <Box display="flex" flexDirection="column" alignItems="center">
             <Paper
               elevation={8}
-              sx={{ p: "8px 16px", bgcolor: "primary.main", color: "#fff", width: "100px", textAlign: "center" }}
+              sx={{
+                p: "8px 16px",
+                bgcolor: "success.light",
+                color: "typography.white",
+                width: "100px",
+                textAlign: "center",
+              }}
             >
               情報C
             </Paper>
@@ -73,14 +80,20 @@ const InductiveExplainChart: React.FC = () => {
         <SArrowDown />
         <Paper
           elevation={8}
-          sx={{ p: "8px 0", bgcolor: "primary.dark", color: "#fff", width: "100px", textAlign: "center" }}
+          sx={{ p: "8px 0", bgcolor: "success.main", color: "typography.white", width: "100px", textAlign: "center" }}
         >
           共通点
         </Paper>
         <SArrowDown />
         <Paper
           elevation={8}
-          sx={{ p: "8px 16px", bgcolor: "#004d40", color: "#fff", width: "100px", textAlign: "center" }}
+          sx={{
+            p: "8px 16px",
+            bgcolor: "success.dark",
+            color: "typography.white",
+            width: "100px",
+            textAlign: "center",
+          }}
         >
           結論
         </Paper>

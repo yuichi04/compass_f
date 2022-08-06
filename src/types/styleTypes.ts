@@ -1,4 +1,4 @@
-export type MarginTypes = {
+export type MarginType = {
   m?: string;
   mt?: string;
   mr?: string;
@@ -6,7 +6,7 @@ export type MarginTypes = {
   ml?: string;
 };
 
-export type PaddingTypes = {
+export type PaddingType = {
   p?: string;
   pt?: string;
   pr?: string;
@@ -14,14 +14,14 @@ export type PaddingTypes = {
   pl?: string;
 };
 
-export type PositionTypes = {
+export type PositionType = {
   t?: string;
   r?: string;
   b?: string;
   l?: string;
 };
 
-export type FlexTypes = {
+export type FlexType = {
   flexDirection?: "column";
   justifyContent?: "center" | "space-between" | "space-around";
   alignItems?: "center" | "flex-end" | "flex-start";

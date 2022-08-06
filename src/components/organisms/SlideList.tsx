@@ -68,6 +68,7 @@ const SlideList: FC = memo(() => {
       {isOpenSlide && (
         <Box
           className="expand-center"
+          bgcolor="background.paper"
           sx={{
             zIndex: "999",
             display: "flex",
@@ -77,7 +78,6 @@ const SlideList: FC = memo(() => {
             transform: "translate(-50%, -50%)",
             height: "100%",
             width: "100%",
-            background: "#e0f2f1",
             overflow: "hidden",
           }}
         >

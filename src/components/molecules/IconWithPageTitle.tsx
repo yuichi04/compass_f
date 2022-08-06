@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Icon } from "@mui/material";
-import { PageTitle } from "../atoms";
+import { Icon, Typography } from "@mui/material";
 
 type Props = {
   title: string;
@@ -13,8 +12,10 @@ const IconWithPageTitle: React.FC<Props> = React.memo((props) => {
   const { title, icon, iconColor } = props;
   return (
     <SFlex>
-      <Icon fontSize="large" color={iconColor} component={icon} sx={{ marginRight: "8px" }} />
-      <PageTitle title={title} />
+      <Icon component={icon} color={iconColor} sx={{ marginRight: "8px", fontSize: "48px", color: "primray" }} />
+      <Typography variant="h4" fontWeight={600}>
+        {title}
+      </Typography>
     </SFlex>
   );
 });
@@ -23,8 +24,8 @@ export default IconWithPageTitle;
 
 const SFlex = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   margin-bottom: 32px;
-  text-shadow: 0px 1px 1px #ddd;
+  line-height: 64px;
 `;

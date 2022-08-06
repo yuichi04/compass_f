@@ -2,10 +2,12 @@ import { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
 
 type Props = {
-  open: boolean;
-  duration?: number;
-  delay?: number;
+  animationType?: "fade-in" | "slide-in" | "expand-center";
+  bgcolor?: "light" | "main" | "dark";
   children: React.ReactNode;
+  delay?: number;
+  duration?: number;
+  open: boolean;
 };
 
 const ScreenForBlackoutEvent: FC<Props> = memo(({ children, ...props }) => {
@@ -18,7 +20,30 @@ const ScreenForBlackoutEvent: FC<Props> = memo(({ children, ...props }) => {
 
 export default ScreenForBlackoutEvent;
 
-const fadeIn = keyframes`
+// 円形に拡大・縮小するアニメーション
+const expandCenter = keyframes`
+ 0% {
+   opacity: 0;
+   clip-path: circle(0 at 50% 50%);
+ }
+ 100% {
+   opacity: 1;
+   clip-path: circle(100% at 50% 50%);
+ }
+`;
+const contractCenter = keyframes`
+  0% {
+    opacity: 1;
+    clip-path: circle(100% at 50% 50%);
+  }
+  100% {
+    opacity: 0;
+    clip-path: circle(0 at 50% 50%);
+  }
+`;
+
+// スライドイン・アウト
+const slideIn = keyframes`
   0% {
     opacity:0;
     transform: translateY(-100%);
@@ -28,14 +53,39 @@ const fadeIn = keyframes`
     transform: translateY(0);
   }
 `;
-
-const fadeOut = keyframes`
+const slideOut = keyframes`
   0% {
     opacity:1;
     transform: translateY(0);
   }
   100% {
     opacity: 0;
+    transform: translateY(-100%);
+  }
+`;
+
+// フェードイン・アウト
+const fadeIn = keyframes`
+  0% {
+    opacity:0;
+    transform: translateY(-100%);
+  }
+  1% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+const fadeOut = keyframes`
+  0% {
+    opacity:1;
+  }
+  99% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
     transform: translateY(-100%);
   }
 `;
@@ -52,8 +102,24 @@ const Screen = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle, rgba(33, 33, 33, 0.9) 25%, rgba(55, 55, 55, 0.9));
-  animation-name: ${(props) => (props.open ? fadeIn : fadeOut)};
+  background: ${(props) =>
+    props.bgcolor === "light"
+      ? props.theme.palette.primaryCircleGradation.black.light
+      : props.bgcolor === "dark"
+      ? props.theme.palette.primaryCircleGradation.black.dark
+      : props.theme.palette.primaryCircleGradation.black.main};
+  animation-name: ${(props) =>
+    props.animationType === "slide-in"
+      ? props.open
+        ? slideIn
+        : slideOut
+      : props.animationType === "expand-center"
+      ? props.open
+        ? expandCenter
+        : contractCenter
+      : props.open
+      ? fadeIn
+      : fadeOut};
   animation-delay: ${(props) => (props.delay ? `${props.delay}s` : "0s")};
   animation-duration: ${(props) => (props.duration ? `${props.duration}s` : "0.5s")};
   animation-timing-function: ease-in-out;

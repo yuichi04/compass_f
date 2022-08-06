@@ -1,3 +1,5 @@
+import { SxProps } from "@mui/material";
+
 export type TextFieldTypes = {
   autoComplete?: string;
   autoFocus?: boolean;
@@ -32,4 +34,5 @@ export type ButtonTypes = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "submit" | "button";
   variant?: "text" | "outlined" | "contained";
+  sx?: SxProps;
 };

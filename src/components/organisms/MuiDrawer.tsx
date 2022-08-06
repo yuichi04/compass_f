@@ -45,7 +45,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <Avatar src={src} bgcolor="#00aa99" />
+                <Avatar src={src} bgcolor="primary.main" />
               </ListItemIcon>
               <ListItemText primary={username} secondary={email} />
             </ListItemButton>

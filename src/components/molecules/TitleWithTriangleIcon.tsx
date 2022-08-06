@@ -1,7 +1,7 @@
 import React, { FC, memo } from "react";
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { MarginTypes } from "../../types/styleTypes";
+import { MarginType } from "../../types/styleTypes";
 
 type TriangleIconType = {
   triangleColor: string;
@@ -12,7 +12,7 @@ type Props = {
   color?: string;
   fontWeight?: number;
 } & TriangleIconType &
-  MarginTypes;
+  MarginType;
 
 const TitleWithTriangleIcon: FC<Props> = memo(({ children, ...props }) => {
   const { variant, color, triangleColor, fontWeight, mb } = props;

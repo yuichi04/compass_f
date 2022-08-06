@@ -36,7 +36,7 @@ const InductionAnswerConclusion: FC = memo(() => {
       <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
         共通点から具体的な解決案を考えましょう
       </TitleWithTriangleIcon>
-      <Typography variant="h6" color="#fff" mb="32px">
+      <Typography variant="h5" color="#fff" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
         {sectionId === 1 && "お客様の英語が上達するにはどうしたら良いでしょうか？"}
       </Typography>
 

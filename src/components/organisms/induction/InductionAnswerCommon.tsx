@@ -13,6 +13,7 @@ const InductionAnswerCommon: FC = memo(() => {
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
   const info = induction.userAnswers.info;
+  const commonSubject = induction.commonSubject;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -36,7 +37,7 @@ const InductionAnswerCommon: FC = memo(() => {
       <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
         選んだ情報から共通点を見つけましょう
       </TitleWithTriangleIcon>
-      <Typography variant="h6" color="#fff" mb="32px">
+      <Typography variant="h5" color="#fff" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
         {sectionId === 1 && "同じ特徴や性質は何でしょうか？"}
       </Typography>
       <Typography variant="h6" color="#fff" mb="16px">
@@ -65,14 +66,15 @@ const InductionAnswerCommon: FC = memo(() => {
 
       <SlideInBox direction="top" distance={32} duration={1.6} delay={info.length / 2 + 0.8}>
         <Typography variant="h6" color="#fff" mb="16px">
-          ここに共通点を入力して下さい
+          主語に続けて共通点を入力して下さい
         </Typography>
         <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
       </SlideInBox>
 
       <SlideInBox direction="top" distance={32} duration={1.6} delay={info.length / 2 + 1.6}>
         <SForm onSubmit={handleSubmit}>
-          <Box mr="16px" width="100%">
+          <Box mr="24px" width="100%" display="flex" alignItems="center" justifyContent="center">
+            <Typography width="192px">{commonSubject[sectionId - 1]}</Typography>
             <TextField
               variant="standard"
               onChange={handleChange}
@@ -109,7 +111,7 @@ const SForm = styled.form`
   display: flex;
   align-items: center;
   background: #fff;
-  box-shadow: 0 0 12px #fff;
+  box-shadow: 0 0 8px #fff;
   border-radius: 8px;
   padding: 16px 24px;
 `;

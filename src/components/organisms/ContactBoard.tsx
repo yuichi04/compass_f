@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import EmailIcon from "@mui/icons-material/Email";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -23,11 +23,9 @@ const ContactBoard: React.FC = React.memo(() => {
   const { isValid, values, handleChange, handleSubmit, isOpen, setIsOpen } = useContactBorad();
   return (
     <SBoard>
-      <SContactButton>
-        <PrimaryButton color="secondary" onClick={() => setIsOpen(true)}>
-          <HelpOutlineIcon fontSize="small" sx={{ mr: "4px" }} />
-          お問い合わせ
-        </PrimaryButton>
+      <SContactButton onClick={() => setIsOpen(true)}>
+        <EmailIcon fontSize="small" sx={{ mr: "4px" }} />
+        <Typography variant="subtitle2">お問い合わせ</Typography>
       </SContactButton>
 
       <Modal open={isOpen} onClose={() => setIsOpen(false)} sx={{ zIndex: 998 }}>
@@ -95,13 +93,19 @@ const SBoard = styled.div`
 `;
 const SContactButton = styled.div`
   z-index: 999;
+  background: ${(props) => props.theme.palette.primary.main};
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
-  background: #00aa99;
-  padding: 0 8px;
-  transition: 0.3s;
+  cursor: pointer;
+  color: ${(props) => props.theme.palette.typography.white};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px 8px 12px;
+  transition: 0.2s;
+
   &:hover {
-    background: #00766b;
+    background: ${(props) => props.theme.palette.primary.dark};
   }
 `;
 

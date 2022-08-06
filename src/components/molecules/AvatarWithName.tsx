@@ -25,7 +25,7 @@ const AvatarWithText: React.FC<Props> = React.memo((props) => {
         </Typography>
       </LinkTo>
       <LinkTo to="/profile">
-        <Avatar src={src} bgcolor="#00aa99" />
+        <Avatar src={src} bgcolor="primary.main" />
       </LinkTo>
     </SFlex>
   );

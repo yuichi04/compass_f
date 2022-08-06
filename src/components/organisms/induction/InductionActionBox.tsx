@@ -21,6 +21,7 @@ const InductionActionBox: FC = memo(() => {
   const options = induction.scene.options;
   const displaySpeed = induction.displaySpeedOfLines;
   const phase = induction.scene.phase;
+  const narration = induction.scene.narration;
 
   // 選択肢の属性を設定する処理
   const handleClickNextScene = (optionProgressAttribute: boolean, id: number) => {
@@ -34,8 +35,12 @@ const InductionActionBox: FC = memo(() => {
           dispatch(showUtilsAction({ key: "screenForAnswers", value: true }));
           break;
         default:
-          // 次のシーンに進行
-          dispatch(setNextStaticSceneAction(id));
+          if (narration) {
+            dispatch(showUtilsAction({ key: "narration", value: true }));
+          } else {
+            // 次のシーンに進行
+            dispatch(setNextStaticSceneAction(id));
+          }
       }
     } else {
       // 1つ前のシーンに戻る

@@ -8,7 +8,7 @@ type Props = {
 const PageTitle: React.FC<Props> = React.memo((props) => {
   const { title } = props;
   return (
-    <Typography variant="h4" component="h1" fontWeight={600}>
+    <Typography variant="h4" component="h1" fontWeight={600} display="flex" alignItems="center">
       {title}
     </Typography>
   );

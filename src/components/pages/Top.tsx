@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
@@ -21,15 +22,8 @@ import ExerciseCapture from "../../assets/images/background/exercise_capture.png
 const Top: React.FC = () => {
   return (
     <>
-      <Box bgcolor="primary.dark">
-        <Box
-          component="div"
-          position="relative"
-          sx={{
-            background: "#fff",
-            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
-          }}
-        >
+      <Box bgcolor="primary.main">
+        <FirstViewBox>
           <Box width="1200px" height="calc(100vh - 64px)" m="0 auto" display="flex" alignItems="center">
             <Grid container height="100%">
               <Grid item xs={6} display="flex" alignItems="center" justifyContent="center">
@@ -38,7 +32,8 @@ const Top: React.FC = () => {
                     <Box
                       component="span"
                       color="primary.main"
-                      border="1px solid #00aa99"
+                      border="1px solid"
+                      borderColor="primary.main"
                       borderRadius="4px"
                       p="4px 12px"
                     >
@@ -85,41 +80,34 @@ const Top: React.FC = () => {
           <Box position="absolute" bottom="0" left="50%" sx={{ transform: "translateX(-50%)" }}>
             <KeyboardDoubleArrowDownIcon className="up-down" sx={{ fontSize: "80px" }} />
           </Box>
-        </Box>
+        </FirstViewBox>
       </Box>
-      <Box
-        component="div"
-        color="#fff"
-        textAlign="center"
-        p="64px 0"
-        sx={{
-          background: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))",
-        }}
-      >
+      <SectionDividerTextInBox>
         <Typography variant="h5" fontWeight={600} letterSpacing={1.5}>
           COMPASSでロジカルシンキングを身につけよう
         </Typography>
-      </Box>
-
-      <Box bgcolor="primary.dark">
+      </SectionDividerTextInBox>
+      <Box bgcolor="primary.main">
         <Box
           position="relative"
           p="160px 0 196px"
+          bgcolor="background.default"
           sx={{
-            background: "#fff",
+            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
           }}
         >
           <Box width="1200px" m="0 auto">
-            <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="success" />
+            <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="primary" />
             <Grid container mt="64px">
               <Grid item xs={3.5}>
                 <CourseCard
                   grade="基本編"
                   color="primary"
                   title="帰納法"
+                  fontSize="16px"
                   text={<>複数の情報から共通点を探し出し結論を導き出します</>}
                   image={Inductive}
-                  titleUnderLineColor="#83c3f7"
+                  bgColor="success.main"
                 />
               </Grid>
               <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
@@ -130,12 +118,13 @@ const Top: React.FC = () => {
                   image={Deductive}
                   grade="基本編"
                   title="演繹法"
-                  titleUnderLineColor="#c2647c"
+                  bgColor="info.main"
+                  fontSize="16px"
                   text={
                     <>
                       ※実装予定
                       <br />
-                      既に知っている情報と自分の考えを組み合わせて結論を導き出します
+                      法則や事実などに自分の考えを組み合わせて結論を導き出します
                     </>
                   }
                   color="primary"
@@ -147,9 +136,10 @@ const Top: React.FC = () => {
               <Grid item xs={3.5}>
                 <CourseCard
                   grade="応用編"
-                  color="info"
+                  color="error"
                   title="伝わる話の組み立て方"
-                  titleUnderLineColor="#fbd081"
+                  bgColor="warning.main"
+                  fontSize="16px"
                   text={
                     <>
                       ※実装予定
@@ -167,31 +157,24 @@ const Top: React.FC = () => {
           </Box>
         </Box>
       </Box>
-      <Box
-        component="div"
-        color="#fff"
-        textAlign="center"
-        p="64px 0"
-        sx={{
-          background: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))",
-        }}
-      >
+      <SectionDividerTextInBox>
         <Typography variant="h5" fontWeight={600} letterSpacing={1.5}>
           まだエンジンのかかっていない脳に活を入れよう
         </Typography>
-      </Box>
+      </SectionDividerTextInBox>
 
-      <Box bgcolor="primary.dark">
+      <Box bgcolor="primary.main">
         <Box
           p="160px 0"
+          bgcolor="background.default"
           sx={{
-            background: "#fff",
+            clipPath: "polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px))",
           }}
         >
           <Box width="900px" m="0 auto">
             <IconWithPageTitle title="スライドで学び、演習で身につける" icon={TipsAndUpdatesIcon} iconColor="primary" />
             <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-              <LooksOneIcon sx={{ fontSize: "48px", mr: "4px" }} />
+              <LooksOneIcon sx={{ fontSize: "48px", mr: "4px", color: "warning.main" }} />
               知識をコンパクトにまとめたスライドで無駄なく学べる！
             </Typography>
             <Paper elevation={8}>
@@ -207,7 +190,7 @@ const Top: React.FC = () => {
               <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#333" }} />
             </Box>
             <Typography variant="h5" fontWeight={600} display="flex" alignItems="center" justifyContent="center">
-              <LooksTwoIcon sx={{ fontSize: "48px", mr: "4px" }} />
+              <LooksTwoIcon sx={{ fontSize: "48px", mr: "4px", color: "warning.main" }} />
               シミュレーションゲーム感覚で学んだ知識を試すことができる
             </Typography>
             <Paper elevation={8}>
@@ -224,13 +207,7 @@ const Top: React.FC = () => {
         </Box>
       </Box>
 
-      <Box
-        component="div"
-        color="#fff"
-        textAlign="center"
-        p="96px 0"
-        sx={{ background: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))" }}
-      >
+      <SectionDividerTextInBox>
         <Typography variant="h4" fontWeight={600} letterSpacing={1.5} mb="16px">
           ロジカルシンキングを身につけて世界を広げよう
         </Typography>
@@ -242,9 +219,22 @@ const Top: React.FC = () => {
             </Typography>
           </PrimaryButton>
         </LinkTo>
-      </Box>
+      </SectionDividerTextInBox>
     </>
   );
 };
 
 export default Top;
+
+const FirstViewBox = styled.div`
+  position: relative;
+  background: ${(props) => props.theme.palette.background.default};
+  clip-path: polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px));
+`;
+
+const SectionDividerTextInBox = styled.div`
+  background: ${(props) => props.theme.palette.primaryGradation.black.main};
+  color: ${(props) => props.theme.palette.typography.white};
+  padding: 64px 0;
+  text-align: center;
+`;

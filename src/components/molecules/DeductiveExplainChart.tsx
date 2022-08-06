@@ -5,7 +5,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const DeductiveExplainChart: React.FC = () => {
   return (
-    <Paper elevation={8} sx={{ height: "100%", position: "relative", p: "48px 0 24px" }}>
+    <Paper elevation={8} sx={{ bgcolor: "background.default", height: "100%", position: "relative", p: "48px 0 24px" }}>
       <Paper
         elevation={8}
         sx={{
@@ -13,8 +13,8 @@ const DeductiveExplainChart: React.FC = () => {
           top: "-24px",
           left: "-12px",
           p: "8px 16px",
-          bgcolor: "#c2647c",
-          color: "#fff",
+          bgcolor: "info.main",
+          color: "typography.white",
         }}
       >
         <Typography variant="h5" fontWeight={600}>
@@ -22,31 +22,26 @@ const DeductiveExplainChart: React.FC = () => {
         </Typography>
       </Paper>
       <Box display="flex" alignItems="center" mb="32px" justifyContent="center">
-        <CheckCircleIcon sx={{ fontSize: "24px", color: "#c2647c", mr: "4px" }} />
-        <Typography
-          variant="h6"
-          color="text.secondary"
-          fontWeight={600}
-          sx={{ textDecoration: "underline double #c2647c" }}
-        >
+        <CheckCircleIcon sx={{ fontSize: "24px", color: "info.main", mr: "4px" }} />
+        <Typography variant="h6" color="typography.black" fontWeight={600}>
           自分の考えと一般論を組み合わせて結論を導く思考法
         </Typography>
       </Box>
       <Box textAlign="center" sx={{ transform: "translateX(40px)" }}>
         <Grid container>
           <Grid item xs={6} display="flex" flexDirection="column" alignItems="center">
-            <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "primary.light", color: "#fff" }}>
+            <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "info.light", color: "typography.white" }}>
               一般論
             </Paper>
             <SVerticalLine />
-            <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "primary.light", color: "#fff" }}>
+            <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "info.light", color: "typography.white" }}>
               自分の考え
             </Paper>
           </Grid>
           <Grid item xs={6} display="flex" alignItems="center">
             <Box display="flex" alignItems="center" sx={{ transform: "translateX(-8px)" }}>
               <SArrowRight />
-              <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "primary.dark", color: "#fff" }}>
+              <Paper elevation={8} sx={{ width: "128px", p: "8px 0", bgcolor: "info.dark", color: "typography.white" }}>
                 結論
               </Paper>
             </Box>

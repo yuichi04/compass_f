@@ -30,21 +30,21 @@ const InductionTooltipBar: React.FC = React.memo(() => {
       <Box sx={styles.utilButtonBox}>
         <Tooltip
           title="スライドを確認する"
-          color="rgba(51,187,173,0.9)"
+          color="primary.main"
           icon={<AutoAwesomeMotionIcon fontSize="large" />}
           onClick={() => dispatch(showUtilsAction({ key: "slide", value: !isOpenSlide }))}
         />
         <Tooltip
-          title="資料を見る"
-          color="rgba(255,167,38,0.9)"
-          icon={<ArticleIcon fontSize="large" />}
-          onClick={() => dispatch(showUtilsAction({ key: "documents", value: !isOpenDocuments }))}
-        />
-        <Tooltip
           title="自分の回答を確認する"
-          color="rgba(66,165,245,0.9)"
+          color="info.main"
           icon={<PersonSearchIcon fontSize="large" />}
           onClick={() => dispatch(showUtilsAction({ key: "answers", value: !isOpenUserAnswers }))}
+        />
+        <Tooltip
+          title="資料を見る"
+          color="success.main"
+          icon={<ArticleIcon fontSize="large" />}
+          onClick={() => dispatch(showUtilsAction({ key: "documents", value: !isOpenDocuments }))}
         />
       </Box>
     </>

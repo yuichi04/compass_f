@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
-import { FlexTypes, PositionTypes } from "../../types/styleTypes";
+import { FlexType, PositionType } from "../../types/styleTypes";
 
 type Props = {
   children: React.ReactNode;
@@ -10,8 +10,8 @@ type Props = {
   duration?: number;
   delay?: number;
   display?: "block" | "inline-block" | "flex";
-} & PositionTypes &
-  FlexTypes;
+} & PositionType &
+  FlexType;
 
 const FadeInOutBox: FC<Props> = memo(({ children, ...props }) => {
   return <FadeInOut {...props}>{children}</FadeInOut>;

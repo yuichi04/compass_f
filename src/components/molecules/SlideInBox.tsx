@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
-import { MarginTypes, PositionTypes } from "../../types/styleTypes";
+import { MarginType, PositionType } from "../../types/styleTypes";
 
 type Props = {
   children: React.ReactNode;
@@ -11,8 +11,8 @@ type Props = {
   duration?: number;
   key?: number;
   position?: "relative" | "absolute";
-} & MarginTypes &
-  PositionTypes;
+} & MarginType &
+  PositionType;
 
 const SlideInBox: FC<Props> = memo(({ children, ...props }) => {
   return <SlideIn {...props}>{children}</SlideIn>;

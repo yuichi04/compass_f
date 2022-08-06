@@ -2,7 +2,8 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider as MaterialThemeProvider } from "@mui/material/styles";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { theme } from "./assets/theme";
 import App from "./App";
 import "./assets/styles/style.scss";
@@ -16,12 +17,14 @@ const root = createRoot(container);
 root.render(
   <React.Fragment>
     <Provider store={store}>
-      <ToastContainer />
-      <ThemeProvider theme={theme}>
-        <Spinner>
-          <App />
-        </Spinner>
-      </ThemeProvider>
+      <MaterialThemeProvider theme={theme}>
+        <StyledThemeProvider theme={theme}>
+          <ToastContainer />
+          <Spinner>
+            <App />
+          </Spinner>
+        </StyledThemeProvider>
+      </MaterialThemeProvider>
     </Provider>
   </React.Fragment>
 );

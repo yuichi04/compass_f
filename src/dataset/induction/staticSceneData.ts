@@ -72,12 +72,14 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.boy.closeMouse, role: "boy" },
-    lines: ["はい。あの、英語ができるようになるにはどうしたら良いでしょうか。"],
+    lines: [
+      "はい。あの、将来アメリカで働きたいなと思っていて、英語ができるようになりたいんですけど、どうしたら良いでしょうか？",
+    ],
   },
   {
     section: 1,
     lines: [
-      "将来アメリカで働いてみたいと思っているんですけど、あまり英語が得意ではなくて・・・。",
+      "学校の授業も宿題も集中してやっていて、休みの日には英単語の暗記もやっているんですけど、なかなか上達しなくて・・・",
       "何か良い勉強方法とかあれば教えて欲しいです。",
     ],
   },
@@ -94,21 +96,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: "", role: "user" },
-    lines: ["1点確認させていただきたいのですが、普段英語学習はどのくらいされていますか？"],
-  },
-  {
-    section: 1,
-    character: { src: CharacterImage.boy.openMouse, role: "boy" },
-    lines: [
-      "そうですね・・・",
-      "学校の授業と宿題を合わせて、1日に1、2時間くらいだと思います。",
-      "あと、休みの日には単語の暗記をやったりもしてます。",
-    ],
-  },
-  {
-    section: 1,
-    character: { src: "", role: "user" },
-    lines: ["かしこまりました。", "それでは、何か良い方法がないか確認させていただきますので、少々お待ちください。"],
+    lines: ["かしこまりました。", "それでは、何か良い方法がないか確認いたしますので、少々お待ちください。"],
   },
   {
     section: 1,
@@ -133,7 +121,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.guide.normalB, role: "guide" },
-    lines: ["それでは、英語が上達するにはどうしたら良いか帰納法を用いて考えていきましょう。"],
+    lines: ["それでは、英語が上達するにはどうしたら良いか考えていきましょう。"],
   },
   {
     section: 1,
@@ -213,12 +201,12 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.guide.smile, role: "guide" },
-    lines: ["わかりました。", "それではいよいよお客様に解決案をご案内しましょう。"],
+    lines: ["わかりました。", "それではお客様に解決案をご案内しましょう。"],
   },
   {
     section: 1,
     character: { src: "", role: "user" },
-    lines: ["お客様。"],
+    lines: ["お客様。お待たせいたしました。"],
   },
   {
     section: 1,
@@ -228,10 +216,6 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: "", role: "user" },
-    lines: ["お待ちいただきありがとうございます。"],
-  },
-  {
-    section: 1,
     lines: ["それではご相談いただきました、英語が上達するための方法についてご案内いたします。"],
   },
   {
@@ -244,17 +228,72 @@ const staticSceneData: StaticSceneDataType[] = [
     ],
     character: { src: CharacterImage.boy.openMouse, role: "boy" },
     lines: ["はい。よろしくお願いします。"],
+    narration: "お客様に英語が上達するための解決案とその根拠について説明した",
+  },
+  // ここに動的シーンが入ります。
+  {
+    section: 1,
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
+    lines: ["なるほど。", "そうすれば良いんですね。"],
+  },
+  {
+    section: 1,
+    lines: ["おかげで道筋が見えてきた気がします。", "また何か困ったことがあったら相談させてください。"],
+  },
+  {
+    section: 1,
+    character: { src: "", role: "user" },
+    lines: ["はい。いつでもお気軽にご相談ください。"],
+  },
+  {
+    section: 1,
+    character: { src: CharacterImage.boy.openMouse, role: "boy" },
+    lines: ["ありがとうございました！", "失礼します。"],
+  },
+  {
+    section: 1,
+    character: { src: CharacterImage.guide.smile, role: "guide" },
+    lines: ["お疲れ様でした。", "初めて対応をしてみた感想はどうですか？", "何となく感覚は掴めましたか？"],
+  },
+  {
+    section: 1,
+    lines: ["もし不明なことがあれば、スライドで再度確認してみましょう。"],
   },
   {
     section: 1,
     options: [
       {
         progress: true,
-        label: "解決案を案内する",
+        label: "準備ができました。",
       },
     ],
-    character: { src: CharacterImage.boy.openMouse, role: "boy" },
-    lines: ["なるほど"],
+    lines: ["それでは少し休憩したら次の対応をお願いします。", "準備ができたら教えてくださいね。"],
+    narration: "休憩後・・・",
+  },
+  /**
+   * section2
+   */
+  {
+    section: 2,
+    lines: ["もう夕方や・・・"],
+  },
+  {
+    section: 2,
+    options: [
+      {
+        progress: true,
+        label: "準備ができました。",
+      },
+    ],
+    lines: ["それでは少し休憩したら次の対応をお願いします。", "準備ができたら教えてくださいね。"],
+    narration: "休憩後・・・",
+  },
+  /**
+   * section3
+   */
+  {
+    section: 3,
+    lines: ["今日も残業だ・・・"],
   },
 ];
 

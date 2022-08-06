@@ -84,7 +84,7 @@ const InductionSelectOptions: FC = memo(() => {
       </Box>
 
       <FadeInOutBox fadeIn display="flex" alignItems="center" justifyContent="center">
-        <PulseButton size="100px" bgcolor="#33bbad" color="#fff" disabled={disabled} onClick={handleSubmit}>
+        <PulseButton size="100px" bgcolor="#00aa99" color="#fff" disabled={disabled} onClick={handleSubmit}>
           <Typography fontWeight={600} sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
             決定
           </Typography>
@@ -102,24 +102,24 @@ const SBox = styled.div`
 `;
 const SLabel = styled.label`
   display: block;
-  background: #fff;
+  background: ${(props) => props.theme.palette.background.default};
   border-radius: 8px;
-  box-shadow: 0 0 8px #fff;
+  box-shadow: 0 0 8px ${(props) => props.theme.palette.background.default};
   cursor: pointer;
   padding: 8px 12px;
   transition: all 0.3s;
 
   &:hover {
-    box-shadow: 0 0 8px 3px #fff;
+    box-shadow: 0 0 16px ${(props) => props.theme.palette.background.default};
   }
 `;
 const SCheckBox = styled.input`
   display: none;
 
   &:checked ~ div > label {
-    background: #33bbad;
-    box-shadow: 0 2px 16px #33bbad;
-    color: #fff;
+    background: ${(props) => props.theme.palette.success.light};
+    box-shadow: 0 2px 16px ${(props) => props.theme.palette.success.light};
+    color: ${(props) => props.theme.palette.typography.white};
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   }
 `;

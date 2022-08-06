@@ -16,7 +16,7 @@ const LessonList: React.FC = React.memo(() => {
       <IconWithPageTitle title="レッスン一覧" icon={LocalLibraryIcon} iconColor="primary" />
       <Grid container spacing={8}>
         <Grid item xs={12}>
-          <IconWithSectionTitle title="ロジカルシンキング基本編" icon={MenuBookIcon} iconColor="primary" />
+          <IconWithSectionTitle title="ロジカルシンキング基本編" icon={MenuBookIcon} iconColor="primary" mb="32px" />
           <Grid container spacing={6} height="100%">
             <Grid item xs={4}>
               <CourseCard
@@ -24,9 +24,10 @@ const LessonList: React.FC = React.memo(() => {
                 image={Inductive}
                 grade="基本編"
                 title="帰納法"
-                titleUnderLineColor="#83c3f7"
+                bgColor="success.main"
                 text={<>複数の情報から共通点を探し出し結論を導き出します</>}
                 color="primary"
+                fontSize="16px"
               />
             </Grid>
             <Grid item xs={4}>
@@ -35,25 +36,27 @@ const LessonList: React.FC = React.memo(() => {
                 image={Deductive}
                 grade="基本編"
                 title="演繹法"
-                titleUnderLineColor="#c2647c"
-                text={<>一般論など既に知っている情報に自分の考えを関連付けて結論を導き出します</>}
+                bgColor="info.main"
+                text="※実装予定"
                 color="primary"
+                fontSize="16px"
               />
             </Grid>
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <IconWithSectionTitle title="ロジカルシンキング応用篇" icon={BookmarkIcon} iconColor="primary" />
+          <IconWithSectionTitle title="ロジカルシンキング応用篇" icon={BookmarkIcon} iconColor="primary" mb="32px" />
           <Grid container spacing={6} height="100%">
             <Grid item xs={4}>
               <CourseCard
                 grade="応用編"
                 link="/lessonlist"
-                color="info"
+                color="error"
                 title="伝わる話の組み立て方"
                 text="※実装予定"
-                titleUnderLineColor="#fbd081"
+                bgColor="warning.main"
                 image={Comunicate}
+                fontSize="16px"
               />
             </Grid>
           </Grid>

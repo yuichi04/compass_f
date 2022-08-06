@@ -21,7 +21,6 @@ const SlidePointCard: React.FC<Props> = React.memo((props) => {
         flexDirection: "column",
         alignItems: "center",
         p: "32px 16px",
-        bgcolor: "#fff",
         height: "100%",
       }}
     >

@@ -12,7 +12,7 @@ const AvatarAndUploadButton: React.FC<Props> = React.memo((props) => {
   return (
     <SBox>
       <SAvatarWrap>
-        <Avatar src={src} size="240px" bgcolor="#00aa99" />
+        <Avatar src={src} size="240px" bgcolor="primary.main" />
       </SAvatarWrap>
       <SButtonWrap>
         <UploadButton />

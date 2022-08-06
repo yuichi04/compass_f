@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 import { BackgroundImage } from "../../assets/images/background";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { initializeSceneAction, inductionSelector } from "../../redux/features/inductionSlice";
+import {
+  initializeSceneAction,
+  inductionSelector,
+  showUtilsAction,
+  setNextStaticSceneAction,
+} from "../../redux/features/inductionSlice";
 import {
   InductionTooltipBar,
   SlideList,
@@ -16,7 +21,7 @@ import {
   InductionAnswerConclusion,
   InductionAnswerCheck,
 } from "../organisms";
-import { ScreenForBlackoutEvent } from "../molecules";
+import { FadeInOutBox, Narration, ScreenForBlackoutEvent } from "../molecules";
 
 type BgImgProps = {
   bgImg: number;
@@ -26,11 +31,14 @@ const Scene: FC = memo(() => {
   const dispatch = useAppDispatch();
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
+  const id = induction.sceneId;
   const isOpenSlide = induction.isOpen.slide;
   const isOpenUserAnswers = induction.isOpen.answers;
   const isOpenScreen = induction.isOpen.screenForAnswers;
+  const isOpenNarration = induction.isOpen.narration;
   const allowStartingExercise = induction.allowStartingExercise;
   const phase = induction.scene.phase;
+  const narration = induction.scene.narration;
 
   // シーンの切り替え処理
   //   useEffect(() => {
@@ -55,7 +63,7 @@ const Scene: FC = memo(() => {
       ) : null}
 
       {/* 回答画面 */}
-      <ScreenForBlackoutEvent open={isOpenScreen}>
+      <ScreenForBlackoutEvent open={isOpenScreen} animationType="slide-in">
         {isOpenScreen && (
           <>
             {phase === "info" && <InductionSelectOptions />}
@@ -65,6 +73,13 @@ const Scene: FC = memo(() => {
           </>
         )}
       </ScreenForBlackoutEvent>
+
+      {/* ナレーション画面 */}
+      <Narration open={isOpenNarration} handleClose={() => dispatch(setNextStaticSceneAction(id))}>
+        <FadeInOutBox duration={1} delay={0.4} fadeIn>
+          {narration}
+        </FadeInOutBox>
+      </Narration>
 
       <Box bgcolor="#2a2f36">
         {/* スライド */}

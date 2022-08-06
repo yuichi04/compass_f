@@ -25,7 +25,6 @@ const InductionAnswerCheck: FC = memo(() => {
   const induction = useAppSelector(inductionSelector);
   const answers = induction.userAnswers;
   const infoLength = answers.info.length;
-
   // 共通点がOKかどうか
   const [isCheckedCommon, setIsCheckedCommon] = useState(false);
   // 情報がOKかどうか
@@ -61,7 +60,7 @@ const InductionAnswerCheck: FC = memo(() => {
     if (isCheckedCommon && isCheckedInfo) {
       setIsOpen(true);
     }
-    // 共通点がOKではない場合は、情報数を一致させるために情報を初期化する
+    // 共通点がOKではない場合は、情報のフラグを初期化する
     if (!isCheckedCommon) setInfo([]);
   }, [isCheckedCommon, isCheckedInfo, dispatch]);
 
@@ -71,17 +70,15 @@ const InductionAnswerCheck: FC = memo(() => {
         <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
           論理が飛躍していないか確認しましょう
         </TitleWithTriangleIcon>
-        <Typography variant="h6" color="#fff" mb="16px">
-          【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？
-          <br />
-          問題がなければその項目をクリックしてください。
+        <Typography variant="h6" color="#fff" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
+          【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？問題がなければクリックしてください。
         </Typography>
         {/* 結論 */}
         <Box
           display="flex"
           justifyContent="center"
           mb="16px"
-          bgcolor={isCheckedCommon ? "#d8dadf" : "primary.main"}
+          bgcolor={isCheckedCommon ? "#d8dadf" : "success.main"}
           borderRadius="8px"
           boxShadow={isCheckedCommon ? "0 0 4px #fff" : "0 0 20px #00aa99"}
           p="4px 32px"
@@ -168,37 +165,39 @@ const InductionAnswerCheck: FC = memo(() => {
           </>
         )}
       </SBox>
-      <ScreenForBlackoutEvent open={isOpen} duration={0.5} delay={0.1}>
-        <Box display="flex" alignItems="center" justifyContent="center">
-          <Box textAlign="center">
-            <Box sx={{ transform: "translateX(24px)" }}>
-              <TitleWithTriangleIcon variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
-                論理に飛躍はありませんか？
-              </TitleWithTriangleIcon>
-            </Box>
-            <KeyboardDoubleArrowDownIcon
-              className="up-down"
-              sx={{
-                color: "#ffa726",
-                fontSize: "64px",
-                mb: "48px",
-              }}
-            />
-            <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
-              <PulseButton bgcolor="#00aa99" size="160px" onClick={() => dispatch(setNextDynamicSceneAction(true))}>
-                <Typography variant="h6" color="#fff" fontWeight={600}>
-                  大丈夫
-                </Typography>
-              </PulseButton>
-              <PulseButton bgcolor="#ccc" size="160px" onClick={() => setIsOpen(false)}>
-                <Typography variant="h6" color="#fff" fontWeight={600}>
-                  やり直す
-                </Typography>
-              </PulseButton>
+      {isOpen && (
+        <ScreenForBlackoutEvent open={isOpen}>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Box textAlign="center">
+              <Box sx={{ transform: "translateX(24px)" }}>
+                <TitleWithTriangleIcon variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
+                  論理に飛躍はありませんか？
+                </TitleWithTriangleIcon>
+              </Box>
+              <KeyboardDoubleArrowDownIcon
+                className="up-down"
+                sx={{
+                  color: "#ffa726",
+                  fontSize: "64px",
+                  mb: "48px",
+                }}
+              />
+              <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
+                <PulseButton bgcolor="#00aa99" size="160px" onClick={() => dispatch(setNextDynamicSceneAction(true))}>
+                  <Typography variant="h6" color="#fff" fontWeight={600}>
+                    大丈夫
+                  </Typography>
+                </PulseButton>
+                <PulseButton bgcolor="#ccc" size="160px" onClick={() => setIsOpen(false)}>
+                  <Typography variant="h6" color="#fff" fontWeight={600}>
+                    やり直す
+                  </Typography>
+                </PulseButton>
+              </Box>
             </Box>
           </Box>
-        </Box>
-      </ScreenForBlackoutEvent>
+        </ScreenForBlackoutEvent>
+      )}
     </>
   );
 });
@@ -221,11 +220,6 @@ const rotate = keyframes`
   100% {
     transform: translate(-50%, -50%) scale(1) rotate(-9deg);
     opacity: 1;
-  }
-`;
-const fadeIn = keyframes`
-  100% {
-    opacity: 100%;
   }
 `;
 
@@ -287,14 +281,4 @@ const SLabel = styled.label<LabelType>`
   &:hover {
     box-shadow: 0 0 16px #fff;
   }
-`;
-
-const SFadeInBox = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(33, 33, 33, 0.9);
-  transform: translate(-50%, -50%);
 `;

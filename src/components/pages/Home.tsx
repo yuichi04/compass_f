@@ -16,7 +16,7 @@ const Home: React.FC = React.memo(() => {
     <>
       <MuiContainer maxWidth="lg">
         <IconWithPageTitle title="ようこそ、COMPASSへ" icon={HomeIcon} iconColor="primary" />
-        <IconWithSectionTitle title="おすすめの学習コース" icon={MenuBookIcon} iconColor="primary" />
+        <IconWithSectionTitle title="おすすめの学習コース" icon={MenuBookIcon} iconColor="primary" mb="32px" />
         <Grid container>
           <Grid item xs={3.5}>
             <CourseCard
@@ -26,7 +26,8 @@ const Home: React.FC = React.memo(() => {
               title="帰納法"
               text={<>複数の情報から共通点を探し出し結論を導き出します</>}
               image={Inductive}
-              titleUnderLineColor="#83c3f7"
+              bgColor="success.main"
+              fontSize="16px"
             />
           </Grid>
           <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
@@ -38,14 +39,9 @@ const Home: React.FC = React.memo(() => {
               image={Deductive}
               grade="基本編"
               title="演繹法"
-              titleUnderLineColor="#c2647c"
-              text={
-                <>
-                  ※実装予定
-                  <br />
-                  既に知っている情報と自分の考えを組み合わせて結論を導き出します
-                </>
-              }
+              bgColor="info.main"
+              fontSize="16px"
+              text="※実装予定"
               color="primary"
             />
           </Grid>
@@ -56,12 +52,13 @@ const Home: React.FC = React.memo(() => {
             <CourseCard
               grade="応用編"
               link="/"
-              color="info"
+              color="error"
               title="伝わる話の組み立て方"
               text="実装予定"
-              titleUnderLineColor="#fbd081"
+              bgColor="warning.main"
               // text={<>相手のレベルに合わせたわかりやすい説明ができるようになります</>}
               image={Comunicate}
+              fontSize="16px"
             />
           </Grid>
         </Grid>

@@ -61,23 +61,16 @@ const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
         </Tooltip>
 
         {/* スライド本体 */}
-        <Box
-          bgcolor="primary.dark"
-          boxShadow="0 4px 12px #666"
-          display="flex"
-          alignItems="center"
-          height="100px"
-          p="16px 0"
-        >
-          <Box width="1280px" m="0 auto" color="#fff">
+        <SHeader>
+          <Box width="1280px" m="0 auto" color="typography.white">
             <Typography variant="h6">{title}</Typography>
             <Typography variant="h4" fontWeight={600}>
               {sectionTitle}
             </Typography>
           </Box>
-        </Box>
+        </SHeader>
         <SContent>
-          <Typography component="div" variant="h6" color="text.secondary">
+          <Typography component="div" variant="h6" color="typography.black">
             {children}
           </Typography>
         </SContent>
@@ -110,7 +103,7 @@ export default SlideListItem;
 const styles = {
   arrow: {
     container: {
-      bgcolor: "primary.dark",
+      bgcolor: "primary.main",
       borderRadius: "100%",
       display: "flex",
       alignItems: "center",
@@ -120,7 +113,7 @@ const styles = {
     },
     icon: {
       fontSize: "50px",
-      color: "#fff",
+      color: "secondary.main",
     },
   },
 };
@@ -131,7 +124,7 @@ const SContainer = styled.div`
 `;
 const SInner = styled.div`
   position: relative;
-  background: #e0f2f1;
+  background: #e0f7fa;
   overflow: hidden;
   height: 100%;
 `;
@@ -141,4 +134,13 @@ const SContent = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 3% 0;
+`;
+
+const SHeader = styled.div`
+  background: ${(props) => props.theme.palette.primary.main};
+  box-shadow: 0 1px 20px ${(props) => props.theme.palette.primary.dark};
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding: 16px 0;
 `;

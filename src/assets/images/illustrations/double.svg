@@ -1,29 +1,29 @@
 <svg id="undraw_split_testing_l1uw" xmlns="http://www.w3.org/2000/svg" width="805.948" height="735.268" viewBox="0 0 805.948 735.268">
   <rect id="長方形_11" data-name="長方形 11" width="357.795" height="229.148" transform="translate(0.153 177.534)" fill="#f2f2f2"/>
   <rect id="長方形_12" data-name="長方形 12" width="337.333" height="186.85" transform="translate(10.384 206.275)" fill="#fff"/>
-  <rect id="長方形_13" data-name="長方形 13" width="357.795" height="15.2" transform="translate(0 177.331)" fill="#83c3f7"/>
+  <rect id="長方形_13" data-name="長方形 13" width="357.795" height="15.2" transform="translate(0 177.331)" fill="#00aa99"/>
   <circle id="楕円形_1" data-name="楕円形 1" cx="2.817" cy="2.817" r="2.817" transform="translate(8.478 182.285)" fill="#fff"/>
   <circle id="楕円形_2" data-name="楕円形 2" cx="2.817" cy="2.817" r="2.817" transform="translate(19.172 182.285)" fill="#fff"/>
   <circle id="楕円形_3" data-name="楕円形 3" cx="2.817" cy="2.817" r="2.817" transform="translate(29.866 182.285)" fill="#fff"/>
   <rect id="長方形_14" data-name="長方形 14" width="86.679" height="148.076" transform="translate(41.035 225.662)" fill="#f2f2f2"/>
-  <rect id="長方形_15" data-name="長方形 15" width="72.232" height="40.76" transform="translate(142.676 225.662)" fill="#83c3f7"/>
+  <rect id="長方形_15" data-name="長方形 15" width="72.232" height="40.76" transform="translate(142.676 225.662)" fill="#00aa99"/>
   <rect id="長方形_16" data-name="長方形 16" width="72.232" height="43.855" transform="translate(142.676 277.772)" fill="#f2f2f2"/>
   <rect id="長方形_17" data-name="長方形 17" width="72.232" height="40.76" transform="translate(142.676 332.978)" fill="#f2f2f2"/>
   <rect id="長方形_18" data-name="長方形 18" width="86.679" height="64.531" transform="translate(230.387 225.662)" fill="#f2f2f2"/>
   <rect id="長方形_19" data-name="長方形 19" width="86.679" height="64.531" transform="translate(230.387 309.207)" fill="#f2f2f2"/>
   <rect id="長方形_20" data-name="長方形 20" width="357.795" height="229.148" transform="translate(448.153 177.534)" fill="#f2f2f2"/>
   <rect id="長方形_21" data-name="長方形 21" width="337.333" height="186.85" transform="translate(458.384 206.275)" fill="#fff"/>
-  <rect id="長方形_22" data-name="長方形 22" width="357.795" height="15.2" transform="translate(448 177.331)" fill="#c2647c"/>
+  <rect id="長方形_22" data-name="長方形 22" width="357.795" height="15.2" transform="translate(448 177.331)" fill="#82c3f6"/>
   <circle id="楕円形_4" data-name="楕円形 4" cx="2.817" cy="2.817" r="2.817" transform="translate(456.478 182.285)" fill="#fff"/>
   <circle id="楕円形_5" data-name="楕円形 5" cx="2.817" cy="2.817" r="2.817" transform="translate(467.172 182.285)" fill="#fff"/>
   <circle id="楕円形_6" data-name="楕円形 6" cx="2.817" cy="2.817" r="2.817" transform="translate(477.866 182.285)" fill="#fff"/>
   <rect id="長方形_23" data-name="長方形 23" width="86.679" height="148.076" transform="translate(678.308 225.662)" fill="#f2f2f2"/>
-  <rect id="長方形_24" data-name="長方形 24" width="174.834" height="40.76" transform="translate(489.113 225.659)" fill="#c2647c"/>
+  <rect id="長方形_24" data-name="長方形 24" width="174.834" height="40.76" transform="translate(489.113 225.659)" fill="#82c3f6"/>
   <rect id="長方形_25" data-name="長方形 25" width="174.834" height="43.855" transform="translate(489.113 277.77)" fill="#f2f2f2"/>
   <rect id="長方形_26" data-name="長方形 26" width="174.834" height="40.76" transform="translate(489.113 332.976)" fill="#f2f2f2"/>
   <rect id="長方形_27" data-name="長方形 27" width="2" height="109.268" transform="translate(398.947)" fill="#ccc"/>
   <path id="パス_1" data-name="パス 1" d="M600.947,177.268h-2v-67h-398v67h-2v-69h402Z" fill="#ccc"/>
-  <path id="パス_2" data-name="パス 2" d="M611.689,387.834l-1.506-7.529s-22.149-7.529-24.628,7.529Z" transform="translate(-197.026 -82.366)" fill="#e6e6e6"/>
+  <path id="パス_2" data-name="パス 2" d="M611.689,387.834l-1.506-7.529s-22.149-7.529-24.628,7.529Z" transform="translate(-197.026 -82.366)" fill="#red"/>
   <path id="パス_3" data-name="パス 3" d="M372.154,720.046H357.633l-6.908-56.009h21.431Z" fill="#ffb8b8"/>
   <path id="パス_4" data-name="パス 4" d="M572.883,816.488l-46.821,0v-.592a18.225,18.225,0,0,1,18.223-18.224h28.6Z" transform="translate(-197.026 -82.366)" fill="#2f2e41"/>
   <path id="パス_5" data-name="パス 5" d="M422.075,720.046H436.6l6.908-56.009H422.073Z" fill="#ffb8b8"/>
@@ -33,7 +33,7 @@
   <path id="パス_9" data-name="パス 9" d="M581.571,389.34s10.541-15.059,30.117-4.518l9.035,12.047,28.612,21.082-6.023,70.776,7.529,88.846-106.917-1.506L562,487.221v-94.87Z" transform="translate(-197.026 -82.366)" fill="#2f2e41"/>
   <path id="パス_10" data-name="パス 10" d="M442.521,360.58l8.634,103.238-10.893-55.951Z" opacity="0.25"/>
   <path id="パス_11" data-name="パス 11" d="M561.008,596.772a11.106,11.106,0,0,0-2.994-16.765l3.219-25.175-14.822-5.688-4.047,35.616a11.167,11.167,0,0,0,18.643,12.012Z" transform="translate(-197.026 -82.366)" fill="#ffb8b8"/>
-  <rect id="長方形_28" data-name="長方形 28" width="24.094" height="10.541" transform="translate(369.486 489.184) rotate(180)" fill="#e6e6e6"/>
+  <rect id="長方形_28" data-name="長方形 28" width="24.094" height="10.541" transform="translate(369.486 489.184) rotate(180)" fill="#red"/>
   <path id="パス_12" data-name="パス 12" d="M577.807,405.151,562,392.351s-11.294-.753-12.8,15.812-3.338,87.34-3.338,87.34l-5.7,70.776,31.623,1.506,6.023-76.6Z" transform="translate(-197.026 -82.366)" fill="#2f2e41"/>
   <circle id="楕円形_7" data-name="楕円形 7" cx="30.239" cy="30.239" r="30.239" transform="translate(360.264 271.372) rotate(-61.337)" fill="#ffb8b8"/>
   <path id="パス_13" data-name="パス 13" d="M596.071,368.381a30.673,30.673,0,0,0,20.068-57.652,35.868,35.868,0,0,0-16.936-3.039c-9.044.475-17.834,3.818-26.887,3.572L571,313.371l-4.945-1.2L565,316.1l-1.3-.045c-2.333,4.336,1.421,10.544,6.344,10.491,1.949-.021,3.793-.833,5.7-1.241s4.151-.307,5.465,1.133c1.708,1.871.965,4.791.608,7.3s.533,5.887,3.066,5.969c1.294.042,2.524-.886,3.795-.642,1.48.284,2.229,2.072,2.013,3.564a14.181,14.181,0,0,1-1.771,4.135c-3.671,7.327-.571,17.295,6.607,21.248" transform="translate(-197.026 -82.366)" fill="#2f2e41"/>

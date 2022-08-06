@@ -11,27 +11,30 @@ const initialState: LessonType = {
   allowStartingExercise: false, // 演習の開始を許可するか
   allowProgressScene: false, // シーンの進行を許可するか
   characterInfo: { src: "", role: "" }, // キャラクター情報の変更を管理
+  commonSubject: ["英語が話せる人は", "セクション2の主語", "セクション3の主語"], // 共通点の主語を設定
   displaySpeedOfLines: 0.02, // セリフ1文字あたりの表示速度
-  isLastScene: false, // 最後のシーンかどうか
-  isOpen: {
-    answers: false, // ユーザーの回答の表示・非表示
-    documents: false, // 資料の表示・非表示
-    results: false, // 演習結果の表示・非表示
-    screenForAnswers: false, // フェーズ別回答画面の表示・非表示
-    slide: true, // スライドの表示・非表示
-  },
-  selectableInfo: [], // 現在のセクションの選択可能な情報
   history: "", // 1つ前のフェーズを格納
+  isLastScene: false, // 最後のシーンかどうか
+  // 各UIの表示・非表示を管理
+  isOpen: {
+    answers: false, // ユーザーの回答
+    documents: false, // 資料
+    narration: false, // ナレーション画面
+    results: false, // 演習結果
+    screenForAnswers: false, // フェーズ別回答画面
+    slide: true, // スライド
+  },
+  selectableInfo: [], // 現セクションの選択可能な情報
   // シーン本体
   scene: {
     section: 0,
     options: [], // シーンの進行で使用する選択肢
-    character: { src: "", role: "" },
-
-    lines: [],
-    phase: "",
+    character: { src: "", role: "" }, // キャラクター情報
+    lines: [], // セリフ
+    phase: "", // 動的シーン生成のフック
+    narration: "", // ナレーション
   },
-  // 結果表示用にユーザーの回答を格納
+  // ユーザーの回答を格納
   userAnswers: {
     info: [],
     common: "",
@@ -54,6 +57,7 @@ const inductionSlice = createSlice({
       // 初期化
       state.allowProgressScene = false;
       state.isOpen.screenForAnswers = false;
+      state.isOpen.narration = false;
 
       // シーンIDを次のシーンIDに更新
       state.sceneId = action.payload + 1;
@@ -109,8 +113,8 @@ const inductionSlice = createSlice({
           break;
         case "common":
           if (typeof action.payload === "string") {
-            // ユーザーの回答を保存
-            state.userAnswers.common = action.payload;
+            // ユーザーの回答に主語をつけて保存
+            state.userAnswers.common = state.commonSubject[state.sectionId - 1] + action.payload;
             // 表示キャラクターを設定
             state.characterInfo = { src: CharacterImage.guide.normalB, role: "guide" };
             // セリフを生成
@@ -162,8 +166,6 @@ const inductionSlice = createSlice({
             }
           }
           break;
-        case "guide":
-          break;
       }
 
       // ヒストリーに現在のフェーズを記録
@@ -203,7 +205,7 @@ const inductionSlice = createSlice({
       }
     },
 
-    // 各UIの表示・非表示
+    // 各UIの表示・非表示を実行する処理
     showUtilsAction: (state, action: { payload: { key: UtilsKeyType; value: boolean } }) => {
       const { key, value } = action.payload;
       // 各UIを同時に表示させないために、一旦全てを非表示にする
@@ -223,6 +225,9 @@ const inductionSlice = createSlice({
           break;
         case "slide": // スライド
           state.isOpen.slide = value;
+          break;
+        case "narration": // ナレーション
+          state.isOpen.narration = value;
           break;
         case "screenForAnswers": // 回答用画面
           state.isOpen.screenForAnswers = value;

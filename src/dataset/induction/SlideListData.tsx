@@ -128,7 +128,7 @@ const SlideListData = () => {
             <br />
             <Box display="flex" alignItems="center" justifyContent="center">
               画面右の
-              <PlayCircleFilledIcon sx={{ color: "primary.dark" }} />
+              <PlayCircleFilledIcon sx={{ color: "primary.marin" }} />
               を押して次のスライドへ
             </Box>
           </Box>
@@ -143,7 +143,7 @@ const SlideListData = () => {
       sentence: (
         <>
           <Box display="flex" alignItems="center" justifyContent="center">
-            <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "32px", mr: "4px" }} />
+            <TipsAndUpdatesIcon sx={{ color: "warning.main", fontSize: "32px", mr: "4px" }} />
             <Typography variant="h5" component="div" fontWeight={600} textAlign="center">
               ロジカルシンキングとは
               <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
@@ -173,26 +173,30 @@ const SlideListData = () => {
                 <SlideSectionContent
                   title="身につけるメリット"
                   icon={<VolunteerActivismIcon sx={{ ml: "4px" }} />}
-                  color="primary.dark"
+                  color="info.dark"
                 >
-                  ロジカルシンキングを身につけることには
-                  <Typography component="span" color="primary.main" fontWeight={600}>
-                    「説明が上手になる・問題解決力がつく」
-                  </Typography>
-                  という大きなメリットがあります。
-                  <br />
-                  どの仕事でも
-                  <Typography component="span" fontWeight={600}>
-                    「何かを伝える・問題を解決する」
-                  </Typography>
-                  ということは避けて通れないと思いますが、ロジカルシンキングを身につけているとこれらの問題に上手に対処することができるようになります。
+                  <Box p="0 16px">
+                    ロジカルシンキングを身につけることには
+                    <Typography component="span" color="primary.main" fontWeight={600}>
+                      「説明が上手になる・問題解決力がつく」
+                    </Typography>
+                    という大きなメリットがあります。
+                    <br />
+                    どの仕事でも
+                    <Typography component="span" fontWeight={600}>
+                      「何かを伝える・問題を解決する」
+                    </Typography>
+                    ということは避けて通れないと思いますが、ロジカルシンキングを身につけているとこれらの問題に上手に対処することができるようになります。
+                  </Box>
                 </SlideSectionContent>
-                <SlideSectionContent title="注意点" icon={<WarningIcon sx={{ ml: "4px" }} />} color="#faa50a">
-                  ロジカルシンキングには1つ注意することがあります。それは知識や前提に誤りがあると
-                  <Typography component="span" fontWeight={600} color="#b33e5c">
-                    間違った結論を導いてしまう
-                  </Typography>
-                  ということです。知識・前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときには、それらの確認が必要だということを忘れないようにしましょう。
+                <SlideSectionContent title="注意点" icon={<WarningIcon sx={{ ml: "4px" }} />} color="info.dark">
+                  <Box p="0 16px">
+                    ロジカルシンキングには1つ注意することがあります。それは知識や前提に誤りがあると
+                    <Typography component="span" fontWeight={600} color="error.main">
+                      間違った結論を導いてしまう
+                    </Typography>
+                    ということです。知識・前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときには、それらの確認が必要だということを忘れないようにしましょう。
+                  </Box>
                 </SlideSectionContent>
               </Grid>
               <Grid item xs={4}>
@@ -212,7 +216,7 @@ const SlideListData = () => {
         <>
           <Box component="div" textAlign="center" mb="64px">
             ロジカルシンキングには2つの柱と言われる
-            <Typography variant="h5" color="primary.main" component="span" fontWeight={600}>
+            <Typography variant="h5" color="success.dark" component="span" fontWeight={600}>
               「帰納法
               <Typography variant="body2" component="span" fontWeight={600}>
                 （きのうほう）
@@ -220,7 +224,7 @@ const SlideListData = () => {
               」
             </Typography>
             と
-            <Typography variant="h5" color="primary.main" component="span" fontWeight={600}>
+            <Typography variant="h5" color="info.dark" component="span" fontWeight={600}>
               「演繹法
               <Typography variant="body2" component="span" fontWeight={600}>
                 （えんえきほう）
@@ -340,7 +344,7 @@ const SlideListData = () => {
             <TipsAndUpdatesIcon sx={{ color: "#faa50a", fontSize: "32px", mr: "4px" }} />
             <Typography variant="h5" component="div" fontWeight={600}>
               帰納法とは
-              <Typography variant="h5" component="span" color="primary.main" fontWeight={600}>
+              <Typography variant="h5" component="span" color="success.main" fontWeight={600}>
                 「複数の情報から共通点を見つけて結論を導く思考法」
               </Typography>
               のこと
@@ -364,15 +368,15 @@ const SlideListData = () => {
                 考え方としては
                 <Typography component="span" display="inline-flex" fontWeight={600}>
                   「
-                  <Typography color="primary.main" fontWeight={600}>
+                  <Typography color="success.light" fontWeight={600}>
                     1.複数の情報を揃える
                   </Typography>
                   <ArrowRightIcon />
-                  <Typography color="primary.dark" fontWeight={600}>
+                  <Typography color="success.main" fontWeight={600}>
                     2.共通点を見つける
                   </Typography>
                   <ArrowRightIcon />
-                  <Typography color="#004d40" fontWeight={600}>
+                  <Typography color="success.dark" fontWeight={600}>
                     3.結論を導き出す
                   </Typography>
                   」
@@ -382,27 +386,27 @@ const SlideListData = () => {
                 例えば「よく売れる新しいパンを作りたい」というケースでは以下のように用いることができます。
                 <Typography component="ul" bgcolor="#e0f2f1" p="16px" m="16px 0" textAlign="center" fontWeight={600}>
                   <dl>
-                    <Typography component="dt" color="primary.main" fontWeight={600}>
+                    <Typography component="dt" color="success.light" fontWeight={600}>
                       1.複数の情報を揃える
                     </Typography>
                     <dd>世間では「オートミールクロワッサン・大豆メロンパン・無糖ヨーグルトドーナッツ」が人気である</dd>
                   </dl>
                   <ArrowDropDownIcon />
                   <dl>
-                    <Typography component="dt" color="primary.dark" fontWeight={600}>
+                    <Typography component="dt" color="success.main" fontWeight={600}>
                       2.共通点を見つける
                     </Typography>
                     <dd>ヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」がトレンド</dd>
                   </dl>
                   <ArrowDropDownIcon />
                   <dl>
-                    <Typography component="dt" color="#004d40" fontWeight={600}>
+                    <Typography component="dt" color="success.dark" fontWeight={600}>
                       3.結論を導き出す
                     </Typography>
                     <dd>トマトやニンジンを使った無糖デニッシュを作ったらヒットするかもしれない</dd>
                   </dl>
                 </Typography>
-                それではステップ1〜3について詳しく見ていきましょう。
+                <Typography textAlign="center">それではステップ1〜3について詳しく見ていきましょう。</Typography>
               </Grid>
             </Grid>
           </SlideSection>
@@ -503,7 +507,7 @@ const SlideListData = () => {
             position="relative"
             component="div"
             variant="h5"
-            color="#fff"
+            color="typography.white"
             fontWeight={600}
             textAlign="center"
             bgcolor="rgba(0,0,0,0.4)"
@@ -525,7 +529,7 @@ const SlideListData = () => {
             <br />
             <Typography
               variant="h5"
-              color="#fff"
+              color="typography.white"
               fontWeight={600}
               display="flex"
               alignItems="center"

@@ -37,8 +37,8 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const SFooter = styled.footer`
-  background: #eaedef;
-  color: #333;
+  background: ${(props) => props.theme.palette.background.default};
+  color: ${(props) => props.theme.palette.typography.black};
   width: 100vw;
   padding: 32px;
 `;

@@ -17,11 +17,13 @@ const Header: React.FC = React.memo(() => {
           </LinkTo>
           <Box ml="auto" display="flex" alignItems="center">
             <LinkTo to="/signup">
-              <PrimaryButton variant="contained">無料でユーザー登録</PrimaryButton>
+              <PrimaryButton variant="contained" color="primary">
+                無料でユーザー登録
+              </PrimaryButton>
             </LinkTo>
             <div style={{ width: "12px" }} />
             <LinkTo to="/login">
-              <PrimaryButton variant="contained" color="secondary">
+              <PrimaryButton variant="outlined" color="secondary">
                 ログインはこちら
               </PrimaryButton>
             </LinkTo>
