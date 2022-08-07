@@ -69,6 +69,7 @@ const InductionCharacterBalloon: FC = memo(() => {
             borderBottomLeftRadius: "8px",
             borderTopRightRadius: "8px",
             borderBottomRightRadius: "16px",
+            textShadow: "0 1px 4px #999",
           }}
         >
           <Typography variant="h6" component="h6" fontFamily={"'Noto Sans JP', sans-serif"}>

@@ -48,7 +48,8 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
           fontWeight={600}
           p="24px 0"
           mb="24px"
-          sx={{ borderTopLeftRadius: "8px", borderTopRightRadius: "8px" }}
+          letterSpacing={1.5}
+          sx={{ textShadow: "0 1px 4px #999", borderTopLeftRadius: "8px", borderTopRightRadius: "8px" }}
         >
           {title}
         </Typography>
