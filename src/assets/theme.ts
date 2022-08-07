@@ -18,6 +18,7 @@ declare module "@mui/material/styles" {
     typography: {
       dark: string;
       black: string;
+      gray: string;
       white: string;
     };
   }
@@ -37,6 +38,7 @@ declare module "@mui/material/styles" {
     typography: {
       dark: string;
       black: string;
+      gray: string;
       white: string;
     };
   }
@@ -65,13 +67,16 @@ export const theme = createTheme({
       main: "#fbb73b",
     },
     info: {
-      main: "#82c3f6",
+      main: "#097fa1",
     },
     error: {
       main: "#b33e5c",
     },
     success: {
       main: "#00aa99",
+    },
+    action: {
+      disabled: "#ccc",
     },
     background: {
       paper: "#fff",
@@ -89,6 +94,7 @@ export const theme = createTheme({
     typography: {
       dark: "#000",
       black: "#333",
+      gray: "#555",
       white: "#fff",
     },
   },

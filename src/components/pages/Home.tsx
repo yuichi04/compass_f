@@ -10,6 +10,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 import Inductive from "../../assets/images/illustrations/inductive.svg";
 import Deductive from "../../assets/images/illustrations/deductive.svg";
+import { CourseCardList } from "../organisms";
 
 const Home: React.FC = React.memo(() => {
   return (
@@ -17,33 +18,23 @@ const Home: React.FC = React.memo(() => {
       <MuiContainer maxWidth="lg">
         <IconWithPageTitle title="ようこそ、COMPASSへ" icon={HomeIcon} iconColor="primary" />
         <IconWithSectionTitle title="おすすめの学習コース" icon={MenuBookIcon} iconColor="primary" mb="32px" />
-        <Grid container>
+        <CourseCardList enableLinks />
+        {/* <Grid container>
           <Grid item xs={3.5}>
             <CourseCard
-              grade="基本編"
+              grade="basic"
               link="lesson/induction"
-              color="primary"
+              color="success.main"
               title="帰納法"
               text={<>複数の情報から共通点を探し出し結論を導き出します</>}
               image={Inductive}
-              bgColor="success.main"
-              fontSize="16px"
             />
           </Grid>
           <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
             <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
           </Grid>
           <Grid item xs={3.5}>
-            <CourseCard
-              link="/"
-              image={Deductive}
-              grade="基本編"
-              title="演繹法"
-              bgColor="info.main"
-              fontSize="16px"
-              text="※実装予定"
-              color="primary"
-            />
+            <CourseCard link="/" image={Deductive} grade="basic" title="演繹法" text="※実装予定" color="info.main" />
           </Grid>
           <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
             <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
@@ -61,7 +52,7 @@ const Home: React.FC = React.memo(() => {
               fontSize="16px"
             />
           </Grid>
-        </Grid>
+        </Grid> */}
       </MuiContainer>
     </>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
@@ -11,11 +10,9 @@ import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { LinkTo, PrimaryButton } from "../atoms";
-import { CourseCard, IconWithPageTitle } from "../molecules";
+import { IconWithPageTitle } from "../molecules";
+import { CourseCardList } from "../organisms";
 import LogicalThinking from "../../assets/images/illustrations/logicalthinking.svg";
-import Comunicate from "../../assets/images/illustrations/comunicate.svg";
-import Inductive from "../../assets/images/illustrations/inductive.svg";
-import Deductive from "../../assets/images/illustrations/deductive.svg";
 import { BackgroundImage } from "../../assets/images/background";
 
 const Top: React.FC = () => {
@@ -81,6 +78,7 @@ const Top: React.FC = () => {
           </Box>
         </FirstViewBox>
       </Box>
+
       <SectionDividerTextInBox>
         <Typography variant="h5" fontWeight={600} letterSpacing={1.5}>
           COMPASSでロジカルシンキングを身につけよう
@@ -97,59 +95,7 @@ const Top: React.FC = () => {
         >
           <Box width="1200px" m="0 auto">
             <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="primary" mb="64" />
-            <Grid container>
-              <Grid item xs={3.5}>
-                <CourseCard
-                  grade="基本編"
-                  color="primary"
-                  title="帰納法"
-                  fontSize="16px"
-                  text={<>複数の情報から共通点を探し出し結論を導き出します</>}
-                  image={Inductive}
-                  bgColor="success.main"
-                />
-              </Grid>
-              <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
-                <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
-              </Grid>
-              <Grid item xs={3.5}>
-                <CourseCard
-                  image={Deductive}
-                  grade="基本編"
-                  title="演繹法"
-                  bgColor="info.main"
-                  fontSize="16px"
-                  text={
-                    <>
-                      ※実装予定
-                      <br />
-                      法則や事実などに自分の考えを組み合わせて結論を導き出します
-                    </>
-                  }
-                  color="primary"
-                />
-              </Grid>
-              <Grid item xs={0.75} display="flex" alignItems="center" justifyContent="center">
-                <ArrowRightIcon sx={{ fontSize: "100px", color: "#666" }} />
-              </Grid>
-              <Grid item xs={3.5}>
-                <CourseCard
-                  grade="応用編"
-                  color="error"
-                  title="伝わる話の組み立て方"
-                  bgColor="warning.main"
-                  fontSize="16px"
-                  text={
-                    <>
-                      ※実装予定
-                      <br />
-                      相手に納得してもらえるわかりやすい説明ができるようになります
-                    </>
-                  }
-                  image={Comunicate}
-                />
-              </Grid>
-            </Grid>
+            <CourseCardList />
           </Box>
           <Box position="absolute" bottom="0" left="50%" sx={{ transform: "translateX(-50%)" }}>
             <KeyboardDoubleArrowDownIcon className="up-down" sx={{ fontSize: "80px" }} />

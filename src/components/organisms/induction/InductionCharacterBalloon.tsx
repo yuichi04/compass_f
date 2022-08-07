@@ -58,14 +58,8 @@ const InductionCharacterBalloon: FC = memo(() => {
           position="absolute"
           top="-32px"
           left="0"
-          bgcolor={
-            role === "user"
-              ? "rgba(66,165,245, 0.8)"
-              : role === "guide"
-              ? "rgba(0, 170,153, 0.8)"
-              : "rgba(255,167, 38, 0.8)"
-          }
-          border="double 4px rgba(255,255,255,0.2)"
+          bgcolor={role === "user" ? "info.main" : role === "guide" ? "success.main" : "warning.main"}
+          border="double 4px rgba(255,255,255,0.3)"
           minWidth="160px"
           display="flex"
           alignItems="center"

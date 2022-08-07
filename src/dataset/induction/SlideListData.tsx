@@ -76,40 +76,40 @@ const SlideListData = () => {
               <Grid container>
                 <Grid item xs={4} component="ol" mt="32px">
                   <Box component="li" display="flex" alignItems="center" mb="16px">
-                    <Filter1Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
+                    <Filter1Icon sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
+                    <Typography variant="h6" color="primary.main">
                       ロジカルシンキングとは？
                     </Typography>
                   </Box>
                   <Box component="li" display="flex" alignItems="center" mb="16px">
-                    <Filter2Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
+                    <Filter2Icon sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
+                    <Typography variant="h6" color="primary.main">
                       ロジカルシンキングの2つの柱
                     </Typography>
                   </Box>
                   <Box component="li" display="flex" alignItems="center" mb="16px">
-                    <Filter3Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
+                    <Filter3Icon sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
+                    <Typography variant="h6" color="primary.main">
                       ロジカルシンキングまとめ
                     </Typography>
                   </Box>
                 </Grid>
                 <Grid item xs={4} component="ol" mt="32px" pl="64px">
                   <Box component="li" display="flex" alignItems="center" mb="16px">
-                    <Filter4Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
+                    <Filter4Icon sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
+                    <Typography variant="h6" color="primary.main">
                       帰納法とは？
                     </Typography>
                   </Box>
                   <Box component="li" display="flex" alignItems="center" mb="16px">
-                    <Filter5Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
+                    <Filter5Icon sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
+                    <Typography variant="h6" color="primary.main">
                       帰納法の使い方
                     </Typography>
                   </Box>
                   <Box component="li" display="flex" alignItems="center" mb="16px">
-                    <Filter6Icon sx={{ fontSize: "24px", mr: "8px" }} />
-                    <Typography variant="h6" color="primary.main" fontWeight={600}>
+                    <Filter6Icon sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
+                    <Typography variant="h6" color="primary.main">
                       帰納法まとめ
                     </Typography>
                   </Box>

@@ -16,12 +16,10 @@ export default TalkEffect;
 
 const pulsate = keyframes`
   0% {
-    border: 2px solid #42a5f5;
     transform: scale(1);
     opacity: 1;
   }
   100% {
-    border: 1px solid #42a5f5;
     transform: scale(1.5);
     opacity: 0;
   }
@@ -49,8 +47,8 @@ const STalkEffect = styled.div`
   height: 160px;
   padding: 32px;
   border-radius: 50%;
-  background-color: #42a5f5;
-  box-shadow: 0 0 80px #42a5f5;
+  background-color: ${(props) => props.theme.palette.info.light};
+  box-shadow: 0 0 80px ${(props) => props.theme.palette.info.light};
 
   &::before,
   &::after {
@@ -64,10 +62,9 @@ const STalkEffect = styled.div`
     margin: auto;
     width: 100%;
     height: 100%;
-
     border-radius: 50%;
     box-sizing: border-box;
-    pointer-events: none;
+    border: 2px solid ${(props) => props.theme.palette.info.light};
     animation: ${pulsate} 2s linear infinite;
   }
 

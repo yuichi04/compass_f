@@ -33,7 +33,7 @@ const InductionAnswerConclusion: FC = memo(() => {
 
   return (
     <SBox>
-      <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+      <TitleWithTriangleIcon variant="h4" color="#fff" fontWeight={600} mb="8px">
         共通点から具体的な解決案を考えましょう
       </TitleWithTriangleIcon>
       <Typography variant="h5" color="#fff" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
@@ -43,10 +43,10 @@ const InductionAnswerConclusion: FC = memo(() => {
       <SlideInBox direction="top" distance={32} duration={1.6} delay={0.8} mb="64px">
         <Typography
           variant="h5"
-          bgcolor="#00aa99"
-          boxShadow="0 0 8px #00aa99"
+          bgcolor="info.light"
+          boxShadow="0 0 8px #097fa1"
           borderRadius="8px"
-          color="#fff"
+          color="typography.white"
           fontWeight={600}
           p="8px 0"
         >
@@ -73,7 +73,7 @@ const InductionAnswerConclusion: FC = memo(() => {
               autoFocus
             />
           </Box>
-          <PulseButton size="50px" bgcolor="#00aa99" color="#fff" disabled={answer === ""}>
+          <PulseButton autoEffect size="50px" bgcolor="#097fa1" color="#fff" disabled={answer === ""}>
             <SendIcon sx={{ color: "#fff" }} />
           </PulseButton>
         </SForm>
@@ -92,8 +92,8 @@ const SBox = styled.div`
 const SForm = styled.form`
   display: flex;
   align-items: center;
-  background: #fff;
-  box-shadow: 0 0 12px #fff;
+  background: ${(props) => props.theme.palette.background.default};
+  box-shadow: 0 0 12px ${(props) => props.theme.palette.background.default};
   border-radius: 8px;
   padding: 16px 24px;
 `;

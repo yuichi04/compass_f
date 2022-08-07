@@ -16,11 +16,11 @@ export default CallEffect;
 
 const pulsate = keyframes`
   0% {
-    border: 3px solid #ffa726;
+    transform: scale(1);
+    opacity:1;
   }
   100% {
-    border: 1px solid #ffa726;
-    transform: scale(2);
+    transform: scale(1.5);
     opacity: 0;
   }
 `;
@@ -56,12 +56,12 @@ const SCallEffect = styled.div`
   height: 160px;
   padding: 32px;
   border-radius: 50%;
-  background-color: #ffa726;
-  box-shadow: 0 0 80px #ffa726;
+  background-color: ${(props) => props.theme.palette.warning.main};
+  box-shadow: 0 0 80px ${(props) => props.theme.palette.warning.light};
 
   &::before,
   &::after {
-    content: "";
+    content: "";s
     display: block;
     position: absolute;
     top: 0;
@@ -71,14 +71,13 @@ const SCallEffect = styled.div`
     margin: auto;
     width: 100%;
     height: 100%;
-
     border-radius: 50%;
     box-sizing: border-box;
-    pointer-events: none;
-    animation: ${pulsate} 2s linear infinite;
+    border: 2px solid ${(props) => props.theme.palette.warning.light};
+    animation: ${pulsate} 1s linear infinite;
   }
 
   &::after {
-    animation-delay: 1s;
+    animation-delay: 0.5s;
   }
 `;

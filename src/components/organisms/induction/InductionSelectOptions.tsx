@@ -57,7 +57,7 @@ const InductionSelectOptions: FC = memo(() => {
   return (
     <SBox>
       <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="8px">
-        <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+        <TitleWithTriangleIcon variant="h4" color="#fff" fontWeight={600} mb="8px">
           解決案を考えるための情報を3つ以上選択しましょう
         </TitleWithTriangleIcon>
         <Typography variant="h6" color="#fff">
@@ -84,7 +84,7 @@ const InductionSelectOptions: FC = memo(() => {
       </Box>
 
       <FadeInOutBox fadeIn display="flex" alignItems="center" justifyContent="center">
-        <PulseButton size="100px" bgcolor="#00aa99" color="#fff" disabled={disabled} onClick={handleSubmit}>
+        <PulseButton autoEffect size="100px" bgcolor="#097fa1" color="#fff" disabled={disabled} onClick={handleSubmit}>
           <Typography fontWeight={600} sx={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
             決定
           </Typography>
@@ -117,8 +117,8 @@ const SCheckBox = styled.input`
   display: none;
 
   &:checked ~ div > label {
-    background: ${(props) => props.theme.palette.success.light};
-    box-shadow: 0 2px 16px ${(props) => props.theme.palette.success.light};
+    background: ${(props) => props.theme.palette.info.light};
+    box-shadow: 0 2px 16px ${(props) => props.theme.palette.info.light};
     color: ${(props) => props.theme.palette.typography.white};
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   }

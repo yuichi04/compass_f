@@ -85,7 +85,7 @@ const Scene: FC = memo(() => {
         {/* スライド */}
         <SlideList />
         {/* 演習画面 */}
-        <SInduction className={!isOpenSlide ? "expand-center" : ""} bgImg={sectionId}>
+        <SInduction className={!isOpenSlide ? "path-center" : ""} bgImg={sectionId}>
           {/* ツールバー */}
           <STooltipBar>
             <InductionTooltipBar />

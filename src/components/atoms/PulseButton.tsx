@@ -1,7 +1,8 @@
 import { FC, memo } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 type Props = {
+  autoEffect?: boolean;
   size: string;
   bgcolor: string;
   color?: string;
@@ -11,12 +12,7 @@ type Props = {
 };
 
 const PulseButton: FC<Props> = memo(({ children, ...props }) => {
-  const { size, bgcolor, color, onClick, disabled } = props;
-  return (
-    <SPulseButton size={size} bgcolor={bgcolor} color={color} onClick={onClick} disabled={disabled}>
-      {children}
-    </SPulseButton>
-  );
+  return <SPulseButton {...props}>{children}</SPulseButton>;
 });
 
 export default PulseButton;
@@ -29,6 +25,36 @@ const pulsate = keyframes`
   100% {
     transform: scale(1.5);
     opacity: 0;
+  }
+`;
+
+const animationCSS = css<Props>`
+  &::before,
+  &::after {
+    content: "";
+    display: ${(props) => (props.disabled ? "none" : "block")};
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    border: 1px solid ${(props) => props.bgcolor};
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: ${pulsate} 2s linear infinite;
+  }
+
+  &::after {
+    animation-delay: 1s;
+  }
+`;
+
+const hovered = css`
+  &:hover {
+    ${animationCSS};
   }
 `;
 
@@ -45,28 +71,5 @@ const SPulseButton = styled.button<Props>`
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: ${(props) => props.color};
   ${(props) => props.disabled && "opacity: 0.3"};
-
-  &:hover {
-    &::before,
-    &::after {
-      content: "";
-      display: ${(props) => (props.disabled ? "none" : "block")};
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      margin: auto;
-      width: 100%;
-      height: 100%;
-      border: 1px solid ${(props) => props.bgcolor};
-      border-radius: 50%;
-      box-sizing: border-box;
-      animation: ${pulsate} 2s linear infinite;
-    }
-
-    &::after {
-      animation-delay: 1s;
-    }
-  }
+  ${(props) => (props.autoEffect ? animationCSS : hovered)}
 `;

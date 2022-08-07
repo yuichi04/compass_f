@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
 
 type Props = {
-  animationType?: "fade-in" | "slide-in" | "expand-center";
+  animationType?: "fade-in" | "slide-in" | "path-center";
   bgcolor?: "light" | "main" | "dark";
   children: React.ReactNode;
   delay?: number;
@@ -113,7 +113,7 @@ const Screen = styled.div<Props>`
       ? props.open
         ? slideIn
         : slideOut
-      : props.animationType === "expand-center"
+      : props.animationType === "path-center"
       ? props.open
         ? expandCenter
         : contractCenter

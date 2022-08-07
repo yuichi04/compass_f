@@ -22,24 +22,20 @@ const LessonList: React.FC = React.memo(() => {
               <CourseCard
                 link="/lesson/induction"
                 image={Inductive}
-                grade="基本編"
+                grade="basic"
                 title="帰納法"
-                bgColor="success.main"
                 text={<>複数の情報から共通点を探し出し結論を導き出します</>}
-                color="primary"
-                fontSize="16px"
+                color="success.main"
               />
             </Grid>
             <Grid item xs={4}>
               <CourseCard
                 link="/lessonlist"
                 image={Deductive}
-                grade="基本編"
+                grade="basic"
                 title="演繹法"
-                bgColor="info.main"
                 text="※実装予定"
-                color="primary"
-                fontSize="16px"
+                color="info.main"
               />
             </Grid>
           </Grid>
@@ -49,14 +45,12 @@ const LessonList: React.FC = React.memo(() => {
           <Grid container spacing={6} height="100%">
             <Grid item xs={4}>
               <CourseCard
-                grade="応用編"
+                grade="advanced"
                 link="/lessonlist"
-                color="error"
+                color="warning.main"
                 title="伝わる話の組み立て方"
                 text="※実装予定"
-                bgColor="warning.main"
                 image={Comunicate}
-                fontSize="16px"
               />
             </Grid>
           </Grid>

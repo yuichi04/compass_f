@@ -18,7 +18,7 @@
 //     <>
 //       {isOpenResult && (
 //         <SResult>
-//           <SInner className="expand-center">
+//           <SInner className="path-center">
 //             <Box textAlign="right" mb="16px">
 //               <PrimaryButton variant="contained" onClick={() => dispatch(setSceneAction(sceneId))}>
 //                 次に進む

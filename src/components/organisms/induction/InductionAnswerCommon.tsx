@@ -34,10 +34,10 @@ const InductionAnswerCommon: FC = memo(() => {
 
   return (
     <SBox>
-      <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+      <TitleWithTriangleIcon variant="h4" color="typography.white" fontWeight={600} mb="8px">
         選んだ情報から共通点を見つけましょう
       </TitleWithTriangleIcon>
-      <Typography variant="h5" color="#fff" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
+      <Typography variant="h5" color="typography.white" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
         {sectionId === 1 && "同じ特徴や性質は何でしょうか？"}
       </Typography>
       <Typography variant="h6" color="#fff" mb="16px">
@@ -84,7 +84,7 @@ const InductionAnswerCommon: FC = memo(() => {
               autoFocus
             />
           </Box>
-          <PulseButton size="50px" bgcolor="#00aa99" color="#fff" disabled={answer === ""}>
+          <PulseButton autoEffect size="50px" bgcolor="#097fa1" color="#fff" disabled={answer === ""}>
             <SendIcon sx={{ color: "#fff" }} />
           </PulseButton>
         </SForm>
@@ -100,8 +100,8 @@ const SBox = styled.div`
   text-align: center;
 `;
 const SInfo = styled.div`
-  box-shadow: 0 0 16px #33bbad;
-  background: #33bbad;
+  box-shadow: 0 0 16px ${(props) => props.theme.palette.info.light};
+  background: ${(props) => props.theme.palette.info.light};
   border-radius: 8px;
   color: #fff;
   padding: 8px 12px;
@@ -110,8 +110,8 @@ const SInfo = styled.div`
 const SForm = styled.form`
   display: flex;
   align-items: center;
-  background: #fff;
-  box-shadow: 0 0 8px #fff;
+  background: ${(props) => props.theme.palette.background.default};
+  box-shadow: 0 0 8px ${(props) => props.theme.palette.background.default};
   border-radius: 8px;
   padding: 16px 24px;
 `;

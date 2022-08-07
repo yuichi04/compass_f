@@ -67,10 +67,10 @@ const InductionAnswerCheck: FC = memo(() => {
   return (
     <>
       <SBox>
-        <TitleWithTriangleIcon variant="h4" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="8px">
+        <TitleWithTriangleIcon variant="h4" color="#fff" fontWeight={600} mb="8px">
           論理が飛躍していないか確認しましょう
         </TitleWithTriangleIcon>
-        <Typography variant="h6" color="#fff" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
+        <Typography variant="h6" color="typography.white" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
           【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？問題がなければクリックしてください。
         </Typography>
         {/* 結論 */}
@@ -78,9 +78,9 @@ const InductionAnswerCheck: FC = memo(() => {
           display="flex"
           justifyContent="center"
           mb="16px"
-          bgcolor={isCheckedCommon ? "#d8dadf" : "success.main"}
+          bgcolor={isCheckedCommon ? "action.disabled" : "info.light"}
           borderRadius="8px"
-          boxShadow={isCheckedCommon ? "0 0 4px #fff" : "0 0 20px #00aa99"}
+          boxShadow={isCheckedCommon ? "0 0 4px #fff" : "0 0 20px #097fa1"}
           p="4px 32px"
         >
           <Typography variant="h5" component="div" color={isCheckedCommon ? "#555" : "#fff"} fontWeight={600}>
@@ -166,11 +166,11 @@ const InductionAnswerCheck: FC = memo(() => {
         )}
       </SBox>
       {isOpen && (
-        <ScreenForBlackoutEvent open={isOpen}>
+        <ScreenForBlackoutEvent open={isOpen} delay={0.1}>
           <Box display="flex" alignItems="center" justifyContent="center">
             <Box textAlign="center">
               <Box sx={{ transform: "translateX(24px)" }}>
-                <TitleWithTriangleIcon variant="h3" color="#fff" triangleColor="#00aa99" fontWeight={600} mb="64px">
+                <TitleWithTriangleIcon variant="h3" color="#fff" fontWeight={600} mb="64px">
                   論理に飛躍はありませんか？
                 </TitleWithTriangleIcon>
               </Box>
@@ -183,12 +183,12 @@ const InductionAnswerCheck: FC = memo(() => {
                 }}
               />
               <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
-                <PulseButton bgcolor="#00aa99" size="160px" onClick={() => dispatch(setNextDynamicSceneAction(true))}>
+                <PulseButton bgcolor="#097fa1" size="160px" onClick={() => dispatch(setNextDynamicSceneAction(true))}>
                   <Typography variant="h6" color="#fff" fontWeight={600}>
                     大丈夫
                   </Typography>
                 </PulseButton>
-                <PulseButton bgcolor="#ccc" size="160px" onClick={() => setIsOpen(false)}>
+                <PulseButton bgcolor="#bbb" size="160px" onClick={() => setIsOpen(false)}>
                   <Typography variant="h6" color="#fff" fontWeight={600}>
                     やり直す
                   </Typography>
@@ -233,13 +233,13 @@ const SCheckbox = styled.input<CheckboxType>`
   display: none;
 
   &:checked + label {
-    background: #00aa99;
-    box-shadow: 0 0 4px #00aa99;
+    background: ${(props) => props.theme.palette.info.light};
+    box-shadow: 0 0 4px ${(props) => props.theme.palette.info.light};
     color: #fff;
     transition: all 0.3s;
 
     &:hover {
-      box-shadow: 0 0 8px 2px #00aa99;
+      box-shadow: 0 0 8px 2px ${(props) => props.theme.palette.info.light};
     }
 
     &::after {
@@ -251,13 +251,13 @@ const SCheckbox = styled.input<CheckboxType>`
       animation: ${rotate} 0.3s ease-in-out forwards;
       background: #fff;
       border-radius: 16px;
-      box-shadow: 1px 1px 6px #00aa99;
-      color: #00aa99;
+      box-shadow: 1px 1px 6px ${(props) => props.theme.palette.info.light};
+      color: ${(props) => props.theme.palette.info.light};
       font-size: ${(props) => (props.fontSize ? props.fontSize : "40px")};
       font-weight: 600;
-      filter: drop-shadow(0 0 6px #00aa99);
+      filter: drop-shadow(0 0 6px ${(props) => props.theme.palette.info.light});
       padding: 0 16px;
-      text-shadow: 1px 1px 4px #00aa99;
+      text-shadow: 1px 1px 4px ${(props) => props.theme.palette.info.light};
     }
   }
 `;
@@ -267,10 +267,10 @@ const SLabel = styled.label<LabelType>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  box-shadow: 0 0 8px #fff;
+  background: ${(props) => props.theme.palette.background.default};
+  box-shadow: 0 0 8px ${(props) => props.theme.palette.background.default};
   border-radius: 8px;
-  color: #555;
+  color: ${(props) => props.theme.palette.typography.gray};
   cursor: pointer;
   padding: 4px 8px;
   width: 100%;
@@ -279,6 +279,6 @@ const SLabel = styled.label<LabelType>`
   transition: all 0.2s;
 
   &:hover {
-    box-shadow: 0 0 16px #fff;
+    box-shadow: 0 0 16px ${(props) => props.theme.palette.background.default};
   }
 `;

@@ -211,7 +211,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.boy.openMouse, role: "boy" },
-    lines: ["はい。"],
+    lines: ["いえいえ！"],
   },
   {
     section: 1,
@@ -227,7 +227,7 @@ const staticSceneData: StaticSceneDataType[] = [
       },
     ],
     character: { src: CharacterImage.boy.openMouse, role: "boy" },
-    lines: ["はい。よろしくお願いします。"],
+    lines: ["はい。お願いします。"],
     narration: "お客様に英語が上達するための解決案とその根拠について説明した",
   },
   // ここに動的シーンが入ります。
@@ -248,7 +248,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.boy.openMouse, role: "boy" },
-    lines: ["ありがとうございました！", "失礼します。"],
+    lines: ["相談にのっていただいて、ありがとうございました！", "失礼します。"],
   },
   {
     section: 1,

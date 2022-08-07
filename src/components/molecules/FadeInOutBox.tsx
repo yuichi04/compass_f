@@ -1,8 +1,9 @@
-import { FC, memo } from "react";
+import React, { FC, memo } from "react";
 import styled, { keyframes } from "styled-components";
 import { FlexType, PositionType } from "../../types/styleTypes";
 
 type Props = {
+  ref?: React.Ref<HTMLDivElement>;
   children: React.ReactNode;
   position?: "relative" | "absolute";
   center?: boolean;
@@ -43,7 +44,7 @@ const FadeInOut = styled.div<Props>`
   justify-content: ${(props) => props.justifyContent && props.justifyContent};
   align-items: ${(props) => props.alignItems && props.alignItems};
   animation-name: ${(props) => (props.fadeIn ? fadeIn : fadeOut)};
-  animation-delay: ${(props) => (props.delay ? `${props.delay}s` : "0s")};
+  animation-delay: ${(props) => (props.delay ? `${props.delay}s` : "0")};
   animation-duration: ${(props) => (props.duration ? `${props.duration}s` : "0.5s")};
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
