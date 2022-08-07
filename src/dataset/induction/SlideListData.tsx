@@ -500,7 +500,7 @@ const SlideListData = () => {
       sectionTitle: "スライドはここまで",
       sentence: (
         <Box position="relative" width="900px" m="0 auto">
-          <Box position="absolute" top="-24px" left="52%" sx={{ transform: "translateX(-50%)" }}>
+          <Box position="absolute" top="50%" left="50%" sx={{ transform: "translate(-50%, -50%)" }}>
             <Box component="img" alt="celebration img" src={Celebration} />
           </Box>
           <Typography

@@ -131,9 +131,11 @@ const SInner = styled.div`
 const SContent = styled.div`
   position: relative;
   width: 1280px;
-  height: 100%;
+  height: calc(100% - 100px);
   margin: 0 auto;
-  padding: 3% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SHeader = styled.div`

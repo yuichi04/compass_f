@@ -61,8 +61,8 @@ const courseCardList: courseCardType[] = [
 const CourseCardList: FC<Props> = memo((props) => {
   const { enableLinks } = props;
   const [ref, inView] = useInView({
-    rootMargin: "-100px 0px",
-    // triggerOnce: true,
+    rootMargin: "0px 0px",
+    triggerOnce: true,
   });
 
   return (

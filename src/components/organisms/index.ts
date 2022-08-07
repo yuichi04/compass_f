@@ -1,7 +1,6 @@
 export { default as Chapter1Document } from "./Chapter1Document";
 export { default as Chapter1Result } from "./Chapter1Result";
 export { default as ContactBoard } from "./ContactBoard";
-export { default as CourseCardList } from "./CourseCardList";
 export { default as Footer } from "./Footer";
 export { default as Header } from "./header/Header";
 export { default as InductionCharacterBalloon } from "./induction/InductionCharacterBalloon";
