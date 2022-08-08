@@ -1,33 +1,40 @@
 import { FC, memo } from "react";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { ScreenForBlackoutEvent } from ".";
-import FadeInOutBox from "./FadeInOutBox";
+import { FadeInOutBox } from ".";
+import { PulseButton } from "../atoms";
 
 type Props = {
-  children: React.ReactNode;
+  text: string;
   contentWidth?: string;
   contentHeight?: string;
   open: boolean;
   handleClose: () => void;
 };
 
-const Narration: FC<Props> = memo(({ children, ...props }) => {
-  const { open, handleClose, contentWidth, contentHeight } = props;
+const Narration: FC<Props> = memo((props) => {
+  const { open, handleClose, contentWidth, contentHeight, text } = props;
   return (
     <ScreenForBlackoutEvent open={open} bgcolor="dark" animationType="path-center">
-      <FadeInOutBox fadeIn={open} duration={1} delay={0.5}>
+      <FadeInOutBox fadeIn={open} duration={1}>
         <Box position="absolute" top="64px" right="64px">
-          <IconButton onClick={handleClose} sx={{ bgcolor: "rgba(200,255,255,0.1)" }}>
-            <CloseIcon sx={{ color: "#fff", fontSize: "40px" }} />
-          </IconButton>
+          <PulseButton autoEffect size="40px" bgcolor="#eee" onClick={handleClose}>
+            <CloseIcon sx={{ color: "typography.gray", fontSize: "32px" }} />
+          </PulseButton>
         </Box>
-        <Box width={contentWidth ? contentWidth : "900px"} height={contentHeight && contentHeight} m="0 auto">
-          {open && (
-            <Typography className="path-left" variant="h3" color="#fff" letterSpacing={1.5} textAlign="center">
-              {children}
+        <Box
+          id="narration"
+          width={contentWidth ? contentWidth : "900px"}
+          height={contentHeight && contentHeight}
+          m="0 auto"
+          textAlign="center"
+        >
+          <FadeInOutBox fadeIn={open} duration={1} delay={0.3}>
+            <Typography variant="h3" color="typography.white" sx={{ textShadow: "0 0 2px #ccc" }}>
+              {text}
             </Typography>
-          )}
+          </FadeInOutBox>
         </Box>
       </FadeInOutBox>
     </ScreenForBlackoutEvent>

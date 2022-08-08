@@ -54,7 +54,7 @@ const InductionCharacterBalloon: FC = memo(() => {
       <Box position="relative" width="900px" height="100%" m="0 auto" color="#fff" display="flex" alignItems="center">
         {/* キャラクター名 */}
         <Box
-          zIndex={998}
+          zIndex={997}
           position="absolute"
           top="-32px"
           left="0"
@@ -102,9 +102,8 @@ const InductionCharacterBalloon: FC = memo(() => {
                   duration={displaySpeed}
                   // 1行表示されてから次の行が表示されるように遅延させる
                   delay={lines.slice(0, index).join("").length * displaySpeed + 0.1}
-                >
-                  {line}
-                </TextAnimation>
+                  text={line}
+                />
               </Box>
             ))}
           </Typography>

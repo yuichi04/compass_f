@@ -68,7 +68,7 @@ const SlideList: FC = memo(() => {
       {isOpenSlide && (
         <Box
           className="path-center"
-          bgcolor="background.paper"
+          bgcolor="#e0f7fa"
           sx={{
             zIndex: "999",
             display: "flex",

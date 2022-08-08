@@ -1,8 +1,7 @@
 import { FC, memo } from "react";
-import { useInView } from "react-intersection-observer";
 import { Box, Paper } from "@mui/material";
 import { MarginType } from "../../types/styleTypes";
-import FadeInOutBox from "./FadeInOutBox";
+import ScrollAnimationBox from "./ScrollAnimationBox";
 
 type Props = {
   images: string[];
@@ -10,19 +9,15 @@ type Props = {
 
 const FeaturesViewList: FC<Props> = memo((props) => {
   const { images } = props;
-  const [ref, inView] = useInView({
-    rootMargin: "0px 0px",
-    triggerOnce: true,
-  });
 
   return (
-    <Box ref={ref} display="flex" justifyContent="space-between" alignItems="center" {...props}>
+    <Box display="flex" justifyContent="space-between" alignItems="center" {...props}>
       {images.map((image, index) => (
-        <FadeInOutBox fadeIn={inView} key={index} delay={index / 2}>
-          <Paper elevation={8} sx={{ width: "608px", border: "2px solid", borderColor: "info.main" }}>
+        <ScrollAnimationBox key={index} delay={index / 2} duration={1} triggerOnce>
+          <Paper elevation={16} sx={{ width: "608px" }}>
             <Box component="img" alt="slide-capture" src={image} width="100%" sx={{ verticalAlign: "bottom" }} />
           </Paper>
-        </FadeInOutBox>
+        </ScrollAnimationBox>
       ))}
     </Box>
   );

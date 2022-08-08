@@ -3,10 +3,11 @@
   animation-name: pathCenter;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 @keyframes pathCenter {
   0% {
-    opacity: 0;
     clip-path: circle(0 at 50% 50%);
   }
   100% {
@@ -17,13 +18,13 @@
 
 .path-left {
   animation-name: pathLeft;
-  animation-delay: 0.2s;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 @keyframes pathLeft {
   0% {
-    opacity: 0;
     clip-path: inset(0 100% 0 0);
   }
   100% {
@@ -120,11 +121,9 @@
   animation-duration: 0.3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  opacity: 0;
 }
 @keyframes fadeInAnime {
-  0% {
-    opacity: 0;
-  }
   100% {
     opacity: 1;
   }

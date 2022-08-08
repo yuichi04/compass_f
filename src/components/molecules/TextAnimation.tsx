@@ -4,14 +4,30 @@ import { TextPlugin } from "gsap/TextPlugin";
 import { Typography } from "@mui/material";
 
 type Props = {
-  children: string;
+  text: string;
   section: string;
+  color?: string;
   duration: number;
   delay?: number;
+  variant?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "subtitle1"
+    | "subtitle2"
+    | "body1"
+    | "body2"
+    | "caption"
+    | "button"
+    | "overline"
+    | "inherit";
 };
 
-const TextAnimation: React.FC<Props> = React.memo(({ children, ...props }) => {
-  const { section, duration, delay } = props;
+const TextAnimation: React.FC<Props> = React.memo((props) => {
+  const { section, duration, delay, text, variant, color } = props;
 
   const setAnimation = (text: string) => {
     const numText = text.length;
@@ -40,12 +56,13 @@ const TextAnimation: React.FC<Props> = React.memo(({ children, ...props }) => {
     <Typography
       ref={textRef}
       className="animation-text"
+      color={color}
       component="div"
-      variant="h6"
+      variant={variant ? variant : "h6"}
       letterSpacing={1.25}
       sx={{ wordWrap: "break-word", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
     >
-      {children}
+      {text}
     </Typography>
   );
 });

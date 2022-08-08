@@ -96,7 +96,7 @@ const staticSceneData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: "", role: "user" },
-    lines: ["かしこまりました。", "それでは、何か良い方法がないか確認いたしますので、少々お待ちください。"],
+    lines: ["かしこまりました。", "それでは、英語が上達する方法についてお調べしますので、少々お待ちください。"],
   },
   {
     section: 1,

@@ -1,7 +1,6 @@
 import { FC, memo } from "react";
-import { useInView } from "react-intersection-observer";
 import { Box } from "@mui/material";
-import { CourseCard, FadeInOutBox } from "../molecules";
+import { CourseCard, ScrollAnimationBox } from "../molecules";
 import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 import Inductive from "../../assets/images/illustrations/inductive.svg";
 import Deductive from "../../assets/images/illustrations/deductive.svg";
@@ -60,15 +59,11 @@ const courseCardList: courseCardType[] = [
 
 const CourseCardList: FC<Props> = memo((props) => {
   const { enableLinks } = props;
-  const [ref, inView] = useInView({
-    rootMargin: "0px 0px",
-    triggerOnce: true,
-  });
 
   return (
-    <Box ref={ref} display="flex" justifyContent="space-between" m="0 auto">
+    <Box display="flex" justifyContent="space-between" m="0 auto">
       {courseCardList.map((card, index) => (
-        <FadeInOutBox fadeIn={inView} key={index} delay={index / 2}>
+        <ScrollAnimationBox key={index} delay={index / 2} duration={1} triggerOnce>
           <CourseCard
             grade={card.grade}
             color={card.color}
@@ -77,7 +72,7 @@ const CourseCardList: FC<Props> = memo((props) => {
             text={card.text}
             title={card.title}
           />
-        </FadeInOutBox>
+        </ScrollAnimationBox>
       ))}
     </Box>
   );

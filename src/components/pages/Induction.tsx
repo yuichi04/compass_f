@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   initializeSceneAction,
   inductionSelector,
-  showUtilsAction,
   setNextStaticSceneAction,
 } from "../../redux/features/inductionSlice";
 import {
@@ -21,7 +20,7 @@ import {
   InductionAnswerConclusion,
   InductionAnswerCheck,
 } from "../organisms";
-import { FadeInOutBox, Narration, ScreenForBlackoutEvent } from "../molecules";
+import { Narration, ScreenForBlackoutEvent } from "../molecules";
 
 type BgImgProps = {
   bgImg: number;
@@ -75,11 +74,11 @@ const Scene: FC = memo(() => {
       </ScreenForBlackoutEvent>
 
       {/* ナレーション画面 */}
-      <Narration open={isOpenNarration} handleClose={() => dispatch(setNextStaticSceneAction(id))}>
-        <FadeInOutBox duration={1} delay={0.4} fadeIn>
-          {narration}
-        </FadeInOutBox>
-      </Narration>
+      <Narration
+        open={isOpenNarration}
+        handleClose={() => dispatch(setNextStaticSceneAction(id))}
+        text={narration ? narration : ""}
+      />
 
       <Box bgcolor="#2a2f36">
         {/* スライド */}

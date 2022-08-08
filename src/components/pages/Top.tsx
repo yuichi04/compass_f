@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import { Box, Grid, Typography } from "@mui/material";
+import styled, { keyframes } from "styled-components";
+import { Box, Grid, Typography, Paper } from "@mui/material";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
@@ -10,7 +10,7 @@ import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { LinkTo, PrimaryButton } from "../atoms";
-import { CourseCardList, FeaturesViewList, IconWithPageTitle } from "../molecules";
+import { CourseCardList, FeaturesViewList, IconWithPageTitle, ScrollAnimationBox } from "../molecules";
 import LogicalThinking from "../../assets/images/illustrations/logicalthinking.svg";
 import { BackgroundImage } from "../../assets/images/background";
 
@@ -24,7 +24,15 @@ const Top: React.FC = () => {
         <FirstViewBox>
           <Box width="1200px" height="calc(100vh - 64px)" m="0 auto" display="flex" alignItems="center">
             <Grid container height="100%">
-              <Grid item xs={6} display="flex" alignItems="center" justifyContent="center">
+              <Grid
+                className="fade-in"
+                item
+                xs={6}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                sx={{ animationDuration: "1s", animationDelay: "1s" }}
+              >
                 <div>
                   <Box component="div" mb="32px">
                     <Box
@@ -88,15 +96,17 @@ const Top: React.FC = () => {
       </SectionDividerTextInBox>
 
       <Box bgcolor="primary.main">
-        <SectionBoxInner>
+        <SectionBox>
           <Box width="1200px" m="0 auto">
-            <IconWithPageTitle title="基本から応用まで" icon={MenuBookIcon} iconColor="primary" mb="64" />
+            <Typography variant="h3" sx={styles.sectionTitle}>
+              基本から応用まで
+            </Typography>
             <CourseCardList />
           </Box>
           <Box position="absolute" bottom="0" left="50%" sx={{ transform: "translateX(-50%)" }}>
             <KeyboardDoubleArrowDownIcon className="up-down" sx={{ fontSize: "80px" }} />
           </Box>
-        </SectionBoxInner>
+        </SectionBox>
       </Box>
 
       <SectionDividerTextInBox>
@@ -106,31 +116,20 @@ const Top: React.FC = () => {
       </SectionDividerTextInBox>
 
       <Box bgcolor="primary.main">
-        <SectionBoxInner>
+        <SectionBox>
           <Box width="1280px" m="0 auto">
-            <IconWithPageTitle
-              title="スライドで学び、演習で身につける"
-              icon={TipsAndUpdatesIcon}
-              iconColor="primary"
-              mb="64"
-            />
-            <IconWithPageTitle
-              title="知識をコンパクトにまとめたスライドで無駄なく学べる！"
-              icon={LooksOneIcon}
-              iconColor="warning"
-            />
+            <Typography variant="h3" sx={styles.sectionTitle}>
+              スライドで学んで、演習で身につける
+            </Typography>
+            <IconWithPageTitle title="知識をコンパクトにまとめたスライド" icon={LooksOneIcon} iconColor="warning" />
             <FeaturesViewList images={slideImages} />
             <Box textAlign="center" m="32px 0">
-              <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px", color: "#555" }} />
+              <ArrowDropDownIcon className="up-down" sx={{ fontSize: "128px" }} />
             </Box>
-            <IconWithPageTitle
-              title="シミュレーションゲーム感覚で学んだ知識を試すことができる"
-              icon={LooksTwoIcon}
-              iconColor="warning"
-            />
+            <IconWithPageTitle title="シミュレーションゲームのような演習" icon={LooksTwoIcon} iconColor="warning" />
             <FeaturesViewList images={exerciseImages} />
           </Box>
-        </SectionBoxInner>
+        </SectionBox>
       </Box>
 
       <SectionDividerTextInBox>
@@ -152,10 +151,42 @@ const Top: React.FC = () => {
 
 export default Top;
 
+// Material-UI
+const styles = {
+  sectionTitle: {
+    color: "primary.main",
+    fontWeight: 600,
+    mb: "64px",
+    textAlign: "center",
+    textDecoration: "underline solid #2f4565",
+  },
+};
+
+// Styled-Components
+const slideInLeft = keyframes`
+0% {
+  clip-path: inset(0 100% 0 0);
+}
+100% {
+  clip-path: inset(0 0 0 0);
+}
+`;
+
 const FirstViewBox = styled.div`
   position: relative;
   background: ${(props) => props.theme.palette.background.default};
   clip-path: polygon(0 0, 50% 0%, 100% 128px, 100% 100%, 50% 100%, 0% calc(100% - 128px));
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    animation: ${slideInLeft} 1s ease-in-out forwards;
+  }
 `;
 
 const SectionDividerTextInBox = styled.div`
@@ -165,7 +196,7 @@ const SectionDividerTextInBox = styled.div`
   text-align: center;
 `;
 
-const SectionBoxInner = styled.div`
+const SectionBox = styled.div`
   background: ${(props) => props.theme.palette.background.default};
   position: relative;
   padding: 160px 0 240px;

@@ -21,8 +21,12 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
         position="relative"
         borderRadius="8px"
         boxShadow="0 0 16px #bbb"
-        height="100%"
+        height="420px"
         width="360px"
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        pb="32px"
         sx={{
           cursor: link ? "pointer" : "default",
           transition: "all 0.3s",
@@ -47,16 +51,15 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
           variant="h5"
           fontWeight={600}
           p="24px 0"
-          mb="24px"
           letterSpacing={1.5}
           sx={{ textShadow: "0 1px 4px #999", borderTopLeftRadius: "8px", borderTopRightRadius: "8px" }}
         >
           {title}
         </Typography>
-        <Box height="168px" mb="24px">
+        <Box height="168px">
           <Box component="img" src={image} height="100%" width="100%" />
         </Box>
-        <Typography textAlign="center" color="typography.gray" p="16px">
+        <Typography textAlign="center" color="typography.gray" p="0 32px">
           {text}
         </Typography>
       </Box>

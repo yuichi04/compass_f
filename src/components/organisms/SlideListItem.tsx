@@ -60,7 +60,6 @@ const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
           </IconButton>
         </Tooltip>
 
-        {/* スライド本体 */}
         <SHeader>
           <Box width="1280px" m="0 auto" color="typography.white">
             <Typography variant="h6">{title}</Typography>
@@ -69,6 +68,7 @@ const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
             </Typography>
           </Box>
         </SHeader>
+
         <SContent>
           <Typography component="div" variant="h6" color="typography.black">
             {children}
@@ -118,7 +118,7 @@ const styles = {
   },
 };
 
-// Styled-components
+// Styled-Components
 const SContainer = styled.div`
   min-width: 100%;
 `;

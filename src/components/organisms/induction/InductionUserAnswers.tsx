@@ -14,6 +14,7 @@ const InductionUserAnswers: FC = memo(() => {
     <Paper
       elevation={8}
       sx={{
+        zIndex: 999,
         position: "absolute",
         top: "16px",
         left: "50%",

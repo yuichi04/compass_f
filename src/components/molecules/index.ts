@@ -13,6 +13,7 @@ export { default as InductiveExplainChart } from "./InductiveExplainChart";
 export { default as Narration } from "./Narration";
 export { default as SelectBox } from "./SelectBox";
 export { default as ScreenForBlackoutEvent } from "./ScreenForBlackoutEvent";
+export { default as ScrollAnimationBox } from "./ScrollAnimationBox";
 export { default as SlideInBox } from "./SlideInBox";
 export { default as SlideSection } from "./SlideSection";
 export { default as SlideSectionContent } from "./SlideSectionContent";
