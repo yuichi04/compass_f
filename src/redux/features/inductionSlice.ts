@@ -1,3 +1,4 @@
+//
 import { createSlice } from "@reduxjs/toolkit";
 import { LessonType, SelectableInfoType, UtilsKeyType } from "../../types/lesson/inductionTypes";
 import { staticSceneData } from "../../dataset/induction";
@@ -47,11 +48,6 @@ const inductionSlice = createSlice({
   name: "induction",
   initialState,
   reducers: {
-    // 演習の開始・停止の処理
-    allowStartingExerciseAction: (state, action: { payload: boolean }) => {
-      state.allowStartingExercise = action.payload;
-    },
-
     // 静的シーンを生成し更新する処理
     setNextStaticSceneAction: (state, action: { payload: number }) => {
       // 初期化
@@ -258,7 +254,6 @@ const inductionSlice = createSlice({
 export default inductionSlice.reducer;
 export const inductionSelector = (state: RootState) => state.induction;
 export const {
-  allowStartingExerciseAction,
   getInfoPhaseOptionsAction,
   initializeSceneAction,
   returnToPreviousPhaseAction,

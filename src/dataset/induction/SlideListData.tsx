@@ -40,7 +40,6 @@ import {
   SlideSectionContent,
   SlidePointCard,
 } from "../../components/molecules";
-import { MuiVerticalTabs } from "../../components/organisms";
 
 const SlideListData = () => {
   const title = "ロジカルシンキング基本編「帰納法」";
@@ -417,15 +416,23 @@ const SlideListData = () => {
       order: 5,
       className: "",
       title,
-      sectionTitle: "帰納法の使い方",
+      sectionTitle: "帰納法の使い方①",
       sentence: (
         <>
           <SlideSection
-            title="各ステップのポイント"
-            titleIcon={<CrisisAlertIcon sx={{ fontSize: "24px", color: "#fff", ml: "4px" }} />}
+            title="複数の情報を揃える"
+            titleIcon={<LooksOneIcon sx={{ fontSize: "24px", color: "#fff", ml: "4px" }} />}
             color="primary.main"
           >
-            <MuiVerticalTabs />
+            {/* <MuiVerticalTabs /> */}
+            <Grid container>
+              <Grid item xs={4}>
+                img
+              </Grid>
+              <Grid item xs={8}>
+                text
+              </Grid>
+            </Grid>
           </SlideSection>
         </>
       ),

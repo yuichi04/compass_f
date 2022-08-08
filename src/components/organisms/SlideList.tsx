@@ -1,104 +1,102 @@
-import { FC, memo, useCallback } from "react";
-import Box from "@mui/material/Box";
-import { SlideListItem } from ".";
-import { SlideListData } from "../../dataset/induction";
-import { useAppSelector } from "../../redux/hooks";
-import { inductionSelector } from "../../redux/features/inductionSlice";
+import { FC, memo } from "react";
+// modules
+import styled from "styled-components";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+// Redux
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  handleClickNextSlideAction,
+  handleClickPreviousSlideAction,
+  slideListSelector,
+  toggleDisplayOrHideSlideListAction,
+} from "../../redux/features/slideListSlice";
+// Types
+import { SlideListItemType } from "../../types/lesson/slideListTypes";
+// Components
+import { SlideListItemContent } from "../../components/molecules";
+import { SlideListItem } from "../../components/organisms";
+// Images
+import Analytics from "../../assets/images/illustrations/analytics.svg";
 
+// スライドのコンテンツを配列で管理
+export const slideListItems: SlideListItemType[] = [
+  {
+    classTitle: "ロジカルシンキング基本編「帰納法」",
+    slideTitle: "帰納法の使い方①",
+    content: (
+      <SlideListItemContent icon={TipsAndUpdatesIcon} image={Analytics} title="複数の情報を揃える">
+        帰納法の最初のステップは「複数の情報を揃える」ことです。
+      </SlideListItemContent>
+    ),
+  },
+  {
+    classTitle: "ロジカルシンキング基本編「帰納法」",
+    slideTitle: "帰納法の使い方②",
+    content: (
+      <SlideListItemContent icon={TipsAndUpdatesIcon} image={Analytics} title="複数の情報を揃える">
+        帰納法の最初のステップは「複数の情報を揃える」ことです。
+      </SlideListItemContent>
+    ),
+  },
+  {
+    classTitle: "ロジカルシンキング基本編「帰納法」",
+    slideTitle: "帰納法の使い方③",
+    content: (
+      <SlideListItemContent icon={TipsAndUpdatesIcon} image={Analytics} title="複数の情報を揃える">
+        帰納法の最初のステップは「複数の情報を揃える」ことです。
+      </SlideListItemContent>
+    ),
+  },
+];
+
+// スライド本体
 const SlideList: FC = memo(() => {
-  const induction = useAppSelector(inductionSelector);
-  const isOpenSlide = induction.isOpen.slide;
-  const { slideItems, setSlideItems } = SlideListData();
-  const lastSlideNum = slideItems.slice(-1)[0].order;
-
-  // 次のスライドへ
-  const handleClickNextSlide = useCallback(
-    (order: number) => {
-      const newSlideItems = slideItems.map((slideItem) => {
-        if (slideItem.order === order) {
-          return {
-            ...slideItem,
-            className: "slide-left-out",
-          };
-        } else if (slideItem.order === order + 1) {
-          return {
-            ...slideItem,
-            className: "slide-right-in",
-          };
-        } else {
-          return {
-            ...slideItem,
-            className: "display-none",
-          };
-        }
-      });
-      setSlideItems(newSlideItems);
-    },
-    [slideItems, setSlideItems]
-  );
-
-  // 前のスライドへ
-  const handleClickBackSlide = useCallback(
-    (order: number) => {
-      const newSlideItems = slideItems.map((slideItem) => {
-        if (slideItem.order === order) {
-          return {
-            ...slideItem,
-            className: "slide-right-out",
-          };
-        } else if (slideItem.order === order - 1) {
-          return {
-            ...slideItem,
-            className: "slide-left-in",
-          };
-        } else {
-          return {
-            ...slideItem,
-            className: "display-none",
-          };
-        }
-      });
-      setSlideItems(newSlideItems);
-    },
-    [slideItems, setSlideItems]
-  );
+  const dispatch = useAppDispatch();
+  const slideList = useAppSelector(slideListSelector);
+  const slideId = slideList.slideId;
+  const direction = slideList.direction;
+  const isOpen = slideList.isOpen;
+  const lastSlideNumber = slideListItems.length - 1;
 
   return (
     <>
-      {isOpenSlide && (
-        <Box
-          className="path-center"
-          bgcolor="#e0f7fa"
-          sx={{
-            zIndex: "999",
-            display: "flex",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            height: "100%",
-            width: "100%",
-            overflow: "hidden",
-          }}
-        >
-          {slideItems.map((slideItem) => (
+      {isOpen && (
+        <SSlideList>
+          {slideListItems.map((item, index) => (
             <SlideListItem
-              key={slideItem.order}
-              order={slideItem.order}
-              className={slideItem.className}
-              next={handleClickNextSlide}
-              back={handleClickBackSlide}
-              title={slideItem.title}
-              sectionTitle={slideItem.sectionTitle}
-              last={lastSlideNum}
+              itemId={slideId}
+              position={index - slideId} // 表示中のスライドに対するスライドの位置（0は表示中）
+              direction={direction} // スライドの進行方向
+              key={index}
+              isFirst={index === 0} // 最初のスライドか？
+              isLast={index === lastSlideNumber} // 最後のスライドか？
+              classTitle={item.classTitle}
+              slideTitle={item.slideTitle}
+              next={() => dispatch(handleClickNextSlideAction())}
+              previous={() => dispatch(handleClickPreviousSlideAction())}
+              close={() => dispatch(toggleDisplayOrHideSlideListAction())}
             >
-              {slideItem.sentence}
+              {item.content}
             </SlideListItem>
           ))}
-        </Box>
+        </SSlideList>
       )}
     </>
   );
 });
 
 export default SlideList;
+
+const SSlideList = styled.div`
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${(props) => props.theme.palette.secondaryBackgroundColor.main};
+  overflow: hidden;
+  display: flex;
+`;

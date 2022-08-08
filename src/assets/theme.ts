@@ -15,6 +15,9 @@ declare module "@mui/material/styles" {
         dark: string;
       };
     };
+    secondaryBackgroundColor: {
+      main: string;
+    };
     typography: {
       dark: string;
       black: string;
@@ -34,6 +37,9 @@ declare module "@mui/material/styles" {
         main: string;
         dark: string;
       };
+    };
+    secondaryBackgroundColor: {
+      main: string;
     };
     typography: {
       dark: string;
@@ -80,6 +86,9 @@ export const theme = createTheme({
     },
     background: {
       paper: "#fff",
+    },
+    secondaryBackgroundColor: {
+      main: "#e0f7fa",
     },
     primaryGradation: {
       black: { main: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))" },

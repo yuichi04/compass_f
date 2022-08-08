@@ -1,13 +1,17 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import userReducer from "./features/userSlice";
 import loadingReducer from "./features/lodingSlice";
+import exerciseReducer from "./features/exerciseSlice";
 import inductionReducer from "./features/inductionSlice";
+import slideListReducer from "./features/slideListSlice";
 
 export const store = configureStore({
   reducer: {
-    user: userReducer,
-    loding: loadingReducer,
+    exercise: exerciseReducer,
     induction: inductionReducer,
+    loding: loadingReducer,
+    slideList: slideListReducer,
+    user: userReducer,
   },
 });
 

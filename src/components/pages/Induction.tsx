@@ -21,6 +21,7 @@ import {
   InductionAnswerCheck,
 } from "../organisms";
 import { Narration, ScreenForBlackoutEvent } from "../molecules";
+import { initializeSlideListAction } from "../../redux/features/slideListSlice";
 
 type BgImgProps = {
   bgImg: number;
@@ -49,9 +50,10 @@ const Scene: FC = memo(() => {
   //     // eslint-disable-next-line react-hooks/exhaustive-deps
   //   }, [linesLength]);
 
-  // シーンの初期値をセット
+  // 初期化
   useEffect(() => {
     dispatch(initializeSceneAction());
+    dispatch(initializeSlideListAction());
   }, [dispatch]);
 
   return (
@@ -60,6 +62,9 @@ const Scene: FC = memo(() => {
       {!allowStartingExercise ? (
         <Box zIndex={999} position="absolute" top="0" left="0" width="100vw" height="100vh" bgcolor="#2a2f36" />
       ) : null}
+
+      {/* スライド */}
+      <SlideList />
 
       {/* 回答画面 */}
       <ScreenForBlackoutEvent open={isOpenScreen} animationType="slide-in">
@@ -81,8 +86,6 @@ const Scene: FC = memo(() => {
       />
 
       <Box bgcolor="#2a2f36">
-        {/* スライド */}
-        <SlideList />
         {/* 演習画面 */}
         <SInduction className={!isOpenSlide ? "path-center" : ""} bgImg={sectionId}>
           {/* ツールバー */}

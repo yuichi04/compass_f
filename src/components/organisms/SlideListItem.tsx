@@ -1,99 +1,74 @@
 import { FC, memo } from "react";
-import Box from "@mui/material/Box";
-import { Typography, Paper, Tooltip } from "@mui/material";
+// modules
+import styled, { keyframes, css } from "styled-components";
+import { Box, IconButton, Paper, Typography, Tooltip } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
-import IconButton from "@mui/material/IconButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowRight";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  allowStartingExerciseAction,
-  inductionSelector,
-  setNextStaticSceneAction,
-  showUtilsAction,
-} from "../../redux/features/inductionSlice";
+
+type PositionType = {
+  itemId: number;
+  position: number;
+  direction: "left" | "right" | "";
+};
 
 type Props = {
   children: React.ReactNode;
-  className: string;
-  order: number;
-  last: number;
-  next: (order: number) => void;
-  back: (order: number) => void;
-  title: string;
-  sectionTitle: string;
-};
+  classTitle: string;
+  slideTitle: string;
+  isFirst: boolean;
+  isLast: boolean;
+  close: () => void;
+  next: () => void;
+  previous: () => void;
+} & PositionType;
 
 const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
-  const { next, back, order, className, title, sectionTitle, last } = props;
-  const dispatch = useAppDispatch();
-  const induction = useAppSelector(inductionSelector);
-  const id = induction.sceneId;
-  const allowStartingExercise = induction.allowStartingExercise;
-
-  // 演習開始の処理
-  const handleClickStartExercise = () => {
-    // シーンをセット
-    dispatch(setNextStaticSceneAction(id));
-    // 演習開始フラグをtrueに
-    dispatch(allowStartingExerciseAction(true));
-    // スライドを閉じる
-    dispatch(showUtilsAction({ key: "slide", value: false }));
-  };
+  const { itemId, position, direction, classTitle, slideTitle, isFirst, isLast, next, previous, close } = props;
 
   return (
-    <SContainer className={className}>
-      <SInner>
-        {/* 演習開始ボタン */}
-        <Tooltip placement="left" title="演習に進む" arrow>
-          <IconButton
-            sx={{ position: "absolute", right: "8px", top: "8px", zIndex: "999" }}
-            // 既に演習開始している場合はスライドを閉じる処理のみ実行する
-            onClick={() =>
-              allowStartingExercise
-                ? dispatch(showUtilsAction({ key: "slide", value: false }))
-                : handleClickStartExercise()
-            }
-          >
-            <CancelIcon fontSize="large" />
-          </IconButton>
-        </Tooltip>
+    <SSlideListItem itemId={itemId} position={position} direction={direction}>
+      {/* スライドを閉じるボタン */}
+      <Tooltip placement="left" title="演習に進む" arrow>
+        <IconButton sx={{ position: "absolute", right: "8px", top: "8px" }} onClick={close}>
+          <CancelIcon fontSize="large" />
+        </IconButton>
+      </Tooltip>
 
-        <SHeader>
-          <Box width="1280px" m="0 auto" color="typography.white">
-            <Typography variant="h6">{title}</Typography>
-            <Typography variant="h4" fontWeight={600}>
-              {sectionTitle}
-            </Typography>
-          </Box>
-        </SHeader>
-
-        <SContent>
-          <Typography component="div" variant="h6" color="typography.black">
-            {children}
+      <SHeader>
+        <Box width="1280px" m="0 auto" color="typography.white">
+          <Typography variant="h6">{classTitle}</Typography>
+          <Typography variant="h4" fontWeight={600}>
+            {slideTitle}
           </Typography>
-        </SContent>
+        </Box>
+      </SHeader>
 
-        {/* 最初のスライドなら左矢印を非表示 */}
-        {order !== 0 && (
-          <Box position="absolute" top="50%" left="8px" display="flex" alignItems="center">
-            <Paper elevation={12} sx={styles.arrow.container} onClick={() => back(order)}>
-              <ArrowLeftIcon sx={styles.arrow.icon} />
-            </Paper>
-          </Box>
-        )}
+      {/* スライドのコンテンツ */}
+      <SContent>
+        <Typography component="div" variant="h6" color="typography.black">
+          {children}
+        </Typography>
+      </SContent>
 
-        {/* 最後のスライドなら右矢印を非表示 */}
-        {order !== last && (
-          <Box position="absolute" top="50%" right="8px" display="flex" alignItems="center">
-            <Paper elevation={12} sx={styles.arrow.container} onClick={() => next(order)}>
-              <ArrowForwardIosIcon sx={styles.arrow.icon} />
-            </Paper>
-          </Box>
-        )}
-      </SInner>
-    </SContainer>
+      {/* （左矢印）最初のスライド以外は表示する */}
+      {!isFirst && (
+        <Box position="absolute" top="50%" left="8px" display="flex" alignItems="center">
+          <Paper elevation={12} sx={styles.arrow.container} onClick={previous}>
+            <ArrowLeftIcon sx={styles.arrow.icon} />
+          </Paper>
+        </Box>
+      )}
+
+      {/* （右矢印）最後のスライド以外は表示する */}
+      {!isLast && (
+        <Box position="absolute" top="50%" right="8px" display="flex" alignItems="center">
+          <Paper elevation={12} sx={styles.arrow.container} onClick={next}>
+            <ArrowForwardIosIcon sx={styles.arrow.icon} />
+          </Paper>
+        </Box>
+      )}
+    </SSlideListItem>
   );
 });
 
@@ -119,23 +94,65 @@ const styles = {
 };
 
 // Styled-Components
-const SContainer = styled.div`
-  min-width: 100%;
+const slideInRight = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
 `;
-const SInner = styled.div`
+
+const slideOutRight = keyframes`
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0);
+  }
+`;
+const slideInLeft = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+`;
+const slideOutLeft = keyframes`
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+`;
+
+const toLeft = css<PositionType>`
+  animation-name: ${(props) => (props.position < 0 ? slideOutLeft : props.position >= 0 ? slideInRight : "")};
+  display: ${(props) => (props.position < -1 ? "none" : props.position >= 1 ? "none" : "")};
+`;
+const toRight = css<PositionType>`
+  animation-name: ${(props) => (props.position > 0 ? slideOutRight : props.position <= 0 ? slideInLeft : "")};
+  display: ${(props) => (props.position > 1 ? "none" : props.position <= -1 ? "none" : "")};
+`;
+
+const SSlideListItem = styled.div<PositionType>`
   position: relative;
-  background: #e0f7fa;
-  overflow: hidden;
   height: 100%;
-`;
-const SContent = styled.div`
-  position: relative;
-  width: 1280px;
-  height: calc(100% - 100px);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 100%;
+  background: ${(props) => props.theme.palette.secondaryBackgroundColor.main};
+  ${(props) => props.direction === "left" && toLeft};
+  ${(props) => props.direction === "right" && toRight};
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
 `;
 
 const SHeader = styled.div`
@@ -145,4 +162,14 @@ const SHeader = styled.div`
   align-items: center;
   height: 100px;
   padding: 16px 0;
+`;
+
+const SContent = styled.div`
+  position: relative;
+  width: 1280px;
+  height: calc(100% - 132px); // 132px = SHeaderのheight(100px)とpadding(32px)の合計
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 `;

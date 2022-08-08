@@ -1,16 +1,14 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Box, Grid, Typography, Paper } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import LanguageIcon from "@mui/icons-material/Language";
 import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { LinkTo, PrimaryButton } from "../atoms";
-import { CourseCardList, FeaturesViewList, IconWithPageTitle, ScrollAnimationBox } from "../molecules";
+import { CourseCardList, FeaturesViewList, IconWithPageTitle } from "../molecules";
 import LogicalThinking from "../../assets/images/illustrations/logicalthinking.svg";
 import { BackgroundImage } from "../../assets/images/background";
 
@@ -43,7 +41,7 @@ const Top: React.FC = () => {
                       borderRadius="4px"
                       p="4px 12px"
                     >
-                      ロジカルシンキングが学べるアプリ
+                      ロジカルシンキングが学べるサービス
                     </Box>
                   </Box>
                   <Typography component="div" variant="h4" mb="24px" textAlign="center" letterSpacing={1.5}>
@@ -185,6 +183,8 @@ const FirstViewBox = styled.div`
     width: 50vw;
     height: 100%;
     background: rgba(0, 0, 0, 0.1);
+    border-right: 6px solid #eee;
+    backdrop-filter: blur(6px);
     animation: ${slideInLeft} 1s ease-in-out forwards;
   }
 `;
