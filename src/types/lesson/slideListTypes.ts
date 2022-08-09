@@ -7,7 +7,7 @@ export type SlideListSliceType = {
 
 // スライドのアイテムの型定義
 export type SlideListItemType = {
-  classTitle: string; // コース名
+  courseTitle: string; // コース名
   slideTitle: string; // スライドのタイトル
   content: React.ReactNode; // スライドの内容
 };

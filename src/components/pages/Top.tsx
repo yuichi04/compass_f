@@ -29,7 +29,7 @@ const Top: React.FC = () => {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                sx={{ animationDuration: "1s", animationDelay: "1s" }}
+                sx={{ animationDuration: "1s", animationDelay: "1.25s" }}
               >
                 <div>
                   <Box component="div" mb="32px">
@@ -156,7 +156,6 @@ const styles = {
     fontWeight: 600,
     mb: "64px",
     textAlign: "center",
-    textDecoration: "underline solid #2f4565",
   },
 };
 

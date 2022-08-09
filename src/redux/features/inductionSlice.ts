@@ -1,10 +1,12 @@
-//
 import { createSlice } from "@reduxjs/toolkit";
-import { LessonType, SelectableInfoType, UtilsKeyType } from "../../types/lesson/inductionTypes";
-import { staticSceneData } from "../../dataset/induction";
 import { RootState } from "../store";
-import selectableInfo from "../../dataset/induction/selectableInfo";
+// Types
+import { LessonType, SelectableInfoType, UtilsKeyType } from "../../types/lesson/inductionTypes";
+// Images
 import { CharacterImage } from "../../assets/images/characters";
+// Data
+import staticSceneData from "../../dataset/induction/staticSceneData";
+import selectableInfo from "../../dataset/induction/selectableInfo";
 
 const initialState: LessonType = {
   sectionId: 0, // 現在のセクション

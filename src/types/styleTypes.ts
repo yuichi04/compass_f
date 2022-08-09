@@ -23,6 +23,6 @@ export type PositionType = {
 
 export type FlexType = {
   flexDirection?: "column";
-  justifyContent?: "center" | "space-between" | "space-around";
+  justifyContent?: "center" | "space-between" | "space-around" | "flex-start" | "flex-end";
   alignItems?: "center" | "flex-end" | "flex-start";
 };

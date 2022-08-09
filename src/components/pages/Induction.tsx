@@ -1,13 +1,19 @@
 import { FC, memo, useEffect } from "react";
+// Modules
 import styled from "styled-components";
 import { Box } from "@mui/material";
-import { BackgroundImage } from "../../assets/images/background";
+// Redux
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { initializeSlideListAction } from "../../redux/features/slideListSlice";
 import {
   initializeSceneAction,
   inductionSelector,
   setNextStaticSceneAction,
 } from "../../redux/features/inductionSlice";
+// Images
+import { BackgroundImage } from "../../assets/images/background";
+// Components
+import { Narration, ScreenForBlackoutEvent } from "../molecules";
 import {
   InductionTooltipBar,
   SlideList,
@@ -20,8 +26,8 @@ import {
   InductionAnswerConclusion,
   InductionAnswerCheck,
 } from "../organisms";
-import { Narration, ScreenForBlackoutEvent } from "../molecules";
-import { initializeSlideListAction } from "../../redux/features/slideListSlice";
+// Data
+import { inductionSlideListItemsData, courseTitle } from "../../dataset/induction/SlideListItemsData";
 
 type BgImgProps = {
   bgImg: number;
@@ -64,7 +70,7 @@ const Scene: FC = memo(() => {
       ) : null}
 
       {/* スライド */}
-      <SlideList />
+      <SlideList slideListItemsData={inductionSlideListItemsData} courseTitle={courseTitle} />
 
       {/* 回答画面 */}
       <ScreenForBlackoutEvent open={isOpenScreen} animationType="slide-in">
