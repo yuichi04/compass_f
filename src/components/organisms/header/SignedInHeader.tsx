@@ -27,8 +27,8 @@ const SignedInHeader: React.FC = React.memo(() => {
   const user = useAppSelector(userSelector);
   return (
     <Box sx={{ flexGrow: 1, height: "64px" }}>
-      <AppBar position="static" sx={{ background: "#2a2f36", boxShadow: "0 2px 6px #333" }}>
-        <Toolbar>
+      <AppBar position="relative" sx={{ background: "#2a2f36", boxShadow: "0 2px 6px #333" }}>
+        <Toolbar sx={{ width: "1280px", m: "0 auto" }}>
           <Grid container>
             <Grid item xs={8} sx={{ display: "flex", alignItems: "center" }}>
               <Typography

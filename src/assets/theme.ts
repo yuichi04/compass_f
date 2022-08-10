@@ -16,7 +16,11 @@ declare module "@mui/material/styles" {
       };
     };
     secondaryBackgroundColor: {
-      main: string;
+      lightGray: string;
+      lime: string;
+      black: string;
+      teal: string;
+      cyan: string;
     };
     typography: {
       dark: string;
@@ -39,7 +43,11 @@ declare module "@mui/material/styles" {
       };
     };
     secondaryBackgroundColor: {
-      main: string;
+      lightGray: string;
+      lime: string;
+      black: string;
+      teal: string;
+      cyan: string;
     };
     typography: {
       dark: string;
@@ -57,11 +65,27 @@ export const theme = createTheme({
       xs: 0,
       sm: 600,
       md: 900,
-      lg: 1200,
+      lg: 1280,
       xl: 1536,
     },
   },
+  typography: {
+    fontFamily: [
+      "Helvetica Neue",
+      "Helvetica",
+      "Hiragino Sans",
+      "Hiragino Kaku Gothic ProN",
+      "Arial",
+      "Yu Gothic",
+      "Meiryo",
+      "sans-serif",
+    ].join(","),
+  },
   palette: {
+    common: {
+      white: "#fff",
+      black: "#333",
+    },
     primary: {
       main: "#2f4565",
       contrastText: "#fff",
@@ -88,7 +112,11 @@ export const theme = createTheme({
       paper: "#fff",
     },
     secondaryBackgroundColor: {
-      main: "#e0f7fa",
+      lightGray: "#eaedef",
+      lime: "#f9fbe7",
+      black: "#2a2f36",
+      teal: "#e0f2f1",
+      cyan: "#e0f7fa",
     },
     primaryGradation: {
       black: { main: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))" },

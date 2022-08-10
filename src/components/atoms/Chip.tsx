@@ -1,5 +1,8 @@
 import React from "react";
+// Modules
 import { Chip as MuiChip } from "@mui/material";
+// Types
+import { PaddingType } from "../../types/styleTypes";
 
 type Props = {
   label: string;
@@ -7,11 +10,11 @@ type Props = {
   size?: "medium" | "small";
   variant?: "filled" | "outlined";
   fontSize?: string;
-};
+} & PaddingType;
 
 const Chip: React.FC<Props> = React.memo((props) => {
-  const { fontSize } = props;
-  return <MuiChip {...props} sx={{ fontSize: fontSize }} />;
+  const { fontSize, p } = props;
+  return <MuiChip {...props} sx={{ fontSize: fontSize, p: p }} />;
 });
 
 export default Chip;

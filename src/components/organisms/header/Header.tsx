@@ -8,8 +8,8 @@ import Logo from "../../../assets/images/logo.svg";
 const Header: React.FC = React.memo(() => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ background: "#2a2f36", boxShadow: "0 2px 6px #333", p: "8px 0" }}>
-        <Toolbar>
+      <AppBar position="relative" sx={{ background: "#2a2f36", boxShadow: "0 2px 6px #333", p: "8px 0" }}>
+        <Toolbar sx={{ width: "1280px", m: "0 auto" }}>
           <LinkTo to="/">
             <Box display="flex" alignItems="center">
               <Box component="img" alt="logo" src={Logo} />

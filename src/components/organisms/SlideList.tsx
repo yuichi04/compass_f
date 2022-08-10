@@ -137,8 +137,8 @@ const SSlideList = styled.div`
     180deg,
     ${(props) => props.theme.palette.primary.main} 0%,
     ${(props) => props.theme.palette.primary.main} 100px,
-    ${(props) => props.theme.palette.secondaryBackgroundColor.main} 100px,
-    ${(props) => props.theme.palette.secondaryBackgroundColor.main} 100%
+    ${(props) => props.theme.palette.secondaryBackgroundColor.cyan} 100px,
+    ${(props) => props.theme.palette.secondaryBackgroundColor.cyan} 100%
   );
   overflow: hidden;
   padding-top: 8px;

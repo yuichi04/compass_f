@@ -23,7 +23,13 @@ import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 // Types
 import { SlideListItemType } from "../../types/lesson/slideListTypes";
 // Components
-import { SlideListItemContent, SubTitleWithContent, SummaryCard } from "../../components/molecules";
+import {
+  DeductiveExplainChart,
+  InductiveExplainChart,
+  SlideListItemContent,
+  SubTitleWithContent,
+  SummaryCard,
+} from "../../components/molecules";
 // Images
 import Analytics from "../../assets/images/illustrations/analytics.svg";
 import Celebration from "../../assets/images/illustrations/celebration.svg";
@@ -52,14 +58,14 @@ const logicalThinkingSummaryCards = [
     color: "success.main",
     icon: LooksOneIcon,
     image: InThought,
-    title: "ロジカルシンキングとは",
+    title: "概要",
     points: [
       <>
-        知識や前提をもとに
+        ロジカルシンキングとは
         <br />
-        <Typography variant="body1" component="span" fontWeight={600}>
-          話を筋道立てて考える思考法
-        </Typography>
+        知識や前提から
+        <br />
+        <Typography component="span">話を筋道立てて考える思考法</Typography>
       </>,
     ],
   },
@@ -69,12 +75,8 @@ const logicalThinkingSummaryCards = [
     image: Merit,
     title: "メリット",
     points: [
-      <Typography variant="body1" fontWeight={600} textAlign="center">
-        説明が上手になる
-      </Typography>,
-      <Typography variant="body1" fontWeight={600} textAlign="center">
-        問題解決力がつく
-      </Typography>,
+      <Typography textAlign="center">説明が上手になる</Typography>,
+      <Typography textAlign="center">問題解決力がつく</Typography>,
     ],
   },
   {
@@ -86,7 +88,7 @@ const logicalThinkingSummaryCards = [
       <>
         正しい結論を導くために
         <br />
-        <Typography variant="body1" component="span" textAlign="center" fontWeight={600}>
+        <Typography component="span" textAlign="center">
           知識や前提の誤りに注意する
         </Typography>
       </>,
@@ -97,13 +99,46 @@ const logicalThinkingSummaryCards = [
     icon: Looks4Icon,
     image: Double,
     title: "2つの柱",
+    points: [<Typography component="span">帰納法</Typography>, <Typography component="span">演繹法</Typography>],
+  },
+];
+
+// 「帰納法まとめ」の各カードのコンテンツ
+const inductionSummaryCards = [
+  {
+    color: "success.main",
+    icon: LooksOneIcon,
+    image: Inductive,
+    title: "帰納法とは？",
     points: [
-      <Typography variant="body1" component="span" fontWeight={600}>
-        帰納法
+      <Typography>
+        ビジネスシーンなどで戦略を
+        <br />
+        立てるときに役立つ思考法
       </Typography>,
-      <Typography variant="body1" component="span" fontWeight={600}>
-        演繹法
-      </Typography>,
+    ],
+  },
+  {
+    color: "info.main",
+    icon: LooksTwoIcon,
+    image: Step,
+    title: "ステップ",
+    points: [
+      <Typography>複数の情報を揃える</Typography>,
+      <Typography>共通点を見つける</Typography>,
+      <Typography>結論を導き出す</Typography>,
+      <Typography>論理に飛躍がないか確認する</Typography>,
+    ],
+  },
+  {
+    color: "error.main",
+    icon: Looks3Icon,
+    image: KeyPoints,
+    title: "ポイント",
+    points: [
+      <Typography>情報が偏らないように注意</Typography>,
+      <Typography>より多く情報を揃えると、より確かな結論が導ける</Typography>,
+      <Typography>論理の飛躍は「主張＋根拠」で確認できる</Typography>,
     ],
   },
 ];
@@ -138,10 +173,10 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             reverse
           >
             <Box component="ol">
-              {index.map((data) => (
-                <Box component="li" display="flex" alignItems="center" mb="16px">
+              {index.map((data, index) => (
+                <Box key={index} component="li" display="flex" alignItems="center" mb="16px">
                   <Icon component={data.icon} sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
-                  <Typography variant="h5" fontWeight={600} color="primary.main">
+                  <Typography variant="h5" color="primary.main">
                     {data.text}
                   </Typography>
                 </Box>
@@ -223,16 +258,58 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
   },
   {
     courseTitle,
+    slideTitle: "ロジカルシンキングの2つの柱",
+    content: (
+      <>
+        <Box textAlign="center" mb="16px">
+          ロジカルシンキングには2つの柱と言われる
+          <Typography variant="h5" color="success.dark" component="span" fontWeight={600}>
+            「帰納法
+            <Typography variant="body2" component="span">
+              （きのうほう）
+            </Typography>
+            」
+          </Typography>
+          と
+          <Typography variant="h5" color="info.dark" component="span" fontWeight={600}>
+            「演繹法
+            <Typography variant="body2" component="span">
+              （えんえきほう）
+            </Typography>
+            」
+          </Typography>
+          という思考法があります。
+          <br />
+          どちらもロジカルシンキングを身につける上で欠かすことのできない思考法です。
+          <br />
+          後ほど詳しく学びますが、どのような思考法か簡単に確認しておきましょう。
+        </Box>
+        <Typography variant="subtitle2" mb="64px" textAlign="center">
+          ※演繹法についてはロジカルシンキング基本編「演繹法」にて学ぶことができます。
+        </Typography>
+        <Grid container width="1280px" spacing={4}>
+          <Grid item xs={6}>
+            <InductiveExplainChart />
+          </Grid>
+          <Grid item xs={6}>
+            <DeductiveExplainChart />
+          </Grid>
+        </Grid>
+      </>
+    ),
+  },
+  {
+    courseTitle,
     slideTitle: "ロジカルシンキングまとめ",
     content: (
       <>
         <Grid container spacing={3} mb="64px">
-          {logicalThinkingSummaryCards.map((card) => (
-            <Grid item xs={3}>
+          {logicalThinkingSummaryCards.map((card, index) => (
+            <Grid key={index} item xs={3}>
               <SummaryCard
                 color={card.color}
                 icon={card.icon}
-                iconSize="64px"
+                iconSize="48px"
                 image={card.image}
                 title={card.title}
                 points={card.points}
@@ -286,7 +363,14 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           という3つのステップになっています。
           <br />
           例えば「よく売れる新しいパンを作りたい」というケースでは以下のように用いることができます。
-          <Typography component="ul" bgcolor="#e0f2f1" p="16px" m="16px 0" textAlign="center" fontWeight={600}>
+          <Typography
+            component="ul"
+            bgcolor="secondaryBackgroundColor.cyan"
+            p="16px"
+            m="16px 0"
+            textAlign="center"
+            fontWeight={600}
+          >
             <dl>
               <Typography component="dt" color="success.light" fontWeight={600}>
                 1.複数の情報を揃える
@@ -298,7 +382,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
               <Typography component="dt" color="success.main" fontWeight={600}>
                 2.共通点を見つける
               </Typography>
-              <dd>ヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」がトレンド</dd>
+              <dd>人気なパンはヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」</dd>
             </dl>
             <ArrowDropDownIcon />
             <dl>
@@ -311,6 +395,26 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           <Typography textAlign="center">それではステップ1〜3について詳しく見ていきましょう。</Typography>
         </SlideListItemContent>
       </>
+    ),
+  },
+  {
+    courseTitle,
+    slideTitle: "帰納法まとめ",
+    content: (
+      <Box width="1024px" display="flex" justifyContent="space-between" alignItems="center">
+        {inductionSummaryCards.map((card, index) => (
+          <Box key={index}>
+            <SummaryCard
+              color={card.color}
+              icon={card.icon}
+              iconSize="48px"
+              image={card.image}
+              title={card.title}
+              points={card.points}
+            />
+          </Box>
+        ))}
+      </Box>
     ),
   },
 ];

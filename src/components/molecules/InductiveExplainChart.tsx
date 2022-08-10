@@ -11,7 +11,7 @@ const InductiveExplainChart: React.FC = () => {
         sx={{
           position: "absolute",
           top: "-24px",
-          left: "-12px",
+          left: "0",
           p: "8px 16px",
           bgcolor: "success.main",
           color: "typography.white",

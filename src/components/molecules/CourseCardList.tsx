@@ -35,7 +35,7 @@ const courseCardList: courseCardType[] = [
     title: "演繹法",
     text: (
       <>
-        ※実装予定
+        ※近日リリース予定
         <br />
         法則や事実などに自分の考えを当てはめて結論を導き出します
       </>
@@ -49,7 +49,7 @@ const courseCardList: courseCardType[] = [
     title: "伝わる話の組み立て方",
     text: (
       <>
-        ※実装予定
+        ※近日リリース予定
         <br />
         相手に納得してもらいやすい説明ができるようになります
       </>

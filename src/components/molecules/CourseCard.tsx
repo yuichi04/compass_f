@@ -1,7 +1,8 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
+// Modules
+import { Box, Typography } from "@mui/material";
+// Components
 import { LinkTo, Chip } from "../atoms";
-import { Box } from "@mui/material";
 
 type Props = {
   color?: string;
@@ -20,13 +21,14 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
       <Box
         position="relative"
         borderRadius="8px"
-        boxShadow="0 0 16px #bbb"
+        boxShadow="0 0 16px #999"
         height="420px"
         width="360px"
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
         pb="32px"
+        bgcolor="background.default"
         sx={{
           cursor: link ? "pointer" : "default",
           transition: "all 0.3s",
@@ -36,7 +38,7 @@ const CourseCard: React.FC<Props> = React.memo((props) => {
           },
         }}
       >
-        <Box position="absolute" top="0" left="0" sx={{ transform: "translate(-25%, -50%)" }}>
+        <Box position="absolute" top="0" left="0" sx={{ transform: "translateY(-50%)" }}>
           <Chip
             label={grade === "basic" ? "基本編" : grade === "advanced" ? "応用編" : ""}
             color={grade === "basic" ? "primary" : grade === "advanced" ? "error" : "default"}

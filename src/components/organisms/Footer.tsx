@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               <Box component="img" alt="logo" src={Logo} />
             </Box>
           </LinkTo>
-          <small>&copy;COMPASSS-2022</small>
+          <Box component="small">&copy;COMPASSS-2022</Box>
         </Grid>
         <Grid item xs={6} sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", fontSize: "14px" }}>
           <ul>
@@ -37,7 +37,9 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const SFooter = styled.footer`
+  position: relative;
   background: ${(props) => props.theme.palette.primary.dark};
+  box-shadow: 0 -1px 4px ${(props) => props.theme.palette.primary.dark};
   color: ${(props) => props.theme.palette.typography.white};
   width: 100vw;
   padding: 48px 32px;

@@ -11,15 +11,15 @@ const FeaturesViewList: FC<Props> = memo((props) => {
   const { images } = props;
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center" {...props}>
-      {images.map((image, index) => (
-        <ScrollAnimationBox key={index} delay={index / 2} duration={1} triggerOnce>
-          <Paper elevation={16} sx={{ width: "608px" }}>
+    <ScrollAnimationBox duration={1} triggerOnce>
+      <Box display="flex" justifyContent="space-between" alignItems="center" {...props} width="100%">
+        {images.map((image, index) => (
+          <Paper key={index} elevation={16} sx={{ m: "0 16px" }}>
             <Box component="img" alt="slide-capture" src={image} width="100%" sx={{ verticalAlign: "bottom" }} />
           </Paper>
-        </ScrollAnimationBox>
-      ))}
-    </Box>
+        ))}
+      </Box>
+    </ScrollAnimationBox>
   );
 });
 

@@ -34,7 +34,7 @@ const LessonList: React.FC = React.memo(() => {
                 image={Deductive}
                 grade="basic"
                 title="演繹法"
-                text="※実装予定"
+                text="※近日リリース予定"
                 color="info.main"
               />
             </Grid>
@@ -49,7 +49,7 @@ const LessonList: React.FC = React.memo(() => {
                 link="/lessonlist"
                 color="warning.main"
                 title="伝わる話の組み立て方"
-                text="※実装予定"
+                text="※近日リリース予定"
                 image={Comunicate}
               />
             </Grid>
