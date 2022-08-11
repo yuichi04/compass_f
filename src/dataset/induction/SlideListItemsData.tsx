@@ -20,7 +20,7 @@ import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import WarningIcon from "@mui/icons-material/Warning";
 // Types
-import { SlideListItemType } from "../../types/lesson/slideListTypes";
+import { SlideListItemType } from "../../types/slideListTypes";
 // Components
 import {
   DeductiveExplainChart,

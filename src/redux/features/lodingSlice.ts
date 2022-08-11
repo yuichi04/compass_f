@@ -1,3 +1,7 @@
+/******************************************************
+ *  担当する処理
+ * ・ローディング画面の表示/非表示の変更
+ ******************************************************/
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
@@ -15,10 +19,12 @@ export const loadingSlice = createSlice({
   name: "loding",
   initialState,
   reducers: {
+    // ローディングを表示
     showLoadingAction: (state, action: { payload: string }) => {
       state.state = true;
       state.text = action.payload;
     },
+    // ローディングを非表示
     hideLoadingAction: () => {
       return { ...initialState };
     },

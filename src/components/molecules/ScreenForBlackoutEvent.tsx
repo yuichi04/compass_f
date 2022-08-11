@@ -12,9 +12,11 @@ type Props = {
 
 const ScreenForBlackoutEvent: FC<Props> = memo(({ children, ...props }) => {
   return (
-    <Screen {...props}>
-      <div>{children}</div>
-    </Screen>
+    <>
+      <Screen {...props}>
+        <div>{children}</div>
+      </Screen>
+    </>
   );
 });
 
@@ -91,7 +93,7 @@ const fadeOut = keyframes`
 `;
 
 const Screen = styled.div<Props>`
-  z-index: 999;
+  z-index: 998; // スライドリスト(999)より下に設定しないと、ロード画面でチラつきが発生する
   position: absolute;
   top: 0;
   right: 0;

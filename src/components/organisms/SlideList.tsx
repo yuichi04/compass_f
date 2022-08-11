@@ -11,14 +11,17 @@ import {
   handleClickNextSlideAction,
   handleClickPreviousSlideAction,
   slideListSelector,
-  toggleDisplayOrHideSlideListAction,
 } from "../../redux/features/slideListSlice";
-import { showLoadingAction, hideLoadingAction } from "../../redux/features/lodingSlice";
+import {
+  lessonSelector,
+  startingExerciseAction,
+  toggleShowAndHideInterfaceAction,
+} from "../../redux/features/lessonSlice";
+import { inductionSelector, setNextStaticSceneAction } from "../../redux/features/inductionSlice";
 // Types
-import { SlideListItemType } from "../../types/lesson/slideListTypes";
+import { SlideListItemType } from "../../types/slideListTypes";
 // Components
 import { FadeInOutBox, SlideListItem } from "../../components/molecules";
-import { switchStartingAndStoppingExerciseAction } from "../../redux/features/exerciseSlice";
 
 type Props = {
   courseTitle: string;
@@ -29,29 +32,28 @@ type Props = {
 const SlideList: FC<Props> = memo((props) => {
   const { slideListItemsData, courseTitle } = props;
   const dispatch = useAppDispatch();
+  // lesson slice
+  const lesson = useAppSelector(lessonSelector);
+  const allowStartingExercise = lesson.allowStartingExercise;
+  const isOpen = lesson.isOpen;
+  // slidelist slice
   const slideList = useAppSelector(slideListSelector);
   const slideId = slideList.slideId;
   const direction = slideList.direction; // スライドの進行方向
-  const isOpen = slideList.isOpen;
   const lastSlideNumber = slideListItemsData.length - 1; // 最後のスライド
-
+  // induction slice
+  const induction = useAppSelector(inductionSelector);
+  const sceneId = induction.sceneId;
+  // 演習開始の処理
   const handleClickStartingExercise = () => {
-    // Loading画面とスライドを非表示に
-    // 演習の開始フラグをONに
-    const startingExercise = () => {
-      dispatch(hideLoadingAction());
-      dispatch(toggleDisplayOrHideSlideListAction());
-      dispatch(switchStartingAndStoppingExerciseAction(true));
-    };
-    // Loading画面を表示
-    dispatch(showLoadingAction("Loading..."));
-    // 2秒後に演習開始の処理
-    setTimeout(() => startingExercise(), 2000);
+    dispatch(toggleShowAndHideInterfaceAction({ key: "slideList", open: !isOpen.slideList }));
+    dispatch(startingExerciseAction(true));
+    dispatch(setNextStaticSceneAction(sceneId));
   };
 
   return (
     <>
-      {isOpen && (
+      {isOpen.slideList && (
         <SSlideList className="path-center">
           {/* スライドを閉じるボタン */}
           <Tooltip
@@ -60,7 +62,13 @@ const SlideList: FC<Props> = memo((props) => {
             title="演習に進む"
             arrow
           >
-            <IconButton onClick={handleClickStartingExercise}>
+            <IconButton
+              onClick={() =>
+                allowStartingExercise
+                  ? dispatch(toggleShowAndHideInterfaceAction({ key: "slideList", open: !isOpen.slideList }))
+                  : handleClickStartingExercise()
+              }
+            >
               <CancelIcon fontSize="large" />
             </IconButton>
           </Tooltip>
@@ -70,6 +78,7 @@ const SlideList: FC<Props> = memo((props) => {
             {courseTitle}
           </Typography>
 
+          {/* 本体 */}
           <Box width="100%" height="100%" display="flex" position="absolute" top="0" left="0" right="0" bottom="0">
             {/* /スライド本体 */}
             {slideListItemsData.map((item, index) => (

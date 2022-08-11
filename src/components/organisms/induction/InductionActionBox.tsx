@@ -1,50 +1,61 @@
 import { FC, memo } from "react";
+// Modules
 import styled, { keyframes } from "styled-components";
 import { Box, Typography } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-
-import {
-  inductionSelector,
-  returnToPreviousPhaseAction,
-  setNextStaticSceneAction,
-  showUtilsAction,
-} from "../../../redux/features/inductionSlice";
+// Redux
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {
+  hideOptionsAction,
+  inductionSelector,
+  setNextStaticSceneAction,
+  showPreviousScreenForAnswersAction,
+} from "../../../redux/features/inductionSlice";
+import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
+// Components
 import { SlideInBox } from "../../molecules";
 
 const InductionActionBox: FC = memo(() => {
   const dispatch = useAppDispatch();
+  // induction selector
   const induction = useAppSelector(inductionSelector);
-  const id = induction.sceneId;
+  const sceneId = induction.sceneId;
   const lines = induction.scene.lines;
   const linesLength = lines.join("").length;
   const options = induction.scene.options;
-  const displaySpeed = induction.displaySpeedOfLines;
   const phase = induction.scene.phase;
-  const narration = induction.scene.narration;
+  const isNarration = induction.scene.narration;
+  // lesson selector
+  const lesson = useAppSelector(lessonSelector);
+  const displaySpeedOfLines = lesson.displaySpeedOfLines;
+  const isOpen = lesson.isOpen;
 
   // 選択肢の属性を設定する処理
-  const handleClickNextScene = (optionProgressAttribute: boolean, id: number) => {
+  const handleClickNextScene = (optionProgressAttribute: boolean, sceneId: number) => {
     if (optionProgressAttribute) {
       switch (phase) {
         case "info":
         case "common":
         case "conclusion":
         case "check":
+          // 選択肢を非表示
+          dispatch(hideOptionsAction());
           // 回答画面を表示
-          dispatch(showUtilsAction({ key: "screenForAnswers", value: true }));
+          dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
           break;
         default:
-          if (narration) {
-            dispatch(showUtilsAction({ key: "narration", value: true }));
+          if (isNarration) {
+            // ナレーション画面を表示
+            dispatch(toggleShowAndHideInterfaceAction({ key: "narration", open: !isOpen.narration }));
           } else {
             // 次のシーンに進行
-            dispatch(setNextStaticSceneAction(id));
+            dispatch(setNextStaticSceneAction(sceneId));
           }
       }
     } else {
-      // 1つ前のシーンに戻る
-      dispatch(returnToPreviousPhaseAction());
+      // 回答画面を再表示する
+      dispatch(showPreviousScreenForAnswersAction());
+      dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
     }
   };
 
@@ -58,7 +69,7 @@ const InductionActionBox: FC = memo(() => {
           direction="right"
           duration={0.3}
           distance={64}
-          delay={linesLength * displaySpeed + 0.2 + index / 2}
+          delay={linesLength * displaySpeedOfLines + 0.2 + index / 2}
           b={`${240 + (options.length - 1) * 64 - index * 64}px`}
           r="0"
         >
@@ -68,7 +79,7 @@ const InductionActionBox: FC = memo(() => {
             sx={{
               cursor: "pointer",
             }}
-            onClick={() => handleClickNextScene(option.progress, id)}
+            onClick={() => handleClickNextScene(option.progress, sceneId)}
           >
             <SOptionBox>
               <SOptionInner>

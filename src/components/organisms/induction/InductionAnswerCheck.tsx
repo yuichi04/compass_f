@@ -3,10 +3,15 @@ import styled, { keyframes } from "styled-components";
 import { Typography, Box, Grid } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { inductionSelector, setNextDynamicSceneAction } from "../../../redux/features/inductionSlice";
+import {
+  inductionSelector,
+  setNextDynamicSceneAction,
+  setNextStaticSceneAction,
+} from "../../../redux/features/inductionSlice";
 import { TitleWithTriangleIcon } from "../../molecules";
 import { PulseButton } from "../../atoms";
 import { ScreenForBlackoutEvent } from "../../molecules";
+import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
 
 type LabelType = {
   delay: number;
@@ -22,7 +27,12 @@ type CheckboxType = {
 
 const InductionAnswerCheck: FC = memo(() => {
   const dispatch = useAppDispatch();
+  // lesson selector
+  const lesson = useAppSelector(lessonSelector);
+  const isOpen = lesson.isOpen;
+  // induction selector
   const induction = useAppSelector(inductionSelector);
+  const sceneId = induction.sceneId;
   const answers = induction.userAnswers;
   const infoLength = answers.info.length;
   // 共通点がOKかどうか
@@ -32,7 +42,7 @@ const InductionAnswerCheck: FC = memo(() => {
   // チェックした情報を管理する
   const [info, setInfo] = useState<string[]>([]);
   // 確認画面の表示・非表示
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenFinalCheck, setIsOpenFinalCheck] = useState(false);
 
   // 各情報をOKまたはNGに変更する処理
   const handleChangeInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +56,18 @@ const InductionAnswerCheck: FC = memo(() => {
     }
   };
 
-  // 選んだ情報とOKにした情報の数が一致しているか確認
+  // ユーザーの回答をstoreに保存
+  const handleSubmit = () => {
+    // 回答画面を非表示
+    dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+    // セリフを生成し表示する処理
+    dispatch(setNextStaticSceneAction(sceneId));
+    // ユーザーの回答を初期化
+    setIsCheckedCommon(false);
+    setIsCheckedInfo(false);
+  };
+
+  // 選択した全ての情報がOKになっているか確認
   useEffect(() => {
     if (info.length === infoLength) {
       setIsCheckedInfo(true);
@@ -55,10 +76,10 @@ const InductionAnswerCheck: FC = memo(() => {
     }
   }, [info, infoLength]);
 
-  // 全ての項目がOKになっているか確認し、OKなら確認画面を表示する
+  // 全ての項目がOKになっているか確認し、OKなら確認画面を表示
   useEffect(() => {
     if (isCheckedCommon && isCheckedInfo) {
-      setIsOpen(true);
+      setIsOpenFinalCheck(true);
     }
     // 共通点がOKではない場合は、情報のフラグを初期化する
     if (!isCheckedCommon) setInfo([]);
@@ -165,8 +186,8 @@ const InductionAnswerCheck: FC = memo(() => {
           </>
         )}
       </SBox>
-      {isOpen && (
-        <ScreenForBlackoutEvent open={isOpen} delay={0.1}>
+      {isOpenFinalCheck && (
+        <ScreenForBlackoutEvent open={isOpenFinalCheck} delay={0.1}>
           <Box display="flex" alignItems="center" justifyContent="center">
             <Box textAlign="center">
               <Box sx={{ transform: "translateX(24px)" }}>
@@ -183,12 +204,12 @@ const InductionAnswerCheck: FC = memo(() => {
                 }}
               />
               <Box display="flex" alignItems="center" justifyContent="space-between" width="480px" m="0 auto">
-                <PulseButton bgcolor="#097fa1" size="160px" onClick={() => dispatch(setNextDynamicSceneAction(true))}>
+                <PulseButton bgcolor="#097fa1" size="160px" onClick={handleSubmit}>
                   <Typography variant="h6" color="#fff" fontWeight={600}>
                     大丈夫
                   </Typography>
                 </PulseButton>
-                <PulseButton bgcolor="#bbb" size="160px" onClick={() => setIsOpen(false)}>
+                <PulseButton bgcolor="#bbb" size="160px" onClick={() => setIsOpenFinalCheck(false)}>
                   <Typography variant="h6" color="#fff" fontWeight={600}>
                     やり直す
                   </Typography>

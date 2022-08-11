@@ -4,8 +4,8 @@ import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
 import ArticleIcon from "@mui/icons-material/Article";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { inductionSelector, showUtilsAction } from "../../../redux/features/inductionSlice";
 import { Tooltip } from "../../molecules";
+import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
 
 const styles = {
   utilButtonBox: {
@@ -21,10 +21,8 @@ const styles = {
 
 const InductionTooltipBar: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
-  const induction = useAppSelector(inductionSelector);
-  const isOpenUserAnswers = induction.isOpen.answers;
-  const isOpenDocuments = induction.isOpen.documents;
-  const isOpenSlide = induction.isOpen.slide;
+  const lesson = useAppSelector(lessonSelector);
+  const isOpen = lesson.isOpen;
   return (
     <>
       <Box sx={styles.utilButtonBox}>
@@ -32,19 +30,19 @@ const InductionTooltipBar: React.FC = React.memo(() => {
           title="スライドを確認する"
           color="primary.main"
           icon={<AutoAwesomeMotionIcon fontSize="large" />}
-          onClick={() => dispatch(showUtilsAction({ key: "slide", value: !isOpenSlide }))}
+          onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "slideList", open: !isOpen.slideList }))}
         />
         <Tooltip
           title="自分の回答を確認する"
           color="info.main"
           icon={<PersonSearchIcon fontSize="large" />}
-          onClick={() => dispatch(showUtilsAction({ key: "answers", value: !isOpenUserAnswers }))}
+          onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "answers", open: !isOpen.answers }))}
         />
         <Tooltip
           title="資料を見る"
           color="success.main"
           icon={<ArticleIcon fontSize="large" />}
-          onClick={() => dispatch(showUtilsAction({ key: "documents", value: !isOpenDocuments }))}
+          onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "documents", open: !isOpen.documents }))}
         />
       </Box>
     </>

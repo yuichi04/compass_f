@@ -4,13 +4,17 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 // Redux
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { initializeSlideListAction, slideListSelector } from "../../redux/features/slideListSlice";
+import { initializeSlideListAction } from "../../redux/features/slideListSlice";
 import {
   initializeSceneAction,
   inductionSelector,
   setNextStaticSceneAction,
 } from "../../redux/features/inductionSlice";
-import { exerciseSelector } from "../../redux/features/exerciseSlice";
+import {
+  initializeLessonAction,
+  lessonSelector,
+  toggleShowAndHideInterfaceAction,
+} from "../../redux/features/lessonSlice";
 // Images
 import { BackgroundImage } from "../../assets/images/background";
 // Components
@@ -36,21 +40,16 @@ type BgImgProps = {
 
 const Scene: FC = memo(() => {
   const dispatch = useAppDispatch();
-  // induction slice
+  // induction selector
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
-  const id = induction.sceneId;
-  const isOpenUserAnswers = induction.isOpen.answers;
-  const isOpenScreen = induction.isOpen.screenForAnswers;
-  const isOpenNarration = induction.isOpen.narration;
+  const sceneId = induction.sceneId;
   const phase = induction.scene.phase;
   const narration = induction.scene.narration;
-  // exercise slice
-  const exercise = useAppSelector(exerciseSelector);
-  const allowStartingExercise = exercise.allowStartingExercise;
-  // slidelist slice
-  const slidelist = useAppSelector(slideListSelector);
-  const isOpenSlideList = slidelist.isOpen;
+  // lesson selector
+  const lesson = useAppSelector(lessonSelector);
+  const allowStartingExercise = lesson.allowStartingExercise;
+  const isOpen = lesson.isOpen;
 
   // シーンの切り替え処理
   //   useEffect(() => {
@@ -62,8 +61,15 @@ const Scene: FC = memo(() => {
   //     // eslint-disable-next-line react-hooks/exhaustive-deps
   //   }, [linesLength]);
 
+  // ナレーションを閉じて、次のシーンに進行させる処理
+  const handleCloseNarration = () => {
+    dispatch(toggleShowAndHideInterfaceAction({ key: "narration", open: !isOpen.narration }));
+    dispatch(setNextStaticSceneAction(sceneId));
+  };
+
   // 初期化
   useEffect(() => {
+    dispatch(initializeLessonAction());
     dispatch(initializeSceneAction());
     dispatch(initializeSlideListAction());
   }, [dispatch]);
@@ -71,16 +77,16 @@ const Scene: FC = memo(() => {
   return (
     <>
       {/* 演習が開始されていない場合は、演習画面が見えないように黒い背景を前面に出す */}
-      {/* {!allowStartingExercise ? (
+      {!allowStartingExercise ? (
         <Box zIndex={999} position="absolute" top="0" left="0" width="100vw" height="100vh" bgcolor="#2a2f36" />
-      ) : null} */}
+      ) : null}
 
       {/* スライド */}
       <SlideList slideListItemsData={inductionSlideListItemsData} courseTitle={courseTitle} />
 
       {/* 回答画面 */}
-      <ScreenForBlackoutEvent open={isOpenScreen} animationType="slide-in">
-        {isOpenScreen && (
+      <ScreenForBlackoutEvent open={isOpen.screenForAnswers} animationType="slide-in">
+        {isOpen.screenForAnswers && (
           <>
             {phase === "info" && <InductionSelectOptions />}
             {phase === "common" && <InductionAnswerCommon />}
@@ -90,40 +96,36 @@ const Scene: FC = memo(() => {
         )}
       </ScreenForBlackoutEvent>
 
-      {/* ナレーション画面 */}
-      <Narration
-        open={isOpenNarration}
-        handleClose={() => dispatch(setNextStaticSceneAction(id))}
-        text={narration ? narration : ""}
-      />
+      {/* ナレーション */}
+      <Narration open={isOpen.narration} handleClose={handleCloseNarration} text={narration ? narration : ""} />
 
-      <SInduction className={!isOpenSlideList ? "path-center" : ""} bgImg={sectionId}>
-        {/* <Box bgcolor="#2a2f36"> */}
-        {/* 演習画面 */}
-        {/* ツールバー */}
-        <STooltipBar>
-          <InductionTooltipBar />
-        </STooltipBar>
-        {/* 選択肢の表示 */}
-        <InductionActionBox />
-        {/* 回答 */}
-        <SUserAnswers className={isOpenUserAnswers ? "slide-in-top" : "slide-out-top"}>
-          <InductionUserAnswers />
-        </SUserAnswers>
-        {/* ボタンやツールバーを除く操作画面 */}
-        <SContainer>
-          {/* キャラクター表示関連 */}
-          <SCharacter>
-            <InductionCharacterImage />
-          </SCharacter>
-          <InductionCharacterBalloon />
-          {/* 資料 */}
-          {/* <Chapter1Document /> */}
-          {/* 演習結果 */}
-          {/* <Chapter1Result /> */}
-        </SContainer>
-        {/* </Box> */}
-      </SInduction>
+      {/* メイン画面 */}
+      <Box bgcolor="#2a2f36">
+        <SInduction className={isOpen.slideList ? "" : "path-center"} bgImg={sectionId}>
+          {/* ツールバー */}
+          <STooltipBar>
+            <InductionTooltipBar />
+          </STooltipBar>
+          {/* 選択肢の表示 */}
+          <InductionActionBox />
+          {/* 回答 */}
+          <SUserAnswers className={isOpen.answers ? "slide-in-top" : "slide-out-top"}>
+            <InductionUserAnswers />
+          </SUserAnswers>
+          {/* ボタンやツールバーを除く操作画面 */}
+          <SContainer>
+            {/* キャラクター表示関連 */}
+            <SCharacter>
+              <InductionCharacterImage />
+            </SCharacter>
+            <InductionCharacterBalloon />
+            {/* 資料 */}
+            {/* <Chapter1Document /> */}
+            {/* 演習結果 */}
+            {/* <Chapter1Result /> */}
+          </SContainer>
+        </SInduction>
+      </Box>
     </>
   );
 });
@@ -134,8 +136,6 @@ const SInduction = styled.div<BgImgProps>`
   position: relative;
   overflow: hidden;
   height: calc(100vh - 64px);
-
-  // セクションに応じて背景を変更
   background: ${(props) =>
       props.bgImg === 1
         ? `url(${BackgroundImage.officeDay})`
@@ -150,7 +150,6 @@ const STooltipBar = styled.div`
   left: 16px;
 `;
 const SUserAnswers = styled.div`
-  z-index: 998;
   position: relative;
   width: 900px;
   margin: 0 auto;

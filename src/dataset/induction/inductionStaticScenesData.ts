@@ -1,7 +1,9 @@
+// Types
 import { StaticSceneDataType } from "../../types/lesson/inductionTypes";
+// Images
 import { CharacterImage } from "../../assets/images/characters";
 
-const staticSceneData: StaticSceneDataType[] = [
+const inductionStaticScenesData: StaticSceneDataType[] = [
   {
     section: 1,
     character: { src: CharacterImage.guide.normalA, role: "guide" },
@@ -73,7 +75,7 @@ const staticSceneData: StaticSceneDataType[] = [
     section: 1,
     character: { src: CharacterImage.boy.closeMouse, role: "boy" },
     lines: [
-      "はい。あの、将来アメリカで働きたいなと思っていて、英語ができるようになりたいんですけど、どうしたら良いでしょうか？",
+      "はい。あの、将来アメリカで働きたいなと思っているので、英語ができるようになりたいんですけど、どうしたら良いでしょうか？",
     ],
   },
   {
@@ -197,7 +199,11 @@ const staticSceneData: StaticSceneDataType[] = [
     ],
     phase: "check",
   },
-  // ここに動的シーンが挿入されます。
+  {
+    section: 1,
+    character: { src: "", role: "user" },
+    lines: ["論理の飛躍も大丈夫そうです。"],
+  },
   {
     section: 1,
     character: { src: CharacterImage.guide.smile, role: "guide" },
@@ -297,4 +303,4 @@ const staticSceneData: StaticSceneDataType[] = [
   },
 ];
 
-export default staticSceneData;
+export default inductionStaticScenesData;

@@ -47,8 +47,8 @@ const STalkEffect = styled.div`
   height: 160px;
   padding: 32px;
   border-radius: 50%;
-  background-color: ${(props) => props.theme.palette.info.light};
-  box-shadow: 0 0 80px ${(props) => props.theme.palette.info.light};
+  background: ${(props) => props.theme.palette.logoColor.main};
+  box-shadow: 0 0 80px ${(props) => props.theme.palette.logoColor.main};
 
   &::before,
   &::after {
@@ -64,7 +64,7 @@ const STalkEffect = styled.div`
     height: 100%;
     border-radius: 50%;
     box-sizing: border-box;
-    border: 2px solid ${(props) => props.theme.palette.info.light};
+    border: 2px solid ${(props) => props.theme.palette.logoColor.main};
     animation: ${pulsate} 2s linear infinite;
   }
 

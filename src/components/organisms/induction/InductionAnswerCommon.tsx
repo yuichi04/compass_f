@@ -7,9 +7,14 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { inductionSelector, setNextDynamicSceneAction } from "../../../redux/features/inductionSlice";
 import { PulseButton } from "../../atoms";
 import { SlideInBox, TitleWithTriangleIcon } from "../../molecules";
+import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
 
 const InductionAnswerCommon: FC = memo(() => {
   const dispatch = useAppDispatch();
+  // lesson selector
+  const lesson = useAppSelector(lessonSelector);
+  const isOpen = lesson.isOpen;
+  // induction selector
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
   const info = induction.userAnswers.info;
@@ -26,10 +31,14 @@ const InductionAnswerCommon: FC = memo(() => {
   // ユーザーの回答をstoreに保存
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // validations
     if (answer === "") return false;
+    // 回答画面を非表示にする
+    dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+    // セリフを生成し表示する処理
+    setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100); // 表示を0.1秒遅延させる
+    // ユーザーの回答を初期化
     setAnswer("");
-    // セリフを生成し、表示する処理。表示を0.2秒遅延させる。
-    setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100);
   };
 
   return (

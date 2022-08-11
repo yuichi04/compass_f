@@ -3,39 +3,47 @@ import { Box, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { FadeInOutBox, TextAnimation } from "../../molecules";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {
-  inductionSelector,
-  setAllowProgressSceneAction,
-  setNextStaticSceneAction,
-} from "../../../redux/features/inductionSlice";
+import { inductionSelector, setNextStaticSceneAction } from "../../../redux/features/inductionSlice";
 import { userSelector } from "../../../redux/features/userSlice";
+import {
+  allowProgressSceneAction,
+  forbidProgressSceneAction,
+  lessonSelector,
+} from "../../../redux/features/lessonSlice";
 
 const InductionCharacterBalloon: FC = memo(() => {
   const dispatch = useAppDispatch();
+  // user selector
   const user = useAppSelector(userSelector);
   const username = user.name;
+  // induction selector
   const induction = useAppSelector(inductionSelector);
-  const id = induction.sceneId;
+  const sceneId = induction.sceneId;
   const options = induction.scene.options;
   const role = induction.characterInfo.role;
   const lines = induction.scene.lines;
-  const displaySpeed = induction.displaySpeedOfLines;
-  const allowProgress = induction.allowProgressScene;
-
-  // 次のシーンに進む処理
-  const handleClickNextScene = () => {
-    if (!allowProgress) return;
-    dispatch(setNextStaticSceneAction(id));
-  };
+  // lesson selector
+  const lesson = useAppSelector(lessonSelector);
+  const displaySpeedOfLines = lesson.displaySpeedOfLines;
+  const allowProgressScene = lesson.allowProgressScene;
 
   // 全てのセリフが表示されたら、次のシーンへの進行を許可する
   useEffect(() => {
+    // セリフが表示されるまで一時的に次のシーンへの進行を禁止する
+    dispatch(forbidProgressSceneAction());
+    // 選択肢が存在するシーンの場合は次のシーンへの進行を禁止する
+    if (options) return;
+
+    // シーンの進行処理
     // セリフの文字数を取得
     const linesLength = lines.join("").length;
     // 全てのセリフが表示されるまでの時間を計算し、その時間+0.25秒が経過したら次のシーンに進められるようにする。
-    const timer = setTimeout(() => dispatch(setAllowProgressSceneAction()), linesLength * displaySpeed * 1000 + 250);
+    const timer = setTimeout(
+      () => dispatch(allowProgressSceneAction()),
+      linesLength * displaySpeedOfLines * 1000 + 250
+    );
     return () => clearTimeout(timer);
-  }, [dispatch, lines, displaySpeed]);
+  }, [dispatch, lines, displaySpeedOfLines, options]);
 
   return (
     <Box
@@ -44,7 +52,7 @@ const InductionCharacterBalloon: FC = memo(() => {
       width="100vw"
       height="200px"
       borderTop="double 5px rgba(255,255,255,0.2)"
-      onClick={handleClickNextScene}
+      onClick={() => allowProgressScene && dispatch(setNextStaticSceneAction(sceneId))}
       sx={{
         background:
           "radial-gradient(circle, rgba(55, 55, 55, 0.8) 75%, rgba(159, 159, 159, 0.45) 90%, rgba(255, 255, 255, 0.3))",
@@ -58,7 +66,7 @@ const InductionCharacterBalloon: FC = memo(() => {
           position="absolute"
           top="-32px"
           left="0"
-          bgcolor={role === "user" ? "info.main" : role === "guide" ? "success.main" : "warning.main"}
+          bgcolor={role === "user" ? "logoColor.main" : role === "guide" ? "success.main" : "warning.main"}
           border="double 4px rgba(255,255,255,0.3)"
           minWidth="160px"
           display="flex"
@@ -99,15 +107,15 @@ const InductionCharacterBalloon: FC = memo(() => {
               <Box component="div" key={index} id={"theme" + index}>
                 <TextAnimation
                   section={"theme" + index}
-                  duration={displaySpeed}
+                  duration={displaySpeedOfLines}
                   // 1行表示されてから次の行が表示されるように遅延させる
-                  delay={lines.slice(0, index).join("").length * displaySpeed + 0.1}
+                  delay={lines.slice(0, index).join("").length * displaySpeedOfLines + 0.1}
                   text={line}
                 />
               </Box>
             ))}
           </Typography>
-          {allowProgress && (
+          {allowProgressScene && (
             <Box position="absolute" bottom="16px" right="0" className="up-down">
               <FadeInOutBox fadeIn display="flex" alignItems="flex-end">
                 <Typography

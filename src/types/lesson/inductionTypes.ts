@@ -1,25 +1,26 @@
-// レッスン全体の型定義
+// セリフなどのコンテンツの生成に関する型定義
 export type LessonType = {
   // section > scene
   sectionId: number; // 現在のセクションを判別
   sceneId: number; // 現在のシーンを判別
-  allowStartingExercise: boolean; // 演習の開始を許可するか
-  allowProgressScene: boolean; // シーンの進行を許可するか
+  // allowStartingExercise: boolean; // 演習の開始を許可するか
+  // allowProgressScene: boolean; // シーンの進行を許可するか
   characterInfo: CharacterImageType; // キャラクター情報の変更を管理
   commonSubject: string[]; // 共通点の主語を設定
-  displaySpeedOfLines: number; // セリフ1文字あたりの表示速度
+  // displaySpeedOfLines: number; // セリフ1文字あたりの表示速度
   // 各UIの表示・非表示を管理
-  isOpen: {
-    answers?: boolean; // ユーザーの回答
-    documents?: boolean; // 資料
-    results: boolean; // 演習結果
-    screenForAnswers: boolean; // 回答用画面
-    slide: boolean; // スライド
-    narration: boolean; // ナレーション画面
-  };
+  // isOpen: {
+  //   answers?: boolean; // ユーザーの回答
+  //   documents?: boolean; // 資料
+  //   results: boolean; // 演習結果
+  //   screenForAnswers: boolean; // 回答用画面
+  //   slide: boolean; // スライド
+  //   narration: boolean; // ナレーション画面
+  // };
   isLastScene: boolean; // 最後のシーンかどうか
   selectableInfo: SelectableInfoType[]; // 現在のセクションの選択可能な情報を格納
-  scene: StaticSceneDataType; // 表示するシーン本体
+  scenes: StaticSceneDataType[]; // コース全体のシーン情報
+  scene: StaticSceneDataType; // 現在のシーン情報
   history: string; // 1つ前のフェーズを格納
   // 結果表示用にユーザーの回答を格納
   userAnswers: {
@@ -56,7 +57,7 @@ export type CharacterImageType = {
 };
 
 // 表示・非表示系UIの型定義
-export type UtilsKeyType = "answers" | "documents" | "results" | "slide" | "screenForAnswers" | "narration";
+// export type UtilsKeyType = "answers" | "documents" | "results" | "slide" | "screenForAnswers" | "narration";
 
 // 選択可能な情報の型定義
 export type SelectableInfoType = {

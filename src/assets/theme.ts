@@ -3,6 +3,9 @@ import { createTheme } from "@mui/material/styles";
 // Material-UIのパレットの拡張
 declare module "@mui/material/styles" {
   interface Palette {
+    logoColor: {
+      main: string;
+    };
     primaryGradation: {
       black: {
         main: string;
@@ -30,6 +33,9 @@ declare module "@mui/material/styles" {
     };
   }
   interface PaletteOptions {
+    logoColor: {
+      main: string;
+    };
     primaryGradation: {
       black: {
         main: string;
@@ -82,6 +88,9 @@ export const theme = createTheme({
     ].join(","),
   },
   palette: {
+    logoColor: {
+      main: "#81c3f5",
+    },
     common: {
       white: "#fff",
       black: "#333",

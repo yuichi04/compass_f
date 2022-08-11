@@ -1,9 +1,10 @@
 import { FC, memo } from "react";
 import { Paper, Box, Typography } from "@mui/material";
-import { inductionSelector, showUtilsAction } from "../../../redux/features/inductionSlice";
+import { inductionSelector } from "../../../redux/features/inductionSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import CloseIcon from "@mui/icons-material/Close";
 import { userSelector } from "../../../redux/features/userSlice";
+import { hideAllInterfacesAction } from "../../../redux/features/lessonSlice";
 
 const InductionUserAnswers: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -47,7 +48,7 @@ const InductionUserAnswers: FC = memo(() => {
           transition: "all 0.2s",
           "&:hover": { opacity: 0.8 },
         }}
-        onClick={() => dispatch(showUtilsAction({ key: "answers", value: false }))}
+        onClick={() => dispatch(hideAllInterfacesAction())}
       >
         <CloseIcon sx={{ color: "#fff", width: "100%", height: "100%" }} />
       </Box>
