@@ -1,5 +1,5 @@
 // 演習の開始・終了とインターフェースの動きに関する型定義
-export type ExerciseType = {
+export type LessonType = {
   course: "induction" | "deduction" | "explanation" | ""; // コース名
   allowStartingExercise: boolean; // 演習の開始を許可するか
   allowProgressScene: boolean; // シーンの進行を許可するか

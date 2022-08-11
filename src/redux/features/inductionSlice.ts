@@ -7,14 +7,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 // Types
-import { LessonType, SelectableInfoType } from "../../types/lesson/inductionTypes";
+import { InductionType, SelectableInfoType } from "../../types/lesson/inductionTypes";
 // Images
 import { CharacterImage } from "../../assets/images/characters";
 // Data
 import { ScenesData } from "../../dataset";
 import selectableInfo from "../../dataset/induction/selectableInfo";
 
-const initialState: LessonType = {
+const initialState: InductionType = {
   sectionId: 0, // 現在のセクション
   sceneId: 0, // 現在のシーン
   characterInfo: { src: "", role: "" }, // キャラクター情報の変更を管理

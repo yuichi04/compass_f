@@ -7,9 +7,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 // Types
-import { ExerciseType, InterfacesKeyType } from "../../types/exerciseTypes";
+import { LessonType, InterfacesKeyType } from "../../types/lessonTypes";
 
-const initialState: ExerciseType = {
+const initialState: LessonType = {
   course: "", // 現在のコース
   allowStartingExercise: false, // 演習を開始して良いか
   allowProgressScene: false, // シーンを進行して良いか
