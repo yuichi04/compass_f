@@ -4,12 +4,13 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 // Redux
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { initializeSlideListAction } from "../../redux/features/slideListSlice";
+import { initializeSlideListAction, slideListSelector } from "../../redux/features/slideListSlice";
 import {
   initializeSceneAction,
   inductionSelector,
   setNextStaticSceneAction,
 } from "../../redux/features/inductionSlice";
+import { exerciseSelector } from "../../redux/features/exerciseSlice";
 // Images
 import { BackgroundImage } from "../../assets/images/background";
 // Components
@@ -35,16 +36,21 @@ type BgImgProps = {
 
 const Scene: FC = memo(() => {
   const dispatch = useAppDispatch();
+  // induction slice
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
   const id = induction.sceneId;
-  const isOpenSlide = induction.isOpen.slide;
   const isOpenUserAnswers = induction.isOpen.answers;
   const isOpenScreen = induction.isOpen.screenForAnswers;
   const isOpenNarration = induction.isOpen.narration;
-  const allowStartingExercise = induction.allowStartingExercise;
   const phase = induction.scene.phase;
   const narration = induction.scene.narration;
+  // exercise slice
+  const exercise = useAppSelector(exerciseSelector);
+  const allowStartingExercise = exercise.allowStartingExercise;
+  // slidelist slice
+  const slidelist = useAppSelector(slideListSelector);
+  const isOpenSlideList = slidelist.isOpen;
 
   // シーンの切り替え処理
   //   useEffect(() => {
@@ -65,9 +71,9 @@ const Scene: FC = memo(() => {
   return (
     <>
       {/* 演習が開始されていない場合は、演習画面が見えないように黒い背景を前面に出す */}
-      {!allowStartingExercise ? (
+      {/* {!allowStartingExercise ? (
         <Box zIndex={999} position="absolute" top="0" left="0" width="100vw" height="100vh" bgcolor="#2a2f36" />
-      ) : null}
+      ) : null} */}
 
       {/* スライド */}
       <SlideList slideListItemsData={inductionSlideListItemsData} courseTitle={courseTitle} />
@@ -91,33 +97,33 @@ const Scene: FC = memo(() => {
         text={narration ? narration : ""}
       />
 
-      <Box bgcolor="#2a2f36">
+      <SInduction className={!isOpenSlideList ? "path-center" : ""} bgImg={sectionId}>
+        {/* <Box bgcolor="#2a2f36"> */}
         {/* 演習画面 */}
-        <SInduction className={!isOpenSlide ? "path-center" : ""} bgImg={sectionId}>
-          {/* ツールバー */}
-          <STooltipBar>
-            <InductionTooltipBar />
-          </STooltipBar>
-          {/* 選択肢の表示 */}
-          <InductionActionBox />
-          {/* 回答 */}
-          <SUserAnswers className={isOpenUserAnswers ? "slide-in-top" : "slide-out-top"}>
-            <InductionUserAnswers />
-          </SUserAnswers>
-          {/* ボタンやツールバーを除く操作画面 */}
-          <SContainer>
-            {/* キャラクター表示関連 */}
-            <SCharacter>
-              <InductionCharacterImage />
-            </SCharacter>
-            <InductionCharacterBalloon />
-            {/* 資料 */}
-            {/* <Chapter1Document /> */}
-            {/* 演習結果 */}
-            {/* <Chapter1Result /> */}
-          </SContainer>
-        </SInduction>
-      </Box>
+        {/* ツールバー */}
+        <STooltipBar>
+          <InductionTooltipBar />
+        </STooltipBar>
+        {/* 選択肢の表示 */}
+        <InductionActionBox />
+        {/* 回答 */}
+        <SUserAnswers className={isOpenUserAnswers ? "slide-in-top" : "slide-out-top"}>
+          <InductionUserAnswers />
+        </SUserAnswers>
+        {/* ボタンやツールバーを除く操作画面 */}
+        <SContainer>
+          {/* キャラクター表示関連 */}
+          <SCharacter>
+            <InductionCharacterImage />
+          </SCharacter>
+          <InductionCharacterBalloon />
+          {/* 資料 */}
+          {/* <Chapter1Document /> */}
+          {/* 演習結果 */}
+          {/* <Chapter1Result /> */}
+        </SContainer>
+        {/* </Box> */}
+      </SInduction>
     </>
   );
 });

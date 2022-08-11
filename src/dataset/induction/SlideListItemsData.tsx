@@ -1,32 +1,33 @@
 // Modules
 import { Box, Grid, Icon, Typography } from "@mui/material";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import LooksOneIcon from "@mui/icons-material/LooksOne";
-import LooksTwoIcon from "@mui/icons-material/LooksTwo";
-import Looks3Icon from "@mui/icons-material/Looks3";
-import Looks4Icon from "@mui/icons-material/Looks4";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import CancelIcon from "@mui/icons-material/Cancel";
 import Filter1Icon from "@mui/icons-material/Filter1";
 import Filter2Icon from "@mui/icons-material/Filter2";
 import Filter3Icon from "@mui/icons-material/Filter3";
 import Filter4Icon from "@mui/icons-material/Filter4";
 import Filter5Icon from "@mui/icons-material/Filter5";
 import Filter6Icon from "@mui/icons-material/Filter6";
-import CrisisAlertIcon from "@mui/icons-material/CrisisAlert";
-import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import WarningIcon from "@mui/icons-material/Warning";
-import CancelIcon from "@mui/icons-material/Cancel";
 import InfoIcon from "@mui/icons-material/Info";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import LooksOneIcon from "@mui/icons-material/LooksOne";
+import LooksTwoIcon from "@mui/icons-material/LooksTwo";
+import Looks3Icon from "@mui/icons-material/Looks3";
+import Looks4Icon from "@mui/icons-material/Looks4";
 import ListIcon from "@mui/icons-material/List";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import WarningIcon from "@mui/icons-material/Warning";
 // Types
 import { SlideListItemType } from "../../types/lesson/slideListTypes";
 // Components
 import {
   DeductiveExplainChart,
   InductiveExplainChart,
+  ScrollAnimationBox,
   SlideListItemContent,
+  SlideListItemContentHeadline,
   SubTitleWithContent,
   SummaryCard,
 } from "../../components/molecules";
@@ -42,6 +43,9 @@ import Merit from "../../assets/images/illustrations/merit.svg";
 import Step from "../../assets/images/illustrations/step.svg";
 import ThoughtProcess from "../../assets/images/illustrations/thought.svg";
 import Warning from "../../assets/images/illustrations/warning.svg";
+import InductionStepOne from "../../assets/images/illustrations/induction_step_one.svg";
+import InductionStepTwo from "../../assets/images/illustrations/induction_step_two.svg";
+import InductionStepThree from "../../assets/images/illustrations/induction_step_three.svg";
 
 // 目次のコンテンツ
 const index = [
@@ -127,7 +131,6 @@ const inductionSummaryCards = [
       <Typography>複数の情報を揃える</Typography>,
       <Typography>共通点を見つける</Typography>,
       <Typography>結論を導き出す</Typography>,
-      <Typography>論理に飛躍がないか確認する</Typography>,
     ],
   },
   {
@@ -136,13 +139,17 @@ const inductionSummaryCards = [
     image: KeyPoints,
     title: "ポイント",
     points: [
-      <Typography>情報が偏らないように注意</Typography>,
-      <Typography>より多く情報を揃えると、より確かな結論が導ける</Typography>,
-      <Typography>論理の飛躍は「主張＋根拠」で確認できる</Typography>,
+      <Typography>情報源の偏りをなくし多く揃えるほど、結論の信憑性が上がる</Typography>,
+      <Typography>
+        論理の飛躍がないか
+        <br />
+        「主張＋根拠」で確認する
+      </Typography>,
     ],
   },
 ];
 
+// コースタイトル
 export const courseTitle = "ロジカルシンキング基本編「帰納法」";
 export const inductionSlideListItemsData: SlideListItemType[] = [
   {
@@ -175,10 +182,8 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             <Box component="ol">
               {index.map((data, index) => (
                 <Box key={index} component="li" display="flex" alignItems="center" mb="16px">
-                  <Icon component={data.icon} sx={{ fontSize: "24px", mr: "8px", color: "primary.main" }} />
-                  <Typography variant="h5" color="primary.main">
-                    {data.text}
-                  </Typography>
+                  <Icon component={data.icon} sx={{ fontSize: "32px", mr: "16px", color: "info.main" }} />
+                  <Typography variant="h6">{data.text}</Typography>
                 </Box>
               ))}
             </Box>
@@ -231,7 +236,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             title="身につけるメリット"
             icon={VolunteerActivismIcon}
             iconSize="20px"
-            color="info.dark"
+            color="info.main"
           >
             ロジカルシンキングを身につけることには
             <Typography component="span" color="primary.main" fontWeight={600}>
@@ -245,12 +250,14 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             </Typography>
             ということは避けて通れないと思いますが、ロジカルシンキングを身につけているとこれらの問題に上手に対処することができるようになります。
           </SubTitleWithContent>
-          <SubTitleWithContent title="注意点" icon={WarningIcon} iconSize="20px" color="info.dark">
+          <SubTitleWithContent title="注意点" icon={WarningIcon} iconSize="20px" color="info.main">
             ロジカルシンキングには1つ注意することがあります。それは知識や前提に誤りがあると
             <Typography component="span" fontWeight={600} color="error.main">
               間違った結論を導いてしまう
             </Typography>
-            ということです。知識・前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときには、それらの確認が必要だということを忘れないようにしましょう。
+            ということです。
+            <br />
+            知識・前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときには、それらの確認が必要だということを忘れないようにしましょう。
           </SubTitleWithContent>
         </SlideListItemContent>
       </>
@@ -306,14 +313,16 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
         <Grid container spacing={3} mb="64px">
           {logicalThinkingSummaryCards.map((card, index) => (
             <Grid key={index} item xs={3}>
-              <SummaryCard
-                color={card.color}
-                icon={card.icon}
-                iconSize="48px"
-                image={card.image}
-                title={card.title}
-                points={card.points}
-              />
+              <ScrollAnimationBox delay={index / 2 + 0.25} duration={1} rootMargin={0} triggerOnce>
+                <SummaryCard
+                  color={card.color}
+                  icon={card.icon}
+                  iconSize="48px"
+                  image={card.image}
+                  title={card.title}
+                  points={card.points}
+                />
+              </ScrollAnimationBox>
             </Grid>
           ))}
         </Grid>
@@ -399,21 +408,168 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
   },
   {
     courseTitle,
+    slideTitle: "帰納法の使い方①",
+    content: (
+      <>
+        <SlideListItemContentHeadline headlineLeft="ステップ①" headlineRight="複数の情報を揃える" />
+        <SlideListItemContent title="もっと詳しく" image={InductionStepOne} icon={InfoIcon} iconSize="32px">
+          帰納法の最初のステップは「複数の情報を揃える」ことです。
+          <br />
+          {/* 主張 */}
+          ポイントとしては、情報源の偏りをなくし、できるだけ多くの情報を揃えることです。
+          <br />
+          {/* 理由 */}
+          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると信憑性の高い結論が導けないからです。
+          <br />
+          {/* 具体例 */}
+          例えば、情報源に偏りがあるケースとして、「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」「友人Cは水道水を飲むことに抵抗があると言っていた」という情報を揃えたとします。そして、そこから「世間では水道水より品質の良い水が求められている」と結論づけたとしましょう。
+          <br />
+          しかし、身の回りの情報のみで判断をしてしまっているため、これでは「世間は〜」と結論づけるには根拠が弱く信憑性が低いです。
+          <br />
+          {/* 反例 */}
+          偏りをなくすなら身の回りだけではなく、テレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
+          <br />
+          例えば、「テレビでウォーターサーバーの契約数が増えていると紹介されていた」「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」「友人はミネラルウォーターを定期便で頼んでいる」という情報も取り入れたのであれば、「世間は〜」と結論づけても問題ないでしょう。
+          <br />
+          また他にも情報数を増やすことも大切です。情報数は＝根拠であるため、根拠が増えれば増えるほど、信憑性が高く、より正解に近い結論を導くことができます。
+          <br />
+          {/* 結論 */}
+          このように、情報の偏りをなくし多く揃えることで、より正解に近い結論を導くことができるようになります。
+        </SlideListItemContent>
+      </>
+    ),
+  },
+  {
+    courseTitle,
+    slideTitle: "帰納法の使い方②",
+    content: (
+      <>
+        <SlideListItemContentHeadline headlineLeft="ステップ②" headlineRight="共通点を見つける" />
+        <SlideListItemContent title="もっと詳しく" image={InductionStepTwo} icon={InfoIcon} iconSize="32px">
+          帰納法の2つ目のステップは揃えた情報から「共通点を見つける」ことです。
+          <br />
+          {/* 主張 */}
+          ポイントとしては、情報源の偏りをなくし、できるだけ多くの情報を揃えることです。
+          <br />
+          {/* 理由 */}
+          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると信憑性の高い結論が導けないからです。
+          <br />
+          {/* 具体例 */}
+          例えば、情報源に偏りがあるケースとして、「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」「友人Cは水道水を飲むことに抵抗があると言っていた」という情報を揃えたとします。そして、そこから「世間では水道水より品質の良い水が求められている」と結論づけたとしましょう。
+          <br />
+          しかし、身の回りの情報のみで判断をしてしまっているため、これでは「世間は〜」と結論づけるには根拠が弱く信憑性が低いです。
+          <br />
+          {/* 反例 */}
+          偏りをなくすなら身の回りだけではなく、テレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
+          <br />
+          例えば、「テレビでウォーターサーバーの契約数が増えていると紹介されていた」「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」「友人はミネラルウォーターを定期便で頼んでいる」という情報も取り入れたのであれば、「世間は〜」と結論づけても問題ないでしょう。
+          <br />
+          また他にも情報数を増やすことも大切です。情報数は＝根拠であるため、根拠が増えれば増えるほど、信憑性が高く、より正解に近い結論を導くことができます。
+          <br />
+          {/* 結論 */}
+          このように、情報の偏りをなくし多く揃えることで、より正解に近い結論を導くことができるようになります。
+        </SlideListItemContent>
+      </>
+    ),
+  },
+  {
+    courseTitle,
+    slideTitle: "帰納法の使い方③",
+    content: (
+      <>
+        <SlideListItemContentHeadline headlineLeft="ステップ③" headlineRight="結論を導き出す" />
+        <SlideListItemContent title="もっと詳しく" image={InductionStepThree} icon={InfoIcon} iconSize="32px">
+          帰納法の最後のステップは共通点から「結論を導き出す」ことです。
+          <br />
+          {/* 主張 */}
+          ポイントとしては、情報源の偏りをなくし、できるだけ多くの情報を揃えることです。
+          <br />
+          {/* 理由 */}
+          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると信憑性の高い結論が導けないからです。
+          <br />
+          {/* 具体例 */}
+          例えば、情報源に偏りがあるケースとして、「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」「友人Cは水道水を飲むことに抵抗があると言っていた」という情報を揃えたとします。そして、そこから「世間では水道水より品質の良い水が求められている」と結論づけたとしましょう。
+          <br />
+          しかし、身の回りの情報のみで判断をしてしまっているため、これでは「世間は〜」と結論づけるには根拠が弱く信憑性が低いです。
+          <br />
+          {/* 反例 */}
+          偏りをなくすなら身の回りだけではなく、テレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
+          <br />
+          例えば、「テレビでウォーターサーバーの契約数が増えていると紹介されていた」「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」「友人はミネラルウォーターを定期便で頼んでいる」という情報も取り入れたのであれば、「世間は〜」と結論づけても問題ないでしょう。
+          <br />
+          また他にも情報数を増やすことも大切です。情報数は＝根拠であるため、根拠が増えれば増えるほど、信憑性が高く、より正解に近い結論を導くことができます。
+          <br />
+          {/* 結論 */}
+          このように、情報の偏りをなくし多く揃えることで、より正解に近い結論を導くことができるようになります。
+        </SlideListItemContent>
+      </>
+    ),
+  },
+  {
+    courseTitle,
     slideTitle: "帰納法まとめ",
     content: (
-      <Box width="1024px" display="flex" justifyContent="space-between" alignItems="center">
-        {inductionSummaryCards.map((card, index) => (
-          <Box key={index}>
-            <SummaryCard
-              color={card.color}
-              icon={card.icon}
-              iconSize="48px"
-              image={card.image}
-              title={card.title}
-              points={card.points}
-            />
-          </Box>
-        ))}
+      <>
+        <Box width="1024px" display="flex" justifyContent="space-between" alignItems="center" mb="64px">
+          {inductionSummaryCards.map((card, index) => (
+            <ScrollAnimationBox key={index} delay={index / 2 + 0.25} duration={1} rootMargin={0} triggerOnce>
+              <SummaryCard
+                color={card.color}
+                icon={card.icon}
+                iconSize="48px"
+                image={card.image}
+                title={card.title}
+                points={card.points}
+              />
+            </ScrollAnimationBox>
+          ))}
+        </Box>
+        <Typography variant="h6" textAlign="center">
+          スライドはここで終わりです。次は演習で学んだ知識を試してみましょう。
+        </Typography>
+      </>
+    ),
+  },
+  {
+    courseTitle,
+    slideTitle: "スライドはここまで",
+    content: (
+      <Box position="relative" width="900px" m="0 auto">
+        <Box position="absolute" top="50%" left="50%" sx={{ transform: "translate(-50%, -50%)" }}>
+          <Box component="img" alt="celebration img" src={Celebration} />
+        </Box>
+        <Typography
+          position="relative"
+          component="div"
+          variant="h5"
+          border="double 5px"
+          borderColor="typography.white"
+          borderRadius="32px"
+          color="typography.white"
+          textAlign="center"
+          p="64px 32px"
+          sx={{
+            background: "radial-gradient(circle, rgba(55, 55, 55, 1) 25%, rgba(55, 55, 55, 0.9))",
+            textShadow: "1px 1px 2px #999",
+          }}
+        >
+          スライド学習お疲れ様でした。
+          <br />
+          <br />
+          ここまでロジカルシンキングの概要と帰納法について学習しましたが、
+          <br />
+          理解はできましたでしょうか？
+          <br />
+          <br />
+          次はいよいよ演習です。
+          <br />
+          <br />
+          <Typography variant="h5" color="typography.white" display="flex" alignItems="center" justifyContent="center">
+            右上の
+            <CancelIcon fontSize="large" />
+            でスライドを閉じて演習に進んでください。
+          </Typography>
+        </Typography>
       </Box>
     ),
   },

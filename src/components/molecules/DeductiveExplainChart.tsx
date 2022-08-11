@@ -23,7 +23,7 @@ const DeductiveExplainChart: React.FC = () => {
       </Paper>
       <Box display="flex" alignItems="center" mb="32px" justifyContent="center">
         <CheckCircleIcon sx={{ fontSize: "24px", color: "info.main", mr: "4px" }} />
-        <Typography variant="h6" color="typography.black" fontWeight={600}>
+        <Typography variant="h6" color="typography.gray" fontWeight={600}>
           自分の考えと一般論を組み合わせて結論を導く思考法
         </Typography>
       </Box>

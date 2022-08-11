@@ -36,15 +36,17 @@ const SlideListItemContent: FC<Props> = memo(({ children, ...props }) => {
               alignItems={alignItems}
               justifyContent={justifyContent}
             >
-              <Typography variant="subtitle1">{children}</Typography>
+              <Typography variant="subtitle1" color="typography.gray" fontWeight={300}>
+                {children}
+              </Typography>
             </Grid>
-            <Grid item xs={imageXs ? imageXs : 4}>
+            <Grid item xs={imageXs ? imageXs : 4} p="16px">
               <Box component="img" src={image} alt="illustration" height="100%" width="100%" />
             </Grid>
           </>
         ) : (
           <>
-            <Grid item xs={imageXs ? imageXs : 4}>
+            <Grid item xs={imageXs ? imageXs : 4} p="16px">
               <Box component="img" src={image} alt="illustration" height="100%" width="100%" />
             </Grid>
             <Grid
@@ -54,7 +56,9 @@ const SlideListItemContent: FC<Props> = memo(({ children, ...props }) => {
               alignItems={alignItems}
               justifyContent={justifyContent}
             >
-              <Typography variant="subtitle1">{children}</Typography>
+              <Typography variant="subtitle1" color="typography.gray">
+                {children}
+              </Typography>
             </Grid>
           </>
         )}

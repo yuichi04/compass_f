@@ -1,7 +1,7 @@
 import React from "react";
 // Modules
 import { Paper, Box, Typography, Icon } from "@mui/material";
-import ArrowCircleRightSharpIcon from "@mui/icons-material/ArrowCircleRightSharp";
+import ForwardIcon from "@mui/icons-material/Forward";
 
 type Props = {
   color: string;
@@ -47,7 +47,7 @@ const SummaryCard: React.FC<Props> = React.memo((props) => {
           <Box component="ul" mb="32px">
             {points.map((point, index) => (
               <Box component="li" key={index} display="flex" alignItems="center" mb="4px">
-                <ArrowCircleRightSharpIcon sx={{ mr: "8px" }} />
+                <ForwardIcon sx={{ color: "typography.gray", mr: "8px" }} />
                 <Typography variant="subtitle1" component="div" textAlign="center">
                   {point}
                 </Typography>

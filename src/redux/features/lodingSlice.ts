@@ -15,7 +15,7 @@ export const loadingSlice = createSlice({
   name: "loding",
   initialState,
   reducers: {
-    showLoadingAction: (state, action) => {
+    showLoadingAction: (state, action: { payload: string }) => {
       state.state = true;
       state.text = action.payload;
     },

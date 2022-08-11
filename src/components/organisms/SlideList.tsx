@@ -13,10 +13,12 @@ import {
   slideListSelector,
   toggleDisplayOrHideSlideListAction,
 } from "../../redux/features/slideListSlice";
+import { showLoadingAction, hideLoadingAction } from "../../redux/features/lodingSlice";
 // Types
 import { SlideListItemType } from "../../types/lesson/slideListTypes";
 // Components
 import { FadeInOutBox, SlideListItem } from "../../components/molecules";
+import { switchStartingAndStoppingExerciseAction } from "../../redux/features/exerciseSlice";
 
 type Props = {
   courseTitle: string;
@@ -33,6 +35,20 @@ const SlideList: FC<Props> = memo((props) => {
   const isOpen = slideList.isOpen;
   const lastSlideNumber = slideListItemsData.length - 1; // 最後のスライド
 
+  const handleClickStartingExercise = () => {
+    // Loading画面とスライドを非表示に
+    // 演習の開始フラグをONに
+    const startingExercise = () => {
+      dispatch(hideLoadingAction());
+      dispatch(toggleDisplayOrHideSlideListAction());
+      dispatch(switchStartingAndStoppingExerciseAction(true));
+    };
+    // Loading画面を表示
+    dispatch(showLoadingAction("Loading..."));
+    // 2秒後に演習開始の処理
+    setTimeout(() => startingExercise(), 2000);
+  };
+
   return (
     <>
       {isOpen && (
@@ -44,13 +60,13 @@ const SlideList: FC<Props> = memo((props) => {
             title="演習に進む"
             arrow
           >
-            <IconButton onClick={() => dispatch(toggleDisplayOrHideSlideListAction())}>
+            <IconButton onClick={handleClickStartingExercise}>
               <CancelIcon fontSize="large" />
             </IconButton>
           </Tooltip>
 
           {/* コース名 */}
-          <Typography width="1280px" m="0 auto" variant="h6" color="typography.white">
+          <Typography width="1280px" m="0 auto" variant="subtitle1" color="typography.white" fontWeight={300}>
             {courseTitle}
           </Typography>
 
@@ -137,7 +153,9 @@ const SSlideList = styled.div`
     180deg,
     ${(props) => props.theme.palette.primary.main} 0%,
     ${(props) => props.theme.palette.primary.main} 100px,
-    ${(props) => props.theme.palette.secondaryBackgroundColor.cyan} 100px,
+    ${(props) => props.theme.palette.primary.dark} 100px,
+    ${(props) => props.theme.palette.primary.dark} 102px,
+    ${(props) => props.theme.palette.secondaryBackgroundColor.cyan} 102px,
     ${(props) => props.theme.palette.secondaryBackgroundColor.cyan} 100%
   );
   overflow: hidden;

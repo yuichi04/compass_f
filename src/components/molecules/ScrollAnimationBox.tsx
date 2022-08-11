@@ -5,7 +5,7 @@ import { FlexType, MarginType } from "../../types/styleTypes";
 import FadeInOutBox from "./FadeInOutBox";
 type Props = {
   children?: React.ReactNode;
-  rootMargin?: string;
+  rootMargin?: number;
   triggerOnce?: boolean;
   delay?: number;
   duration?: number;

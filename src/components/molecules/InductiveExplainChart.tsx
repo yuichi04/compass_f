@@ -23,7 +23,7 @@ const InductiveExplainChart: React.FC = () => {
       </Paper>
       <Box display="flex" alignItems="center" mb="32px" justifyContent="center" textAlign="center">
         <CheckCircleIcon sx={{ fontSize: "24px", mr: "4px", color: "success.main" }} />
-        <Typography variant="h6" color="typography.black" fontWeight={600}>
+        <Typography variant="h6" color="typography.gray" fontWeight={600}>
           複数の情報から共通点を見つけて結論を導く思考法
         </Typography>
       </Box>

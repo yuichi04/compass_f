@@ -180,12 +180,12 @@ const Top: React.FC = () => {
 
       <SectionDividerTextInBox>
         <Box textAlign="center" p="32px">
-          <Typography variant="h4" letterSpacing={1.5} mb="16px">
+          <Typography variant="h4" letterSpacing={1.5} mb="32px">
             まだエンジンのかかっていない脳に活を入れよう
           </Typography>
           <LinkTo to="/signup">
             <PrimaryButton variant="contained" color="info">
-              <Typography variant="h6" display="flex" alignItems="center">
+              <Typography variant="h6" fontWeight={300} display="flex" alignItems="center">
                 無料でユーザー登録
                 <LanguageIcon sx={{ fontSize: "22px", ml: "4px" }} />
               </Typography>

@@ -1,6 +1,8 @@
 import { FC, memo } from "react";
-import { Box } from "@mui/material";
+// Modules
+import { Box, Typography } from "@mui/material";
 import { CourseCard, ScrollAnimationBox } from "../molecules";
+// Images
 import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 import Inductive from "../../assets/images/illustrations/inductive.svg";
 import Deductive from "../../assets/images/illustrations/deductive.svg";
@@ -35,7 +37,9 @@ const courseCardList: courseCardType[] = [
     title: "演繹法",
     text: (
       <>
-        ※近日リリース予定
+        <Typography component="span" fontWeight={600}>
+          ※近日リリース予定
+        </Typography>
         <br />
         法則や事実などに自分の考えを当てはめて結論を導き出します
       </>
@@ -49,7 +53,9 @@ const courseCardList: courseCardType[] = [
     title: "伝わる話の組み立て方",
     text: (
       <>
-        ※近日リリース予定
+        <Typography component="span" fontWeight={600}>
+          ※近日リリース予定
+        </Typography>
         <br />
         相手に納得してもらいやすい説明ができるようになります
       </>

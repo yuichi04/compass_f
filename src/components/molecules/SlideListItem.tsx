@@ -22,15 +22,13 @@ const SlideListItem: FC<Props> = memo(({ children, ...props }) => {
       <SHeader>
         <Box width="1280px" m="0 auto" color="typography.white">
           <Box component="div" height="24px" />
-          <Typography variant="h4" fontWeight={600}>
-            {slideTitle}
-          </Typography>
+          <Typography variant="h4">{slideTitle}</Typography>
         </Box>
       </SHeader>
 
       {/* コンテンツ */}
       <SContent>
-        <Typography component="div" variant="h6" color="typography.black">
+        <Typography component="div" variant="h6" color="typography.gray" fontWeight={300}>
           {children}
         </Typography>
       </SContent>
