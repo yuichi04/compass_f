@@ -91,8 +91,10 @@ const InductionAnswerCheck: FC = memo(() => {
         <TitleWithTriangleIcon variant="h4" color="#fff" fontWeight={600} mb="8px">
           論理が飛躍していないか確認しましょう
         </TitleWithTriangleIcon>
-        <Typography variant="h6" color="typography.white" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
-          【1.結論→共通点】【2.共通点→各情報】はそれぞれ【主張→根拠】という構成になっていますか？問題がなければクリックしてください。
+        <Typography variant="h6" color="typography.white" mb="32px">
+          【1.結論+共通点】【2.共通点+各情報】はそれぞれ【主張+根拠】という構成になっていますか？
+          <br />
+          問題がなければその項目をクリックしてください。
         </Typography>
         {/* 結論 */}
         <Box

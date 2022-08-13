@@ -46,8 +46,8 @@ const InductionAnswerCommon: FC = memo(() => {
       <TitleWithTriangleIcon variant="h4" color="typography.white" fontWeight={600} mb="8px">
         選んだ情報から共通点を見つけましょう
       </TitleWithTriangleIcon>
-      <Typography variant="h5" color="typography.white" mb="32px" sx={{ textDecoration: "underline solid #fff" }}>
-        {sectionId === 1 && "同じ特徴や性質は何でしょうか？"}
+      <Typography variant="h5" color="typography.white" mb="32px">
+        同じ特徴や性質は何でしょうか？
       </Typography>
       <Typography variant="h6" color="#fff" mb="16px">
         選んだ情報

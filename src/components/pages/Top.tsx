@@ -34,7 +34,7 @@ const Top: FC = () => {
                 justifyContent="center"
                 sx={{ animationDelay: "0.3s" }}
               >
-                <Box>
+                <Box textAlign="center">
                   <Box component="div" mb="32px">
                     <Box
                       className="path-left"
@@ -54,7 +54,6 @@ const Top: FC = () => {
                     component="div"
                     variant="h4"
                     mb="24px"
-                    textAlign="center"
                     letterSpacing={1.5}
                     sx={{ animationDelay: "1.2s" }}
                   >
@@ -68,7 +67,6 @@ const Top: FC = () => {
                     component="div"
                     variant="h4"
                     mb="24px"
-                    textAlign="center"
                     letterSpacing={1.5}
                     sx={{ animationDelay: "1.2s" }}
                   >
@@ -82,7 +80,6 @@ const Top: FC = () => {
                     component="div"
                     variant="h4"
                     mb="64px"
-                    textAlign="center"
                     letterSpacing={1.5}
                     sx={{ animationDelay: "1.2s" }}
                   >
@@ -91,7 +88,7 @@ const Top: FC = () => {
                       COMPASS
                     </Typography>
                   </Typography>
-                  <Box className="path-left" textAlign="center" sx={{ animationDelay: "1.2s" }}>
+                  <Box className="path-left" sx={{ animationDelay: "1.2s" }}>
                     <LinkTo to="/signup">
                       <PrimaryButton variant="contained">
                         <Box display="flex" alignItems="center">

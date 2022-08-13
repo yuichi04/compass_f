@@ -13,17 +13,17 @@ const InductionCharacterImage: React.FC = React.memo(() => {
     <>
       {character?.role === "guide" && (
         <FadeInOutBox fadeIn>
-          <Box component="img" sx={{ width: "50vw" }} src={character.src} alt="guide" />
+          <Box component="img" sx={{ width: "50vw", maxWidth: "1280px" }} src={character.src} alt="guide" />
         </FadeInOutBox>
       )}
       {character?.role === "youngerBoy" && (
         <FadeInOutBox fadeIn>
-          <Box component="img" sx={{ width: "35vw" }} src={character.src} alt="younger-boy" />
+          <Box component="img" sx={{ width: "35vw", maxWidth: "800px" }} src={character.src} alt="younger-boy" />
         </FadeInOutBox>
       )}
       {character?.role === "youngBoy" && (
         <FadeInOutBox fadeIn>
-          <Box component="img" sx={{ width: "35vw" }} src={character.src} alt="young-boy" />
+          <Box component="img" sx={{ width: "35vw", maxWidth: "900px" }} src={character.src} alt="young-boy" />
         </FadeInOutBox>
       )}
       {character?.role === "user" && (

@@ -18,7 +18,7 @@ const initialState: InductionType = {
   sectionId: 0, // 現在のセクション
   sceneId: 0, // 現在のシーン
   characterInfo: { src: "", role: "" }, // キャラクター情報の変更を管理
-  commonSubject: ["英語が話せる人は", "セクション2の主語", "セクション3の主語"], // 共通点の主語を設定
+  commonSubject: ["英語が話せる人は", "現役エンジニアは初心者の頃に", "セクション3の主語"], // 共通点の主語を設定
   history: "", // 1つ前のフェーズを格納
   isLastScene: false, // 最後のシーンかどうか
   selectableInfo: [], // 現セクションの選択可能な情報
@@ -157,6 +157,7 @@ const inductionSlice = createSlice({
     // 回答をやり直す処理
     showPreviousScreenForAnswersAction: (state) => {
       state.scene.options = [];
+      state.scene.lines = [];
       // 1つ前のフェーズに戻す
       switch (state.history) {
         case "info":

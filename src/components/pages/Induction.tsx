@@ -137,12 +137,11 @@ const SInduction = styled.div<BgImgProps>`
   overflow: hidden;
   height: calc(100vh - 64px);
   background: ${(props) =>
-      props.bgImg === 1
+      props.bgImg === 1 || props.bgImg === 2
         ? `url(${BackgroundImage.officeDay})`
-        : props.bgImg === 2
-        ? `url(${BackgroundImage.officeEvening})`
-        : props.bgImg === 3 && `url(${BackgroundImage.officeNight})`}
+        : props.bgImg === 3 && `url(${BackgroundImage.officeEvening})`}
     no-repeat center;
+  background-size: cover;
 `;
 const STooltipBar = styled.div`
   position: absolute;
@@ -157,9 +156,9 @@ const SUserAnswers = styled.div`
 `;
 const SCharacter = styled.div`
   position: absolute;
-  top: 5%;
+  bottom: -55%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   height: 100%;
 `;
 const SContainer = styled.div`

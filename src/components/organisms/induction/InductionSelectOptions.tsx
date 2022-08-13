@@ -78,20 +78,20 @@ const InductionSelectOptions: FC = memo(() => {
           解決案を考えるための情報を3つ以上選択しましょう
         </TitleWithTriangleIcon>
         <Typography variant="h6" color="#fff">
-          選択数が多いほど解決案を導く難易度は上がりますが、確実性は高くなります。慣れている方はより多く選択してみましょう。
+          選択数が多いほど解決案を導く難易度は上がりますが、より正解に近い結論を導けます。慣れている方はより多く選択してみましょう。
         </Typography>
       </Box>
 
       <KeyboardDoubleArrowDownIcon className="up-down" sx={{ color: "#ffa726", fontSize: "48px" }} />
 
       {/* 選択肢一覧 */}
-      <Box component="ul" mb="64px">
+      <Box component="ul" mb="32px">
         {options.map((option, index) => (
           <Box component="li" display="inline-block" key={index}>
             <SCheckBox type="checkbox" id={index + "item"} onChange={() => handleChange(option.id)} />
-            <SlideInBox direction="left" distance={16} duration={0.5} delay={(index + 1) / 2} m="16px">
+            <SlideInBox direction="left" distance={16} duration={0.5} delay={(index + 1) / 2} m="8px 16px">
               <SLabel htmlFor={index + "item"}>
-                <Typography variant="h6" component="span">
+                <Typography variant="h6" component="span" fontWeight={300}>
                   {option.text}
                 </Typography>
               </SLabel>

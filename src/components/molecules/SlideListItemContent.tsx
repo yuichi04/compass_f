@@ -74,7 +74,7 @@ export default SlideListItemContent;
 // Styled-Components
 const SContainer = styled(Paper)`
   position: relative;
-  padding: 24px;
+  padding: 40px 24px 16px;
 `;
 
 const SContentTitleBox = styled.div`

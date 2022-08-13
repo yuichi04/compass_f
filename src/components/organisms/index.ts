@@ -17,4 +17,3 @@ export { default as MuiModalConfirmation } from "./MuiModalConfirmation";
 export { default as SignedInHeader } from "./header/SignedInHeader";
 export { default as SlideList } from "./SlideList";
 export { default as Spinner } from "./Spinner";
-export { default as MuiVerticalTabs } from "./MuiVerticalTabs";

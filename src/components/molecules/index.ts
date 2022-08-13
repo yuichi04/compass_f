@@ -16,7 +16,6 @@ export { default as ScreenForBlackoutEvent } from "./ScreenForBlackoutEvent";
 export { default as ScrollAnimationBox } from "./ScrollAnimationBox";
 export { default as SlideListItem } from "./SlideListItem";
 export { default as SlideListItemContent } from "./SlideListItemContent";
-export { default as SlideListItemContentHeadline } from "./SlideListItemContentHeadline";
 export { default as SlideInBox } from "./SlideInBox";
 export { default as SlideSection } from "./SlideSection";
 export { default as SummaryCard } from "./SummaryCard";

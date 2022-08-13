@@ -1,5 +1,5 @@
 // Modules
-import { Box, Grid, Icon, Typography } from "@mui/material";
+import { Box, Divider, Grid, Icon, Typography } from "@mui/material";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -28,7 +28,6 @@ import {
   InductiveExplainChart,
   ScrollAnimationBox,
   SlideListItemContent,
-  SlideListItemContentHeadline,
   SubTitleWithContent,
   SummaryCard,
 } from "../../components/molecules";
@@ -224,15 +223,17 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
         </Box>
 
         <SlideListItemContent title="もっと詳しく" icon={InfoIcon} iconSize="32px" image={ThoughtProcess} reverse>
-          ロジカルシンキングは知識や前提条件から
-          <Typography component="span" fontWeight={600}>
-            「話を筋道立てて考えること」
-          </Typography>
-          です。
-          <br />
-          身につけることで、問題や課題に対して確実性の高い予測や仮説を立てることができるようになります。
-          <br />
-          そのため、ビジネスの現場でとても重宝されており、ビジネスマンとしての価値を上げるなら身につけるべきスキルであることは間違いありません。
+          <Box p="16px 0 0">
+            ロジカルシンキングは知識や前提条件から
+            <Typography component="span" fontWeight={600}>
+              「話を筋道立てて考えること」
+            </Typography>
+            です。
+            <br />
+            身につけることで、問題や課題に対して確実性の高い予測や仮説を立てることができるようになります。
+            <br />
+            そのため、ビジネスの現場でとても重宝されており、ビジネスマンとしての価値を上げるなら身につけるべきスキルであることは間違いありません。
+          </Box>
           <SubTitleWithContent
             title="身につけるメリット"
             icon={VolunteerActivismIcon}
@@ -258,7 +259,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             </Typography>
             ということです。
             <br />
-            知識・前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときには、それらの確認が必要だということを忘れないようにしましょう。
+            知識や前提は話を組み立てるための土台であり、そこに誤りや不足があっては正しい結論を導くことはできません。ロジカルシンキングを用いるときは、それらの確認が必要だということを忘れないようにしましょう。
           </SubTitleWithContent>
         </SlideListItemContent>
       </>
@@ -352,13 +353,13 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           <ArrowDropDownIcon sx={{ fontSize: "64px" }} />
         </Box>
         <SlideListItemContent title="もっと詳しく" icon={InfoIcon} iconSize="32px" image={Analytics}>
-          帰納法は「複数の情報から共通点を見つけて結論を導く思考法」で、ビジネスにおいて何かしら戦略を立てるような場面や、情報を整理してある法則性を見つけたりする上で役立つ思考法です。
+          帰納法は「複数の情報から共通点を見つけて結論を導く思考法」で、ビジネスや日常などの課題や問題を解決したい場合や、情報を整理して法則性を見つけたりする場面で役立ちます。
           <br />
-          考え方としては
+          帰納法は
           <Typography component="span" display="inline-flex" fontWeight={600}>
             「
             <Typography color="success.light" fontWeight={600}>
-              1.複数の情報を揃える
+              1.解決したい問題や課題に対する情報を複数揃える
             </Typography>
             <ArrowRightIcon />
             <Typography color="success.main" fontWeight={600}>
@@ -370,29 +371,24 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             </Typography>
             」
           </Typography>
-          という3つのステップになっています。
-          <br />
-          例えば、パン屋で働いていて「新たなヒット商品を作りたい」というケースでは、以下のように用いることができます。
-          <Typography
-            component="ul"
-            bgcolor="secondaryBackgroundColor.cyan"
-            p="16px"
-            m="16px 0"
-            textAlign="center"
-            fontWeight={600}
-          >
+          という3つのステップになっていて、例えば、パン屋において「新しいヒット商品を作りたい」というケースでは、以下のように用いることができます。
+          <Typography component="ul" bgcolor="secondaryBackgroundColor.cyan" p="16px" mb="16px" textAlign="center">
             <dl>
               <Typography component="dt" color="success.light" fontWeight={600}>
-                1.複数の情報を揃える
+                1.解決したい問題や課題に対する情報を複数揃える
               </Typography>
-              <dd>世間では「オートミールクロワッサン・大豆メロンパン・無糖ヨーグルトドーナッツ」が人気である</dd>
+              <dd>
+                「SNSで話題のパン屋ではオートミールクロワッサン」「テレビで紹介されていたパン屋では大豆メロンパン」「地元の老舗店では無糖ヨーグルトドーナッツ」がそれぞれ人気商品である
+              </dd>
             </dl>
             <ArrowDropDownIcon />
             <dl>
               <Typography component="dt" color="success.main" fontWeight={600}>
                 2.共通点を見つける
               </Typography>
-              <dd>ヘルシーな材料と高カロリーなパンを組み合わせた健康志向でカロリー控えめなパンが人気である</dd>
+              <dd>
+                世間では、高カロリーなパンにヘルシーな食材を組み合わせて、健康的でカロリーを抑えたパンが人気である
+              </dd>
             </dl>
             <ArrowDropDownIcon />
             <dl>
@@ -417,50 +413,75 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             <Box display="flex" alignItems="center">
               STEP①
               <ForwardIcon sx={{ m: "0 8px" }} />
-              複数の情報を揃える
+              解決したい問題や課題に対する情報を複数揃える
             </Box>
           }
           image={InductionStepOne}
           icon={TipsAndUpdatesIcon}
           iconColor="warning.main"
           iconSize="32px"
+          imageXs={3}
         >
           帰納法の最初のステップは
           <Typography component="span" color="success.main" fontWeight={600}>
-            「複数の情報を揃える」
+            「解決したい問題や課題に対する情報を複数揃える」
           </Typography>
           ことです。
           <br />
-          ポイントとしては
-          <Typography component="span" sx={{ textDecoration: "underline solid #555" }}>
-            「情報の偏りをなくし、できるだけ多く揃えること」
+          ポイントは
+          <Typography component="span" fontWeight={600}>
+            「幅広い範囲の情報を揃えること」
           </Typography>
-          です。
+          です。なぜなら、帰納法は多くのことに共通する特徴を見つけ、普遍的な結論を導き出す思考法であるためです。もし偏った情報から結論を導いてしまうと、信憑性のない結論になってしまいます。
           <br />
-          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると確実性の高い結論が導けないからです。以下の例をご覧ください。
-          <Box component="dl" bgcolor="secondaryBackgroundColor.red" p="8px" mb="8px">
-            <dt>揃えた情報</dt>
-            <dd>
-              「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」
-              「友人Cは水道水を飲むことに抵抗があると言っていた」
-            </dd>
-            <dt>導き出した結論</dt>
-            <dd>「世間では水道水より品質の良い水が求められている」</dd>
-          </Box>
-          この例では身の回りの情報のみ、つまり情報に偏りがある状態で判断をしてしまっているため、「世間は〜」と結論づけるには根拠が弱いです。偏りをなくすなら身の回りだけではなく、以下の例のようにテレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
-          <Box component="dl" bgcolor="secondaryBackgroundColor.cyan" p="8px" mb="8px">
-            「テレビでウォーターサーバーの契約数が増えていると紹介されていた」
-            <br />
-            「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」
-            <br />
-            「SNSでは健康のためにミネラルウォーターを飲んでいるという投稿がよくされている」
-          </Box>
-          また他にも情報数を増やすことも大切です。
-          <br />
-          情報数はそのまま根拠になるため、根拠が増えるほど信憑性が高く、より正解に近い結論を導くことができます。
-          <Typography mt="8px">
-            より確かな結論を導くために情報の偏りをなくし、できるだけ多く揃えるようにしましょう。
+          以下の「今後の飲料水の需要は伸びるのか？」について考えた例をご覧ください。
+          <Grid container bgcolor="secondaryBackgroundColor.red" p="8px 16px" mb="8px">
+            <Grid item xs={2} display="flex" alignItems="center">
+              <Typography fontWeight={600}>揃えた情報</Typography>
+            </Grid>
+            <Grid item xs={10} component="ul">
+              <li>・友人Aはミネラルウォーターをよく飲んでいる</li>
+              <li>・友人Bはウォーターサーバーを契約した</li>
+              <li>・友人Cは水道水を飲むことに抵抗があると言っていた</li>
+            </Grid>
+            <Grid item xs={12} m="8px 0">
+              <Divider />
+            </Grid>
+            <Grid item xs={2} display="flex" alignItems="center">
+              <Typography fontWeight={600}>共通点</Typography>
+            </Grid>
+            <Grid item xs={10}>
+              水道水より品質の良い水が求められている
+            </Grid>
+            <Grid item xs={2} display="flex" alignItems="center">
+              <Typography fontWeight={600}>導き出した結論</Typography>
+            </Grid>
+            <Grid item xs={10}>
+              今後も飲料水の需要は伸び続けるだろう
+            </Grid>
+          </Grid>
+          この例では身の回りの情報のみで判断してしまっているため、信憑性のない結論になっています。改善するなら身の回りだけでなく、以下のようにテレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
+          <Grid container bgcolor="secondaryBackgroundColor.cyan" p="8px 16px" mb="8px">
+            <Grid item xs={2} display="flex" alignItems="center">
+              <Typography fontWeight={600}>偏りのない情報</Typography>
+            </Grid>
+            <Grid item xs={10} component="ul">
+              <li>・SNSでは健康のためにミネラルウォーターを飲んでいるという投稿がよくされている</li>
+              <li>・テレビでウォーターサーバーの契約数が増えていると紹介されていた</li>
+              <li>・多くの友人が水道水を飲むことに抵抗があると言っていた</li>
+            </Grid>
+          </Grid>
+          そして他にも
+          <Typography component="span" fontWeight={600}>
+            情報数を増やすこと
           </Typography>
+          も重要です。なぜなら、情報数はそのまま根拠になるため、根拠が増えれば増えるほど信憑性が高く、より確かな結論を導くことができるようになるからです。
+          <br />
+          以上から、より確かな結論を導くためには、
+          <Typography component="span" fontWeight={600}>
+            情報源の偏りに注意しつつ、できるだけ多くの情報を揃える
+          </Typography>
+          ようにしましょう。
         </SlideListItemContent>
       </>
     ),
@@ -492,16 +513,16 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           共通点は以下の順番で考えることで見つけることができます。
           <Box bgcolor="secondaryBackgroundColor.teal" p="8px" mb="16px">
             <Typography fontWeight={600} mb="8px">
-              ステップ①　各情報ごとに主語とそれ以外の部分に分けて、それぞれの特徴を羅列します
+              ステップ①　各情報ごとに主語とそれ以外の部分に分けて、それぞれの特徴を羅列する
             </Typography>
             <Typography fontWeight={600} mb="8px">
-              ステップ②　主語は主語、それ以外の部分はそれ以外の部分で一番多い特徴を見つけます。
+              ステップ②　主語は主語、それ以外の部分はそれ以外の部分で一番多い特徴を見つける
             </Typography>
             <Typography fontWeight={600}>
-              ステップ③ 「主語で一番多い特徴」＋「それ以外の部分で一番多い特徴」という構造の文章を作ります
+              ステップ③ 「主語で一番多い特徴」＋「それ以外の部分で一番多い特徴」という構造の文章を作る
             </Typography>
           </Box>
-          <Typography>こうしてできあがった文章が各情報の共通点となります。以下の例をご覧ください。</Typography>
+          <Typography>こうしてできあがった文章が共通点となります。以下の例をご覧ください。</Typography>
           <Box bgcolor="secondaryBackgroundColor.cyan" p="8px" mb="8px">
             <Box component="dl" mb="8px">
               <dt>情報</dt>
@@ -566,47 +587,56 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           </Typography>
           ことです。
           <br />
-          結論は実際の問題解決に対してのアクションとなります。そもそも何かしらの課題や悩みがあり、それを解決するために帰納法を用いるので、最終的にはそのために実際に取ることができるアクションを導く必要があります。
+          結論は実際の問題解決に対してのアクションになります。そもそも何かしらの問題や悩みがあり、それを解決するために帰納法を用いるので、最終的には実際に取ることができるアクションを導く必要があります。
           <br />
           以下はSTEP②の共通点から結論を導いた例です。
           <Box bgcolor="secondaryBackgroundColor.cyan" p="8px" mb="16px">
-            <Box component="dl">
-              <dt>悩み</dt>
+            <Box component="dl" display="flex" alignItems="center">
+              <Box component="dt" mr="24px">
+                問題
+              </Box>
               <dd>長く健康でいるために、体に良い食事を取り入れたい</dd>
             </Box>
-            <Box component="dl">
-              <dt>共通点</dt>
-              <dd>「発酵食品を食べると体調が良くなる」</dd>
+            <Box component="dl" display="flex" alignItems="center">
+              <Box component="dt" mr="8px">
+                共通点
+              </Box>
+              <dd>発酵食品を食べると体調が良くなる</dd>
             </Box>
-            <Box component="dl">
-              <dt>結論</dt>
-              <dd>「納豆や味噌料理、ヨーグルトなどを食事に取り入れる」</dd>
+            <Box component="dl" display="flex" alignItems="center">
+              <Box component="dt" mr="24px">
+                結論
+              </Box>
+              <dd>納豆や味噌料理、ヨーグルトなどを食事に取り入れる</dd>
             </Box>
           </Box>
-          続けて、結論が導けたら
+          そして、結論が導けたら、それが間違っていないか
           <Typography color="success.main" component="span" fontWeight={600}>
             「論理の飛躍」
           </Typography>
-          がないか確認しましょう。論理の飛躍の確認方法は
+          を確認しましょう。
+          <br />
           <Typography component="span" fontWeight={600}>
-            「結論+共通点」
+            「①結論+共通点」
           </Typography>
-          と「
+          と
           <Typography component="span" fontWeight={600}>
-            共通点+揃えた情報」
+            「②共通点+揃えた情報」
           </Typography>
           がそれぞれ
           <Typography component="span" color="success.main" fontWeight={600}>
             「主張+根拠」
           </Typography>
-          という構造になっているかで確認することができます。
-          <Box bgcolor="secondaryBackgroundColor.lime" p="8px">
+          という構造になっていれば大丈夫です。
+          <br />
+          以下の例をご覧ください。この例では①と②がそれぞれが主張と根拠という構造になっているため、論理に飛躍はないと言えます。
+          <Box bgcolor="secondaryBackgroundColor.lime" p="8px" mb="8px">
             <Box component="dl">
-              <dt>結論+共通点</dt>
+              <dt>①結論+共通点</dt>
               <dd>「納豆や味噌料理、ヨーグルトなどを食事に取り入れる」+「発酵食品を食べると体調が良くなる」</dd>
             </Box>
             <Box component="dl">
-              <dt>共通点+情報</dt>
+              <dt>②共通点+情報</dt>
               <dd>「発酵食品を食べると体調が良くなる」+「ヨーグルトを食べた翌日はお通じが良い」</dd>
               <dd>「発酵食品を食べると体調が良くなる」+「味噌汁を飲むようになってからよく眠れるようになった」</dd>
               <dd>「発酵食品を食べると体調が良くなる」+「キムチを食べるようになってから肌のトラブルが減った」</dd>
@@ -636,7 +666,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           ))}
         </Box>
         <Typography variant="h6" textAlign="center">
-          スライドはここで終わりです。次は演習で学んだ知識を試してみましょう。
+          帰納法についてのスライドはここで終わりです。次は演習で学んだ知識を試してみましょう。
         </Typography>
       </>
     ),
@@ -653,15 +683,15 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           position="relative"
           component="div"
           variant="h5"
-          border="double 5px"
-          borderColor="typography.white"
-          borderRadius="32px"
-          color="typography.white"
+          border="double 4px"
+          borderColor="primary.main"
+          borderRadius="64px"
+          color="typography.gray"
           textAlign="center"
           p="64px 32px"
           sx={{
-            background: "radial-gradient(circle, rgba(55, 55, 55, 1) 25%, rgba(55, 55, 55, 0.9))",
-            textShadow: "1px 1px 2px #999",
+            background: "radial-gradient(circle, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.7))",
+            textShadow: "1px 1px 2px #ccc",
           }}
         >
           スライド学習お疲れ様でした。
@@ -675,7 +705,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           次はいよいよ演習です。
           <br />
           <br />
-          <Typography variant="h5" color="typography.white" display="flex" alignItems="center" justifyContent="center">
+          <Typography variant="h5" color="typography.gray" display="flex" alignItems="center" justifyContent="center">
             右上の
             <CancelIcon fontSize="large" />
             でスライドを閉じて演習に進んでください。

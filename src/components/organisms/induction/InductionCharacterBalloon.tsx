@@ -135,7 +135,7 @@ const InductionCharacterBalloon: FC = memo(() => {
                 >
                   次へ
                 </Typography>
-                <ArrowRightIcon sx={{ color: "primary.main", fontSize: "30px" }} />
+                <ArrowRightIcon sx={{ color: "typography.white", fontSize: "30px" }} />
               </FadeInOutBox>
             </Box>
           )}
