@@ -39,7 +39,7 @@ export type OptionType = {
 
 // キャラクターイメージの型定義
 export type CharacterImageType = {
-  role: "user" | "guide" | "customer" | "boy" | "call" | "";
+  role: "user" | "guide" | "customer" | "youngerBoy" | "youngBoy" | "call" | "";
   src: string;
 };
 
@@ -47,5 +47,4 @@ export type CharacterImageType = {
 export type SelectableInfoType = {
   id: number;
   text: string;
-  section: number;
 };

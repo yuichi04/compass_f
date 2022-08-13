@@ -21,9 +21,11 @@ declare module "@mui/material/styles" {
     secondaryBackgroundColor: {
       lightGray: string;
       lime: string;
+      white: string;
       black: string;
       teal: string;
       cyan: string;
+      red: string;
     };
     typography: {
       dark: string;
@@ -51,9 +53,11 @@ declare module "@mui/material/styles" {
     secondaryBackgroundColor: {
       lightGray: string;
       lime: string;
+      white: string;
       black: string;
       teal: string;
       cyan: string;
+      red: string;
     };
     typography: {
       dark: string;
@@ -123,9 +127,11 @@ export const theme = createTheme({
     secondaryBackgroundColor: {
       lightGray: "#eaedef",
       lime: "#f9fbe7",
+      white: "#f8fbfe",
       black: "#2a2f36",
-      teal: "#e0f2f1",
+      teal: "#b2dfdb",
       cyan: "#e0f7fa",
+      red: "#ffebee",
     },
     primaryGradation: {
       black: { main: "radial-gradient(rgba(42, 47, 54, 1) 50%, rgba(33, 33, 33, 1))" },

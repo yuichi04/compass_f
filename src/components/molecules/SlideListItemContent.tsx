@@ -8,23 +8,25 @@ type Props = {
   children: React.ReactNode;
   display?: "block" | "inline-block" | "flex";
   icon: React.ElementType;
+  iconColor?: string;
   iconSize?: string;
   image: string;
-  title: string;
+  title: React.ReactNode;
   imageXs?: number;
   spacing?: number;
   reverse?: boolean;
 } & FlexType;
 
 const SlideListItemContent: FC<Props> = memo(({ children, ...props }) => {
-  const { title, image, icon, iconSize, imageXs, spacing, display, alignItems, justifyContent, reverse } = props;
+  const { title, image, icon, iconColor, iconSize, imageXs, spacing, display, alignItems, justifyContent, reverse } =
+    props;
   return (
     <SContainer elevation={8}>
       <SContentTitleBox>
         <Typography variant="h6" mr="4px">
           {title}
         </Typography>
-        <Icon component={icon} sx={{ fontSize: iconSize }} />
+        <Icon component={icon} sx={{ fontSize: iconSize, color: iconColor }} />
       </SContentTitleBox>
       <Grid container spacing={spacing && spacing}>
         {reverse ? (
@@ -72,7 +74,7 @@ export default SlideListItemContent;
 // Styled-Components
 const SContainer = styled(Paper)`
   position: relative;
-  padding: 32px;
+  padding: 24px;
 `;
 
 const SContentTitleBox = styled.div`

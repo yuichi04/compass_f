@@ -7,12 +7,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 // Types
-import { InductionType, SelectableInfoType } from "../../types/lesson/inductionTypes";
+import { InductionType, SelectableInfoType } from "../../types/inductionTypes";
 // Images
 import { CharacterImage } from "../../assets/images/characters";
 // Data
 import { ScenesData } from "../../dataset";
-import selectableInfo from "../../dataset/induction/selectableInfo";
+import selectableInfoList from "../../dataset/induction/selectableInfo";
 
 const initialState: InductionType = {
   sectionId: 0, // 現在のセクション
@@ -173,9 +173,17 @@ const inductionSlice = createSlice({
 
     // phase === info なら選択可能な情報を保存する
     getInfoPhaseOptionsAction: (state) => {
-      if (state.scene.phase === "info") {
-        const newInfo = selectableInfo.filter((info) => info.section === state.sectionId);
-        state.selectableInfo = newInfo;
+      if (state.scene.phase !== "info") return;
+      // const newInfo = selectableInfo.filter((info) => info.section === state.sectionId);
+      switch (state.sectionId) {
+        case 1:
+          const newSection1Info = selectableInfoList.section1;
+          state.selectableInfo = newSection1Info;
+          break;
+        case 2:
+          const newSection2Info = selectableInfoList.section2;
+          state.selectableInfo = newSection2Info;
+          break;
       }
     },
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 // Modules
 import styled from "styled-components";
 import { Box, Grid, Typography } from "@mui/material";
@@ -19,7 +19,7 @@ import { BackgroundImage } from "../../assets/images/background";
 const slideImages = [BackgroundImage.topSlide1, BackgroundImage.topSlide2];
 const exerciseImages = [BackgroundImage.topExercise1, BackgroundImage.topExercise2];
 
-const Top: React.FC = () => {
+const Top: FC = () => {
   return (
     <>
       <Box bgcolor="primary.main">
@@ -125,7 +125,7 @@ const Top: React.FC = () => {
         <SectionBox>
           <Box width="1200px" m="0 auto">
             <Typography variant="h4" fontWeight={600} sx={styles.sectionTitle}>
-              ＃基本コースと応用コースを用意
+              ＃基本コースから応用コースまで
             </Typography>
             <CourseCardList />
           </Box>

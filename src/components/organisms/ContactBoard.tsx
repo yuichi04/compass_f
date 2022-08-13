@@ -86,7 +86,7 @@ const ContactBoard: React.FC = React.memo(() => {
 export default ContactBoard;
 
 const SBoard = styled.div`
-  z-index: 998;
+  z-index: 997;
   position: fixed;
   bottom: 0;
   right: 32px;

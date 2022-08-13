@@ -1,5 +1,5 @@
 // Types
-import { StaticSceneDataType } from "./lesson/inductionTypes";
+import { StaticSceneDataType } from "./inductionTypes";
 
 export type ScenesDataType = {
   induction: StaticSceneDataType[];

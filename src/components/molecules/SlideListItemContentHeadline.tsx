@@ -7,10 +7,11 @@ import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 type Props = {
   headlineLeft: string;
   headlineRight: string;
+  color: string;
 };
 
 const SlideListItemContentHeadline: FC<Props> = memo((props) => {
-  const { headlineLeft, headlineRight } = props;
+  const { headlineLeft, headlineRight, color } = props;
   return (
     <Box display="flex" alignItems="center" justifyContent="center" mb="32px">
       <TipsAndUpdatesIcon sx={{ fontSize: "48px", color: "warning.main", mr: "4px" }} />
@@ -24,7 +25,7 @@ const SlideListItemContentHeadline: FC<Props> = memo((props) => {
       >
         {headlineLeft}
         <ForwardIcon sx={{ fontSize: "32px", m: "0 16px" }} />
-        <Typography variant="h4" component="span" color="primary.main" fontWeight={600}>
+        <Typography variant="h4" component="span" color={color} fontWeight={600}>
           {headlineRight}
         </Typography>
       </Typography>

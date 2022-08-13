@@ -9,7 +9,17 @@ export const CharacterImage = {
     surprise: require("./guide/guide_surprise.png"),
   },
   boy: {
-    closeMouse: require("./boy/dansei_05_g.png"),
-    openMouse: require("./boy/dansei_05_h.png"),
+    younger: {
+      normalA: require("./boy01/dansei_05_g.png"),
+      normalB: require("./boy01/dansei_05_h.png"),
+    },
+    young: {
+      normalA: require("./boy02/dansei_01_a.png"),
+      normalB: require("./boy02/dansei_01_b.png"),
+      troubledFaceA: require("./boy02/dansei_01_e.png"),
+      troubledFaceB: require("./boy02/dansei_01_f.png"),
+      smileA: require("./boy02/dansei_01_g.png"),
+      smileB: require("./boy02/dansei_01_h.png"),
+    },
   },
 };

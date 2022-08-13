@@ -3,6 +3,7 @@ import { Box, Grid, Icon, Typography } from "@mui/material";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import ForwardIcon from "@mui/icons-material/Forward";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Filter1Icon from "@mui/icons-material/Filter1";
 import Filter2Icon from "@mui/icons-material/Filter2";
@@ -371,7 +372,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           </Typography>
           という3つのステップになっています。
           <br />
-          例えば「よく売れる新しいパンを作りたい」というケースでは以下のように用いることができます。
+          例えば、パン屋で働いていて「新たなヒット商品を作りたい」というケースでは、以下のように用いることができます。
           <Typography
             component="ul"
             bgcolor="secondaryBackgroundColor.cyan"
@@ -391,7 +392,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
               <Typography component="dt" color="success.main" fontWeight={600}>
                 2.共通点を見つける
               </Typography>
-              <dd>人気なパンはヘルシーな材料と高カロリーなパンを組み合わせた「健康志向＆カロリー控えめなパン」</dd>
+              <dd>ヘルシーな材料と高カロリーなパンを組み合わせた健康志向でカロリー控えめなパンが人気である</dd>
             </dl>
             <ArrowDropDownIcon />
             <dl>
@@ -408,99 +409,209 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
   },
   {
     courseTitle,
-    slideTitle: "帰納法の使い方①",
+    slideTitle: "帰納法の使い方",
     content: (
       <>
-        <SlideListItemContentHeadline headlineLeft="ステップ①" headlineRight="複数の情報を揃える" />
-        <SlideListItemContent title="もっと詳しく" image={InductionStepOne} icon={InfoIcon} iconSize="32px">
-          帰納法の最初のステップは「複数の情報を揃える」ことです。
+        <SlideListItemContent
+          title={
+            <Box display="flex" alignItems="center">
+              STEP①
+              <ForwardIcon sx={{ m: "0 8px" }} />
+              複数の情報を揃える
+            </Box>
+          }
+          image={InductionStepOne}
+          icon={TipsAndUpdatesIcon}
+          iconColor="warning.main"
+          iconSize="32px"
+        >
+          帰納法の最初のステップは
+          <Typography component="span" color="success.main" fontWeight={600}>
+            「複数の情報を揃える」
+          </Typography>
+          ことです。
           <br />
-          {/* 主張 */}
-          ポイントとしては、情報源の偏りをなくし、できるだけ多くの情報を揃えることです。
+          ポイントとしては
+          <Typography component="span" sx={{ textDecoration: "underline solid #555" }}>
+            「情報の偏りをなくし、できるだけ多く揃えること」
+          </Typography>
+          です。
           <br />
-          {/* 理由 */}
-          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると信憑性の高い結論が導けないからです。
+          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると確実性の高い結論が導けないからです。以下の例をご覧ください。
+          <Box component="dl" bgcolor="secondaryBackgroundColor.red" p="8px" mb="8px">
+            <dt>揃えた情報</dt>
+            <dd>
+              「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」
+              「友人Cは水道水を飲むことに抵抗があると言っていた」
+            </dd>
+            <dt>導き出した結論</dt>
+            <dd>「世間では水道水より品質の良い水が求められている」</dd>
+          </Box>
+          この例では身の回りの情報のみ、つまり情報に偏りがある状態で判断をしてしまっているため、「世間は〜」と結論づけるには根拠が弱いです。偏りをなくすなら身の回りだけではなく、以下の例のようにテレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
+          <Box component="dl" bgcolor="secondaryBackgroundColor.cyan" p="8px" mb="8px">
+            「テレビでウォーターサーバーの契約数が増えていると紹介されていた」
+            <br />
+            「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」
+            <br />
+            「SNSでは健康のためにミネラルウォーターを飲んでいるという投稿がよくされている」
+          </Box>
+          また他にも情報数を増やすことも大切です。
           <br />
-          {/* 具体例 */}
-          例えば、情報源に偏りがあるケースとして、「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」「友人Cは水道水を飲むことに抵抗があると言っていた」という情報を揃えたとします。そして、そこから「世間では水道水より品質の良い水が求められている」と結論づけたとしましょう。
-          <br />
-          しかし、身の回りの情報のみで判断をしてしまっているため、これでは「世間は〜」と結論づけるには根拠が弱く信憑性が低いです。
-          <br />
-          {/* 反例 */}
-          偏りをなくすなら身の回りだけではなく、テレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
-          <br />
-          例えば、「テレビでウォーターサーバーの契約数が増えていると紹介されていた」「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」「友人はミネラルウォーターを定期便で頼んでいる」という情報も取り入れたのであれば、「世間は〜」と結論づけても問題ないでしょう。
-          <br />
-          また他にも情報数を増やすことも大切です。情報数は＝根拠であるため、根拠が増えれば増えるほど、信憑性が高く、より正解に近い結論を導くことができます。
-          <br />
-          {/* 結論 */}
-          このように、情報の偏りをなくし多く揃えることで、より正解に近い結論を導くことができるようになります。
+          情報数はそのまま根拠になるため、根拠が増えるほど信憑性が高く、より正解に近い結論を導くことができます。
+          <Typography mt="8px">
+            より確かな結論を導くために情報の偏りをなくし、できるだけ多く揃えるようにしましょう。
+          </Typography>
         </SlideListItemContent>
       </>
     ),
   },
   {
     courseTitle,
-    slideTitle: "帰納法の使い方②",
+    slideTitle: "帰納法の使い方",
     content: (
       <>
-        <SlideListItemContentHeadline headlineLeft="ステップ②" headlineRight="共通点を見つける" />
-        <SlideListItemContent title="もっと詳しく" image={InductionStepTwo} icon={InfoIcon} iconSize="32px">
-          帰納法の2つ目のステップは揃えた情報から「共通点を見つける」ことです。
+        <SlideListItemContent
+          title={
+            <Box display="flex" alignItems="center">
+              STEP②
+              <ForwardIcon sx={{ m: "0 8px" }} />
+              共通点を見つける
+            </Box>
+          }
+          image={InductionStepTwo}
+          icon={TipsAndUpdatesIcon}
+          iconColor="warning.main"
+          iconSize="32px"
+        >
+          帰納法の2つ目のステップは揃えた情報から
+          <Typography color="success.main" component="span" fontWeight={600}>
+            「共通点を見つける」
+          </Typography>
+          ことです。
           <br />
-          {/* 主張 */}
-          ポイントとしては、情報源の偏りをなくし、できるだけ多くの情報を揃えることです。
-          <br />
-          {/* 理由 */}
-          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると信憑性の高い結論が導けないからです。
-          <br />
-          {/* 具体例 */}
-          例えば、情報源に偏りがあるケースとして、「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」「友人Cは水道水を飲むことに抵抗があると言っていた」という情報を揃えたとします。そして、そこから「世間では水道水より品質の良い水が求められている」と結論づけたとしましょう。
-          <br />
-          しかし、身の回りの情報のみで判断をしてしまっているため、これでは「世間は〜」と結論づけるには根拠が弱く信憑性が低いです。
-          <br />
-          {/* 反例 */}
-          偏りをなくすなら身の回りだけではなく、テレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
-          <br />
-          例えば、「テレビでウォーターサーバーの契約数が増えていると紹介されていた」「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」「友人はミネラルウォーターを定期便で頼んでいる」という情報も取り入れたのであれば、「世間は〜」と結論づけても問題ないでしょう。
-          <br />
-          また他にも情報数を増やすことも大切です。情報数は＝根拠であるため、根拠が増えれば増えるほど、信憑性が高く、より正解に近い結論を導くことができます。
-          <br />
-          {/* 結論 */}
-          このように、情報の偏りをなくし多く揃えることで、より正解に近い結論を導くことができるようになります。
+          共通点は以下の順番で考えることで見つけることができます。
+          <Box bgcolor="secondaryBackgroundColor.teal" p="8px" mb="16px">
+            <Typography fontWeight={600} mb="8px">
+              ステップ①　各情報ごとに主語とそれ以外の部分に分けて、それぞれの特徴を羅列します
+            </Typography>
+            <Typography fontWeight={600} mb="8px">
+              ステップ②　主語は主語、それ以外の部分はそれ以外の部分で一番多い特徴を見つけます。
+            </Typography>
+            <Typography fontWeight={600}>
+              ステップ③ 「主語で一番多い特徴」＋「それ以外の部分で一番多い特徴」という構造の文章を作ります
+            </Typography>
+          </Box>
+          <Typography>こうしてできあがった文章が各情報の共通点となります。以下の例をご覧ください。</Typography>
+          <Box bgcolor="secondaryBackgroundColor.cyan" p="8px" mb="8px">
+            <Box component="dl" mb="8px">
+              <dt>情報</dt>
+              <dd>
+                「ヨーグルトを食べた翌日はお通じが良い」「味噌汁を飲むようになってからよく眠れるようになった」「キムチを食べるようになってから肌のトラブルが減った」
+              </dd>
+            </Box>
+            <Box component="dl" mb="8px">
+              <dt>ステップ①</dt>
+              <dd>
+                ・ヨーグルト→「発酵食品、乳酸菌が豊富、牛乳が原料」、それ以外の部分→「体調が良くなった」
+                <br />
+                ・味噌汁→「発酵食品、大豆が原料、汁物」、それ以外の部分→「体調が良くなった」
+                <br />
+                ・キムチ→「発酵食品、辛い、唐辛子が原料」、それ以外の部分→「体調が良くなった」
+              </dd>
+            </Box>
+            <Box component="dl" mb="8px">
+              <dt>ステップ②</dt>
+              <dd>
+                <Typography display="flex" alignItems="center">
+                  <ForwardIcon />
+                  主語＝「発酵食品」、それ以外の部分＝「体調が良くなった」
+                </Typography>
+              </dd>
+            </Box>
+            <Box component="dl" mb="8px">
+              <dt>ステップ③</dt>
+              <dd>
+                <Typography display="flex" alignItems="center" sx={{ textDecoration: "underline solid #555" }}>
+                  <ForwardIcon />
+                  「発酵食品」を食べると「体調が良くなる」（←各情報の共通点）
+                </Typography>
+              </dd>
+            </Box>
+          </Box>
         </SlideListItemContent>
       </>
     ),
   },
   {
     courseTitle,
-    slideTitle: "帰納法の使い方③",
+    slideTitle: "帰納法の使い方",
     content: (
       <>
-        <SlideListItemContentHeadline headlineLeft="ステップ③" headlineRight="結論を導き出す" />
-        <SlideListItemContent title="もっと詳しく" image={InductionStepThree} icon={InfoIcon} iconSize="32px">
-          帰納法の最後のステップは共通点から「結論を導き出す」ことです。
+        <SlideListItemContent
+          title={
+            <Box display="flex" alignItems="center">
+              STEP③
+              <ForwardIcon sx={{ m: "0 8px" }} />
+              結論を導き出す
+            </Box>
+          }
+          image={InductionStepThree}
+          icon={TipsAndUpdatesIcon}
+          iconColor="warning.main"
+          iconSize="32px"
+        >
+          帰納法の最後のステップは共通点から
+          <Typography component="span" color="success.main" fontWeight={600}>
+            「結論を導き出す」
+          </Typography>
+          ことです。
           <br />
-          {/* 主張 */}
-          ポイントとしては、情報源の偏りをなくし、できるだけ多くの情報を揃えることです。
+          結論は実際の問題解決に対してのアクションとなります。そもそも何かしらの課題や悩みがあり、それを解決するために帰納法を用いるので、最終的にはそのために実際に取ることができるアクションを導く必要があります。
           <br />
-          {/* 理由 */}
-          なぜなら、帰納法は揃えた情報から結論を導き出す思考法であるため、情報の揃え方に問題があると信憑性の高い結論が導けないからです。
-          <br />
-          {/* 具体例 */}
-          例えば、情報源に偏りがあるケースとして、「友人Aはミネラルウォーターをよく飲んでいる」「友人Bはウォーターサーバーを契約した」「友人Cは水道水を飲むことに抵抗があると言っていた」という情報を揃えたとします。そして、そこから「世間では水道水より品質の良い水が求められている」と結論づけたとしましょう。
-          <br />
-          しかし、身の回りの情報のみで判断をしてしまっているため、これでは「世間は〜」と結論づけるには根拠が弱く信憑性が低いです。
-          <br />
-          {/* 反例 */}
-          偏りをなくすなら身の回りだけではなく、テレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
-          <br />
-          例えば、「テレビでウォーターサーバーの契約数が増えていると紹介されていた」「ある雑誌のアンケートでは水道水を飲むことに抵抗があると答えた人が4割を超えた」「友人はミネラルウォーターを定期便で頼んでいる」という情報も取り入れたのであれば、「世間は〜」と結論づけても問題ないでしょう。
-          <br />
-          また他にも情報数を増やすことも大切です。情報数は＝根拠であるため、根拠が増えれば増えるほど、信憑性が高く、より正解に近い結論を導くことができます。
-          <br />
-          {/* 結論 */}
-          このように、情報の偏りをなくし多く揃えることで、より正解に近い結論を導くことができるようになります。
+          以下はSTEP②の共通点から結論を導いた例です。
+          <Box bgcolor="secondaryBackgroundColor.cyan" p="8px" mb="16px">
+            <Box component="dl">
+              <dt>悩み</dt>
+              <dd>長く健康でいるために、体に良い食事を取り入れたい</dd>
+            </Box>
+            <Box component="dl">
+              <dt>共通点</dt>
+              <dd>「発酵食品を食べると体調が良くなる」</dd>
+            </Box>
+            <Box component="dl">
+              <dt>結論</dt>
+              <dd>「納豆や味噌料理、ヨーグルトなどを食事に取り入れる」</dd>
+            </Box>
+          </Box>
+          続けて、結論が導けたら
+          <Typography color="success.main" component="span" fontWeight={600}>
+            「論理の飛躍」
+          </Typography>
+          がないか確認しましょう。論理の飛躍の確認方法は
+          <Typography component="span" fontWeight={600}>
+            「結論+共通点」
+          </Typography>
+          と「
+          <Typography component="span" fontWeight={600}>
+            共通点+揃えた情報」
+          </Typography>
+          がそれぞれ
+          <Typography component="span" color="success.main" fontWeight={600}>
+            「主張+根拠」
+          </Typography>
+          という構造になっているかで確認することができます。
+          <Box bgcolor="secondaryBackgroundColor.lime" p="8px">
+            <Box component="dl">
+              <dt>結論+共通点</dt>
+              <dd>「納豆や味噌料理、ヨーグルトなどを食事に取り入れる」+「発酵食品を食べると体調が良くなる」</dd>
+            </Box>
+            <Box component="dl">
+              <dt>共通点+情報</dt>
+              <dd>「発酵食品を食べると体調が良くなる」+「ヨーグルトを食べた翌日はお通じが良い」</dd>
+              <dd>「発酵食品を食べると体調が良くなる」+「味噌汁を飲むようになってからよく眠れるようになった」</dd>
+              <dd>「発酵食品を食べると体調が良くなる」+「キムチを食べるようになってから肌のトラブルが減った」</dd>
+            </Box>
+          </Box>
         </SlideListItemContent>
       </>
     ),

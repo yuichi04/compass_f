@@ -58,6 +58,8 @@ const TextAnimation: React.FC<Props> = React.memo((props) => {
       className="animation-text"
       color={color}
       component="div"
+      // fontWeight={300}
+      fontFamily={"'Noto Sans JP', sans-serif"}
       variant={variant ? variant : "h6"}
       letterSpacing={1.25}
       sx={{ wordWrap: "break-word", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}

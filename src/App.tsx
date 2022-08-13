@@ -16,7 +16,7 @@ export const App: React.FC = () => {
     }
   });
   return (
-    <Box bgcolor="background.default" minHeight="100vh">
+    <Box bgcolor="secondaryBackgroundColor.white" minHeight="100vh">
       {user.isSignedIn ? <SignedInRouteConfig /> : <RouteConfig />}
     </Box>
   );

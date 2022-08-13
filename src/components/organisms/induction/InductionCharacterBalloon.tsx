@@ -9,6 +9,7 @@ import {
   allowProgressSceneAction,
   forbidProgressSceneAction,
   lessonSelector,
+  toggleShowAndHideInterfaceAction,
 } from "../../../redux/features/lessonSlice";
 
 const InductionCharacterBalloon: FC = memo(() => {
@@ -22,8 +23,10 @@ const InductionCharacterBalloon: FC = memo(() => {
   const options = induction.scene.options;
   const role = induction.characterInfo.role;
   const lines = induction.scene.lines;
+  const isNarration = induction.scene.narration;
   // lesson selector
   const lesson = useAppSelector(lessonSelector);
+  const isOpen = lesson.isOpen;
   const displaySpeedOfLines = lesson.displaySpeedOfLines;
   const allowProgressScene = lesson.allowProgressScene;
 
@@ -45,6 +48,17 @@ const InductionCharacterBalloon: FC = memo(() => {
     return () => clearTimeout(timer);
   }, [dispatch, lines, displaySpeedOfLines, options]);
 
+  // 次のシーンへの進行処理
+  const handleClickNextScene = () => {
+    // 進行が許可されていない場合は処理を停止する
+    if (!allowProgressScene) return;
+    if (isNarration) {
+      dispatch(toggleShowAndHideInterfaceAction({ key: "narration", open: !isOpen.narration }));
+    } else {
+      dispatch(setNextStaticSceneAction(sceneId));
+    }
+  };
+
   return (
     <Box
       position="absolute"
@@ -52,7 +66,7 @@ const InductionCharacterBalloon: FC = memo(() => {
       width="100vw"
       height="200px"
       borderTop="double 5px rgba(255,255,255,0.2)"
-      onClick={() => allowProgressScene && dispatch(setNextStaticSceneAction(sceneId))}
+      onClick={handleClickNextScene}
       sx={{
         background:
           "radial-gradient(circle, rgba(55, 55, 55, 0.8) 75%, rgba(159, 159, 159, 0.45) 90%, rgba(255, 255, 255, 0.3))",
@@ -83,8 +97,10 @@ const InductionCharacterBalloon: FC = memo(() => {
           <Typography variant="h6" component="h6" fontFamily={"'Noto Sans JP', sans-serif"}>
             {role === "guide" ? (
               <>亀井</>
-            ) : role === "boy" ? (
+            ) : role === "youngerBoy" ? (
               <>少年</>
+            ) : role === "youngBoy" ? (
+              <>青年</>
             ) : role === "call" ? (
               <>コール音</>
             ) : (
@@ -95,14 +111,7 @@ const InductionCharacterBalloon: FC = memo(() => {
 
         {/* セリフ */}
         <Box position="relative" height="100%" width="100%" p="24px 16px 16px">
-          <Typography
-            variant="h6"
-            component="div"
-            color="#fff"
-            letterSpacing={1.5}
-            fontFamily={"'Noto Sans JP', sans-serif"}
-            sx={{ textShadow: "0 0 4px #333" }}
-          >
+          <Typography variant="h6" component="div" color="#fff" sx={{ textShadow: "0 0 4px #333" }}>
             {lines.map((line, index) => (
               <Box component="div" key={index} id={"theme" + index}>
                 <TextAnimation

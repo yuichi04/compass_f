@@ -1,5 +1,7 @@
 import React from "react";
+// Modules
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Components
 import { ContactBoard, SignedInHeader } from "../components/organisms";
 import {
   Home,
@@ -11,8 +13,8 @@ import {
   Terms,
   Unsubscribe,
   Induction,
+  UpdateEmail,
 } from "../components/pages";
-import UpdateEmail from "../components/pages/UpdateEmail";
 import GoToTop from "../components/utils/GoToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
 

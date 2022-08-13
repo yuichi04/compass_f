@@ -1,11 +1,11 @@
-import React from "react";
+import { FC, memo } from "react";
 import { MuiContainer } from "../layouts";
 import { IconWithSectionTitle, IconWithPageTitle } from "../molecules";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import HomeIcon from "@mui/icons-material/Home";
 import { CourseCardList } from "../molecules";
 
-const Home: React.FC = React.memo(() => {
+const Home: FC = memo(() => {
   return (
     <>
       <MuiContainer maxWidth="lg">

@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from "react";
+import { FC, memo, useCallback, useEffect } from "react";
 // Modules
 import styled from "styled-components";
 import { Box } from "@mui/material";
@@ -62,10 +62,10 @@ const Scene: FC = memo(() => {
   //   }, [linesLength]);
 
   // ナレーションを閉じて、次のシーンに進行させる処理
-  const handleCloseNarration = () => {
+  const handleCloseNarration = useCallback(() => {
     dispatch(toggleShowAndHideInterfaceAction({ key: "narration", open: !isOpen.narration }));
     dispatch(setNextStaticSceneAction(sceneId));
-  };
+  }, [dispatch, sceneId, isOpen]);
 
   // 初期化
   useEffect(() => {
@@ -150,6 +150,7 @@ const STooltipBar = styled.div`
   left: 16px;
 `;
 const SUserAnswers = styled.div`
+  z-index: 997;
   position: relative;
   width: 900px;
   margin: 0 auto;

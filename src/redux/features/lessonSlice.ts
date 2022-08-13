@@ -11,7 +11,7 @@ import { LessonType, InterfacesKeyType } from "../../types/lessonTypes";
 
 const initialState: LessonType = {
   course: "", // 現在のコース
-  allowStartingExercise: false, // 演習を開始して良いか
+  allowStartingExercise: false, // 演習の開始を許可するか
   allowProgressScene: false, // シーンを進行して良いか
   displaySpeedOfLines: 0.02, // セリフ1文字あたりの表示速度
   // 各インターフェースの表示・非表示を管理

@@ -1,3 +1,7 @@
+/******************************************************
+ *  担当する処理
+ * ・ユーザーのログイン状態の保管
+ ******************************************************/
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { UserParams } from "../../types/userTypes";

@@ -14,3 +14,4 @@ export { default as SignUp } from "./SignUp";
 export { default as Terms } from "./Terms";
 export { default as Top } from "./Top";
 export { default as Unsubscribe } from "./Unsubscribe";
+export { default as UpdateEmail } from "./UpdateEmail";
