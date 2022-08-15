@@ -4,7 +4,12 @@ import { TextField, Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import SendIcon from "@mui/icons-material/Send";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { inductionSelector, setNextDynamicSceneAction } from "../../../redux/features/inductionSlice";
+import {
+  changeEditAttributeAction,
+  inductionSelector,
+  setEditedAnswerAction,
+  setNextDynamicSceneAction,
+} from "../../../redux/features/inductionSlice";
 import { PulseButton } from "../../atoms";
 import { SlideInBox, TitleWithTriangleIcon } from "../../molecules";
 import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
@@ -19,6 +24,7 @@ const InductionAnswerCommon: FC = memo(() => {
   const sectionId = induction.sectionId;
   const info = induction.userAnswers.info;
   const commonSubject = induction.commonSubject;
+  const isEditFromCheckPhase = induction.isEditUserAnswersFromCheckPhase;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -33,10 +39,20 @@ const InductionAnswerCommon: FC = memo(() => {
     e.preventDefault();
     // validations
     if (answer === "") return false;
-    // 回答画面を非表示にする
-    dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
-    // セリフを生成し表示する処理
-    setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100); // 表示を0.1秒遅延させる
+
+    // 新規回答なら次のシーンに進行させる
+    // チェックフェーズから呼び出されている場合は、シーンは進行させずに編集フラグをオフにする
+    if (isEditFromCheckPhase.common) {
+      // 編集内容をstoreに保存
+      dispatch(setEditedAnswerAction({ key: "common", value: answer }));
+      // 編集フラグをオフに
+      dispatch(changeEditAttributeAction({ key: "common", value: false }));
+    } else {
+      // 回答画面を非表示にする
+      dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+      // セリフを生成し表示する処理
+      setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100); // 表示を0.1秒遅延させる
+    }
     // ユーザーの回答を初期化
     setAnswer("");
   };

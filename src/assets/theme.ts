@@ -126,7 +126,7 @@ export const theme = createTheme({
     },
     secondaryBackgroundColor: {
       lightGray: "#eaedef",
-      lime: "#f9fbe7",
+      lime: "#fff3e0",
       white: "#f8fbfe",
       black: "#2a2f36",
       teal: "#b2dfdb",

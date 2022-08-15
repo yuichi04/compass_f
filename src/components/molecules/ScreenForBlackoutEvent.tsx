@@ -8,12 +8,14 @@ type Props = {
   delay?: number;
   duration?: number;
   open: boolean;
+  handleClose?: () => void;
+  showCursor?: boolean;
 };
 
 const ScreenForBlackoutEvent: FC<Props> = memo(({ children, ...props }) => {
   return (
     <>
-      <Screen {...props}>
+      <Screen onClick={props.handleClose} {...props}>
         <div>{children}</div>
       </Screen>
     </>
@@ -126,5 +128,7 @@ const Screen = styled.div<Props>`
   animation-duration: ${(props) => (props.duration ? `${props.duration}s` : "0.5s")};
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
+  cursor: ${(props) => props.showCursor && "pointer"};
   opacity: ${(props) => (props.open ? 0 : 1)};
+  overflow: hidden;
 `;

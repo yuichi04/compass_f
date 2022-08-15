@@ -629,7 +629,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           </Typography>
           という構造になっていれば大丈夫です。
           <br />
-          以下の例をご覧ください。この例では①と②がそれぞれが主張と根拠という構造になっているため、論理に飛躍はないと言えます。
+          以下の例をご覧ください。この例では①と②がそれぞれ「主張+根拠」という構造になっています。
           <Box bgcolor="secondaryBackgroundColor.lime" p="8px" mb="8px">
             <Box component="dl">
               <dt>①結論+共通点</dt>

@@ -3,6 +3,7 @@ import { FC, memo, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 // Redux
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
@@ -10,6 +11,8 @@ import {
   inductionSelector,
   getInfoPhaseOptionsAction,
   setNextDynamicSceneAction,
+  setEditedAnswerAction,
+  changeEditAttributeAction,
 } from "../../../redux/features/inductionSlice";
 // Components
 import { PulseButton } from "../../atoms";
@@ -22,8 +25,10 @@ const InductionSelectOptions: FC = memo(() => {
   const isOpen = lesson.isOpen;
   // induction selector
   const induction = useAppSelector(inductionSelector);
+  const consultation = induction.consultation;
   const options = induction.selectableInfo;
   const phase = induction.scene.phase;
+  const isEditFromCheckPhase = induction.isEditUserAnswersFromCheckPhase;
 
   // 選択された情報を管理
   const [values, setValues] = useState<number[]>([]);
@@ -46,11 +51,20 @@ const InductionSelectOptions: FC = memo(() => {
 
   // 選択された情報をstoreに保存する処理
   const handleSubmit = () => {
-    // 回答画面を非表示
-    dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
-    // セリフを生成し表示する処理
-    setTimeout(() => dispatch(setNextDynamicSceneAction(values)), 100); // 表示を0.1秒遅延させる
-    // ユーザーの回答を初期化
+    // 新規回答なら次のシーンに進行させる
+    // チェックフェーズから呼び出されている場合は、シーンは進行させずに編集フラグをオフにする
+    if (isEditFromCheckPhase.info) {
+      // 編集内容をstoreに保存
+      dispatch(setEditedAnswerAction({ key: "info", value: values }));
+      // 編集フラグをオフに
+      dispatch(changeEditAttributeAction({ key: "info", value: false }));
+    } else {
+      // 回答画面を非表示
+      dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+      // セリフを生成し表示する処理
+      setTimeout(() => dispatch(setNextDynamicSceneAction(values)), 100); // 表示を0.1秒遅延させる
+      // ユーザーの回答を初期化
+    }
     setValues([]);
   };
 
@@ -74,11 +88,13 @@ const InductionSelectOptions: FC = memo(() => {
     <SBox>
       {/* 問題文 */}
       <Box display="flex" alignItems="center" justifyContent="center" flexDirection="column" mb="8px">
-        <TitleWithTriangleIcon variant="h4" color="#fff" fontWeight={600} mb="8px">
-          解決案を考えるための情報を3つ以上選択しましょう
+        <TitleWithTriangleIcon variant="h4" color="#fff" mb="16px">
+          以下の中から解決に使えそうな情報を3つ以上選択しましょう
         </TitleWithTriangleIcon>
-        <Typography variant="h6" color="#fff">
-          選択数が多いほど解決案を導く難易度は上がりますが、より正解に近い結論を導けます。慣れている方はより多く選択してみましょう。
+        <Typography variant="h5" color="warning.main" display="flex" alignItems="center" p="8px">
+          相談内容
+          <ArrowRightIcon fontSize="large" />
+          {consultation}
         </Typography>
       </Box>
 
@@ -86,7 +102,7 @@ const InductionSelectOptions: FC = memo(() => {
 
       {/* 選択肢一覧 */}
       <Box component="ul" mb="32px">
-        {options.map((option, index) => (
+        {options?.map((option, index) => (
           <Box component="li" display="inline-block" key={index}>
             <SCheckBox type="checkbox" id={index + "item"} onChange={() => handleChange(option.id)} />
             <SlideInBox direction="left" distance={16} duration={0.5} delay={(index + 1) / 2} m="8px 16px">
@@ -124,7 +140,7 @@ const SLabel = styled.label`
   border-radius: 8px;
   box-shadow: 0 0 8px ${(props) => props.theme.palette.background.default};
   cursor: pointer;
-  padding: 8px 12px;
+  padding: 6px 12px;
   transition: all 0.3s;
 
   &:hover {

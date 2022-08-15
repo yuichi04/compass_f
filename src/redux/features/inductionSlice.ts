@@ -19,6 +19,7 @@ const initialState: InductionType = {
   sceneId: 0, // 現在のシーン
   characterInfo: { src: "", role: "" }, // キャラクター情報の変更を管理
   commonSubject: ["英語が話せる人は", "現役エンジニアは初心者の頃に", "セクション3の主語"], // 共通点の主語を設定
+  consultation: "", // 相談内容
   history: "", // 1つ前のフェーズを格納
   isLastScene: false, // 最後のシーンかどうか
   selectableInfo: [], // 現セクションの選択可能な情報
@@ -26,7 +27,7 @@ const initialState: InductionType = {
   scenes: ScenesData.induction,
   // 現在のシーン情報
   scene: {
-    section: 0,
+    sectionId: 0,
     options: [], // シーンの進行で使用する選択肢
     character: { src: "", role: "" }, // キャラクター情報
     lines: [], // セリフ
@@ -39,6 +40,12 @@ const initialState: InductionType = {
     common: "",
     conclusion: "",
     check: false,
+  },
+  // 回答の編集状態を管理
+  isEditUserAnswersFromCheckPhase: {
+    conclusion: false,
+    common: false,
+    info: false,
   },
 };
 
@@ -55,11 +62,13 @@ const inductionSlice = createSlice({
 
       if (newSceneData) {
         // セクションIDを更新
-        state.sectionId = newSceneData.section;
+        state.sectionId = newSceneData.sectionId;
         // シーンを生成
         state.scene = newSceneData;
         // キャラクターが設定されている場合は更新
         if (newSceneData.character) state.characterInfo = newSceneData.character;
+        // 相談内容が設定されている場合は更新
+        if (newSceneData.consultation) state.consultation = newSceneData.consultation;
         // ヒストリーに現在のフェーズを記録
         if (state.scene.phase) state.history = state.scene.phase;
       }
@@ -154,6 +163,47 @@ const inductionSlice = createSlice({
       state.scene.options = [];
     },
 
+    // 編集フラグを変更する処理
+    changeEditAttributeAction: (
+      state,
+      action: { payload: { key: "conclusion" | "common" | "info"; value: boolean } }
+    ) => {
+      state.isEditUserAnswersFromCheckPhase = {
+        ...state.isEditUserAnswersFromCheckPhase,
+        [action.payload.key]: action.payload.value,
+      };
+    },
+
+    // 編集内容を保存する処理
+    setEditedAnswerAction: (
+      state,
+      action: { payload: { key: "conclusion" | "common" | "info"; value: string | number[] } }
+    ) => {
+      if (typeof action.payload.value === "string") {
+        // 入力された文字列をケースに分けて保存
+        switch (action.payload.key) {
+          case "conclusion":
+            state.userAnswers.conclusion = action.payload.value;
+            break;
+          case "common":
+            state.userAnswers.common = action.payload.value;
+            break;
+        }
+      }
+      // key === info の場合
+      if (Array.isArray(action.payload.value)) {
+        // 選択された情報を保存
+        let newSelectedInfo: SelectableInfoType[] = [];
+        action.payload.value.forEach((id) => {
+          const info = state.selectableInfo.find((info) => info.id === id);
+          if (info) {
+            newSelectedInfo.push(info);
+          }
+        });
+        state.userAnswers.info = newSelectedInfo;
+      }
+    },
+
     // 回答をやり直す処理
     showPreviousScreenForAnswersAction: (state) => {
       state.scene.options = [];
@@ -198,9 +248,11 @@ const inductionSlice = createSlice({
 export default inductionSlice.reducer;
 export const inductionSelector = (state: RootState) => state.induction;
 export const {
+  changeEditAttributeAction,
   getInfoPhaseOptionsAction,
   hideOptionsAction,
   initializeSceneAction,
+  setEditedAnswerAction,
   setNextStaticSceneAction,
   setNextDynamicSceneAction,
   showPreviousScreenForAnswersAction,

@@ -41,7 +41,7 @@ const selectableInfoList: SelectableInfoListType = {
     },
     {
       id: 9,
-      text: "音の繋がりや脱落など、発音を気にしながら文章を繰り返し音読していた",
+      text: "海外ドラマを観ながらセリフを真似して声に出していた",
     },
   ],
   section2: [
@@ -55,7 +55,7 @@ const selectableInfoList: SelectableInfoListType = {
     },
     {
       id: 3,
-      text: "チュートリアルで作ったTODOアプリに機能を追加していた",
+      text: "チュートリアルで作ったアプリに機能を追加していた",
     },
     {
       id: 4,

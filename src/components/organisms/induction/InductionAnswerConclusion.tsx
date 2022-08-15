@@ -1,13 +1,21 @@
 import { FC, memo, useState } from "react";
+// Modules
 import styled from "styled-components";
 import { TextField, Typography, Box } from "@mui/material";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import SendIcon from "@mui/icons-material/Send";
+// Redux
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { inductionSelector, setNextDynamicSceneAction } from "../../../redux/features/inductionSlice";
+import {
+  changeEditAttributeAction,
+  inductionSelector,
+  setEditedAnswerAction,
+  setNextDynamicSceneAction,
+} from "../../../redux/features/inductionSlice";
+import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
+// Components
 import { PulseButton } from "../../atoms";
 import { SlideInBox, TitleWithTriangleIcon } from "../../molecules";
-import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
 
 const InductionAnswerConclusion: FC = memo(() => {
   const dispatch = useAppDispatch();
@@ -18,6 +26,7 @@ const InductionAnswerConclusion: FC = memo(() => {
   const induction = useAppSelector(inductionSelector);
   const sectionId = induction.sectionId;
   const common = induction.userAnswers.common;
+  const isEditFromCheckPhase = induction.isEditUserAnswersFromCheckPhase;
 
   // ユーザーの回答を管理
   const [answer, setAnswer] = useState("");
@@ -32,22 +41,32 @@ const InductionAnswerConclusion: FC = memo(() => {
     e.preventDefault();
     // validations
     if (answer === "") return false;
-    // 回答画面を非表示にする
-    dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
-    // セリフを生成し表示する処理。表示を0.1秒遅延させる
-    setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100);
+
+    // 新規回答なら次のシーンに進行させる
+    // チェックフェーズから呼び出されている場合は、シーンは進行させずに編集フラグをオフにする
+    if (isEditFromCheckPhase.conclusion) {
+      // 編集内容をstoreに保存
+      dispatch(setEditedAnswerAction({ key: "conclusion", value: answer }));
+      // 編集フラグをオフに
+      dispatch(changeEditAttributeAction({ key: "conclusion", value: false }));
+    } else {
+      // 回答画面を非表示にする
+      dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+      // セリフを生成し表示する処理。表示を0.1秒遅延させる
+      setTimeout(() => dispatch(setNextDynamicSceneAction(answer)), 100);
+    }
     // ユーザーの回答を初期化
     setAnswer("");
   };
 
   return (
     <SBox>
-      <TitleWithTriangleIcon variant="h4" color="#fff" fontWeight={600} mb="8px">
+      <TitleWithTriangleIcon variant="h4" color="#fff" mb="16px">
         共通点から具体的な解決案を考えましょう
       </TitleWithTriangleIcon>
-      <Typography variant="h5" color="#fff" mb="32px">
+      <Typography variant="h6" color="#fff" mb="32px">
         {sectionId === 1 && "英語が話せるようになるにはどうしたら良いでしょうか？"}
-        {sectionId === 2 && "プログラミングについて脱入門するにはどのような方法が良いでしょうか？"}
+        {sectionId === 2 && "脱入門レベルになるにはどのような方法が良いでしょうか？"}
       </Typography>
 
       <SlideInBox direction="top" distance={32} duration={1.6} delay={0.8} mb="64px">
@@ -57,7 +76,6 @@ const InductionAnswerConclusion: FC = memo(() => {
           boxShadow="0 0 8px #097fa1"
           borderRadius="8px"
           color="typography.white"
-          fontWeight={600}
           p="8px 0"
         >
           共通点：{common}

@@ -61,6 +61,7 @@ const InductionCharacterBalloon: FC = memo(() => {
 
   return (
     <Box
+      zIndex={996}
       position="absolute"
       bottom="0"
       width="100vw"

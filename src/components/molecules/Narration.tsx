@@ -16,7 +16,7 @@ type Props = {
 const Narration: FC<Props> = memo((props) => {
   const { open, handleClose, contentWidth, contentHeight, text } = props;
   return (
-    <ScreenForBlackoutEvent open={open} bgcolor="dark" animationType="path-center">
+    <ScreenForBlackoutEvent open={open} bgcolor="dark" animationType="path-center" handleClose={handleClose} showCursor>
       <FadeInOutBox fadeIn={open} duration={1}>
         <Box position="absolute" top="64px" right="64px">
           <PulseButton autoEffect size="40px" bgcolor="#eee" onClick={handleClose}>
