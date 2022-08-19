@@ -1,6 +1,5 @@
 import React from "react";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Grid } from "@mui/material";
 import { MuiContainer } from "../layouts";
@@ -41,7 +40,7 @@ const LessonList: React.FC = React.memo(() => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <IconWithSectionTitle title="ロジカルシンキング応用篇" icon={BookmarkIcon} iconColor="primary" mb="32px" />
+          <IconWithSectionTitle title="ロジカルシンキング応用篇" icon={MenuBookIcon} iconColor="primary" mb="32px" />
           <Grid container spacing={6} height="100%">
             <Grid item xs={4}>
               <CourseCard

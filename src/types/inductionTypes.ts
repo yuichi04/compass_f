@@ -17,7 +17,7 @@ export type InductionType = {
     conclusion: string;
     check: boolean;
   };
-  // チェックフェーズで編集する場合に回答画面を呼び出すための管理フラグ
+  // チェックフェーズで結論/共通点/情報を編集する場合に回答画面を呼び出すための管理フラグ
   isEditUserAnswersFromCheckPhase: {
     conclusion: boolean;
     common: boolean;

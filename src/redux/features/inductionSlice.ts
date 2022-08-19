@@ -41,7 +41,7 @@ const initialState: InductionType = {
     conclusion: "",
     check: false,
   },
-  // 回答の編集状態を管理
+  // チェックフェーズから回答を編集する場合の編集状態を管理
   isEditUserAnswersFromCheckPhase: {
     conclusion: false,
     common: false,

@@ -371,7 +371,9 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             </Typography>
             」
           </Typography>
-          という3つのステップになっていて、例えば、パン屋において「新しいヒット商品を作りたい」というケースでは、以下のように用いることができます。
+          の3ステップで考えていきます。
+          <br />
+          例えば、パン屋において「新しいヒット商品を作りたい」というケースでは、以下のように用いることができます。
           <Typography component="ul" bgcolor="secondaryBackgroundColor.cyan" p="16px" mb="16px" textAlign="center">
             <dl>
               <Typography component="dt" color="success.light" fontWeight={600}>
@@ -463,7 +465,7 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
           この例では身の回りの情報のみで判断してしまっているため、信憑性のない結論になっています。改善するなら身の回りだけでなく、以下のようにテレビや雑誌、SNSなどからも情報を取り入れると良いでしょう。
           <Grid container bgcolor="secondaryBackgroundColor.cyan" p="8px 16px" mb="8px">
             <Grid item xs={2} display="flex" alignItems="center">
-              <Typography fontWeight={600}>偏りのない情報</Typography>
+              <Typography fontWeight={600}>偏りの少ない情報</Typography>
             </Grid>
             <Grid item xs={10} component="ul">
               <li>・SNSでは健康のためにミネラルウォーターを飲んでいるという投稿がよくされている</li>
@@ -527,17 +529,17 @@ export const inductionSlideListItemsData: SlideListItemType[] = [
             <Box component="dl" mb="8px">
               <dt>情報</dt>
               <dd>
-                「ヨーグルトを食べた翌日はお通じが良い」「味噌汁を飲むようになってからよく眠れるようになった」「キムチを食べるようになってから肌のトラブルが減った」
+                「A.ヨーグルトを食べた翌日はお通じが良い」「B.味噌汁を飲むようになってからよく眠れるようになった」「C.キムチを食べるようになってから肌のトラブルが減った」
               </dd>
             </Box>
             <Box component="dl" mb="8px">
               <dt>ステップ①</dt>
               <dd>
-                ・ヨーグルト→「発酵食品、乳酸菌が豊富、牛乳が原料」、それ以外の部分→「体調が良くなった」
+                A.ヨーグルト→「発酵食品、乳酸菌が豊富、牛乳が原料」、それ以外の部分→「体調が良くなった」
                 <br />
-                ・味噌汁→「発酵食品、大豆が原料、汁物」、それ以外の部分→「体調が良くなった」
+                B.味噌汁→「発酵食品、大豆が原料、汁物」、それ以外の部分→「体調が良くなった」
                 <br />
-                ・キムチ→「発酵食品、辛い、唐辛子が原料」、それ以外の部分→「体調が良くなった」
+                C.キムチ→「発酵食品、辛い、唐辛子が原料」、それ以外の部分→「体調が良くなった」
               </dd>
             </Box>
             <Box component="dl" mb="8px">

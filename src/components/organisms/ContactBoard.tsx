@@ -40,14 +40,10 @@ const ContactBoard: React.FC = React.memo(() => {
                 ご不明点やご意見・ご要望などがございましたらフォームよりご連絡ください。
                 <br />
                 <br />
-                また、
-                <Typography color="primary.light" component="span" onClick={() => setIsOpen(false)}>
-                  <LinkTo to="/help">ヘルプページ</LinkTo>
-                </Typography>
-                にサービスに関することや、よくあるご質問について記載しておりますので合わせてご確認ください。
+                ご意見・ご要望につきましては、今後のサービス開発の参考にさせていただきます。
+                <br />
+                ご不明点につきましては、メールにて順次ご返信いたします。
               </Typography>
-              <br />
-              お問い合わせいただいた内容につきましては、メールにて順次ご返信いたします。
             </Grid>
             <Grid item xs={6}>
               <form onSubmit={handleSubmit}>

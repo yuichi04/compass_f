@@ -38,12 +38,12 @@ const InductionTooltipBar: React.FC = React.memo(() => {
           icon={<PersonSearchIcon fontSize="large" />}
           onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "answers", open: !isOpen.answers }))}
         />
-        <Tooltip
+        {/* <Tooltip
           title="資料を見る"
           color="success.main"
           icon={<ArticleIcon fontSize="large" />}
           onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "documents", open: !isOpen.documents }))}
-        />
+        /> */}
       </Box>
     </>
   );
