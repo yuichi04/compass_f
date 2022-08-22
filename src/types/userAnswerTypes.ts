@@ -5,7 +5,7 @@ import { SelectableInfoType } from "./inductionTypes";
 export type UserAnswersOfInductionType = {
   id?: string;
   uid: string;
-  course: "induction" | "";
+  course: "帰納法" | "";
   consultation: string;
   conclusion: string;
   common: string;

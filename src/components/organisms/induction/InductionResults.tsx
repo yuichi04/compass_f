@@ -33,7 +33,7 @@ const InductionResults: FC = memo(() => {
     // サーバーに送信するデータを生成
     const newAnswers: UserAnswersOfInductionType = {
       uid: uid,
-      course: "induction",
+      course: "帰納法",
       consultation: consultation,
       conclusion: userAnswers.conclusion,
       common: userAnswers.common,

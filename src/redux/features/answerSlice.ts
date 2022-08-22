@@ -23,7 +23,7 @@ const initialState: InitialState = {
   answerOfInduction: {
     id: "",
     uid: "",
-    course: "induction",
+    course: "帰納法",
     consultation: "",
     conclusion: "",
     common: "",

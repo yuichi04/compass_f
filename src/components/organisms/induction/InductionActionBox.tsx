@@ -12,11 +12,19 @@ import {
   showPreviousScreenForAnswersAction,
 } from "../../../redux/features/inductionSlice";
 import { lessonSelector, toggleShowAndHideInterfaceAction } from "../../../redux/features/lessonSlice";
+import { showLoadingAction, hideLoadingAction } from "../../../redux/features/lodingSlice";
+import { saveUserAnswersOfInductionAction } from "../../../redux/features/answerSlice";
+import { userSelector } from "../../../redux/features/userSlice";
 // Components
 import { SlideInBox } from "../../molecules";
+// Types
+import { UserAnswersOfInductionType } from "../../../types/userAnswerTypes";
 
 const InductionActionBox: FC = memo(() => {
   const dispatch = useAppDispatch();
+  // user
+  const user = useAppSelector(userSelector);
+  const uid = user.id;
   // induction selector
   const induction = useAppSelector(inductionSelector);
   const sceneId = induction.sceneId;
@@ -26,11 +34,29 @@ const InductionActionBox: FC = memo(() => {
   const phase = induction.scene.phase;
   const endpoint = induction.scene.endpoint;
   const isNarration = induction.scene.narration;
+  const userAnswers = induction.userAnswers;
+  const consultation = induction.consultation;
   // lesson selector
   const lesson = useAppSelector(lessonSelector);
   const displaySpeedOfLines = lesson.displaySpeedOfLines;
   const isOpen = lesson.isOpen;
 
+  // 対応履歴を保存する処理
+  const saveAnswersAndGoToNextScene = async () => {
+    // サーバーに送信するデータを生成
+    const newAnswers: UserAnswersOfInductionType = {
+      uid: uid,
+      course: "帰納法",
+      consultation: consultation,
+      conclusion: userAnswers.conclusion,
+      common: userAnswers.common,
+      info: userAnswers.info,
+    };
+    // サーバーに送信
+    await dispatch(saveUserAnswersOfInductionAction(newAnswers));
+    // 次のシーンに進行
+    dispatch(setNextStaticSceneAction(sceneId));
+  };
   // 選択肢の属性を設定する処理
   const handleClickNextScene = (optionProgressAttribute: boolean, sceneId: number) => {
     if (optionProgressAttribute) {
@@ -48,6 +74,9 @@ const InductionActionBox: FC = memo(() => {
           if (isNarration) {
             // ナレーション画面を表示
             dispatch(toggleShowAndHideInterfaceAction({ key: "narration", open: !isOpen.narration }));
+          } else if (endpoint) {
+            // 対応履歴をサーバーに送信して、次のシーンへ進行
+            saveAnswersAndGoToNextScene();
           } else {
             // 次のシーンに進行
             dispatch(setNextStaticSceneAction(sceneId));
