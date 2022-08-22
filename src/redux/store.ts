@@ -4,6 +4,7 @@ import loadingReducer from "./features/lodingSlice";
 import lessonReducer from "./features/lessonSlice";
 import inductionReducer from "./features/inductionSlice";
 import slideListReducer from "./features/slideListSlice";
+import answerReducer from "./features/answerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     loding: loadingReducer,
     slideList: slideListReducer,
     user: userReducer,
+    answer: answerReducer,
   },
 });
 

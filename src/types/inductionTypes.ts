@@ -5,7 +5,6 @@ export type InductionType = {
   characterInfo: CharacterImageType; // キャラクター情報の変更を管理
   commonSubject: string[]; // 共通点の主語を設定
   consultation: string; // 相談内容
-  isLastScene: boolean; // 最後のシーンかどうか
   selectableInfo: SelectableInfoType[]; // 現在のセクションの選択可能な情報を格納
   scenes: StaticSceneDataType[]; // コース全体のシーン情報
   scene: StaticSceneDataType; // 現在のシーン情報
@@ -34,6 +33,7 @@ export type StaticSceneDataType = {
   lines: string[]; // キャラクターのセリフ
   phase?: PhaseType; // 回答が必要なシーンでの回答の種類を分岐
   narration?: string; // ナレーションに表示するテキスト
+  endpoint?: boolean; // 演習を続けるか、やめるかを管理
 };
 
 // フェーズの型定義

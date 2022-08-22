@@ -24,6 +24,7 @@ const InductionActionBox: FC = memo(() => {
   const linesLength = lines.join("").length;
   const options = induction.scene.options;
   const phase = induction.scene.phase;
+  const endpoint = induction.scene.endpoint;
   const isNarration = induction.scene.narration;
   // lesson selector
   const lesson = useAppSelector(lessonSelector);
@@ -53,9 +54,14 @@ const InductionActionBox: FC = memo(() => {
           }
       }
     } else {
-      // 回答画面を再表示する
-      dispatch(showPreviousScreenForAnswersAction());
-      dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+      // 演習を終了する
+      if (endpoint) {
+        dispatch(toggleShowAndHideInterfaceAction({ key: "results", open: !isOpen.results }));
+      } else {
+        // 回答画面を再表示する
+        dispatch(showPreviousScreenForAnswersAction());
+        dispatch(toggleShowAndHideInterfaceAction({ key: "screenForAnswers", open: !isOpen.screenForAnswers }));
+      }
     }
   };
 

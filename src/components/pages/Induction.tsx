@@ -30,6 +30,7 @@ import {
   InductionAnswerCommon,
   InductionAnswerConclusion,
   InductionAnswerCheck,
+  InductionResults,
 } from "../organisms";
 // Data
 import { inductionSlideListItemsData, courseTitle } from "../../dataset/induction/SlideListItemsData";
@@ -50,16 +51,6 @@ const Scene: FC = memo(() => {
   const lesson = useAppSelector(lessonSelector);
   const allowStartingExercise = lesson.allowStartingExercise;
   const isOpen = lesson.isOpen;
-
-  // シーンの切り替え処理
-  //   useEffect(() => {
-  //     // 最後のシーンだった場合は、一定時間経過後にResultを表示する
-  //     if (isLastScene) {
-  //       const timer = setTimeout(() => dispatch(setResultAction(true)), linesLength * delay * 2000);
-  //       return () => clearTimeout(timer);
-  //     }
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   }, [linesLength]);
 
   // ナレーションを閉じて、次のシーンに進行させる処理
   const handleCloseNarration = useCallback(() => {
@@ -98,6 +89,9 @@ const Scene: FC = memo(() => {
 
       {/* ナレーション */}
       <Narration open={isOpen.narration} handleClose={handleCloseNarration} text={narration ? narration : ""} />
+
+      {/* リザルト画面 */}
+      <InductionResults />
 
       {/* メイン画面 */}
       <Box bgcolor="#2a2f36">

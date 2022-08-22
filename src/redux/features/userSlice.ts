@@ -7,6 +7,7 @@ import { RootState } from "../store";
 import { UserParams } from "../../types/userTypes";
 
 const initialState: UserParams = {
+  id: "",
   name: "",
   email: "",
   createdAt: "",
@@ -21,6 +22,7 @@ export const userSlice = createSlice({
   reducers: {
     logInAction: (state, action) => {
       state.isSignedIn = true;
+      state.id = action.payload.id;
       state.name = action.payload.name;
       state.email = action.payload.email;
       // state.image = action.payload.image;

@@ -28,7 +28,7 @@ const inductionStaticScenesData: StaticSceneDataType[] = [
     sectionId: 1,
     lines: ["それでは始めていきましょう。", "準備ができたら、受電モードをオンにしてください。"],
     options: [{ progress: true, label: "受電モードをオンにする" }],
-    narration: "オンにしてから数分後・・・",
+    narration: "オンにしてから数秒後・・・",
   },
   {
     sectionId: 1,
@@ -38,7 +38,7 @@ const inductionStaticScenesData: StaticSceneDataType[] = [
   {
     sectionId: 1,
     character: { src: CharacterImage.guide.normalB, role: "guide" },
-    lines: ["あ、お問い合わせが来たみたいですね。", "それでは、電話を取って対応を始めましょう。"],
+    lines: ["あ、さっそくお問い合わせが来たみたいですね。", "それでは、電話を取って対応を始めましょう。"],
   },
   {
     sectionId: 1,
@@ -249,6 +249,15 @@ const inductionStaticScenesData: StaticSceneDataType[] = [
   {
     sectionId: 1,
     lines: ["もし不明なことがあれば、スライドで再度確認してみましょう。"],
+  },
+  {
+    sectionId: 1,
+    lines: ["この後も対応を続けますか？"],
+    options: [
+      { progress: true, label: "続ける" },
+      { progress: false, label: "やめる" },
+    ],
+    endpoint: true,
   },
   {
     sectionId: 1,

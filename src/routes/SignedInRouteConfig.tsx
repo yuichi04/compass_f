@@ -14,6 +14,7 @@ import {
   Unsubscribe,
   Induction,
   UpdateEmail,
+  UserAnswersHistory,
 } from "../components/pages";
 import GoToTop from "../components/utils/GoToTop";
 import ScrollToTop from "../components/utils/ScrollToTop";
@@ -34,6 +35,7 @@ const SignedInRouteConfig: React.FC = () => {
         <Route path="/lesson" element={<Lesson />}>
           <Route path="induction" element={<Induction />} />
         </Route>
+        <Route path="/history" element={<UserAnswersHistory />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound404 />} />

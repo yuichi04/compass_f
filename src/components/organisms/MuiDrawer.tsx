@@ -12,7 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import HelpIcon from "@mui/icons-material/Help";
 import HomeIcon from "@mui/icons-material/Home";
-import AutoAwesomeMotionIcon from "@mui/icons-material/AutoAwesomeMotion";
+import HistoryIcon from "@mui/icons-material/History";
+
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import { useLogOut } from "../../hooks/useLogOut";
 import { LinkTo, Avatar } from "../atoms";
@@ -57,7 +58,7 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
         {[
           { to: "/", text: "ホームに戻る", icon: <HomeIcon /> },
           { to: "/lessonlist", text: "レッスン一覧", icon: <LocalLibraryIcon /> },
-          { to: "/memo", text: "保存した回答", icon: <AutoAwesomeMotionIcon /> },
+          { to: "/history", text: "対応履歴", icon: <HistoryIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
         ].map((data) => (
           <LinkTo key={data.text} to={data.to}>

@@ -21,7 +21,6 @@ const initialState: InductionType = {
   commonSubject: ["英語が話せる人は", "現役エンジニアは初心者の頃に", "セクション3の主語"], // 共通点の主語を設定
   consultation: "", // 相談内容
   history: "", // 1つ前のフェーズを格納
-  isLastScene: false, // 最後のシーンかどうか
   selectableInfo: [], // 現セクションの選択可能な情報
   // 全てのシーン情報
   scenes: ScenesData.induction,
@@ -33,6 +32,7 @@ const initialState: InductionType = {
     lines: [], // セリフ
     phase: "", // 動的シーン生成のフック
     narration: "", // ナレーション
+    endpoint: false, // 演習を続けるか、やめるか
   },
   // ユーザーの回答を格納
   userAnswers: {
@@ -61,8 +61,6 @@ const inductionSlice = createSlice({
       const newSceneData = state.scenes.find((item, index) => index + 1 === state.sceneId);
 
       if (newSceneData) {
-        // セクションIDを更新
-        state.sectionId = newSceneData.sectionId;
         // シーンを生成
         state.scene = newSceneData;
         // キャラクターが設定されている場合は更新
@@ -71,10 +69,16 @@ const inductionSlice = createSlice({
         if (newSceneData.consultation) state.consultation = newSceneData.consultation;
         // ヒストリーに現在のフェーズを記録
         if (state.scene.phase) state.history = state.scene.phase;
-      }
 
-      // 最後のシーンかどうか
-      if (state.sceneId === state.scenes.length) state.isLastScene = true;
+        // セクションの更新処理
+        if (state.sectionId !== newSceneData.sectionId) {
+          // セクションIDを更新
+          state.sectionId = newSceneData.sectionId;
+
+          // ユーザーの回答をブランクに
+          state.userAnswers = { ...initialState.userAnswers };
+        }
+      }
     },
 
     // ユーザーの回答から動的シーンを生成する処理

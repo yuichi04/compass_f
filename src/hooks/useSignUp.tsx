@@ -22,6 +22,7 @@ export const useSignUp = () => {
         if (res.data.status === 200) {
           const user = res.data.user;
           const loginState: UserParams = {
+            id: user.id,
             name: user.name,
             email: user.email,
             createdAt: user.createdAt,

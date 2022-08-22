@@ -53,7 +53,7 @@ const InductionUserAnswers: FC = memo(() => {
         <CloseIcon sx={{ color: "#fff", width: "100%", height: "100%" }} />
       </Box>
       <Typography fontWeight={600} mb="16px" sx={{ textDecoration: "underline 2px #333" }}>
-        {user.name}さんの回答
+        {user.name}さんの解答
       </Typography>
 
       {/* 結論 */}
@@ -68,7 +68,7 @@ const InductionUserAnswers: FC = memo(() => {
           mb="24px"
           sx={{ wordBreak: "break-all" }}
         >
-          {answers.conclusion ? answers.conclusion : "※まだ回答はありません"}
+          {answers.conclusion ? answers.conclusion : "※まだ解答はありません"}
         </Typography>
       </Paper>
 
@@ -84,7 +84,7 @@ const InductionUserAnswers: FC = memo(() => {
           mb="24px"
           sx={{ wordBreak: "break-all" }}
         >
-          {answers.common ? answers.common : "※まだ回答はありません"}
+          {answers.common ? answers.common : "※まだ解答はありません"}
         </Typography>
       </Paper>
 

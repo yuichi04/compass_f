@@ -8,7 +8,7 @@ const options = {
 const client = applyCaseMiddleware(
   axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
-    withCredentials: true,
+    withCredentials: true, // リクエストにCookieの付与を許可
   }),
   options
 );

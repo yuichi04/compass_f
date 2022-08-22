@@ -13,6 +13,7 @@ export const useListenAuthState = () => {
       if (res.data.status === 200) {
         const user = res.data.user;
         const logInState: UserParams = {
+          id: user.id,
           name: user.name,
           email: user.email,
           createdAt: user.createdAt,

@@ -33,7 +33,7 @@ const InductionTooltipBar: React.FC = React.memo(() => {
           onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "slideList", open: !isOpen.slideList }))}
         />
         <Tooltip
-          title="自分の回答を確認する"
+          title="自分の解答を確認する"
           color="info.main"
           icon={<PersonSearchIcon fontSize="large" />}
           onClick={() => dispatch(toggleShowAndHideInterfaceAction({ key: "answers", open: !isOpen.answers }))}

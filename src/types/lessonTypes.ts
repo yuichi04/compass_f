@@ -1,3 +1,5 @@
+import { SelectableInfoType } from "./inductionTypes";
+
 // 演習の開始・終了とインターフェースの動きに関する型定義
 export type LessonType = {
   course: "induction" | "deduction" | "explanation" | ""; // コース名
@@ -17,3 +19,14 @@ export type LessonType = {
 
 // 表示・非表示系UIの種類に関する型定義
 export type InterfacesKeyType = "answers" | "documents" | "results" | "slideList" | "screenForAnswers" | "narration";
+
+// ユーザーの回答の保存に関する型定義
+// 帰納法
+export type SaveAnswersOfInductionType = {
+  uid: string;
+  course: "induction" | "deduction";
+  consultation: string;
+  conclusion: string;
+  common: string;
+  info: SelectableInfoType[];
+};

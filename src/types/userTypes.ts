@@ -11,6 +11,7 @@ export type LogInParams = {
 };
 
 export type UserParams = {
+  id: string;
   name: string;
   email: string;
   image?: string | any;
