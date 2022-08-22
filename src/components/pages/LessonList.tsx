@@ -12,7 +12,7 @@ import Comunicate from "../../assets/images/illustrations/comunicate.svg";
 const LessonList: React.FC = React.memo(() => {
   return (
     <MuiContainer maxWidth="lg">
-      <IconWithPageTitle title="レッスン一覧" icon={LocalLibraryIcon} iconColor="primary" />
+      <IconWithPageTitle title="レッスンリスト" icon={LocalLibraryIcon} iconColor="primary" />
       <Grid container spacing={8}>
         <Grid item xs={12}>
           <IconWithSectionTitle title="ロジカルシンキング基本編" icon={MenuBookIcon} iconColor="primary" mb="32px" />

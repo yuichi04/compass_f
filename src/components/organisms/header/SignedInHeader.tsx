@@ -43,11 +43,11 @@ const SignedInHeader: React.FC = React.memo(() => {
                 </LinkTo>
               </Typography>
               <ul className="hover_text_underline">
-                <Typography component="li" sx={{ marginRight: "16px" }}>
-                  <LinkTo to="lessonlist">レッスン一覧</LinkTo>
+                <Typography component="li" sx={{ marginRight: "16px" }} letterSpacing={1.5}>
+                  <LinkTo to="lessonlist">レッスンリスト</LinkTo>
                 </Typography>
-                <Typography component="li" sx={{ marginRight: "16px" }}>
-                  <LinkTo to="history">学習履歴</LinkTo>
+                <Typography component="li" sx={{ marginRight: "16px" }} letterSpacing={1.5}>
+                  <LinkTo to="history">学習レコード</LinkTo>
                 </Typography>
                 {/* <Typography component="li">
                   <LinkTo to="lesson/lessons">ヘルプ</LinkTo>

@@ -40,7 +40,7 @@ const UserAnswersHistory: FC = () => {
 
   return (
     <MuiContaier maxWidth="md">
-      <IconWithPageTitle title="学習履歴" icon={HistoryIcon} iconColor="primary" />
+      <IconWithPageTitle title="学習レコード" icon={HistoryIcon} iconColor="primary" />
       <Grid container p="8px" mb="8px" bgcolor="primary.main" color="typography.white">
         <Grid item xs={2}>
           <Typography variant="subtitle2">作成日</Typography>
@@ -89,6 +89,7 @@ const UserAnswersHistory: FC = () => {
           ))}
         </ul>
       )}
+
       {/* ページネーション */}
       <Box display="flex" justifyContent="center">
         <Stack spacing={2}>

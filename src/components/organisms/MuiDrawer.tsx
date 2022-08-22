@@ -57,8 +57,8 @@ const MuiDrawer: React.FC<Props> = React.memo((props) => {
       <List>
         {[
           { to: "/", text: "ホームに戻る", icon: <HomeIcon /> },
-          { to: "/lessonlist", text: "レッスン一覧", icon: <LocalLibraryIcon /> },
-          { to: "/history", text: "対応履歴", icon: <HistoryIcon /> },
+          { to: "/lessonlist", text: "レッスンリスト", icon: <LocalLibraryIcon /> },
+          { to: "/history", text: "学習レコード", icon: <HistoryIcon /> },
           { to: "/help", text: "ヘルプ", icon: <HelpIcon /> },
         ].map((data) => (
           <LinkTo key={data.text} to={data.to}>
