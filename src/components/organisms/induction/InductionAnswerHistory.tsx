@@ -1,7 +1,8 @@
 import { FC, memo } from "react";
 // Modules
 import styled from "styled-components";
-import { Typography, Box, Grid } from "@mui/material";
+import { Typography, Box, Grid, Divider } from "@mui/material";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 // Redux
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { answerSelector, toggleShowAnswerDetails } from "../../../redux/features/answerSlice";
@@ -26,35 +27,37 @@ const InductionAnswerHistory: FC = memo(() => {
                 {createdAt}
               </Typography>
               {/* 相談内容 */}
-              <Box component="dl" mb="32px">
+              <Box component="dl">
                 <Typography component="dt" variant="subtitle1" color="primary">
                   ＃相談内容
                 </Typography>
-                <Typography component="dd" variant="h6">
+                <Typography component="dd" variant="h6" color="typography.black" fontWeight={400}>
                   {answer.consultation}
                 </Typography>
               </Box>
-
+              <Divider sx={{ mb: "32px" }} />
               {/* 結論 */}
-              <Box component="dl" mb="32px">
+              <Box component="dl">
                 <Typography component="dt" variant="subtitle1" color="primary">
                   ＃案内した解決方法
                 </Typography>
-                <Typography component="dd" variant="h6">
+                <Typography component="dd" variant="h6" color="typography.black" fontWeight={400}>
                   {answer.conclusion}
                 </Typography>
               </Box>
+              <KeyboardDoubleArrowDownIcon fontSize="large" color="warning" sx={{ m: "16px 0" }} />
               {/* 共通点 */}
-              <Box component="dl" mb="32px">
+              <Box component="dl">
                 <Typography component="dt" variant="subtitle1" color="primary">
                   ＃情報から見つけた共通点
                 </Typography>
-                <Typography component="dd" variant="h6">
+                <Typography component="dd" variant="h6" color="typography.black" fontWeight={400}>
                   {answer.common}
                 </Typography>
               </Box>
+              <KeyboardDoubleArrowDownIcon fontSize="large" color="warning" sx={{ m: "16px 0" }} />
               {/* 情報 */}
-              <Box component="dl" mb="32px">
+              <Box component="dl">
                 <Typography component="dt" variant="subtitle1" color="primary">
                   ＃解決のために選んだ情報
                 </Typography>
@@ -63,12 +66,14 @@ const InductionAnswerHistory: FC = memo(() => {
                     <Grid item xs={4} key={index} p="8px">
                       <Typography
                         borderRadius="8px"
-                        boxShadow="0 0 8px #ccc"
+                        boxShadow="0 0 4px #2f4565"
                         p="8px"
                         height="100%"
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        color="typography.black"
+                        fontWeight={400}
                       >
                         {info.text}
                       </Typography>
@@ -110,7 +115,7 @@ const SInner = styled.div`
   min-height: 720px;
   margin: 0 auto;
   background: ${(props) => props.theme.palette.background.default};
-  box-shadow: 0 0 16px #ccc;
+  box-shadow: 0 0 4px #fff;
   border-radius: 16px;
   padding: 32px;
   text-align: center;

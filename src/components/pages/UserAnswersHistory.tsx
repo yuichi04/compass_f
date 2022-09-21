@@ -39,17 +39,20 @@ const UserAnswersHistory: FC = () => {
   }, [dispatch]);
 
   return (
-    <MuiContaier maxWidth="md">
+    <MuiContaier maxWidth="lg">
       <IconWithPageTitle title="学習レコード" icon={HistoryIcon} iconColor="primary" />
       <Grid container p="8px" mb="8px" bgcolor="primary.main" color="typography.white">
-        <Grid item xs={2}>
+        <Grid item xs={1}>
           <Typography variant="subtitle2">作成日</Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={1}>
           <Typography variant="subtitle2">コース名</Typography>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={5}>
           <Typography variant="subtitle2">相談内容</Typography>
+        </Grid>
+        <Grid item xs={5}>
+          <Typography variant="subtitle2">案内内容</Typography>
         </Grid>
       </Grid>
       {answers.length === 0 ? (
@@ -68,20 +71,35 @@ const UserAnswersHistory: FC = () => {
               onClick={() => answer.id && handleClick(answer.id)}
               sx={{ transition: "all 0.2s", cursor: "pointer", "&:hover": { boxShadow: "0 0 8px #ccc" } }}
             >
-              <Grid container display="flex" alignItems="center">
-                <Grid item xs={2}>
-                  <Typography variant="h6" color="typography.gray" fontWeight={400}>
+              <Grid container display="flex" alignItems="center" spacing={1}>
+                <Grid item xs={1}>
+                  <Typography variant="subtitle2" color="typography.gray" fontWeight={400}>
                     {answer.createdAt?.substring(0, 10)}
                   </Typography>
                 </Grid>
-                <Grid item xs={2}>
-                  <Typography variant="h6" color="typography.gray" fontWeight={400}>
+                <Grid item xs={1}>
+                  <Typography variant="subtitle2" color="typography.gray" fontWeight={400}>
                     {answer.course}
                   </Typography>
                 </Grid>
-                <Grid item xs={8}>
-                  <Typography variant="h6" color="typography.gray" fontWeight={400}>
+                <Grid item xs={5}>
+                  <Typography
+                    variant="subtitle2"
+                    color="typography.gray"
+                    fontWeight={400}
+                    sx={{ wordBreak: "break-all" }}
+                  >
                     {answer.consultation}
+                  </Typography>
+                </Grid>
+                <Grid item xs={5}>
+                  <Typography
+                    variant="subtitle2"
+                    color="typography.gray"
+                    fontWeight={400}
+                    sx={{ wordBreak: "break-all" }}
+                  >
+                    {answer.conclusion}
                   </Typography>
                 </Grid>
               </Grid>
@@ -91,7 +109,14 @@ const UserAnswersHistory: FC = () => {
       )}
 
       {/* ページネーション */}
-      <Box display="flex" justifyContent="center">
+      <Box
+        display="flex"
+        justifyContent="center"
+        position="absolute"
+        bottom="32px"
+        left="50%"
+        sx={{ transform: "translateX(-50%)" }}
+      >
         <Stack spacing={2}>
           <Pagination count={answers.length <= 6 ? 1 : answers.length / 6} color="primary" />
         </Stack>

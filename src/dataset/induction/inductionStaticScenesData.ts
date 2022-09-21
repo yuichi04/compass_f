@@ -14,10 +14,12 @@ const inductionStaticScenesData: StaticSceneDataType[] = [
   },
   {
     sectionId: 1,
+    character: { src: CharacterImage.guide.smile, role: "guide" },
     lines: ["さっそくですが、あなたにはこれからこのセンターでオペレーターをやっていただきたいと思います。"],
   },
   {
     sectionId: 1,
+    character: { src: CharacterImage.guide.normalB, role: "guide" },
     lines: ["仕事内容としては、お客様のご相談に対して何かしらの解決案を考え、案内するというものになります。"],
   },
   {
@@ -497,6 +499,8 @@ const inductionStaticScenesData: StaticSceneDataType[] = [
       "お疲れ様でした。本コースは以上で終わりです。",
       "現在続きを開発中ですので、今後のアップデートをお待ちくださいませ。",
     ],
+    endpoint: true,
+    options: [{ progress: false, label: "終了する" }],
     // narration: "休憩後・・・",
   },
   /*****************************************
